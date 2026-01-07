@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planer Posiłków</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        /* NAWIGACJA */
+        .nav {
+            background: rgba(255,255,255,0.95);
+            padding: 12px 15px;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            flex-wrap: wrap;
+        }
+        .nav-btn {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+            background: #f3f4f6;
+            color: #4b5563;
+        }
+        .nav-btn:hover { background: #e5e7eb; }
+        .nav-btn.active { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        
+        h1 { 
+            color: white; 
+            text-align: center; 
+            margin-bottom: 8px;
+            font-size: 28px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        .section { display: none; }
+        .section.active { display: block; }
+        
+        /* PRZYCISKI */
+        .quick-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.15s;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn-orange { background: #ffedd5; color: #c2410c; }
+        .btn-blue { background: #dbeafe; color: #1d4ed8; }
+        .btn-purple { background: #f3e8ff; color: #7c3aed; }
+        .btn-gray { background: #f3f4f6; color: #374151; }
+        .btn-green { background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); color: white; width: 100%; padding: 16px; font-size: 16px; margin-top: 10px; }
+        .btn-green:disabled { background: #d1d5db; color: #9ca3af; cursor: not-allowed; transform: none; box-shadow: none; }
+        .btn-share { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; }
+        
+        /* TABELA */
+        .plan-table { width: 100%; border-collapse: collapse; }
+        .plan-table th { 
+            text-align: left; 
+            padding: 10px 6px; 
+            font-size: 13px;
+            color: #6b7280;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        .plan-table td { 
+            padding: 10px 6px; 
+            border-bottom: 1px solid #f3f4f6;
+            vertical-align: middle;
+        }
+        .day-name { font-weight: 700; color: #1f2937; font-size: 14px; }
+        
+        /* SELECT */
+        .meal-select {
+            width: 100%;
+            padding: 8px 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 12px;
+            cursor: pointer;
+            background: white;
+            transition: border-color 0.2s;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            padding-right: 28px;
+        }
+        .meal-select:focus { outline: none; border-color: #8b5cf6; }
+        .meal-select.breakfast { border-left: 4px solid #f97316; }
+        .meal-select.lunch { border-left: 4px solid #3b82f6; }
+        .meal-select.dinner { border-left: 4px solid #8b5cf6; }
+        .meal-select.has-value.breakfast { background-color: #fff7ed; }
+        .meal-select.has-value.lunch { background-color: #eff6ff; }
+        .meal-select.has-value.dinner { background-color: #faf5ff; }
+        
+        .kcal-cell { text-align: right; font-weight: 700; font-size: 15px; }
+        .kcal-value { color: #22c55e; }
+        .kcal-empty { color: #d1d5db; }
+        
+        /* MODAL SHARE */
+        .share-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 300;
+            padding: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+        .share-modal.active { display: flex; }
+        .share-box {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+        .share-box h2 { margin-bottom: 15px; color: #1f2937; }
+        .share-box p { color: #6b7280; margin-bottom: 20px; font-size: 14px; }
+        .share-link {
+            background: #f3f4f6;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 15px;
+            word-break: break-all;
+            font-size: 12px;
+            color: #374151;
+            margin-bottom: 20px;
+            max-height: 100px;
+            overflow-y: auto;
+        }
+        .share-buttons { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        .share-buttons .btn { min-width: 140px; }
+        .btn-copy { background: #22c55e; color: white; }
+        .btn-close { background: #f3f4f6; color: #374151; }
+        .copied-msg {
+            background: #dcfce7;
+            color: #16a34a;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 15px;
+            display: none;
+        }
+        .copied-msg.show { display: block; }
+        
+        /* ALERT LOADED */
+        .loaded-alert {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .loaded-alert span { flex: 1; }
+        .loaded-alert .btn { background: white; color: #16a34a; }
+        
+        /* LISTA ZAKUPÓW */
+        .list-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .list-header h2 { color: #16a34a; font-size: 22px; }
+        
+        .category {
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+        .category h3 {
+            font-size: 16px;
+            color: #374151;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        .item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .item:last-child { border-bottom: none; }
+        .item input[type="checkbox"] {
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+            accent-color: #22c55e;
+        }
+        .item-name { flex: 1; color: #374151; font-size: 14px; }
+        .item-name.checked { text-decoration: line-through; color: #9ca3af; }
+        .item-amount {
+            background: #dcfce7;
+            color: #16a34a;
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 13px;
+        }
+        
+        /* PRZEPISY */
+        .recipes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+        .recipe-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+        .recipe-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+        .recipe-header {
+            padding: 16px;
+            color: white;
+        }
+        .recipe-header.breakfast { background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); }
+        .recipe-header.lunch { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); }
+        .recipe-header.dinner { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); }
+        
+        .recipe-type {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+            margin-bottom: 4px;
+        }
+        .recipe-name {
+            font-size: 17px;
+            font-weight: 700;
+        }
+        .recipe-body {
+            padding: 16px;
+        }
+        .recipe-macros {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .macro {
+            background: #f3f4f6;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+        .macro strong { color: #1f2937; }
+        .recipe-preview {
+            color: #6b7280;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+        
+        /* FILTER TABS */
+        .filter-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .filter-tab {
+            padding: 8px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+        .filter-tab:hover { border-color: #d1d5db; }
+        .filter-tab.active { border-color: #8b5cf6; background: #faf5ff; color: #7c3aed; }
+        
+        /* MODAL PRZEPISU */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 200;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .modal-overlay.active { display: flex; justify-content: center; align-items: flex-start; }
+        
+        .modal {
+            background: white;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 100%;
+            margin: 30px auto;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .modal-header {
+            padding: 25px;
+            color: white;
+        }
+        .modal-header.breakfast { background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); }
+        .modal-header.lunch { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); }
+        .modal-header.dinner { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); }
+        
+        .modal-close {
+            float: right;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 22px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .modal-close:hover { background: rgba(255,255,255,0.3); }
+        
+        .modal-type {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+            margin-bottom: 6px;
+        }
+        .modal-name {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .modal-body {
+            padding: 25px;
+        }
+        .modal-macros {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        .modal-macro {
+            background: #f3f4f6;
+            padding: 10px 16px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .modal-macro-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+        .modal-macro-label {
+            font-size: 11px;
+            color: #6b7280;
+            text-transform: uppercase;
+        }
+        
+        .modal-section {
+            margin-bottom: 20px;
+        }
+        .modal-section h3 {
+            font-size: 16px;
+            color: #1f2937;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        .modal-section ul {
+            list-style: none;
+        }
+        .modal-section li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f3f4f6;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+        .modal-section li:last-child { border-bottom: none; }
+        .modal-section li::before {
+            content: "•";
+            color: #8b5cf6;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .modal-steps li {
+            counter-increment: step;
+            padding-left: 0;
+        }
+        .modal-steps {
+            counter-reset: step;
+        }
+        .modal-steps li::before {
+            content: counter(step);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        
+        .hidden { display: none; }
+        
+        @media (max-width: 600px) {
+            .nav { padding: 10px; gap: 6px; }
+            .nav-btn { padding: 8px 12px; font-size: 12px; }
+            .plan-table th, .plan-table td { padding: 6px 3px; font-size: 11px; }
+            .meal-select { padding: 6px; font-size: 11px; }
+            .recipes-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 22px; }
+            .container { padding: 15px; }
+            .card { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <button class="nav-btn active" onclick="showSection('planner', this)">📅 Planer</button>
+        <button class="nav-btn" onclick="showSection('recipes', this)">📖 Przepisy</button>
+        <button class="nav-btn" onclick="showSection('shopping', this)">🛒 Zakupy</button>
+    </nav>
+
+    <div class="container">
+        <h1>🍽️ Planer Posiłków</h1>
+        <p class="subtitle">Zaplanuj tydzień • Przeglądaj przepisy • Generuj listę zakupów</p>
+        
+        <!-- ALERT: Plan załadowany z linku -->
+        <div id="loaded-alert" class="loaded-alert" style="display: none;">
+            <span>✅ Plan został załadowany z linku!</span>
+            <button class="btn" onclick="hideLoadedAlert()">OK</button>
+        </div>
+        
+        <!-- SEKCJA: PLANER -->
+        <div id="section-planner" class="section active">
+            <div class="card">
+                <div class="quick-buttons">
+                    <button class="btn btn-orange" onclick="fillAllWith('A')">Wariant 1</button>
+                    <button class="btn btn-blue" onclick="fillAllWith('B')">Wariant 2</button>
+                    <button class="btn btn-purple" onclick="fillAllWith('C')">Wariant 3</button>
+                    <button class="btn btn-gray" onclick="resetPlan()">🔄 Reset</button>
+                    <button class="btn btn-share" onclick="openShareModal()">📤 Udostępnij</button>
+                </div>
+                
+                <table class="plan-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">Dzień</th>
+                            <th>🍳 Śniadanie</th>
+                            <th>🍽️ Obiad</th>
+                            <th>🥗 Kolacja</th>
+                            <th style="width: 55px; text-align: right;">Kcal</th>
+                        </tr>
+                    </thead>
+                    <tbody id="plan-table-body"></tbody>
+                </table>
+                
+                <button class="btn btn-green" id="generate-btn" onclick="showSection('shopping')" disabled>
+                    🛒 Lista zakupów (0 posiłków)
+                </button>
+            </div>
+        </div>
+        
+        <!-- SEKCJA: PRZEPISY -->
+        <div id="section-recipes" class="section">
+            <div class="card">
+                <div class="filter-tabs">
+                    <button class="filter-tab active" onclick="filterRecipes('all', this)">Wszystkie</button>
+                    <button class="filter-tab" onclick="filterRecipes('breakfast', this)">🍳 Śniadania</button>
+                    <button class="filter-tab" onclick="filterRecipes('lunch', this)">🍽️ Obiady</button>
+                    <button class="filter-tab" onclick="filterRecipes('dinner', this)">🥗 Kolacje</button>
+                </div>
+                <div class="recipes-grid" id="recipes-grid"></div>
+            </div>
+        </div>
+        
+        <!-- SEKCJA: LISTA ZAKUPÓW -->
+        <div id="section-shopping" class="section">
+            <div class="card">
+                <div class="list-header">
+                    <h2>🛒 Lista zakupów</h2>
+                    <button class="btn btn-share" onclick="copyShoppingList()">📋 Kopiuj listę</button>
+                </div>
+                <p id="shopping-info" style="color: #6b7280; margin-bottom: 15px;"></p>
+                <div id="shopping-list"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- MODAL: UDOSTĘPNIJ -->
+    <div class="share-modal" id="share-modal" onclick="closeShareModal(event)">
+        <div class="share-box" onclick="event.stopPropagation()">
+            <h2>📤 Udostępnij plan</h2>
+            <p>Skopiuj link i wyślij na telefon (SMS, Messenger, mail) albo zapisz w notatkach.</p>
+            <div class="share-link" id="share-link"></div>
+            <div class="share-buttons">
+                <button class="btn btn-copy" onclick="copyShareLink()">📋 Kopiuj link</button>
+                <button class="btn btn-close" onclick="closeShareModal()">Zamknij</button>
+            </div>
+            <div class="copied-msg" id="copied-msg">✅ Link skopiowany!</div>
+        </div>
+    </div>
+    
+    <!-- MODAL: PRZEPIS -->
+    <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-header" id="modal-header">
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+                <div class="modal-type" id="modal-type"></div>
+                <div class="modal-name" id="modal-name"></div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-macros" id="modal-macros"></div>
+                <div class="modal-section">
+                    <h3>📝 Składniki</h3>
+                    <ul id="modal-ingredients"></ul>
+                </div>
+                <div class="modal-section">
+                    <h3>👨‍🍳 Przygotowanie</h3>
+                    <ul class="modal-steps" id="modal-steps"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===========================================
+        // BAZA PRZEPISÓW
+        // ===========================================
+        const recipes = {
+            breakfast: [
+                {
+                    id: 'b1',
+                    name: "Jajecznica z szynką + kanapki",
+                    kcal: 820, protein: 58, fat: 38, carbs: 60,
+                    ingredients: [
+                        { item: "Jajka", amount: 5, unit: "szt" },
+                        { item: "Szynka z indyka", amount: 100, unit: "g" },
+                        { item: "Chleb żytni razowy", amount: 4, unit: "kromki" },
+                        { item: "Masło", amount: 10, unit: "g" },
+                        { item: "Pomidor", amount: 1, unit: "szt" }
+                    ],
+                    steps: [
+                        "Rozgrzej patelnię z masłem na średnim ogniu.",
+                        "Wbij jajka i mieszaj łopatką do ścięcia.",
+                        "Pod koniec dodaj pokrojoną szynkę.",
+                        "Dopraw solą i pieprzem.",
+                        "Podawaj z chlebem i pomidorem."
+                    ]
+                },
+                {
+                    id: 'b2',
+                    name: "Tosty z jajkiem i serem",
+                    kcal: 830, protein: 56, fat: 42, carbs: 58,
+                    ingredients: [
+                        { item: "Chleb tostowy pełnoziarnisty", amount: 6, unit: "kromek" },
+                        { item: "Jajka", amount: 4, unit: "szt" },
+                        { item: "Ser żółty (gouda)", amount: 80, unit: "g" },
+                        { item: "Szynka z kurczaka", amount: 80, unit: "g" },
+                        { item: "Masło", amount: 15, unit: "g" },
+                        { item: "Ogórek", amount: 1, unit: "szt" }
+                    ],
+                    steps: [
+                        "Usmaż jajka sadzone na maśle.",
+                        "Złóż tosty: chleb + ser + szynka + jajko.",
+                        "Opiecz w tosterze aż ser się roztopi.",
+                        "Podawaj z ogórkiem."
+                    ]
+                },
+                {
+                    id: 'b3',
+                    name: "Kanapki z łososiem",
+                    kcal: 810, protein: 52, fat: 36, carbs: 68,
+                    ingredients: [
+                        { item: "Bułki grahamki", amount: 3, unit: "szt" },
+                        { item: "Łosoś wędzony", amount: 100, unit: "g" },
+                        { item: "Serek śmietankowy", amount: 60, unit: "g" },
+                        { item: "Jajka", amount: 3, unit: "szt" },
+                        { item: "Pomidorki koktajlowe", amount: 8, unit: "szt" }
+                    ],
+                    steps: [
+                        "Ugotuj jajka na twardo (8 min).",
+                        "Przekrój bułki, posmaruj serkiem.",
+                        "Ułóż łososia i pokrojone jajka.",
+                        "Podawaj z pomidorkami."
+                    ]
+                }
+            ],
+            lunch: [
+                {
+                    id: 'l1',
+                    name: "Kurczak z ryżem i brokułem",
+                    kcal: 850, protein: 65, fat: 25, carbs: 85,
+                    ingredients: [
+                        { item: "Pierś z kurczaka", amount: 250, unit: "g" },
+                        { item: "Ryż basmati", amount: 100, unit: "g" },
+                        { item: "Brokuł mrożony", amount: 150, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 1.5, unit: "łyżki" }
+                    ],
+                    steps: [
+                        "Ugotuj ryż według instrukcji.",
+                        "Kurczaka pokrój w kostkę, dopraw.",
+                        "Smaż na oliwie 6-8 minut.",
+                        "Brokuł ugotuj na parze 5 min.",
+                        "Podawaj razem."
+                    ]
+                },
+                {
+                    id: 'l2',
+                    name: "Mielone z frytkami",
+                    kcal: 860, protein: 62, fat: 28, carbs: 88,
+                    ingredients: [
+                        { item: "Mięso mielone z indyka", amount: 250, unit: "g" },
+                        { item: "Frytki mrożone", amount: 250, unit: "g" },
+                        { item: "Cebula", amount: 0.5, unit: "szt" },
+                        { item: "Jajka", amount: 1, unit: "szt" },
+                        { item: "Kapusta pekińska", amount: 150, unit: "g" },
+                        { item: "Jogurt naturalny", amount: 30, unit: "g" }
+                    ],
+                    steps: [
+                        "Frytki piecz 220°C, 20-25 min (BEZ oleju!).",
+                        "Mielone wymieszaj z jajkiem i cebulą.",
+                        "Uformuj kotlety, smaż 4-5 min z każdej strony.",
+                        "Kapustę wymieszaj z jogurtem na surówkę."
+                    ]
+                },
+                {
+                    id: 'l3',
+                    name: "Makaron z kurczakiem",
+                    kcal: 840, protein: 58, fat: 24, carbs: 92,
+                    ingredients: [
+                        { item: "Makaron pełnoziarnisty", amount: 100, unit: "g" },
+                        { item: "Pierś z kurczaka", amount: 200, unit: "g" },
+                        { item: "Passata pomidorowa", amount: 150, unit: "g" },
+                        { item: "Cukinia", amount: 100, unit: "g" },
+                        { item: "Parmezan", amount: 20, unit: "g" },
+                        { item: "Czosnek", amount: 2, unit: "ząbki" }
+                    ],
+                    steps: [
+                        "Ugotuj makaron al dente.",
+                        "Kurczaka pokrój w paski, smaż z czosnkiem.",
+                        "Dodaj cukinię i passatę, gotuj 5 min.",
+                        "Wymieszaj z makaronem, posyp parmezanem."
+                    ]
+                }
+            ],
+            dinner: [
+                {
+                    id: 'd1',
+                    name: "Twarożek z owocami",
+                    kcal: 780, protein: 62, fat: 22, carbs: 65,
+                    ingredients: [
+                        { item: "Serek wiejski wysokobiałkowy", amount: 400, unit: "g" },
+                        { item: "Banan", amount: 1, unit: "szt" },
+                        { item: "Orzechy włoskie", amount: 30, unit: "g" },
+                        { item: "Miód", amount: 20, unit: "g" },
+                        { item: "Płatki owsiane", amount: 30, unit: "g" }
+                    ],
+                    steps: [
+                        "Serek przełóż do miski.",
+                        "Pokrój banana, posiekaj orzechy.",
+                        "Wszystko wymieszaj, dodaj płatki.",
+                        "Polej miodem. Gotowe!"
+                    ]
+                },
+                {
+                    id: 'd2',
+                    name: "Kanapki z pastą jajeczną",
+                    kcal: 790, protein: 58, fat: 32, carbs: 68,
+                    ingredients: [
+                        { item: "Chleb żytni razowy", amount: 5, unit: "kromek" },
+                        { item: "Jajka", amount: 5, unit: "szt" },
+                        { item: "Jogurt grecki", amount: 50, unit: "g" },
+                        { item: "Majonez", amount: 15, unit: "g" },
+                        { item: "Ser żółty", amount: 40, unit: "g" },
+                        { item: "Ogórek", amount: 1, unit: "szt" },
+                        { item: "Szczypiorek", amount: 1, unit: "pęczek" }
+                    ],
+                    steps: [
+                        "Ugotuj jajka na twardo, rozgnieć widelcem.",
+                        "Wymieszaj z jogurtem, majonezem i szczypiorkiem.",
+                        "Smaruj chleb pastą, dodaj ser.",
+                        "Podawaj z ogórkiem."
+                    ]
+                },
+                {
+                    id: 'd3',
+                    name: "Wrap z kurczakiem",
+                    kcal: 785, protein: 60, fat: 26, carbs: 70,
+                    ingredients: [
+                        { item: "Tortilla pełnoziarnista", amount: 2, unit: "szt" },
+                        { item: "Pierś z kurczaka", amount: 180, unit: "g" },
+                        { item: "Serek śmietankowy", amount: 50, unit: "g" },
+                        { item: "Pomidor", amount: 1, unit: "szt" },
+                        { item: "Ser żółty", amount: 40, unit: "g" },
+                        { item: "Jogurt skyr", amount: 100, unit: "g" },
+                        { item: "Sałata lodowa", amount: 50, unit: "g" }
+                    ],
+                    steps: [
+                        "Tortillę posmaruj serkiem.",
+                        "Ułóż sałatę, kurczaka, pomidor, ser.",
+                        "Zwiń ciasno w rulon.",
+                        "Jogurt skyr jako dip."
+                    ]
+                }
+            ]
+        };
+
+        // ===========================================
+        // STAN
+        // ===========================================
+        const days = ['Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota', 'Niedziela'];
+        const daysShort = ['Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'Sb', 'Nd'];
+        const mealTypes = ['breakfast', 'lunch', 'dinner'];
+        const mealNames = { breakfast: 'Śniadanie', lunch: 'Obiad', dinner: 'Kolacja' };
+        
+        let plan = {};
+        days.forEach(day => {
+            plan[day] = { breakfast: null, lunch: null, dinner: null };
+        });
+
+        const categories = [
+            { name: "🥚 BIAŁKO", keywords: ["jajka", "pierś", "mielone", "łosoś", "szynka", "kurczak"] },
+            { name: "🧀 NABIAŁ", keywords: ["serek", "jogurt", "ser żółty", "masło", "parmezan", "majonez", "śmietankowy", "skyr"] },
+            { name: "🍞 PIECZYWO", keywords: ["chleb", "bułki", "tortilla", "tostowy"] },
+            { name: "🥦 WARZYWA/OWOCE", keywords: ["pomidor", "ogórek", "brokuł", "cukinia", "kapusta", "banan", "cebula", "sałata", "czosnek"] },
+            { name: "🍚 INNE", keywords: ["ryż", "makaron", "frytki", "oliwa", "orzechy", "miód", "płatki", "passata", "szczypiorek"] }
+        ];
+
+        // ===========================================
+        // FUNKCJE
+        // ===========================================
+        
+        function showSection(name, btn) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('section-' + name).classList.add('active');
+            if (btn) btn.classList.add('active');
+            else document.querySelector(`.nav-btn[onclick*="${name}"]`).classList.add('active');
+            if (name === 'shopping') renderShoppingList();
+        }
+
+        function renderPlannerTable() {
+            const tbody = document.getElementById('plan-table-body');
+            tbody.innerHTML = '';
+            let totalMeals = 0;
+            
+            days.forEach((day, i) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td class="day-name">${daysShort[i]}</td>`;
+                
+                mealTypes.forEach(mealType => {
+                    const td = document.createElement('td');
+                    const val = plan[day][mealType];
+                    if (val) totalMeals++;
+                    
+                    let opts = `<option value="">-- wybierz --</option>`;
+                    recipes[mealType].forEach(r => {
+                        opts += `<option value="${r.id}" ${val === r.id ? 'selected' : ''}>${r.name}</option>`;
+                    });
+                    
+                    td.innerHTML = `<select class="meal-select ${mealType} ${val ? 'has-value' : ''}" 
+                        onchange="setMeal('${day}', '${mealType}', this.value)">${opts}</select>`;
+                    row.appendChild(td);
+                });
+                
+                let kcal = 0;
+                mealTypes.forEach(mt => {
+                    const rid = plan[day][mt];
+                    if (rid) {
+                        const r = recipes[mt].find(x => x.id === rid);
+                        if (r) kcal += r.kcal;
+                    }
+                });
+                
+                const kcalTd = document.createElement('td');
+                kcalTd.className = 'kcal-cell';
+                kcalTd.innerHTML = kcal > 0 ? `<span class="kcal-value">${kcal}</span>` : `<span class="kcal-empty">-</span>`;
+                row.appendChild(kcalTd);
+                tbody.appendChild(row);
+            });
+            
+            const btn = document.getElementById('generate-btn');
+            btn.textContent = `🛒 Lista zakupów (${totalMeals} posiłków)`;
+            btn.disabled = totalMeals === 0;
+        }
+
+        function setMeal(day, mealType, id) {
+            plan[day][mealType] = id || null;
+            renderPlannerTable();
+            savePlan();
+        }
+
+        function fillAllWith(v) {
+            const idx = { 'A': 0, 'B': 1, 'C': 2 }[v];
+            days.forEach(day => {
+                mealTypes.forEach(mt => {
+                    if (recipes[mt][idx]) plan[day][mt] = recipes[mt][idx].id;
+                });
+            });
+            renderPlannerTable();
+            savePlan();
+        }
+
+        function resetPlan() {
+            days.forEach(day => mealTypes.forEach(mt => plan[day][mt] = null));
+            renderPlannerTable();
+            savePlan();
+        }
+
+        // PRZEPISY
+        function renderRecipes(filter = 'all') {
+            const grid = document.getElementById('recipes-grid');
+            grid.innerHTML = '';
+            const types = filter === 'all' ? mealTypes : [filter];
+            
+            types.forEach(mt => {
+                recipes[mt].forEach(r => {
+                    const card = document.createElement('div');
+                    card.className = 'recipe-card';
+                    card.onclick = () => openRecipeModal(mt, r);
+                    card.innerHTML = `
+                        <div class="recipe-header ${mt}">
+                            <div class="recipe-type">${mealNames[mt]}</div>
+                            <div class="recipe-name">${r.name}</div>
+                        </div>
+                        <div class="recipe-body">
+                            <div class="recipe-macros">
+                                <div class="macro"><strong>${r.kcal}</strong> kcal</div>
+                                <div class="macro"><strong>${r.protein}g</strong> B</div>
+                                <div class="macro"><strong>${r.carbs}g</strong> W</div>
+                            </div>
+                            <div class="recipe-preview">${r.ingredients.slice(0,3).map(x=>x.item).join(', ')}...</div>
+                        </div>`;
+                    grid.appendChild(card);
+                });
+            });
+        }
+
+        function filterRecipes(f, btn) {
+            document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+            btn.classList.add('active');
+            renderRecipes(f);
+        }
+
+        function openRecipeModal(mt, r) {
+            document.getElementById('modal-overlay').classList.add('active');
+            document.getElementById('modal-header').className = 'modal-header ' + mt;
+            document.getElementById('modal-type').textContent = mealNames[mt];
+            document.getElementById('modal-name').textContent = r.name;
+            
+            document.getElementById('modal-macros').innerHTML = `
+                <div class="modal-macro"><div class="modal-macro-value">${r.kcal}</div><div class="modal-macro-label">Kalorie</div></div>
+                <div class="modal-macro"><div class="modal-macro-value">${r.protein}g</div><div class="modal-macro-label">Białko</div></div>
+                <div class="modal-macro"><div class="modal-macro-value">${r.fat}g</div><div class="modal-macro-label">Tłuszcze</div></div>
+                <div class="modal-macro"><div class="modal-macro-value">${r.carbs}g</div><div class="modal-macro-label">Węgle</div></div>`;
+            
+            document.getElementById('modal-ingredients').innerHTML = r.ingredients.map(i => 
+                `<li>${i.item} - <strong>${i.amount} ${i.unit}</strong></li>`).join('');
+            document.getElementById('modal-steps').innerHTML = r.steps.map(s => `<li>${s}</li>`).join('');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(e) {
+            if (!e || e.target.id === 'modal-overlay') {
+                document.getElementById('modal-overlay').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // LISTA ZAKUPÓW
+        function renderShoppingList() {
+            const list = {};
+            days.forEach(day => {
+                mealTypes.forEach(mt => {
+                    const rid = plan[day][mt];
+                    if (rid) {
+                        const r = recipes[mt].find(x => x.id === rid);
+                        if (r) r.ingredients.forEach(ing => {
+                            const k = `${ing.item} (${ing.unit})`;
+                            list[k] = (list[k] || 0) + ing.amount;
+                        });
+                    }
+                });
+            });
+            
+            Object.keys(list).forEach(k => list[k] = Math.ceil(list[k] * 10) / 10);
+            
+            let total = 0;
+            Object.values(plan).forEach(d => mealTypes.forEach(mt => { if (d[mt]) total++; }));
+            
+            document.getElementById('shopping-info').textContent = total > 0 ? `${total} posiłków zaplanowanych` : '';
+            
+            const container = document.getElementById('shopping-list');
+            container.innerHTML = '';
+            
+            if (Object.keys(list).length === 0) {
+                container.innerHTML = '<p style="text-align:center;color:#9ca3af;padding:40px;">Najpierw zaplanuj posiłki</p>';
+                return;
+            }
+            
+            categories.forEach(cat => {
+                const items = Object.entries(list).filter(([item]) => 
+                    cat.keywords.some(kw => item.toLowerCase().includes(kw)));
+                if (items.length === 0) return;
+                
+                const div = document.createElement('div');
+                div.className = 'category';
+                div.innerHTML = `<h3>${cat.name}</h3>`;
+                items.forEach(([item, amt]) => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'item';
+                    itemDiv.innerHTML = `
+                        <input type="checkbox" onchange="this.nextElementSibling.classList.toggle('checked',this.checked)">
+                        <span class="item-name">${item}</span>
+                        <span class="item-amount">${amt}</span>`;
+                    div.appendChild(itemDiv);
+                });
+                container.appendChild(div);
+            });
+        }
+
+        function copyShoppingList() {
+            const list = {};
+            days.forEach(day => {
+                mealTypes.forEach(mt => {
+                    const rid = plan[day][mt];
+                    if (rid) {
+                        const r = recipes[mt].find(x => x.id === rid);
+                        if (r) r.ingredients.forEach(ing => {
+                            const k = `${ing.item} (${ing.unit})`;
+                            list[k] = (list[k] || 0) + ing.amount;
+                        });
+                    }
+                });
+            });
+            Object.keys(list).forEach(k => list[k] = Math.ceil(list[k] * 10) / 10);
+            
+            let txt = "🛒 LISTA ZAKUPÓW\n\n";
+            categories.forEach(cat => {
+                const items = Object.entries(list).filter(([item]) => 
+                    cat.keywords.some(kw => item.toLowerCase().includes(kw)));
+                if (items.length === 0) return;
+                txt += cat.name + "\n";
+                items.forEach(([item, amt]) => txt += `☐ ${item}: ${amt}\n`);
+                txt += "\n";
+            });
+            
+            navigator.clipboard.writeText(txt).then(() => alert('Lista skopiowana do schowka!'));
+        }
+
+        // UDOSTĘPNIANIE
+        function openShareModal() {
+            const data = btoa(encodeURIComponent(JSON.stringify(plan)));
+            const url = window.location.href.split('?')[0] + '?plan=' + data;
+            document.getElementById('share-link').textContent = url;
+            document.getElementById('share-modal').classList.add('active');
+            document.getElementById('copied-msg').classList.remove('show');
+        }
+
+        function closeShareModal(e) {
+            if (!e || e.target.id === 'share-modal') {
+                document.getElementById('share-modal').classList.remove('active');
+            }
+        }
+
+        function copyShareLink() {
+            const link = document.getElementById('share-link').textContent;
+            navigator.clipboard.writeText(link).then(() => {
+                document.getElementById('copied-msg').classList.add('show');
+            });
+        }
+
+        // ZAPIS/ODCZYT
+        function savePlan() {
+            localStorage.setItem('mealPlanV3', JSON.stringify(plan));
+        }
+
+        function loadPlan() {
+            // Sprawdź URL
+            const params = new URLSearchParams(window.location.search);
+            const urlPlan = params.get('plan');
+            if (urlPlan) {
+                try {
+                    plan = JSON.parse(decodeURIComponent(atob(urlPlan)));
+                    document.getElementById('loaded-alert').style.display = 'flex';
+                    // Wyczyść URL bez przeładowania
+                    window.history.replaceState({}, '', window.location.pathname);
+                    return;
+                } catch(e) {}
+            }
+            
+            // Sprawdź localStorage
+            const saved = localStorage.getItem('mealPlanV3');
+            if (saved) {
+                try { plan = JSON.parse(saved); } catch(e) {}
+            }
+        }
+
+        function hideLoadedAlert() {
+            document.getElementById('loaded-alert').style.display = 'none';
+            savePlan();
+        }
+
+        // INIT
+        loadPlan();
+        renderPlannerTable();
+        renderRecipes();
+    </script>
+</body>
+</html>
