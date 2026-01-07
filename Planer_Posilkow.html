@@ -2,7 +2,9 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <title>Planer Posiłków</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -40,7 +42,7 @@
         .nav-btn:hover { background: #e5e7eb; }
         .nav-btn.active { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
         
-        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .container { max-width: 1500px; margin: 0 auto; padding: 20px; }
         
         h1 { 
             color: white; 
@@ -62,6 +64,7 @@
             padding: 20px;
             margin-bottom: 16px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow-x: auto;
         }
         
         .section { display: none; }
@@ -88,12 +91,13 @@
         .btn-blue { background: #dbeafe; color: #1d4ed8; }
         .btn-purple { background: #f3e8ff; color: #7c3aed; }
         .btn-gray { background: #f3f4f6; color: #374151; }
+        .btn-budget { background: #dcfce7; color: #166534; }
         .btn-green { background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); color: white; width: 100%; padding: 16px; font-size: 16px; margin-top: 10px; }
         .btn-green:disabled { background: #d1d5db; color: #9ca3af; cursor: not-allowed; transform: none; box-shadow: none; }
         .btn-share { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; }
         
         /* TABELA */
-        .plan-table { width: 100%; border-collapse: collapse; }
+        .plan-table { width: 100%; border-collapse: collapse; min-width: 900px; }
         .plan-table th { 
             text-align: left; 
             padding: 10px 6px; 
@@ -192,46 +196,45 @@
             min-width: 35px;
         }
 
-        /* CHECKBOXY OSÓB PRZY POSIŁKACH */
-        .meal-cell {
+        /* PODWÓJNE DROPDOWNY DLA OSÓB */
+        .meal-cell-dual {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 3px;
         }
-        .person-checks {
-            display: flex;
-            gap: 6px;
-            justify-content: center;
-        }
-        .person-check {
+        .person-meal-row {
             display: flex;
             align-items: center;
-            cursor: pointer;
+            gap: 5px;
         }
-        .person-check input {
-            display: none;
-        }
-        .person-check .check-dot {
-            width: 18px;
-            height: 18px;
+        .person-indicator {
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            border: 2px solid #d1d5db;
-            transition: all 0.15s;
+            flex-shrink: 0;
         }
-        .person-check input:checked + .check-dot {
-            border-color: transparent;
+        .meal-select-compact {
+            flex: 1;
+            padding: 5px 8px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 11px;
+            cursor: pointer;
+            background: white;
+            transition: border-color 0.2s;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 6px center;
+            padding-right: 22px;
         }
-        .person-check input:checked + .check-dot.blue {
-            background: #3b82f6;
-            box-shadow: 0 2px 6px rgba(59, 130, 246, 0.4);
-        }
-        .person-check input:checked + .check-dot.pink {
-            background: #ec4899;
-            box-shadow: 0 2px 6px rgba(236, 72, 153, 0.4);
-        }
-        .person-check:hover .check-dot {
-            border-color: #9ca3af;
-        }
+        .meal-select-compact:focus { outline: none; border-color: #8b5cf6; }
+        .meal-select-compact.breakfast { border-left: 3px solid #f97316; }
+        .meal-select-compact.lunch { border-left: 3px solid #3b82f6; }
+        .meal-select-compact.dinner { border-left: 3px solid #8b5cf6; }
+        .meal-select-compact.has-value.breakfast { background-color: #fff7ed; }
+        .meal-select-compact.has-value.lunch { background-color: #eff6ff; }
+        .meal-select-compact.has-value.dinner { background-color: #faf5ff; }
 
         /* KOLUMNY KALORII DLA OSÓB */
         .kcal-person {
@@ -726,17 +729,184 @@
             margin-bottom: 15px;
         }
 
+        /* PRZYCISK PODGLĄDU PRZEPISU */
+        .preview-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 2px 6px;
+            font-size: 14px;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+        .preview-btn:hover {
+            opacity: 1;
+        }
+        .preview-btn:disabled {
+            opacity: 0.2;
+            cursor: default;
+        }
+
         .hidden { display: none; }
 
-        @media (max-width: 600px) {
-            .nav { padding: 10px; gap: 6px; }
-            .nav-btn { padding: 8px 12px; font-size: 12px; }
-            .plan-table th, .plan-table td { padding: 6px 3px; font-size: 11px; }
-            .meal-select { padding: 6px; font-size: 11px; }
-            .recipes-grid { grid-template-columns: 1fr; }
-            h1 { font-size: 22px; }
-            .container { padding: 15px; }
-            .card { padding: 15px; }
+        /* RESPONSYWNOŚĆ - Tablet */
+        @media (max-width: 1024px) {
+            .container { max-width: 100%; padding: 15px; }
+            .plan-table { min-width: 800px; }
+        }
+
+        /* RESPONSYWNOŚĆ - iPhone 14 Pro Max i podobne (430px szerokości) */
+        @media (max-width: 500px) {
+            /* Nawigacja */
+            .nav { padding: 8px; gap: 4px; }
+            .nav-btn { padding: 8px 10px; font-size: 11px; }
+
+            /* Kontener i karty */
+            .container { padding: 10px; }
+            .card { padding: 12px; overflow-x: auto; }
+            h1 { font-size: 20px; }
+            .subtitle { font-size: 12px; }
+
+            /* Przyciski wariantów */
+            .quick-buttons { gap: 5px; }
+            .quick-buttons .btn {
+                padding: 8px 10px;
+                font-size: 11px;
+                flex: 1 1 calc(33% - 5px);
+                min-width: 90px;
+            }
+
+            /* Tabela planera - scroll poziomy */
+            .plan-table { min-width: 600px; font-size: 10px; }
+            .plan-table th { padding: 6px 4px; font-size: 10px; }
+            .plan-table td { padding: 5px 3px; }
+            .day-name { font-size: 11px; }
+
+            /* Dropdowny posiłków */
+            .meal-select-compact {
+                padding: 4px 6px;
+                font-size: 9px;
+                padding-right: 18px;
+                background-position: right 4px center;
+            }
+            .person-indicator { width: 8px; height: 8px; }
+            .person-meal-row { gap: 3px; }
+            .preview-btn { font-size: 12px; padding: 2px 4px; }
+
+            /* Kolumny kalorii */
+            .kcal-person { font-size: 11px !important; padding: 4px 2px !important; }
+
+            /* Panel osób/ustawień */
+            .persons-panel {
+                flex-direction: column;
+                gap: 12px;
+                padding: 10px;
+            }
+            .person-config {
+                min-width: 100%;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .person-name { width: 70px; font-size: 12px; padding: 5px 8px; }
+            .portion-slider { width: 60px; }
+            .portion-value { font-size: 11px; }
+
+            /* Panel ustawień TDEE */
+            .settings-panel { padding: 12px; }
+            .settings-panel .input-group { flex-direction: column; gap: 8px; }
+            .settings-panel input, .settings-panel select {
+                width: 100%;
+                font-size: 14px;
+                padding: 10px;
+            }
+            .settings-toggle { font-size: 12px; padding: 8px 12px; }
+
+            /* Podsumowanie kalorii */
+            .kcal-summary {
+                flex-direction: column;
+                gap: 8px;
+                padding: 12px;
+            }
+            .kcal-summary-item {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+
+            /* Przepisy */
+            .recipes-grid { grid-template-columns: 1fr; gap: 12px; }
+            .recipe-card { padding: 12px; }
+            .recipe-name { font-size: 14px; }
+            .recipe-macros { gap: 8px; }
+            .macro { padding: 4px 8px; font-size: 11px; }
+
+            /* Modal przepisu */
+            .modal {
+                width: 95%;
+                max-height: 90vh;
+                margin: 5vh auto;
+            }
+            .modal-header { padding: 15px; }
+            .modal-name { font-size: 18px; }
+            .modal-body { padding: 15px; }
+            .modal-macros { gap: 8px; }
+            .modal-macro { padding: 8px 10px; }
+            .modal-macro-value { font-size: 16px; }
+            .modal-persons-toggle { flex-direction: column; gap: 6px; }
+            .modal-person-btn { padding: 10px; font-size: 12px; }
+
+            /* Lista zakupów */
+            .shopping-list { padding: 12px; }
+            .shopping-category h3 { font-size: 14px; }
+            .shopping-item { font-size: 13px; padding: 8px 0; }
+
+            /* Przyciski akcji */
+            .btn-green { padding: 12px; font-size: 14px; }
+            .btn-share { padding: 10px 15px; font-size: 12px; }
+
+            /* Alert */
+            .loaded-alert {
+                flex-direction: column;
+                gap: 10px;
+                padding: 12px;
+                font-size: 13px;
+            }
+        }
+
+        /* RESPONSYWNOŚĆ - Bardzo małe ekrany (iPhone SE, itp.) */
+        @media (max-width: 380px) {
+            .nav-btn { padding: 6px 8px; font-size: 10px; }
+            h1 { font-size: 18px; }
+            .quick-buttons .btn {
+                flex: 1 1 calc(50% - 5px);
+                font-size: 10px;
+                padding: 6px 8px;
+            }
+            .plan-table { min-width: 550px; }
+            .meal-select-compact { font-size: 8px; }
+        }
+
+        /* RESPONSYWNOŚĆ - iPhone poziomo */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .nav { padding: 5px; }
+            .nav-btn { padding: 6px 10px; }
+            h1 { font-size: 18px; margin-bottom: 5px; }
+            .subtitle { display: none; }
+            .container { padding: 8px; }
+            .card { padding: 10px; }
+            .quick-buttons { margin-bottom: 10px; }
+            .quick-buttons .btn { padding: 6px 10px; font-size: 10px; }
+            .plan-table { min-width: 700px; }
+            .settings-panel { max-height: 200px; overflow-y: auto; }
+
+            /* Modal w poziomie */
+            .modal {
+                max-height: 95vh;
+                margin: 2vh auto;
+            }
+            .modal-body {
+                max-height: 60vh;
+                overflow-y: auto;
+            }
         }
     </style>
 </head>
@@ -761,9 +931,19 @@
         <div id="section-planner" class="section active">
             <div class="card">
                 <div class="quick-buttons">
-                    <button class="btn btn-orange" onclick="fillAllWith('A')">Wariant 1</button>
-                    <button class="btn btn-blue" onclick="fillAllWith('B')">Wariant 2</button>
-                    <button class="btn btn-purple" onclick="fillAllWith('C')">Wariant 3</button>
+                    <button class="btn btn-orange" onclick="fillAllWith(1)">Wariant 1</button>
+                    <button class="btn btn-blue" onclick="fillAllWith(2)">Wariant 2</button>
+                    <button class="btn btn-purple" onclick="fillAllWith(3)">Wariant 3</button>
+                    <button class="btn btn-orange" onclick="fillAllWith(4)">Wariant 4</button>
+                    <button class="btn btn-blue" onclick="fillAllWith(5)">Wariant 5</button>
+                    <button class="btn btn-purple" onclick="fillAllWith(6)">Wariant 6</button>
+                    <button class="btn btn-orange" onclick="fillAllWith(7)">Wariant 7</button>
+                    <button class="btn btn-blue" onclick="fillAllWith(8)">Wariant 8</button>
+                    <button class="btn btn-purple" onclick="fillAllWith(9)">Wariant 9</button>
+                    <button class="btn btn-gray" onclick="fillAllWith(10)">Wariant 10</button>
+                    <button class="btn btn-budget" onclick="fillAllWith(11)">💰 Budżet 1</button>
+                    <button class="btn btn-budget" onclick="fillAllWith(12)">💰 Budżet 2</button>
+                    <button class="btn btn-budget" onclick="fillAllWith(13)">💰 Budżet 3</button>
                     <button class="btn btn-gray" onclick="resetPlan()">🔄 Reset</button>
                 </div>
 
@@ -860,32 +1040,33 @@
                 {
                     id: 'b1',
                     name: "Jajecznica z szynką + kanapki",
-                    kcal: 820, protein: 58, fat: 38, carbs: 60,
+                    kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
-                        { item: "Jajka", amount: 5, unit: "szt" },
-                        { item: "Szynka z indyka", amount: 100, unit: "g" },
-                        { item: "Chleb żytni razowy", amount: 4, unit: "kromki" },
-                        { item: "Masło", amount: 10, unit: "g" },
-                        { item: "Pomidor", amount: 1, unit: "szt" }
+                        { item: "Jajka", amount: 4, unit: "szt" },
+                        { item: "Szynka z indyka", amount: 150, unit: "g" },
+                        { item: "Chleb żytni razowy", amount: 3, unit: "kromki" },
+                        { item: "Masło", amount: 8, unit: "g" },
+                        { item: "Pomidor", amount: 1, unit: "szt" },
+                        { item: "Serek wiejski", amount: 100, unit: "g" }
                     ],
                     steps: [
                         "Rozgrzej patelnię z masłem na średnim ogniu.",
                         "Wbij jajka i mieszaj łopatką do ścięcia.",
                         "Pod koniec dodaj pokrojoną szynkę.",
                         "Dopraw solą i pieprzem.",
-                        "Podawaj z chlebem i pomidorem."
+                        "Podawaj z chlebem, serkiem wiejskim i pomidorem."
                     ]
                 },
                 {
                     id: 'b2',
                     name: "Tosty z jajkiem i serem",
-                    kcal: 830, protein: 56, fat: 42, carbs: 58,
+                    kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
-                        { item: "Chleb tostowy pełnoziarnisty", amount: 6, unit: "kromek" },
+                        { item: "Chleb tostowy pełnoziarnisty", amount: 4, unit: "kromki" },
                         { item: "Jajka", amount: 4, unit: "szt" },
-                        { item: "Ser żółty (gouda)", amount: 80, unit: "g" },
-                        { item: "Szynka z kurczaka", amount: 80, unit: "g" },
-                        { item: "Masło", amount: 15, unit: "g" },
+                        { item: "Ser żółty (gouda)", amount: 60, unit: "g" },
+                        { item: "Szynka z kurczaka", amount: 120, unit: "g" },
+                        { item: "Masło", amount: 10, unit: "g" },
                         { item: "Ogórek", amount: 1, unit: "szt" }
                     ],
                     steps: [
@@ -898,12 +1079,12 @@
                 {
                     id: 'b3',
                     name: "Kanapki z łososiem",
-                    kcal: 810, protein: 52, fat: 36, carbs: 68,
+                    kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
-                        { item: "Bułki grahamki", amount: 3, unit: "szt" },
-                        { item: "Łosoś wędzony", amount: 100, unit: "g" },
-                        { item: "Serek śmietankowy", amount: 60, unit: "g" },
-                        { item: "Jajka", amount: 3, unit: "szt" },
+                        { item: "Bułki grahamki", amount: 2, unit: "szt" },
+                        { item: "Łosoś wędzony", amount: 120, unit: "g" },
+                        { item: "Serek śmietankowy", amount: 40, unit: "g" },
+                        { item: "Jajka", amount: 4, unit: "szt" },
                         { item: "Pomidorki koktajlowe", amount: 8, unit: "szt" }
                     ],
                     steps: [
@@ -912,18 +1093,578 @@
                         "Ułóż łososia i pokrojone jajka.",
                         "Podawaj z pomidorkami."
                     ]
+                },
+                {
+                    id: 'b4',
+                    name: "Skyr z orzechami i bananem",
+                    kcal: 820, protein: 62, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Jogurt Skyr naturalny", amount: 400, unit: "g" },
+                        { item: "Banan", amount: 1, unit: "szt" },
+                        { item: "Mieszanka orzechów", amount: 35, unit: "g" },
+                        { item: "Odżywka białkowa", amount: 15, unit: "g" }
+                    ],
+                    steps: [
+                        "Banana pokrój w plastry.",
+                        "Jogurt wymieszaj z odżywką białkową.",
+                        "Dodaj orzechy i banana."
+                    ]
+                },
+                {
+                    id: 'b5',
+                    name: "Tost z mozzarellą i szynką",
+                    kcal: 820, protein: 62, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Chleb żytni razowy", amount: 3, unit: "kromki" },
+                        { item: "Ser mozzarella", amount: 100, unit: "g" },
+                        { item: "Szynka z kurczaka", amount: 150, unit: "g" },
+                        { item: "Pomidorki koktajlowe", amount: 10, unit: "szt" },
+                        { item: "Jajka", amount: 2, unit: "szt" }
+                    ],
+                    steps: [
+                        "Jajka usmaż na patelni.",
+                        "Na kromce chleba ułóż mozzarellę i szynkę, przykryj drugą kromką.",
+                        "Podpiekaj na patelni 3 min pod przykryciem, obróć na kolejne 3 min.",
+                        "Podawaj z jajkami i pomidorkami."
+                    ]
+                },
+                {
+                    id: 'b6',
+                    name: "Sałatka a la cezar",
+                    kcal: 820, protein: 62, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Pierś z kurczaka", amount: 200, unit: "g" },
+                        { item: "Batat", amount: 200, unit: "g" },
+                        { item: "Miks sałat", amount: 100, unit: "g" },
+                        { item: "Pomidorki koktajlowe", amount: 6, unit: "szt" },
+                        { item: "Ogórek", amount: 1, unit: "szt" },
+                        { item: "Parmezan", amount: 15, unit: "g" },
+                        { item: "Jogurt naturalny 2%", amount: 100, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 1, unit: "łyżka" }
+                    ],
+                    steps: [
+                        "Piekarnik nagrzej do 200°C.",
+                        "Kurczaka dopraw i smaż na patelni 4 min z każdej strony.",
+                        "Batata pokrój w kostkę, piecz 25 min.",
+                        "Sałatę porwij, warzywa pokrój.",
+                        "Dressing: jogurt + parmezan + sól + pieprz.",
+                        "Ułóż sałatkę, na wierzch kurczaka i bataty, polej dressingiem."
+                    ]
+                },
+                {
+                    id: 'b7',
+                    name: "Quesadilla z kurczakiem",
+                    kcal: 820, protein: 62, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Pierś z kurczaka", amount: 180, unit: "g" },
+                        { item: "Tortilla pełnoziarnista", amount: 1, unit: "szt" },
+                        { item: "Papryka czerwona", amount: 0.5, unit: "szt" },
+                        { item: "Cebula czerwona", amount: 0.5, unit: "szt" },
+                        { item: "Ser mozzarella", amount: 50, unit: "g" },
+                        { item: "Jogurt grecki", amount: 80, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 8, unit: "g" }
+                    ],
+                    steps: [
+                        "Kurczaka pokrój w paski, dopraw i usmaż.",
+                        "Paprykę i cebulę pokrój w paski, podsmaż.",
+                        "Tortillę posmaruj jogurtem, ułóż kurczaka, warzywa, ser.",
+                        "Złóż na pół i podpiekaj aż ser się rozpuści."
+                    ]
+                },
+                {
+                    id: 'b8',
+                    name: "Fit Placuszki proteinowe",
+                    kcal: 820, protein: 62, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Jajka", amount: 3, unit: "szt" },
+                        { item: "Mąka pszenna pełnoziarnista", amount: 60, unit: "g" },
+                        { item: "Odżywka białkowa", amount: 40, unit: "g" },
+                        { item: "Mleko 1.5%", amount: 100, unit: "ml" },
+                        { item: "Borówki amerykańskie", amount: 50, unit: "g" },
+                        { item: "Jogurt Skyr naturalny", amount: 150, unit: "g" },
+                        { item: "Olej rzepakowy", amount: 10, unit: "g" }
+                    ],
+                    steps: [
+                        "Wymieszaj jajka z mlekiem, mąką i odżywką.",
+                        "Smaż placuszki na oleju z obu stron.",
+                        "Podawaj z jogurtem i borówkami."
+                    ]
+                },
+                {
+                    id: 'b9',
+                    name: "Chrupiące tosty z jajkiem i szpinakiem",
+                    kcal: 820, protein: 62, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Chleb żytni razowy", amount: 3, unit: "kromki" },
+                        { item: "Jajka", amount: 4, unit: "szt" },
+                        { item: "Szpinak świeży", amount: 50, unit: "g" },
+                        { item: "Serek śmietankowy", amount: 30, unit: "g" },
+                        { item: "Szynka z indyka", amount: 100, unit: "g" },
+                        { item: "Pomidor", amount: 1, unit: "szt" }
+                    ],
+                    steps: [
+                        "Jajka usmaż na patelni.",
+                        "Chleb podpiecz, posmaruj serkiem.",
+                        "Ułóż szpinak, szynkę i jajka.",
+                        "Podawaj z pomidorem."
+                    ]
+                },
+                {
+                    id: 'b10',
+                    name: "Kanapki z serkiem i wędliną",
+                    kcal: 820, protein: 62, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Chleb pszenny", amount: 4, unit: "kromki" },
+                        { item: "Serek śmietankowy", amount: 75, unit: "g" },
+                        { item: "Szynka z kurczaka", amount: 150, unit: "g" },
+                        { item: "Pomidor", amount: 1, unit: "szt" },
+                        { item: "Ogórek świeży", amount: 1, unit: "szt" },
+                        { item: "Natka pietruszki", amount: 10, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 5, unit: "g" },
+                        { item: "Jajka", amount: 2, unit: "szt" }
+                    ],
+                    steps: [
+                        "Ogórka obieramy i kroimy na plasterki.",
+                        "Pomidora sparzamy, obieramy ze skórki i kroimy w kostkę.",
+                        "Jajka ugotuj na twardo.",
+                        "Pieczywo smarujemy serkiem, układamy wędlinę i kawałki ogórka.",
+                        "Pomidora układamy obok kanapek, skrapiamy oliwą i posypujemy natką pietruszki.",
+                        "Kanapki zjadamy z sałatką z pomidora i jajkami."
+                    ]
+                },
+                {
+                    id: 'b11',
+                    name: "Pinsa z szynką i pomidorami",
+                    kcal: 820, protein: 62, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Pinsa", amount: 0.5, unit: "szt" },
+                        { item: "Pomidory z puszki", amount: 40, unit: "g" },
+                        { item: "Ser mozzarella żółta", amount: 20, unit: "g" },
+                        { item: "Rukola", amount: 20, unit: "g" },
+                        { item: "Ser mozzarella kulka", amount: 80, unit: "g" },
+                        { item: "Pomidorki koktajlowe", amount: 5, unit: "szt" },
+                        { item: "Szynka z kurczaka", amount: 100, unit: "g" },
+                        { item: "Pomidory suszone w oleju", amount: 40, unit: "g" },
+                        { item: "Ser Grana Padano", amount: 10, unit: "g" },
+                        { item: "Jajka", amount: 2, unit: "szt" }
+                    ],
+                    steps: [
+                        "Nagrzewamy piekarnik według instrukcji na opakowaniu.",
+                        "Pinsę smarujemy pomidorami z puszki, nakładamy tartą mozzarellę. Pieczemy tyle czasu, ile podaje producent.",
+                        "Jajka ugotuj na twardo lub usmaż.",
+                        "Na ciepłą pinsę nakładamy rukolę, mozzarellę pokrojoną w plasterki, pomidorki pokrojone na pół, porwaną szynkę, suszone pomidory oraz ser grana padano.",
+                        "Podawaj z jajkami."
+                    ]
+                },
+                {
+                    id: 'b12',
+                    name: "Sałatka z melonem i fetą",
+                    kcal: 820, protein: 62, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Szpinak", amount: 100, unit: "g" },
+                        { item: "Brzoskwinia świeża lub mrożona", amount: 90, unit: "g" },
+                        { item: "Melon", amount: 95, unit: "g" },
+                        { item: "Ser typu Feta", amount: 150, unit: "g" },
+                        { item: "Orzechy włoskie", amount: 20, unit: "g" },
+                        { item: "Chleb żytni razowy", amount: 2, unit: "kromki" },
+                        { item: "Oliwa z oliwek", amount: 5, unit: "g" },
+                        { item: "Sok z limonki", amount: 6, unit: "g" },
+                        { item: "Miód", amount: 6, unit: "g" },
+                        { item: "Pierś z kurczaka", amount: 100, unit: "g" }
+                    ],
+                    steps: [
+                        "Kurczaka usmaż na patelni, dopraw solą i pieprzem.",
+                        "Pieczywo kroimy w niewielką kostkę. Podsmażamy na suchej patelni do zarumienienia.",
+                        "Owoce kroimy w kostkę. Orzechy siekamy.",
+                        "Na talerzu układamy szpinak, kawałki owoców, grzanki, orzechy, pokruszony ser i kurczaka.",
+                        "W małej miseczce mieszamy składniki dressingu (oliwę, sok z limonki oraz miód).",
+                        "Sałatkę przed podaniem polewamy dressingiem."
+                    ]
+                },
+                {
+                    id: 'b13',
+                    name: "Waniliowa owsianka z wiśniami",
+                    kcal: 820, protein: 62, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Płatki owsiane górskie", amount: 50, unit: "g" },
+                        { item: "Mleko 1.5%", amount: 200, unit: "ml" },
+                        { item: "Jogurt Skyr naturalny", amount: 200, unit: "g" },
+                        { item: "Wiśnie świeże lub mrożone", amount: 100, unit: "g" },
+                        { item: "Migdały", amount: 25, unit: "g" },
+                        { item: "Odżywka białkowa waniliowa", amount: 25, unit: "g" },
+                        { item: "Wanilia ekstrakt", amount: 1.5, unit: "g" }
+                    ],
+                    steps: [
+                        "Płatki owsiane gotujemy w mleku do miękkości, można dodać odrobinę wody.",
+                        "Płatki owsiane mieszamy ze skyrem, odżywką i ekstraktem waniliowym.",
+                        "Wiśnie podgrzewamy na patelni, aż puszczą sok.",
+                        "Owsiankę podajemy z wiśniami i migdałami."
+                    ]
+                },
+                {
+                    id: 'b14',
+                    name: "Pieczywo z serkiem wiejskim i warzywami",
+                    kcal: 820, protein: 62, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Serek wiejski naturalny", amount: 350, unit: "g" },
+                        { item: "Rzodkiewka", amount: 6, unit: "szt" },
+                        { item: "Ogórek świeży", amount: 1, unit: "szt" },
+                        { item: "Szczypiorek siekany", amount: 10, unit: "g" },
+                        { item: "Koper posiekany", amount: 4, unit: "g" },
+                        { item: "Chleb żytni razowy", amount: 4, unit: "kromki" },
+                        { item: "Oliwa z oliwek", amount: 10, unit: "g" },
+                        { item: "Jajka", amount: 2, unit: "szt" }
+                    ],
+                    steps: [
+                        "Jajka ugotuj na twardo.",
+                        "Warzywa kroimy w drobną kostkę. Koperek oraz szczypiorek siekamy, dodajemy do serka. Serek doprawiamy solą oraz pieprzem.",
+                        "Serek wiejski z warzywami podajemy z pieczywem skropionym oliwą i jajkami."
+                    ]
+                },
+                {
+                    id: 'b15',
+                    name: "Jogurt skyr z waflami ryżowymi",
+                    kcal: 820, protein: 62, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Jogurt Skyr naturalny", amount: 300, unit: "g" },
+                        { item: "Wafle ryżowe", amount: 5, unit: "szt" },
+                        { item: "Mieszanka orzechów", amount: 35, unit: "g" },
+                        { item: "Banan", amount: 1, unit: "szt" },
+                        { item: "Odżywka białkowa", amount: 25, unit: "g" }
+                    ],
+                    steps: [
+                        "Jogurt skyr wymieszaj z odżywką białkową.",
+                        "Zjedz z waflami ryżowymi, orzechami oraz bananem."
+                    ]
+                },
+                {
+                    id: 'b16',
+                    name: "Sałatka z serem i kukurydzą",
+                    kcal: 820, protein: 62, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Miks sałat", amount: 25, unit: "g" },
+                        { item: "Kukurydza konserwowa", amount: 80, unit: "g" },
+                        { item: "Ser typu Feta", amount: 150, unit: "g" },
+                        { item: "Pomidorki koktajlowe", amount: 5, unit: "szt" },
+                        { item: "Oliwa z oliwek", amount: 10, unit: "g" },
+                        { item: "Sok z cytryny", amount: 6, unit: "g" },
+                        { item: "Chleb żytni razowy", amount: 3, unit: "kromki" },
+                        { item: "Pierś z kurczaka", amount: 100, unit: "g" }
+                    ],
+                    steps: [
+                        "Kurczaka usmaż na patelni, dopraw solą i pieprzem.",
+                        "Kromki chleba żytniego razowego podpiekamy na suchej patelni lub w piekarniku.",
+                        "Sałatę, kukurydzę konserwową, pokruszony ser typu Feta, kurczaka oraz pomidorki koktajlowe umieszczamy w misce.",
+                        "Oliwę mieszamy z sokiem z cytryny, polewamy sałatkę. Całość oprószamy pieprzem. Podajemy z grzankami."
+                    ]
+                },
+                {
+                    id: 'b17',
+                    name: "Tost z szynką, serem i warzywami",
+                    kcal: 820, protein: 62, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Chleb żytni razowy", amount: 4, unit: "kromki" },
+                        { item: "Serek śmietankowy", amount: 50, unit: "g" },
+                        { item: "Szynka z kurczaka", amount: 100, unit: "g" },
+                        { item: "Ser mozzarella kulka", amount: 120, unit: "g" },
+                        { item: "Pomidor", amount: 1, unit: "szt" },
+                        { item: "Rzodkiewka", amount: 5, unit: "szt" },
+                        { item: "Szczypiorek siekany", amount: 5, unit: "g" },
+                        { item: "Jajka", amount: 2, unit: "szt" }
+                    ],
+                    steps: [
+                        "Piekarnik nagrzewamy do 180 stopni z funkcją termoobieg.",
+                        "Jajka ugotuj na twardo.",
+                        "Pieczywo smarujemy serkiem śmietankowym. Na pieczywie kładziemy mozzarellę oraz szynkę z kurczaka.",
+                        "Wkładamy do piekarnika i pieczemy około 6 minut, do momentu rozpuszczenia się sera.",
+                        "Na zapiekance układamy pomidora, jajka oraz rzodkiewkę. Posypujemy szczypiorkiem."
+                    ]
+                },
+                {
+                    id: 'b18',
+                    name: "Tost z mozzarellą i szynką z kurczaka",
+                    kcal: 820, protein: 62, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Chleb żytni razowy", amount: 4, unit: "kromki" },
+                        { item: "Ser mozzarella kulka", amount: 120, unit: "g" },
+                        { item: "Szynka z kurczaka", amount: 100, unit: "g" },
+                        { item: "Pomidorki koktajlowe", amount: 8, unit: "szt" },
+                        { item: "Jajka", amount: 2, unit: "szt" }
+                    ],
+                    steps: [
+                        "Jajka ugotuj na twardo.",
+                        "Na kromce chleba układamy mozzarellę oraz szynkę z kurczaka, przykrywamy drugą kromką.",
+                        "Tosty podpiekamy na patelni przez 3 minuty pod przykryciem, następnie obracamy na kolejne 3 minuty.",
+                        "Podajemy z pomidorkami koktajlowymi i jajkami."
+                    ]
+                },
+                {
+                    id: 'b19',
+                    name: "Kanapki z kiszonym kalafiorem",
+                    kcal: 820, protein: 62, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Chleb żytni razowy", amount: 4, unit: "kromki" },
+                        { item: "Kalafior kiszony z kurkumą", amount: 125, unit: "g" },
+                        { item: "Ser gouda", amount: 60, unit: "g" },
+                        { item: "Szynka z kurczaka", amount: 100, unit: "g" },
+                        { item: "Pomidor", amount: 1, unit: "szt" },
+                        { item: "Cebula czerwona", amount: 0.5, unit: "szt" },
+                        { item: "Majonez", amount: 20, unit: "g" },
+                        { item: "Sos sriracha", amount: 10, unit: "g" },
+                        { item: "Jajka", amount: 2, unit: "szt" }
+                    ],
+                    steps: [
+                        "Jajka ugotuj na twardo.",
+                        "W małej miseczce mieszamy składniki sosu (majonez, sos sriracha, sól oraz pieprz).",
+                        "Kromki smarujemy sosem (pieczywo możemy najpierw przygrzać w tosterze lub piekarniku, aby było chrupiące).",
+                        "Na pieczywie układamy ser gouda, szynkę z kurczaka, jajka oraz plastry pomidora. Posypujemy posiekaną cebulą.",
+                        "Podajemy z różyczkami kalafiora."
+                    ]
+                },
+                {
+                    id: 'b20',
+                    name: "Kanapka z jajkiem, awokado i serem cheddar",
+                    kcal: 820, protein: 62, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Jajka", amount: 4, unit: "szt" },
+                        { item: "Ser cheddar", amount: 60, unit: "g" },
+                        { item: "Awokado", amount: 30, unit: "g" },
+                        { item: "Chleb żytni razowy", amount: 4, unit: "kromki" },
+                        { item: "Pomidor", amount: 0.5, unit: "szt" },
+                        { item: "Szynka z kurczaka", amount: 80, unit: "g" }
+                    ],
+                    steps: [
+                        "Jajka umieszczamy w garnku i zalewamy wodą tak, aby je przykryła. Gotujemy na średnim ogniu przez ok. 6-7 minut od momentu zagotowania.",
+                        "Awokado przekrawamy na pół, usuwamy pestkę, obieramy i kroimy w cienkie plasterki.",
+                        "Na każdej kromce chleba układamy plasterki sera cheddar, szynkę, następnie plasterki awokado, a na wierzchu kawałki jajka. Doprawiamy solą oraz pieprzem.",
+                        "Pomidora kroimy na mniejsze kawałki. Gotowe kanapki podajemy z pomidorem."
+                    ]
+                },
+                {
+                    id: 'b21',
+                    name: "Serek proteinowy z owocami",
+                    kcal: 820, protein: 62, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Serek high protein", amount: 200, unit: "g" },
+                        { item: "Płatki owsiane górskie", amount: 40, unit: "g" },
+                        { item: "Borówki amerykańskie", amount: 100, unit: "g" },
+                        { item: "Pomarańcza", amount: 1, unit: "szt" },
+                        { item: "Mieszanka orzechów", amount: 35, unit: "g" },
+                        { item: "Odżywka białkowa", amount: 20, unit: "g" }
+                    ],
+                    steps: [
+                        "Pomarańczę obieramy, dzielimy na cząstki, które następnie kroimy na mniejsze kawałki.",
+                        "Do miseczki dodajemy płatki, orzechy oraz owoce. Następnie dodajemy serek proteinowy wymieszany z odżywką i mieszamy."
+                    ]
+                },
+                {
+                    id: 'b22',
+                    name: "Omlet z serem gouda i szynką",
+                    kcal: 820, protein: 62, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Jajka", amount: 4, unit: "szt" },
+                        { item: "Ser gouda", amount: 30, unit: "g" },
+                        { item: "Szynka z kurczaka", amount: 80, unit: "g" },
+                        { item: "Cebula", amount: 0.5, unit: "szt" },
+                        { item: "Czosnek świeży", amount: 2, unit: "ząbki" },
+                        { item: "Pieczarki", amount: 100, unit: "g" },
+                        { item: "Pomidorki koktajlowe", amount: 10, unit: "szt" },
+                        { item: "Oliwa z oliwek", amount: 10, unit: "g" },
+                        { item: "Chleb żytni razowy", amount: 4, unit: "kromki" }
+                    ],
+                    steps: [
+                        "Jajka wbijamy do miski, dodajemy starty ser, sól i pieprz. Dokładnie mieszamy.",
+                        "Na rozgrzanej patelni z oliwą smażymy pokrojone szynkę z kurczaka, cebulę, czosnek oraz pieczarki.",
+                        "Do usmażonych warzyw dodajemy pomidorki koktajlowe i zalewamy masą jajeczną. Całość dusimy pod przykryciem na małym ogniu, aż jajka się zetną.",
+                        "Gotowy omlet przekładamy na talerz. Podajemy z pieczywem."
+                    ]
+                },
+                {
+                    id: 'b23',
+                    name: "Jajecznica z kiełbaską roślinną",
+                    kcal: 820, protein: 62, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Oliwa z oliwek", amount: 5, unit: "g" },
+                        { item: "Kiełbaski roślinne", amount: 90, unit: "g" },
+                        { item: "Jajka", amount: 4, unit: "szt" },
+                        { item: "Chleb żytni razowy", amount: 4, unit: "kromki" },
+                        { item: "Ogórek świeży", amount: 0.5, unit: "szt" },
+                        { item: "Szynka z kurczaka", amount: 80, unit: "g" }
+                    ],
+                    steps: [
+                        "Oliwę rozgrzewamy na patelni. Dodajemy pokrojoną kiełbaskę, smażymy, aż się zarumieni.",
+                        "Wbijamy jajko i smażymy.",
+                        "Podajemy z pieczywem, szynką i warzywami."
+                    ]
+                },
+                {
+                    id: 'b24',
+                    name: "Tosty a la pizza",
+                    kcal: 820, protein: 62, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Chleb tostowy pełnoziarnisty", amount: 4, unit: "kromki" },
+                        { item: "Koncentrat pomidorowy", amount: 2, unit: "łyżki" },
+                        { item: "Ser mozzarella", amount: 80, unit: "g" },
+                        { item: "Szynka z indyka", amount: 150, unit: "g" },
+                        { item: "Pieczarki", amount: 100, unit: "g" },
+                        { item: "Papryka czerwona", amount: 0.5, unit: "szt" },
+                        { item: "Oregano", amount: 1, unit: "szczypta" },
+                        { item: "Białko w proszku neutralne", amount: 20, unit: "g" }
+                    ],
+                    steps: [
+                        "Piekarnik rozgrzewamy do 200°C.",
+                        "Kromki chleba smarujemy koncentratem pomidorowym.",
+                        "Na każdą kromkę układamy szynkę, pokrojone pieczarki i paprykę.",
+                        "Posypujemy startym serem mozzarella i oregano.",
+                        "Pieczemy przez 10-12 minut, aż ser się rozpuści i lekko zarumieni.",
+                        "Podajemy z koktajlem proteinowym (białko w proszku z wodą)."
+                    ]
+                },
+                {
+                    id: 'b25',
+                    name: "Chrupiące tosty z serkiem, szpinakiem i pomidorem",
+                    kcal: 820, protein: 62, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Chleb tostowy pełnoziarnisty", amount: 4, unit: "kromki" },
+                        { item: "Serek kremowy", amount: 60, unit: "g" },
+                        { item: "Szpinak świeży", amount: 50, unit: "g" },
+                        { item: "Pomidor", amount: 1, unit: "szt" },
+                        { item: "Szynka z indyka", amount: 150, unit: "g" },
+                        { item: "Jajka", amount: 3, unit: "szt" },
+                        { item: "Masło", amount: 10, unit: "g" }
+                    ],
+                    steps: [
+                        "Tosty opiekamy w tosterze lub na suchej patelni.",
+                        "Smarujemy każdy tost serkiem kremowym.",
+                        "Układamy liście szpinaku i plastry pomidora.",
+                        "Na patelni z masłem smażymy jajka sadzone.",
+                        "Na tosty układamy szynkę i jajka sadzone.",
+                        "Doprawiamy solą i pieprzem do smaku."
+                    ]
+                },
+                {
+                    id: 'b26',
+                    name: "Jajka w koszulkach z bułką",
+                    kcal: 820, protein: 62, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Jajka", amount: 4, unit: "szt" },
+                        { item: "Bułka graham", amount: 2, unit: "szt" },
+                        { item: "Masło", amount: 15, unit: "g" },
+                        { item: "Szynka z indyka", amount: 150, unit: "g" },
+                        { item: "Rukola", amount: 30, unit: "g" },
+                        { item: "Ser żółty", amount: 40, unit: "g" },
+                        { item: "Ocet winny", amount: 1, unit: "łyżka" }
+                    ],
+                    steps: [
+                        "W garnku zagotowujemy wodę z odrobiną octu.",
+                        "Jajka wbijamy pojedynczo do miseczki, a następnie delikatnie wsuwamy do wirującej wody.",
+                        "Gotujemy 3-4 minuty na jajka z płynnym żółtkiem.",
+                        "Bułki przekrawamy i smarujemy masłem, lekko opiekamy.",
+                        "Na bułki układamy rukolę, szynkę, ser i jajka w koszulkach.",
+                        "Doprawiamy solą i pieprzem."
+                    ]
+                },
+                {
+                    id: 'b27',
+                    name: "Tosty z serem pleśniowym i szynką",
+                    kcal: 820, protein: 62, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Chleb tostowy pełnoziarnisty", amount: 4, unit: "kromki" },
+                        { item: "Ser pleśniowy", amount: 60, unit: "g" },
+                        { item: "Szynka parmeńska", amount: 80, unit: "g" },
+                        { item: "Pierś z kurczaka gotowana", amount: 100, unit: "g" },
+                        { item: "Rukola", amount: 30, unit: "g" },
+                        { item: "Miód", amount: 1, unit: "łyżeczka" },
+                        { item: "Orzechy włoskie", amount: 20, unit: "g" },
+                        { item: "Jajka", amount: 2, unit: "szt" }
+                    ],
+                    steps: [
+                        "Tosty opiekamy do złotego koloru.",
+                        "Na każdy tost układamy ser pleśniowy.",
+                        "Dodajemy pokrojoną pierś z kurczaka i szynkę parmeńską.",
+                        "Posypujemy posiekanymi orzechami włoskimi.",
+                        "Skrapiamy miodem i układamy rukolę.",
+                        "Jajka gotujemy na miękko i podajemy obok tostów."
+                    ]
+                },
+                {
+                    id: 'b28',
+                    name: "Quesadilla z kurczakiem",
+                    kcal: 820, protein: 62, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Tortilla pszenna", amount: 2, unit: "szt" },
+                        { item: "Pierś z kurczaka", amount: 200, unit: "g" },
+                        { item: "Ser żółty", amount: 60, unit: "g" },
+                        { item: "Papryka czerwona", amount: 0.5, unit: "szt" },
+                        { item: "Cebula", amount: 0.5, unit: "szt" },
+                        { item: "Śmietana 18%", amount: 2, unit: "łyżki" },
+                        { item: "Oliwa z oliwek", amount: 10, unit: "g" },
+                        { item: "Przyprawy meksykańskie", amount: 1, unit: "łyżeczka" }
+                    ],
+                    steps: [
+                        "Pierś z kurczaka kroimy w kostkę i smażymy na patelni z oliwą.",
+                        "Dodajemy pokrojoną paprykę i cebulę, smażymy do miękkości.",
+                        "Doprawiamy przyprawami meksykańskimi.",
+                        "Na tortillę układamy połowę sera, mięso z warzywami i resztę sera.",
+                        "Przykrywamy drugą tortillą i smażymy na suchej patelni z obu stron.",
+                        "Kroimy na trójkąty i podajemy ze śmietaną."
+                    ]
+                },
+                {
+                    id: 'b29',
+                    name: "Tosty z kurczakiem i awokado",
+                    kcal: 820, protein: 62, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Chleb tostowy pełnoziarnisty", amount: 4, unit: "kromki" },
+                        { item: "Pierś z kurczaka", amount: 200, unit: "g" },
+                        { item: "Awokado", amount: 1, unit: "szt" },
+                        { item: "Jajka", amount: 2, unit: "szt" },
+                        { item: "Pomidor", amount: 1, unit: "szt" },
+                        { item: "Sok z limonki", amount: 1, unit: "łyżka" },
+                        { item: "Oliwa z oliwek", amount: 5, unit: "g" }
+                    ],
+                    steps: [
+                        "Pierś z kurczaka doprawiamy i smażymy na patelni z oliwą. Kroimy w plastry.",
+                        "Awokado rozgniatamy widelcem z sokiem z limonki, solą i pieprzem.",
+                        "Tosty opiekamy do złotego koloru.",
+                        "Jajka gotujemy na miękko (6 minut).",
+                        "Na tosty nakładamy pastę z awokado, plastry kurczaka, pomidora i przekrojone jajka.",
+                        "Doprawiamy solą i pieprzem."
+                    ]
+                },
+                {
+                    id: 'b30',
+                    name: "Bajgiel z domowym twarożkiem",
+                    kcal: 820, protein: 62, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Bajgiel pełnoziarnisty", amount: 2, unit: "szt" },
+                        { item: "Twaróg półtłusty", amount: 150, unit: "g" },
+                        { item: "Szczypiorek", amount: 2, unit: "łyżki" },
+                        { item: "Rzodkiewka", amount: 4, unit: "szt" },
+                        { item: "Łosoś wędzony", amount: 100, unit: "g" },
+                        { item: "Jajka", amount: 2, unit: "szt" },
+                        { item: "Ogórek świeży", amount: 0.5, unit: "szt" }
+                    ],
+                    steps: [
+                        "Twaróg mieszamy z posiekanym szczypiorkiem, solą i pieprzem.",
+                        "Bajgle przekrawamy na pół i lekko opiekamy.",
+                        "Jajka gotujemy na twardo (10 minut), obieramy i kroimy w plastry.",
+                        "Na bajgle nakładamy twarożek, łososia wędzonego, plastry jajek.",
+                        "Dodajemy pokrojone rzodkiewki i ogórek.",
+                        "Doprawiamy pieprzem i podajemy."
+                    ]
                 }
             ],
             lunch: [
                 {
                     id: 'l1',
                     name: "Kurczak z ryżem i brokułem",
-                    kcal: 850, protein: 65, fat: 25, carbs: 85,
+                    kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
-                        { item: "Pierś z kurczaka", amount: 250, unit: "g" },
-                        { item: "Ryż basmati", amount: 100, unit: "g" },
-                        { item: "Brokuł mrożony", amount: 150, unit: "g" },
-                        { item: "Oliwa z oliwek", amount: 1.5, unit: "łyżki" }
+                        { item: "Pierś z kurczaka", amount: 280, unit: "g" },
+                        { item: "Ryż basmati", amount: 80, unit: "g" },
+                        { item: "Brokuł mrożony", amount: 200, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 2, unit: "łyżki" }
                     ],
                     steps: [
                         "Ugotuj ryż według instrukcji.",
@@ -936,14 +1677,14 @@
                 {
                     id: 'l2',
                     name: "Mielone z frytkami",
-                    kcal: 860, protein: 62, fat: 28, carbs: 88,
+                    kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
-                        { item: "Mięso mielone z indyka", amount: 250, unit: "g" },
-                        { item: "Frytki mrożone", amount: 250, unit: "g" },
+                        { item: "Mięso mielone z indyka", amount: 280, unit: "g" },
+                        { item: "Frytki mrożone", amount: 180, unit: "g" },
                         { item: "Cebula", amount: 0.5, unit: "szt" },
                         { item: "Jajka", amount: 1, unit: "szt" },
-                        { item: "Kapusta pekińska", amount: 150, unit: "g" },
-                        { item: "Jogurt naturalny", amount: 30, unit: "g" }
+                        { item: "Kapusta pekińska", amount: 200, unit: "g" },
+                        { item: "Jogurt naturalny", amount: 50, unit: "g" }
                     ],
                     steps: [
                         "Frytki piecz 220°C, 20-25 min (BEZ oleju!).",
@@ -955,14 +1696,15 @@
                 {
                     id: 'l3',
                     name: "Makaron z kurczakiem",
-                    kcal: 840, protein: 58, fat: 24, carbs: 92,
+                    kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
-                        { item: "Makaron pełnoziarnisty", amount: 100, unit: "g" },
-                        { item: "Pierś z kurczaka", amount: 200, unit: "g" },
+                        { item: "Makaron pełnoziarnisty", amount: 80, unit: "g" },
+                        { item: "Pierś z kurczaka", amount: 250, unit: "g" },
                         { item: "Passata pomidorowa", amount: 150, unit: "g" },
                         { item: "Cukinia", amount: 100, unit: "g" },
-                        { item: "Parmezan", amount: 20, unit: "g" },
-                        { item: "Czosnek", amount: 2, unit: "ząbki" }
+                        { item: "Parmezan", amount: 25, unit: "g" },
+                        { item: "Czosnek", amount: 2, unit: "ząbki" },
+                        { item: "Oliwa z oliwek", amount: 1, unit: "łyżka" }
                     ],
                     steps: [
                         "Ugotuj makaron al dente.",
@@ -970,19 +1712,708 @@
                         "Dodaj cukinię i passatę, gotuj 5 min.",
                         "Wymieszaj z makaronem, posyp parmezanem."
                     ]
+                },
+                {
+                    id: 'l4',
+                    name: "Frytki z batatów z kurczakiem",
+                    kcal: 850, protein: 64, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Batat", amount: 200, unit: "g" },
+                        { item: "Pierś z kurczaka", amount: 250, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 2, unit: "łyżki" },
+                        { item: "Szpinak świeży", amount: 50, unit: "g" },
+                        { item: "Brokuł mrożony", amount: 150, unit: "g" },
+                        { item: "Pomidorki koktajlowe", amount: 8, unit: "szt" },
+                        { item: "Ogórek", amount: 1, unit: "szt" },
+                        { item: "Sok z cytryny", amount: 15, unit: "g" },
+                        { item: "Czosnek", amount: 1, unit: "ząbek" }
+                    ],
+                    steps: [
+                        "Piekarnik nagrzej do 200°C, tryb góra-dół.",
+                        "Bataty pokrój w paski jak frytki, kurczaka też w paski.",
+                        "Polej oliwą (1.5 łyżki), dopraw solą, pieprzem, tymiankiem, papryką.",
+                        "Piecz kurczaka 20-25 min, frytki 30-35 min.",
+                        "Brokuł ugotuj w osolonej wodzie do miękkości.",
+                        "Dressing: sok z cytryny + oliwa (1 łyżka) + czosnek przez praskę.",
+                        "Sałatkę (szpinak, brokuł, pomidorki, ogórek) polej dressingiem.",
+                        "Podawaj frytki i mięso z sałatką."
+                    ]
+                },
+                {
+                    id: 'l5',
+                    name: "Kurczak teriyaki z ryżem",
+                    kcal: 850, protein: 64, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Pierś z kurczaka", amount: 250, unit: "g" },
+                        { item: "Ryż basmati", amount: 70, unit: "g" },
+                        { item: "Papryka czerwona", amount: 0.5, unit: "szt" },
+                        { item: "Seler naciowy", amount: 45, unit: "g" },
+                        { item: "Marchew", amount: 0.5, unit: "szt" },
+                        { item: "Szczypiorek", amount: 5, unit: "g" },
+                        { item: "Sezam", amount: 5, unit: "g" },
+                        { item: "Papryczka chilli", amount: 0.5, unit: "szt" },
+                        { item: "Czosnek", amount: 1, unit: "ząbek" },
+                        { item: "Imbir świeży", amount: 5, unit: "g" },
+                        { item: "Miód", amount: 8, unit: "g" },
+                        { item: "Sos sojowy", amount: 20, unit: "g" },
+                        { item: "Ocet ryżowy", amount: 5, unit: "g" },
+                        { item: "Olej rzepakowy", amount: 2, unit: "łyżki" }
+                    ],
+                    steps: [
+                        "Kurczaka pokrój w paski 1cm. Chilli, czosnek i imbir drobno posiekaj.",
+                        "Marynata: połącz miód, sos sojowy, ocet, olej (1 łyżka), czosnek, imbir, chilli.",
+                        "Połowę marynaty dodaj do kurczaka, odstaw na 10 min.",
+                        "Paprykę, seler i marchew pokrój w cienkie paski.",
+                        "Ryż ugotuj według instrukcji.",
+                        "Na rozgrzanej patelni smaż kurczaka 8 min, zdejmij na talerz.",
+                        "Na tej samej patelni podsmaż warzywa kilka minut.",
+                        "Dodaj mięso i resztę marynaty, dolej wodę, duś kilka minut.",
+                        "Podawaj z ryżem, posyp szczypiorkiem i sezamem."
+                    ]
+                },
+                {
+                    id: 'l6',
+                    name: "Kurczak pieczony z ziemniakami",
+                    kcal: 850, protein: 64, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Pierś z kurczaka", amount: 260, unit: "g" },
+                        { item: "Ziemniaki", amount: 200, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 2, unit: "łyżki" },
+                        { item: "Papryka czerwona", amount: 1, unit: "szt" },
+                        { item: "Cebula", amount: 1, unit: "szt" },
+                        { item: "Cukinia", amount: 0.5, unit: "szt" },
+                        { item: "Czosnek", amount: 1, unit: "ząbek" },
+                        { item: "Kumin", amount: 5, unit: "g" },
+                        { item: "Kurkuma", amount: 3, unit: "g" }
+                    ],
+                    steps: [
+                        "Piekarnik nagrzej do 200°C, tryb góra-dół.",
+                        "Ziemniaki obierz, pokrój w kostkę, gotuj 5-6 min i odcedź.",
+                        "Na blaszce wysyp kumin i kurkumę, dodaj warzywa i ziemniaki.",
+                        "Kurczaka spłaszcz, żeby był równej grubości, ułóż na blaszce.",
+                        "Polej oliwą, dopraw solą i pieprzem, wymieszaj.",
+                        "Piecz 25 min bez przykrycia."
+                    ]
+                },
+                {
+                    id: 'l7',
+                    name: "Makaron po włosku ze szpinakiem",
+                    kcal: 850, protein: 64, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Makaron spaghetti pełnoziarnisty", amount: 80, unit: "g" },
+                        { item: "Ser mozzarella", amount: 80, unit: "g" },
+                        { item: "Pierś z kurczaka", amount: 150, unit: "g" },
+                        { item: "Pesto zielone", amount: 20, unit: "g" },
+                        { item: "Pomidorki koktajlowe", amount: 6, unit: "szt" },
+                        { item: "Szpinak świeży", amount: 50, unit: "g" },
+                        { item: "Ogórek", amount: 0.5, unit: "szt" },
+                        { item: "Bazylia świeża", amount: 3, unit: "g" },
+                        { item: "Parmezan", amount: 15, unit: "g" }
+                    ],
+                    steps: [
+                        "Makaron ugotuj według instrukcji na opakowaniu.",
+                        "Mozzarellę pokrój w plastry, pomidorki i ogórka też pokrój, bazylię posiekaj.",
+                        "Do miski z makaronem dodaj warzywa, szpinak, bazylię, pesto i mozzarellę.",
+                        "Całość dokładnie wymieszaj, dopraw solą i pieprzem.",
+                        "Przełóż na talerz, posyp startym parmezanem."
+                    ]
+                },
+                {
+                    id: 'l8',
+                    name: "Kebab gyros",
+                    kcal: 850, protein: 64, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Pierś z kurczaka", amount: 250, unit: "g" },
+                        { item: "Tortilla pełnoziarnista", amount: 2, unit: "szt" },
+                        { item: "Miks sałat", amount: 50, unit: "g" },
+                        { item: "Pomidor", amount: 1, unit: "szt" },
+                        { item: "Ogórek", amount: 1, unit: "szt" },
+                        { item: "Cebula czerwona", amount: 0.5, unit: "szt" },
+                        { item: "Jogurt naturalny 2%", amount: 50, unit: "g" },
+                        { item: "Sos Sriracha", amount: 15, unit: "g" },
+                        { item: "Sok z cytryny", amount: 6, unit: "g" },
+                        { item: "Czosnek", amount: 1, unit: "ząbek" },
+                        { item: "Przyprawa gyros", amount: 10, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 1, unit: "łyżka" }
+                    ],
+                    steps: [
+                        "Schab pokrój w paski, dopraw przyprawą gyros, oliwą, solą i pieprzem.",
+                        "Warzywa pokrój w paski.",
+                        "Sos: jogurt + sriracha + czosnek przez praskę + sok z cytryny + sól + pieprz.",
+                        "Schab smaż na patelni 6-7 min na średnim ogniu.",
+                        "Tortillę podgrzej, posmaruj sosem, ułóż mięso i warzywa.",
+                        "Złóż i polej resztą sosu."
+                    ]
+                },
+                {
+                    id: 'l9',
+                    name: "Makaron z indykiem i szpinakiem",
+                    kcal: 850, protein: 64, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Makaron pełnoziarnisty", amount: 80, unit: "g" },
+                        { item: "Pierś z indyka", amount: 230, unit: "g" },
+                        { item: "Szpinak świeży", amount: 100, unit: "g" },
+                        { item: "Pomidorki koktajlowe", amount: 10, unit: "szt" },
+                        { item: "Czosnek", amount: 2, unit: "ząbki" },
+                        { item: "Parmezan", amount: 20, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 20, unit: "g" }
+                    ],
+                    steps: [
+                        "Makaron ugotuj według instrukcji.",
+                        "Indyka pokrój w paski 2-3 cm, dopraw solą, pieprzem i startym czosnkiem.",
+                        "Na patelni rozgrzej oliwę i smaż indyka 6-8 min.",
+                        "Dodaj pomidorki i szpinak, mieszaj.",
+                        "Dodaj makaron, dopraw solą i pieprzem, wymieszaj.",
+                        "Przełóż na talerz i posyp parmezanem."
+                    ]
+                },
+                {
+                    id: 'l10',
+                    name: "Kurczak słodko kwaśny",
+                    kcal: 850, protein: 64, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Pierś z kurczaka", amount: 250, unit: "g" },
+                        { item: "Ryż basmati", amount: 60, unit: "g" },
+                        { item: "Papryka czerwona", amount: 1, unit: "szt" },
+                        { item: "Brokuł mrożony", amount: 150, unit: "g" },
+                        { item: "Marchew", amount: 1, unit: "szt" },
+                        { item: "Ananas mrożony", amount: 80, unit: "g" },
+                        { item: "Cebula", amount: 0.5, unit: "szt" },
+                        { item: "Czosnek", amount: 1, unit: "ząbek" },
+                        { item: "Imbir świeży", amount: 5, unit: "g" },
+                        { item: "Sos sojowy", amount: 10, unit: "g" },
+                        { item: "Sok z cytryny", amount: 12, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 20, unit: "g" },
+                        { item: "Sezam", amount: 5, unit: "g" }
+                    ],
+                    steps: [
+                        "Kurczaka pokrój w paski, dodaj czosnek, imbir, sól, pieprz i połowę oliwy.",
+                        "Ryż ugotuj według instrukcji.",
+                        "Brokuł podziel na różyczki, ananas i warzywa pokrój w paski.",
+                        "Smaż kurczaka na mocnym ogniu 4-5 min, odłóż.",
+                        "Na tej samej patelni podsmaż warzywa i ananas 5 min.",
+                        "Dodaj kurczaka, sos sojowy i sok z cytryny, mieszaj minutę.",
+                        "Podawaj z ryżem, posyp sezamem."
+                    ]
+                },
+                {
+                    id: 'l11',
+                    name: "Makaron z kurczakiem w sosie gorgonzola",
+                    kcal: 850, protein: 64, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Makaron pełnoziarnisty", amount: 80, unit: "g" },
+                        { item: "Pierś z kurczaka", amount: 220, unit: "g" },
+                        { item: "Szpinak", amount: 75, unit: "g" },
+                        { item: "Ser gorgonzola", amount: 35, unit: "g" },
+                        { item: "Śmietana 12%", amount: 54, unit: "g" },
+                        { item: "Pomidory suszone w oleju", amount: 40, unit: "g" },
+                        { item: "Czosnek", amount: 2, unit: "ząbki" },
+                        { item: "Bulion warzywny", amount: 125, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 5, unit: "g" }
+                    ],
+                    steps: [
+                        "Makaron gotujemy zgodnie z instrukcją na opakowaniu.",
+                        "Mięso kroimy w kostkę. Szpinak dokładnie myjemy. Suszone pomidory oraz czosnek drobno siekamy.",
+                        "Na patelni rozgrzewamy oliwę, dodajemy mięso. Następnie dokładamy czosnek. Doprawiamy solą oraz pieprzem. Smażymy na średnim ogniu przez ok. 10-15 minut, do zarumienienia mięsa.",
+                        "Zmniejszamy moc palnika i wlewamy bulion warzywny. Dodajemy szpinak i suszone pomidory. Całość dusimy na wolnym ogniu do momentu, aż szpinak zmniejszy swoją objętość.",
+                        "Z patelni zbieramy 2-3 łyżki bulionu i dodajemy do śmietany, dokładnie mieszamy. Zahartowaną śmietanę wlewamy na patelnię. Doprawiamy solą oraz pieprzem.",
+                        "Wyłączamy palnik, dodajemy kawałki sera i mieszamy do momentu, aż ser się rozpuści.",
+                        "Do sosu dodajemy makaron i dokładnie mieszamy."
+                    ]
+                },
+                {
+                    id: 'l12',
+                    name: "Placek po węgiersku",
+                    kcal: 850, protein: 64, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Placki ziemniaczane mrożone", amount: 300, unit: "g" },
+                        { item: "Pierś z kurczaka", amount: 200, unit: "g" },
+                        { item: "Papryka czerwona", amount: 1, unit: "szt" },
+                        { item: "Cebula", amount: 1, unit: "szt" },
+                        { item: "Czosnek", amount: 1, unit: "ząbek" },
+                        { item: "Jogurt naturalny 2%", amount: 80, unit: "g" },
+                        { item: "Papryka słodka", amount: 3, unit: "g" },
+                        { item: "Majeranek", amount: 2, unit: "g" },
+                        { item: "Olej rzepakowy", amount: 10, unit: "g" }
+                    ],
+                    steps: [
+                        "Przygotowujemy placki ziemniaczane wg przepisu lub pieczemy mrożone.",
+                        "Mięso kroimy w kostkę. Mieszamy z przyprawami (sól, pieprz, papryka i majeranek) i olejem (połowa). Odstawiamy do lodówki na ok. 30 minut.",
+                        "Smażymy na dobrze rozgrzanej patelni. Podlewamy wodą (na wysokość mięsa), dusimy przez około 20 minut.",
+                        "Warzywa obieramy, kroimy w kostkę. Podsmażamy na rozgrzanej patelni z pozostałym olejem.",
+                        "Warzywa dodajemy do mięsa i dusimy przez kolejne 20 minut.",
+                        "Do jogurtu dodajemy 2-3 łyżki wywaru i mieszamy. Całość wlewamy na patelnię. Przyprawiamy solą, pieprzem i papryką. Dokładnie mieszamy.",
+                        "Placki podajemy z sosem."
+                    ]
+                },
+                {
+                    id: 'l13',
+                    name: "Spaghetti bolognese z granulatem sojowym",
+                    kcal: 850, protein: 64, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Makaron spaghetti", amount: 70, unit: "g" },
+                        { item: "Granulat sojowy", amount: 50, unit: "g" },
+                        { item: "Pierś z kurczaka", amount: 100, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 20, unit: "g" },
+                        { item: "Passata pomidorowa", amount: 250, unit: "g" },
+                        { item: "Marchew", amount: 1, unit: "szt" },
+                        { item: "Cebula", amount: 0.5, unit: "szt" },
+                        { item: "Seler korzeniowy", amount: 100, unit: "g" },
+                        { item: "Tymianek suszony", amount: 1.5, unit: "g" },
+                        { item: "Bazylia świeża", amount: 1.5, unit: "g" },
+                        { item: "Parmezan", amount: 15, unit: "g" }
+                    ],
+                    steps: [
+                        "Makaron gotujemy według instrukcji na opakowaniu.",
+                        "Granulat umieszczamy w misce i zalewamy wrzątkiem ok. 2 cm nad wysokość granulatu. Pozostawiamy na 15 minut, odlewamy wodę i odciskamy z nadmiaru płynu.",
+                        "Warzywa myjemy, obieramy i ścieramy na tarce o grubych oczkach. Cebulę drobno siekamy.",
+                        "Kurczaka kroimy w drobną kostkę i smażymy na patelni.",
+                        "Na patelni rozgrzewamy oliwę. Podsmażamy warzywa przez ok. 2-3 minuty stale mieszając. Dodajemy granulat i kurczaka, podsmażamy przez kolejne 3 minuty.",
+                        "Na patelnię dodajemy passatę pomidorową. Doprawiamy tymiankiem suszonym, solą, pieprzem. Gotujemy na wolnym ogniu przez ok. 10-15 minut.",
+                        "Na talerzu układamy makaron, całość polewamy sosem. Posypujemy parmezanem oraz bazylią świeżą."
+                    ]
+                },
+                {
+                    id: 'l14',
+                    name: "Kebab z grilla",
+                    kcal: 850, protein: 64, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Tortilla pełnoziarnista", amount: 2, unit: "szt" },
+                        { item: "Pierś z kurczaka", amount: 220, unit: "g" },
+                        { item: "Ogórek świeży", amount: 1, unit: "szt" },
+                        { item: "Papryka czerwona", amount: 1, unit: "szt" },
+                        { item: "Miks sałat", amount: 50, unit: "g" },
+                        { item: "Ketchup", amount: 30, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 15, unit: "g" },
+                        { item: "Sos barbecue", amount: 20, unit: "g" },
+                        { item: "Papryka wędzona", amount: 3, unit: "g" },
+                        { item: "Papryka ostra suszona", amount: 1.5, unit: "g" }
+                    ],
+                    steps: [
+                        "W miseczce mieszamy składniki marynaty (oliwa, sos barbecue, papryka wędzona, papryka ostra, sól).",
+                        "Mięso kroimy w paski, polewamy marynatą, dokładnie mieszamy i odstawiamy na minimum 20 minut.",
+                        "W tym czasie kroimy warzywa na kawałki.",
+                        "Mięso grillujemy przez ok. 15 minut, obracając z jednej na drugą stronę od czasu do czasu.",
+                        "Na tortillach układamy sałatę, kurczaka, paprykę czerwoną oraz ogórka. Zawartość tortilli polewamy ketchupem i zawijamy tortille."
+                    ]
+                },
+                {
+                    id: 'l15',
+                    name: "Makaron z boczkiem i wędzonym twarogiem",
+                    kcal: 850, protein: 64, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Makaron pełnoziarnisty", amount: 90, unit: "g" },
+                        { item: "Boczek", amount: 40, unit: "g" },
+                        { item: "Pierś z kurczaka", amount: 120, unit: "g" },
+                        { item: "Cebula", amount: 0.5, unit: "szt" },
+                        { item: "Twaróg wędzony", amount: 100, unit: "g" },
+                        { item: "Natka pietruszki", amount: 5, unit: "g" }
+                    ],
+                    steps: [
+                        "Makaron gotujemy według przepisu na opakowaniu.",
+                        "Kurczaka pokrój w kostkę i usmaż na patelni.",
+                        "Boczek kroimy w drobną kostkę. Smażymy na rozgrzanej patelni, aż tłuszcz się wytopi.",
+                        "Boczek zdejmujemy z patelni, wrzucamy pokrojoną cebulę. Dodajemy sól i pieprz. Smażymy, aż cebula się zeszkli.",
+                        "Na patelnię przekładamy boczek, kurczaka i makaron, mieszamy.",
+                        "Dodajemy pokruszony ser i chwilę podgrzewamy. Przekładamy na talerz. Posypujemy natką pietruszki."
+                    ]
+                },
+                {
+                    id: 'l16',
+                    name: "Makaron z sosem z serka wiejskiego",
+                    kcal: 850, protein: 64, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Makaron pełnoziarnisty", amount: 80, unit: "g" },
+                        { item: "Serek wiejski naturalny", amount: 200, unit: "g" },
+                        { item: "Pierś z kurczaka", amount: 150, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 15, unit: "g" },
+                        { item: "Cebula", amount: 1, unit: "szt" },
+                        { item: "Czosnek", amount: 1, unit: "ząbek" },
+                        { item: "Pomidorki koktajlowe", amount: 10, unit: "szt" },
+                        { item: "Szpinak", amount: 75, unit: "g" },
+                        { item: "Czosnek granulowany", amount: 1.5, unit: "g" },
+                        { item: "Bazylia świeża", amount: 1.5, unit: "g" },
+                        { item: "Parmezan", amount: 15, unit: "g" }
+                    ],
+                    steps: [
+                        "Makaron gotujemy według instrukcji na opakowaniu.",
+                        "Kurczaka pokrój w kostkę i usmaż na patelni, dopraw solą i pieprzem.",
+                        "Na patelni rozgrzewamy oliwę. Podsmażamy posiekane: cebulę oraz czosnek.",
+                        "Blendujemy na gładką masę przyprawy, serek wiejski, cebulę oraz czosnek. Na patelnię wrzucamy pokrojone pomidory, szpinak i kurczaka, podsmażamy przez ok. 5 minut. Wyłączamy palnik.",
+                        "Po tym czasie na patelnię dodajemy zblendowany serek, całość dokładnie mieszamy, dokładamy makaron, mieszamy.",
+                        "Gotowe danie przekładamy na talerz i posypujemy bazylią świeżą oraz startym parmezanem."
+                    ]
+                },
+                {
+                    id: 'l17',
+                    name: "Pulpety drobiowe z suszonymi pomidorami",
+                    kcal: 850, protein: 64, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Kasza jaglana", amount: 80, unit: "g" },
+                        { item: "Mięso mielone z kurczaka", amount: 250, unit: "g" },
+                        { item: "Pomidory suszone w oleju", amount: 40, unit: "g" },
+                        { item: "Płatki owsiane górskie", amount: 15, unit: "g" },
+                        { item: "Cebula", amount: 0.5, unit: "szt" },
+                        { item: "Czosnek", amount: 1, unit: "ząbek" },
+                        { item: "Oliwa z oliwek", amount: 5, unit: "g" },
+                        { item: "Oregano suszone", amount: 1.5, unit: "g" },
+                        { item: "Pomidory z puszki", amount: 200, unit: "g" },
+                        { item: "Szpinak", amount: 75, unit: "g" }
+                    ],
+                    steps: [
+                        "Kaszę gotujemy według instrukcji na opakowaniu.",
+                        "Cebulę oraz czosnek drobno siekamy, przekładamy na sitko i przelewamy wrzątkiem.",
+                        "Suszone pomidory odsączamy i kroimy w drobną kostkę.",
+                        "Piekarnik rozgrzewamy do 180 stopni, góra-dół.",
+                        "W dużej misce łączymy mięso mielone z cebulą, czosnkiem oraz płatkami owsianymi, oliwą, suszonymi pomidorami, oregano, solą oraz pieprzem. Dokładnie wyrabiamy masę.",
+                        "Z masy formujemy małe kulki wielkości orzecha włoskiego (około 3 cm średnicy).",
+                        "Przygotowujemy sos pomidorowy: W naczyniu do zapiekania mieszamy pomidory z oregano, solą oraz pieprzem.",
+                        "Układamy pulpety w sosie pomidorowym, lekko je dociskając, aby były zanurzone w sosie. Przykrywamy naczynie folią aluminiową lub pokrywką.",
+                        "Pulpety pieczemy przez 30 minut. Na ostatnie 10 minut zdejmujemy folię, aby pulpety się zrumieniły.",
+                        "Pulpety układamy na szpinaku. Podajemy z kaszą."
+                    ]
+                },
+                {
+                    id: 'l18',
+                    name: "Makaron z kurczakiem, pesto i cukinią",
+                    kcal: 850, protein: 64, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Makaron pełnoziarnisty", amount: 70, unit: "g" },
+                        { item: "Pierś z kurczaka", amount: 200, unit: "g" },
+                        { item: "Rukola", amount: 40, unit: "g" },
+                        { item: "Orzechy włoskie", amount: 20, unit: "g" },
+                        { item: "Parmezan", amount: 10, unit: "g" },
+                        { item: "Pomidorki koktajlowe", amount: 5, unit: "szt" },
+                        { item: "Czosnek świeży", amount: 2, unit: "ząbki" },
+                        { item: "Cukinia", amount: 100, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 15, unit: "g" },
+                        { item: "Bazylia świeża", amount: 3, unit: "g" },
+                        { item: "Curry przyprawa", amount: 2, unit: "g" }
+                    ],
+                    steps: [
+                        "Piekarnik rozgrzewamy do 170 stopni z termoobiegiem.",
+                        "Makaron gotujemy według instrukcji na opakowaniu.",
+                        "Mięso oczyszczamy. Kroimy w 2 cm kostkę i doprawiamy solą, pieprzem, curry oraz oliwą (połowa).",
+                        "Cukinię kroimy w plastry, pomidorki koktajlowe na połówki.",
+                        "Przygotowujemy pesto z bazylii świeżej, startego parmezanu, rukoli, czosnku oraz orzechów włoskich. Wszystkie składniki blendujemy.",
+                        "Przyprawione mięso pieczemy przez około 15-20 minut.",
+                        "Na patelnię dodajemy oliwę i podsmażamy lekko pomidorki koktajlowe oraz cukinię.",
+                        "Ugotowany makaron odcedzamy i przekładamy ponownie do garnka. Dodajemy mięso, warzywa oraz pesto. Mieszamy i wykładamy na talerz."
+                    ]
+                },
+                {
+                    id: 'l19',
+                    name: "Chilli con carne z ryżem",
+                    kcal: 850, protein: 64, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Fasola czarna konserwowa", amount: 100, unit: "g" },
+                        { item: "Mięso mielone z indyka", amount: 200, unit: "g" },
+                        { item: "Pomidory z puszki", amount: 200, unit: "g" },
+                        { item: "Papryka czerwona", amount: 1, unit: "szt" },
+                        { item: "Cebula", amount: 0.5, unit: "szt" },
+                        { item: "Czosnek świeży", amount: 1, unit: "ząbek" },
+                        { item: "Papryczka chilli", amount: 1, unit: "szt" },
+                        { item: "Kumin", amount: 5, unit: "g" },
+                        { item: "Kakao", amount: 5, unit: "g" },
+                        { item: "Ryż basmati", amount: 60, unit: "g" },
+                        { item: "Papryka wędzona", amount: 3, unit: "g" },
+                        { item: "Kolendra świeża", amount: 4, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 15, unit: "g" }
+                    ],
+                    steps: [
+                        "Ryż gotujemy według instrukcji umieszczonej na opakowaniu.",
+                        "Cebulę, paprykę czerwoną, czosnek oraz papryczę chilli siekamy. W rondlu rozgrzewamy oliwę i dusimy na niej warzywa.",
+                        "Gdy warzywa się zeszklą, dodajemy mięso i dusimy razem cały czas mieszając.",
+                        "Dodajemy pomidory z puszki oraz wodę i gotujemy na wolnym ogniu, aż sos zgęstnieje, a mięso będzie miękkie.",
+                        "Dodajemy czarną fasolę konserwową. Gotujemy wszystko razem i doprawiamy solą, pieprzem, kuminem, kakao, wędzoną papryką oraz posiekaną kolendrą.",
+                        "Ugotowane chilli podajemy z ryżem."
+                    ]
+                },
+                {
+                    id: 'l20',
+                    name: "Placek po węgiersku z wieprzowiną",
+                    kcal: 850, protein: 64, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Placki ziemniaczane mrożone", amount: 250, unit: "g" },
+                        { item: "Mięso wieprzowe z szynki", amount: 200, unit: "g" },
+                        { item: "Papryka czerwona", amount: 1, unit: "szt" },
+                        { item: "Cebula", amount: 1, unit: "szt" },
+                        { item: "Czosnek świeży", amount: 1, unit: "ząbek" },
+                        { item: "Jogurt naturalny 2%", amount: 80, unit: "g" },
+                        { item: "Papryka słodka", amount: 3, unit: "g" },
+                        { item: "Majeranek", amount: 2, unit: "g" },
+                        { item: "Olej rzepakowy", amount: 10, unit: "g" }
+                    ],
+                    steps: [
+                        "Przygotowujemy placki ziemniaczane wg przepisu lub pieczemy mrożone.",
+                        "Mięso kroimy w kostkę. Mieszamy z przyprawami (sól, pieprz, papryka i majeranek) i olejem (połowa). Odstawiamy do lodówki na ok. 30 minut.",
+                        "Smażymy na dobrze rozgrzanej patelni. Podlewamy wodą (na wysokość mięsa), dusimy przez około 20 minut.",
+                        "Warzywa obieramy, kroimy w kostkę. Podsmażamy na rozgrzanej patelni z pozostałym olejem.",
+                        "Warzywa dodajemy do mięsa i dusimy przez kolejne 20 minut.",
+                        "Do jogurtu dodajemy 2-3 łyżki wywaru i mieszamy. Całość wlewamy na patelnię. Przyprawiamy do smaku solą, pieprzem i papryką.",
+                        "Placki podajemy z sosem."
+                    ]
+                },
+                {
+                    id: 'l21',
+                    name: "Kurczak po seczuańsku",
+                    kcal: 850, protein: 64, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Cebula", amount: 1, unit: "szt" },
+                        { item: "Czosnek świeży", amount: 1, unit: "ząbek" },
+                        { item: "Papryka czerwona", amount: 1, unit: "szt" },
+                        { item: "Marchew", amount: 1, unit: "szt" },
+                        { item: "Pierś z kurczaka", amount: 220, unit: "g" },
+                        { item: "Ryż basmati", amount: 70, unit: "g" },
+                        { item: "Papryka ostra suszona", amount: 3, unit: "g" },
+                        { item: "Imbir", amount: 5, unit: "g" },
+                        { item: "Sos sojowy", amount: 15, unit: "g" },
+                        { item: "Ketchup", amount: 10, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 15, unit: "g" },
+                        { item: "Kumin", amount: 2.5, unit: "g" },
+                        { item: "Papryka słodka", amount: 3, unit: "g" }
+                    ],
+                    steps: [
+                        "Ryż gotujemy zgodnie z instrukcją na opakowaniu. Na patelni rozgrzewamy oliwę (połowa).",
+                        "Podsmażamy posiekaną cebulę oraz czosnek.",
+                        "Paprykę czerwoną oraz marchew kroimy, dodajemy na patelnię. Podsmażone warzywa zdejmujemy z patelni.",
+                        "Mięso kroimy w średniej wielkości kostkę (ok. 1.5 cm). Mieszamy z sosem sojowym i posiekanym imbirem, marynujemy około 10 minut.",
+                        "Kurczaka smażymy na oliwie (połowa), na tej samej patelni.",
+                        "Dodajemy do kurczaka – warzywa, przyprawy (ostrą paprykę, kumin oraz słodką paprykę wedle uznania), ketchup i odrobinę wody.",
+                        "Zmniejszamy moc palnika, przykrywamy i dusimy przez 15 minut.",
+                        "Podajemy z ryżem."
+                    ]
+                },
+                {
+                    id: 'l22',
+                    name: "Kurczak sweet chilli z papryką",
+                    kcal: 850, protein: 64, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Kurczak sweet chilli z papryką (gotowe danie)", amount: 350, unit: "g" },
+                        { item: "Jogurt Skyr naturalny", amount: 300, unit: "g" },
+                        { item: "Banan", amount: 1, unit: "szt" },
+                        { item: "Odżywka białkowa", amount: 15, unit: "g" }
+                    ],
+                    steps: [
+                        "Kurczaka przygotowujemy według opakowania.",
+                        "Jogurt mieszamy z odżywką białkową. Owoce zjadamy na deser."
+                    ]
+                },
+                {
+                    id: 'l23',
+                    name: "Pizza na gotowym spodzie z pieczarkami",
+                    kcal: 850, protein: 64, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Placek pszenny Piadina", amount: 1, unit: "szt" },
+                        { item: "Oliwa z oliwek", amount: 5, unit: "g" },
+                        { item: "Passata pomidorowa", amount: 50, unit: "g" },
+                        { item: "Zioła prowansalskie", amount: 1.5, unit: "g" },
+                        { item: "Pieczarki", amount: 60, unit: "g" },
+                        { item: "Ser mozzarella żółta", amount: 80, unit: "g" },
+                        { item: "Cebula", amount: 0.5, unit: "szt" },
+                        { item: "Szynka z indyka", amount: 120, unit: "g" },
+                        { item: "Rukola", amount: 25, unit: "g" }
+                    ],
+                    steps: [
+                        "Nagrzewamy piekarnik do 240 stopni, tryb góra-dół lub opcję grill.",
+                        "Spód do pizzy smarujemy oliwą, następnie passatą pomidorową. Posypujemy solą oraz ziołami prowansalskimi.",
+                        "Pieczarki kroimy na cienkie plasterki za pomocą mandoliny.",
+                        "Na posmarowanym spodzie do pizzy układamy pieczarki, cebulę pokrojoną w krążki oraz szynkę z indyka. Wierzch posypujemy startym serem.",
+                        "Pieczemy pizzę przez około 8 minut. Po upieczeniu posypujemy rukolą."
+                    ]
+                },
+                {
+                    id: 'l24',
+                    name: "Tortelloni vegan z pesto",
+                    kcal: 850, protein: 64, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Tortelloni vegan z pomidorami i bazylią", amount: 125, unit: "g" },
+                        { item: "Pierś z kurczaka", amount: 200, unit: "g" },
+                        { item: "Rukola", amount: 25, unit: "g" },
+                        { item: "Pomidory suszone w oleju", amount: 40, unit: "g" },
+                        { item: "Nasiona słonecznika", amount: 20, unit: "g" },
+                        { item: "Pesto zielone", amount: 30, unit: "g" }
+                    ],
+                    steps: [
+                        "Kurczaka pokrój w kostkę i usmaż na patelni, dopraw solą i pieprzem.",
+                        "Tortelloni przygotowujemy według przepisu na opakowaniu.",
+                        "Pomidory suszone kroimy w paski.",
+                        "Tortelloni mieszamy z pesto, kurczakiem, suszonymi pomidorami, słonecznikiem oraz rukolą."
+                    ]
+                },
+                {
+                    id: 'l25',
+                    name: "Jednogarnkowe danie z mięsem mielonym",
+                    kcal: 850, protein: 64, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Mięso mielone z indyka", amount: 250, unit: "g" },
+                        { item: "Ryż basmati", amount: 80, unit: "g" },
+                        { item: "Cukinia", amount: 1, unit: "szt" },
+                        { item: "Papryka czerwona", amount: 1, unit: "szt" },
+                        { item: "Cebula", amount: 1, unit: "szt" },
+                        { item: "Passata pomidorowa", amount: 200, unit: "g" },
+                        { item: "Czosnek", amount: 2, unit: "ząbki" },
+                        { item: "Oliwa z oliwek", amount: 10, unit: "g" },
+                        { item: "Przyprawy włoskie", amount: 1, unit: "łyżeczka" }
+                    ],
+                    steps: [
+                        "Na rozgrzanej patelni z oliwą smażymy cebulę i czosnek.",
+                        "Dodajemy mięso mielone, rozbijamy je i smażymy do zrumienienia.",
+                        "Dodajemy pokrojoną cukinię i paprykę, smażymy 5 minut.",
+                        "Wlewamy passatę, doprawiamy przyprawami włoskimi, solą i pieprzem.",
+                        "Osobno gotujemy ryż według instrukcji na opakowaniu.",
+                        "Podajemy danie z ryżem."
+                    ]
+                },
+                {
+                    id: 'l26',
+                    name: "Burger curry z mięsa",
+                    kcal: 850, protein: 64, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Mięso mielone wołowe chude", amount: 200, unit: "g" },
+                        { item: "Bułka do burgera pełnoziarnista", amount: 2, unit: "szt" },
+                        { item: "Ser cheddar", amount: 40, unit: "g" },
+                        { item: "Sałata lodowa", amount: 30, unit: "g" },
+                        { item: "Pomidor", amount: 1, unit: "szt" },
+                        { item: "Cebula czerwona", amount: 0.5, unit: "szt" },
+                        { item: "Jogurt grecki", amount: 50, unit: "g" },
+                        { item: "Curry", amount: 1, unit: "łyżeczka" },
+                        { item: "Pierś z kurczaka", amount: 80, unit: "g" }
+                    ],
+                    steps: [
+                        "Mięso mielone mieszamy z curry, solą i pieprzem. Formujemy 2 kotlety.",
+                        "Pierś z kurczaka kroimy w paski i smażymy na patelni.",
+                        "Kotlety smażymy na patelni po 4-5 minut z każdej strony.",
+                        "Pod koniec smażenia kładziemy na każdy kotlet plaster sera.",
+                        "Bułki przekrawamy i lekko opiekamy.",
+                        "Składamy burgery: bułka, sałata, kotlet z serem, kurczak, pomidor, cebula, jogurt, bułka."
+                    ]
+                },
+                {
+                    id: 'l27',
+                    name: "Lekka sałatka cezar z kurczakiem",
+                    kcal: 850, protein: 64, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Pierś z kurczaka", amount: 280, unit: "g" },
+                        { item: "Sałata rzymska", amount: 150, unit: "g" },
+                        { item: "Parmezan tarty", amount: 30, unit: "g" },
+                        { item: "Grzanki pełnoziarniste", amount: 50, unit: "g" },
+                        { item: "Jogurt grecki", amount: 80, unit: "g" },
+                        { item: "Czosnek", amount: 1, unit: "ząbek" },
+                        { item: "Sok z cytryny", amount: 1, unit: "łyżka" },
+                        { item: "Oliwa z oliwek", amount: 15, unit: "g" },
+                        { item: "Musztarda dijon", amount: 1, unit: "łyżeczka" }
+                    ],
+                    steps: [
+                        "Pierś z kurczaka doprawiamy, smażymy na patelni z oliwą, kroimy w paski.",
+                        "Przygotowujemy sos: mieszamy jogurt z parmezanem, przeciśniętym czosnkiem, sokiem z cytryny i musztardą.",
+                        "Sałatę rwemy na kawałki, układamy na talerzu.",
+                        "Dodajemy pokrojonego kurczaka i grzanki.",
+                        "Polewamy sosem i posypujemy dodatkowym parmezanem."
+                    ]
+                },
+                {
+                    id: 'l28',
+                    name: "Makaron z indykiem podsmażanym ze szpinakiem",
+                    kcal: 850, protein: 64, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Makaron penne", amount: 80, unit: "g" },
+                        { item: "Filet z indyka", amount: 250, unit: "g" },
+                        { item: "Szpinak świeży", amount: 100, unit: "g" },
+                        { item: "Śmietanka 18%", amount: 100, unit: "ml" },
+                        { item: "Czosnek", amount: 2, unit: "ząbki" },
+                        { item: "Parmezan tarty", amount: 20, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 10, unit: "g" },
+                        { item: "Pomidory suszone", amount: 30, unit: "g" }
+                    ],
+                    steps: [
+                        "Makaron gotujemy al dente według instrukcji.",
+                        "Indyka kroimy w kostkę i smażymy na patelni z oliwą do zrumienienia.",
+                        "Dodajemy posiekany czosnek i pokrojone suszone pomidory.",
+                        "Wrzucamy szpinak, mieszamy aż zwiędnie.",
+                        "Wlewamy śmietankę, gotujemy 2-3 minuty.",
+                        "Dodajemy makaron i parmezan, mieszamy. Doprawiamy do smaku."
+                    ]
+                },
+                {
+                    id: 'l29',
+                    name: "Chrupiące kotlety z kurczaka z pieczonymi ziemniakami",
+                    kcal: 850, protein: 64, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Pierś z kurczaka", amount: 280, unit: "g" },
+                        { item: "Bułka tarta", amount: 40, unit: "g" },
+                        { item: "Jajko", amount: 1, unit: "szt" },
+                        { item: "Mąka pszenna", amount: 20, unit: "g" },
+                        { item: "Ziemniaki", amount: 200, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 15, unit: "g" },
+                        { item: "Papryka słodka mielona", amount: 1, unit: "łyżeczka" },
+                        { item: "Ogórek kiszony", amount: 2, unit: "szt" }
+                    ],
+                    steps: [
+                        "Ziemniaki kroimy w cząstki, skrapiamy oliwą, posypujemy papryką. Pieczemy 30 min w 200°C.",
+                        "Pierś z kurczaka rozbijamy na cienkie kotlety.",
+                        "Panierujemy: mąka, rozbite jajko, bułka tarta.",
+                        "Smażymy na patelni z oliwą po 3-4 minuty z każdej strony.",
+                        "Podajemy z pieczonymi ziemniakami i ogórkami kiszonymi."
+                    ]
+                },
+                {
+                    id: 'l30',
+                    name: "Pieczone nuggetsy z ziemniakami",
+                    kcal: 850, protein: 64, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Pierś z kurczaka", amount: 300, unit: "g" },
+                        { item: "Płatki kukurydziane", amount: 50, unit: "g" },
+                        { item: "Jajko", amount: 1, unit: "szt" },
+                        { item: "Ziemniaki", amount: 200, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 15, unit: "g" },
+                        { item: "Ketchup", amount: 30, unit: "g" },
+                        { item: "Czosnek granulowany", amount: 0.5, unit: "łyżeczki" }
+                    ],
+                    steps: [
+                        "Piekarnik rozgrzewamy do 200°C.",
+                        "Kurczaka kroimy w kawałki wielkości nuggetów.",
+                        "Płatki kukurydziane kruszymy, mieszamy z czosnkiem granulowanym.",
+                        "Kawałki kurczaka maczamy w roztrzepanym jajku, obtaczamy w płatkach.",
+                        "Ziemniaki kroimy w frytki, skrapiamy oliwą.",
+                        "Nuggetsy i frytki układamy na blasze, pieczemy 25-30 minut.",
+                        "Podajemy z ketchupem."
+                    ]
+                },
+                {
+                    id: 'l31',
+                    name: "Pikantne skrzydełka kurczaka z ryżem i surówką",
+                    kcal: 850, protein: 64, fat: 28, carbs: 72,
+                    ingredients: [
+                        { item: "Skrzydełka z kurczaka", amount: 400, unit: "g" },
+                        { item: "Ryż basmati", amount: 80, unit: "g" },
+                        { item: "Sos sriracha", amount: 2, unit: "łyżki" },
+                        { item: "Miód", amount: 1, unit: "łyżka" },
+                        { item: "Sos sojowy", amount: 2, unit: "łyżki" },
+                        { item: "Kapusta pekińska", amount: 100, unit: "g" },
+                        { item: "Marchewka", amount: 1, unit: "szt" },
+                        { item: "Ocet ryżowy", amount: 1, unit: "łyżka" }
+                    ],
+                    steps: [
+                        "Skrzydełka marynujemy w mieszance srirachy, miodu i sosu sojowego przez 30 min.",
+                        "Pieczemy w 200°C przez 35-40 minut, obracając w połowie.",
+                        "Ryż gotujemy według instrukcji.",
+                        "Kapustę szatkujemy, marchewkę ścieramy. Mieszamy z octem ryżowym.",
+                        "Podajemy skrzydełka z ryżem i surówką."
+                    ]
                 }
             ],
             dinner: [
                 {
                     id: 'd1',
                     name: "Twarożek z owocami",
-                    kcal: 780, protein: 62, fat: 22, carbs: 65,
+                    kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
-                        { item: "Serek wiejski wysokobiałkowy", amount: 400, unit: "g" },
+                        { item: "Serek wiejski wysokobiałkowy", amount: 350, unit: "g" },
                         { item: "Banan", amount: 1, unit: "szt" },
-                        { item: "Orzechy włoskie", amount: 30, unit: "g" },
-                        { item: "Miód", amount: 20, unit: "g" },
-                        { item: "Płatki owsiane", amount: 30, unit: "g" }
+                        { item: "Orzechy włoskie", amount: 40, unit: "g" },
+                        { item: "Miód", amount: 15, unit: "g" },
+                        { item: "Płatki owsiane", amount: 25, unit: "g" }
                     ],
                     steps: [
                         "Serek przełóż do miski.",
@@ -994,13 +2425,13 @@
                 {
                     id: 'd2',
                     name: "Kanapki z pastą jajeczną",
-                    kcal: 790, protein: 58, fat: 32, carbs: 68,
+                    kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
-                        { item: "Chleb żytni razowy", amount: 5, unit: "kromek" },
+                        { item: "Chleb żytni razowy", amount: 4, unit: "kromki" },
                         { item: "Jajka", amount: 5, unit: "szt" },
-                        { item: "Jogurt grecki", amount: 50, unit: "g" },
-                        { item: "Majonez", amount: 15, unit: "g" },
-                        { item: "Ser żółty", amount: 40, unit: "g" },
+                        { item: "Jogurt grecki", amount: 60, unit: "g" },
+                        { item: "Majonez", amount: 10, unit: "g" },
+                        { item: "Ser żółty", amount: 50, unit: "g" },
                         { item: "Ogórek", amount: 1, unit: "szt" },
                         { item: "Szczypiorek", amount: 1, unit: "pęczek" }
                     ],
@@ -1014,13 +2445,13 @@
                 {
                     id: 'd3',
                     name: "Wrap z kurczakiem",
-                    kcal: 785, protein: 60, fat: 26, carbs: 70,
+                    kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
                         { item: "Tortilla pełnoziarnista", amount: 2, unit: "szt" },
                         { item: "Pierś z kurczaka", amount: 180, unit: "g" },
-                        { item: "Serek śmietankowy", amount: 50, unit: "g" },
+                        { item: "Serek śmietankowy", amount: 40, unit: "g" },
                         { item: "Pomidor", amount: 1, unit: "szt" },
-                        { item: "Ser żółty", amount: 40, unit: "g" },
+                        { item: "Ser żółty", amount: 50, unit: "g" },
                         { item: "Jogurt skyr", amount: 100, unit: "g" },
                         { item: "Sałata lodowa", amount: 50, unit: "g" }
                     ],
@@ -1029,6 +2460,568 @@
                         "Ułóż sałatę, kurczaka, pomidor, ser.",
                         "Zwiń ciasno w rulon.",
                         "Jogurt skyr jako dip."
+                    ]
+                },
+                {
+                    id: 'd4',
+                    name: "Sałatka śródziemnomorska z indykiem",
+                    kcal: 780, protein: 59, fat: 29, carbs: 71,
+                    ingredients: [
+                        { item: "Pierś z indyka", amount: 220, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 2, unit: "łyżki" },
+                        { item: "Pomidor", amount: 1, unit: "szt" },
+                        { item: "Ogórek", amount: 0.5, unit: "szt" },
+                        { item: "Oliwki czarne", amount: 30, unit: "g" },
+                        { item: "Jogurt naturalny 2%", amount: 80, unit: "g" },
+                        { item: "Sok z cytryny", amount: 6, unit: "g" },
+                        { item: "Czosnek", amount: 1, unit: "ząbek" },
+                        { item: "Miks sałat", amount: 50, unit: "g" },
+                        { item: "Chleb żytni razowy", amount: 3, unit: "kromki" }
+                    ],
+                    steps: [
+                        "Indyka pokrój w kawałki 2cm, dopraw solą i pieprzem.",
+                        "Smaż na oliwie (1 łyżka) na rozgrzanej patelni do miękkości.",
+                        "Pokrój pomidora, ogórka i oliwki.",
+                        "Dressing: jogurt + sok z cytryny + czosnek przez praskę + sól + pieprz.",
+                        "Grzanki: chleb pokrój w kostkę, piecz 8-10 min w 180°C aż się zrumienią.",
+                        "W misce wymieszaj sałatę, warzywa i indyka, polej dressingiem.",
+                        "Posyp grzankami i podawaj."
+                    ]
+                },
+                {
+                    id: 'd5',
+                    name: "Tortilla z łososiem i warzywami",
+                    kcal: 780, protein: 59, fat: 29, carbs: 71,
+                    ingredients: [
+                        { item: "Tortilla pełnoziarnista", amount: 2, unit: "szt" },
+                        { item: "Łosoś wędzony", amount: 180, unit: "g" },
+                        { item: "Jajka", amount: 2, unit: "szt" },
+                        { item: "Serek śmietankowy", amount: 30, unit: "g" },
+                        { item: "Ogórek", amount: 1, unit: "szt" },
+                        { item: "Rzodkiewka", amount: 2, unit: "szt" },
+                        { item: "Rukola", amount: 30, unit: "g" },
+                        { item: "Szczypiorek", amount: 10, unit: "g" },
+                        { item: "Koper", amount: 4, unit: "g" }
+                    ],
+                    steps: [
+                        "Pokrój ogórka i rzodkiewkę w plastry.",
+                        "Serek wymieszaj z posiekanym koperkiem i szczypiorkiem, dopraw solą i pieprzem.",
+                        "Tortillę posmaruj serkiem, ułóż łososia, rzodkiewkę, ogórka i rukolę.",
+                        "Zwiń w rulon i podawaj."
+                    ]
+                },
+                {
+                    id: 'd6',
+                    name: "Racuszki jabłkowo-owsiane",
+                    kcal: 780, protein: 59, fat: 29, carbs: 71,
+                    ingredients: [
+                        { item: "Jabłko", amount: 1, unit: "szt" },
+                        { item: "Mąka pszenna pełnoziarnista", amount: 50, unit: "g" },
+                        { item: "Płatki owsiane górskie", amount: 20, unit: "g" },
+                        { item: "Mleko 1.5%", amount: 100, unit: "ml" },
+                        { item: "Jajka", amount: 3, unit: "szt" },
+                        { item: "Odżywka białkowa", amount: 30, unit: "g" },
+                        { item: "Cynamon", amount: 2, unit: "g" },
+                        { item: "Olej rzepakowy", amount: 15, unit: "g" },
+                        { item: "Jogurt Skyr naturalny", amount: 200, unit: "g" }
+                    ],
+                    steps: [
+                        "Do miski wsyp mąkę, płatki owsiane, drożdże, cynamon, ksylitol i mleko. Miksuj aż powstanie gładkie ciasto.",
+                        "Przykryj i odstaw w ciepłe miejsce na 30-45 min.",
+                        "Jabłko obierz, wydrąż gniazda nasienne i pokrój w kostkę. Dodaj do wyrośniętego ciasta.",
+                        "Patelnię smaruj olejem i rozgrzewaj.",
+                        "Układaj cienkie placuszki i smaż na wolnym ogniu z obu stron.",
+                        "Podawaj z jogurtem skyr."
+                    ]
+                },
+                {
+                    id: 'd7',
+                    name: "Kanapki z serem gouda",
+                    kcal: 780, protein: 59, fat: 29, carbs: 71,
+                    ingredients: [
+                        { item: "Chleb żytni razowy", amount: 4, unit: "kromki" },
+                        { item: "Ser żółty (gouda)", amount: 80, unit: "g" },
+                        { item: "Szynka z indyka", amount: 100, unit: "g" },
+                        { item: "Jajka", amount: 2, unit: "szt" },
+                        { item: "Serek śmietankowy", amount: 30, unit: "g" },
+                        { item: "Pomidor", amount: 1, unit: "szt" },
+                        { item: "Ogórek", amount: 0.5, unit: "szt" },
+                        { item: "Rukola", amount: 40, unit: "g" }
+                    ],
+                    steps: [
+                        "Kromki chleba posmaruj serkiem śmietankowym.",
+                        "Na kanapkach ułóż rukolę, plastry sera gouda, pomidora i ogórka.",
+                        "Dopraw solą i pieprzem."
+                    ]
+                },
+                {
+                    id: 'd8',
+                    name: "Sałatka owocowa ze skyr",
+                    kcal: 780, protein: 59, fat: 29, carbs: 71,
+                    ingredients: [
+                        { item: "Banan", amount: 1, unit: "szt" },
+                        { item: "Jabłko", amount: 0.5, unit: "szt" },
+                        { item: "Maliny mrożone", amount: 80, unit: "g" },
+                        { item: "Jogurt Skyr naturalny", amount: 350, unit: "g" },
+                        { item: "Masło orzechowe", amount: 40, unit: "g" },
+                        { item: "Odżywka białkowa", amount: 15, unit: "g" }
+                    ],
+                    steps: [
+                        "Owoce umyj i pokrój na mniejsze kawałki, wymieszaj w misce.",
+                        "Jogurt wymieszaj z masłem orzechowym.",
+                        "Podawaj owoce z jogurtem."
+                    ]
+                },
+                {
+                    id: 'd9',
+                    name: "Placki bananowe",
+                    kcal: 780, protein: 59, fat: 29, carbs: 71,
+                    ingredients: [
+                        { item: "Banan", amount: 1, unit: "szt" },
+                        { item: "Mąka jaglana", amount: 50, unit: "g" },
+                        { item: "Jajka", amount: 3, unit: "szt" },
+                        { item: "Odżywka białkowa", amount: 25, unit: "g" },
+                        { item: "Olej rzepakowy", amount: 15, unit: "g" },
+                        { item: "Cynamon", amount: 2, unit: "g" },
+                        { item: "Jogurt Skyr naturalny", amount: 200, unit: "g" }
+                    ],
+                    steps: [
+                        "Banana rozgnieć widelcem, dodaj mąkę jaglaną, jajko i cynamon, wymieszaj.",
+                        "Na patelni rozgrzej olej, smaż placuszki 1-2 min z każdej strony.",
+                        "Podawaj z jogurtem skyr."
+                    ]
+                },
+                {
+                    id: 'd10',
+                    name: "Czekoladowa owsianka",
+                    kcal: 780, protein: 59, fat: 29, carbs: 71,
+                    ingredients: [
+                        { item: "Płatki owsiane górskie", amount: 50, unit: "g" },
+                        { item: "Jogurt Skyr naturalny", amount: 250, unit: "g" },
+                        { item: "Banan", amount: 1, unit: "szt" },
+                        { item: "Masło orzechowe", amount: 10, unit: "g" },
+                        { item: "Czekolada gorzka 70%", amount: 10, unit: "g" },
+                        { item: "Orzechy włoskie", amount: 15, unit: "g" },
+                        { item: "Kakao", amount: 5, unit: "g" },
+                        { item: "Odżywka białkowa czekoladowa", amount: 20, unit: "g" }
+                    ],
+                    steps: [
+                        "Banana kroimy w plasterki i układamy na spodzie miseczki.",
+                        "Płatki owsiane mieszamy z jogurtem skyr, odżywką i kakao. Jeśli jest za gęste, możemy dodać wodę.",
+                        "Gorzką czekoladę rozpuszczamy w kąpieli wodnej i polewamy owsiankę lub nierozpuszczoną układamy na wierzchu dania.",
+                        "Na koniec dodajemy masło orzechowe oraz orzechy włoskie."
+                    ]
+                },
+                {
+                    id: 'd11',
+                    name: "Kanapki z jajkiem i awokado",
+                    kcal: 780, protein: 59, fat: 29, carbs: 71,
+                    ingredients: [
+                        { item: "Awokado", amount: 50, unit: "g" },
+                        { item: "Sok z cytryny", amount: 12, unit: "g" },
+                        { item: "Jajka", amount: 4, unit: "szt" },
+                        { item: "Rzodkiewka", amount: 7, unit: "szt" },
+                        { item: "Chleb żytni razowy", amount: 4, unit: "kromki" },
+                        { item: "Oregano suszone", amount: 3, unit: "g" },
+                        { item: "Natka pietruszki", amount: 20, unit: "g" },
+                        { item: "Szynka z indyka", amount: 80, unit: "g" }
+                    ],
+                    steps: [
+                        "Awokado obieramy, kroimy na pół i usuwamy pestkę.",
+                        "Następnie kroimy na cienkie plasterki, polewamy sokiem z cytryny, doprawiamy solą oraz pieprzem. Rozsmarowujemy na pieczywie.",
+                        "Jajka gotujemy na półtwardo, tak, aby środek był miękki. Kroimy w plasterki i układamy na kromkach.",
+                        "Rzodkiewkę myjemy, kroimy w plasterki i układamy na jajkach.",
+                        "Dodajemy szynkę z indyka. Doprawiamy całość solą, pieprzem oraz oregano. Posypujemy natką pietruszki."
+                    ]
+                },
+                {
+                    id: 'd12',
+                    name: "Twarożek z suszonymi pomidorami",
+                    kcal: 780, protein: 59, fat: 29, carbs: 71,
+                    ingredients: [
+                        { item: "Ogórek świeży", amount: 1, unit: "szt" },
+                        { item: "Pomidory suszone w oleju", amount: 40, unit: "g" },
+                        { item: "Rukola", amount: 25, unit: "g" },
+                        { item: "Chleb żytni razowy", amount: 3, unit: "kromki" },
+                        { item: "Ser twarogowy półtłusty", amount: 200, unit: "g" },
+                        { item: "Szczypiorek", amount: 15, unit: "g" },
+                        { item: "Oregano suszone", amount: 3, unit: "g" },
+                        { item: "Masło", amount: 15, unit: "g" },
+                        { item: "Jajka", amount: 2, unit: "szt" }
+                    ],
+                    steps: [
+                        "Jajka ugotuj na twardo.",
+                        "Drobno kroimy ogórka oraz suszone pomidory, szczypiorek siekamy.",
+                        "Ser mieszamy z suszonymi pomidorami oraz szczypiorkiem. W razie potrzeby przyprawiamy solą, pieprzem oraz oregano.",
+                        "Gotowy twarożek podajemy z pieczywem posmarowanym masłem, ogórkiem, jajkami oraz rukolą."
+                    ]
+                },
+                {
+                    id: 'd13',
+                    name: "Kanapki z szynką i mozzarellą",
+                    kcal: 780, protein: 59, fat: 29, carbs: 71,
+                    ingredients: [
+                        { item: "Chleb żytni razowy", amount: 4, unit: "kromki" },
+                        { item: "Szynka parmeńska", amount: 30, unit: "g" },
+                        { item: "Szynka z kurczaka", amount: 80, unit: "g" },
+                        { item: "Ser mozzarella light", amount: 120, unit: "g" },
+                        { item: "Pomidorki koktajlowe", amount: 5, unit: "szt" },
+                        { item: "Masło", amount: 15, unit: "g" },
+                        { item: "Jajka", amount: 2, unit: "szt" }
+                    ],
+                    steps: [
+                        "Jajka ugotuj na twardo lub usmaż.",
+                        "Na chlebie razowym rozsmarowujemy masło, układamy plastry szynki, na nie ser mozzarellę.",
+                        "Jemy z warzywami i jajkami."
+                    ]
+                },
+                {
+                    id: 'd14',
+                    name: "Bułka owsiana z łososiem i warzywami",
+                    kcal: 780, protein: 59, fat: 29, carbs: 71,
+                    ingredients: [
+                        { item: "Bułka owsiana", amount: 1, unit: "szt" },
+                        { item: "Pomidor", amount: 1, unit: "szt" },
+                        { item: "Papryka czerwona", amount: 0.5, unit: "szt" },
+                        { item: "Łosoś wędzony", amount: 180, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 10, unit: "g" },
+                        { item: "Jajka", amount: 2, unit: "szt" },
+                        { item: "Serek śmietankowy", amount: 30, unit: "g" }
+                    ],
+                    steps: [
+                        "Jajka ugotuj na twardo.",
+                        "Bułkę owsianą skrapiamy oliwą, smarujemy serkiem śmietankowym.",
+                        "Układamy kawałki ryby, jajka i warzywa."
+                    ]
+                },
+                {
+                    id: 'd15',
+                    name: "Kanapki z hummusem i wędliną",
+                    kcal: 780, protein: 59, fat: 29, carbs: 71,
+                    ingredients: [
+                        { item: "Chleb żytni razowy", amount: 4, unit: "kromki" },
+                        { item: "Szynka z kurczaka", amount: 150, unit: "g" },
+                        { item: "Pomidor", amount: 0.5, unit: "szt" },
+                        { item: "Papryka czerwona", amount: 0.5, unit: "szt" },
+                        { item: "Ogórek świeży", amount: 0.5, unit: "szt" },
+                        { item: "Szczypiorek siekany", amount: 20, unit: "g" },
+                        { item: "Hummus", amount: 50, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 5, unit: "g" },
+                        { item: "Jajka", amount: 2, unit: "szt" }
+                    ],
+                    steps: [
+                        "Jajka ugotuj na twardo.",
+                        "Chleb żytni razowy smarujemy hummusem.",
+                        "Układamy szynkę z kurczaka i jajka.",
+                        "Posypujemy szczypiorkiem.",
+                        "Jemy z pomidorem, papryką czerwoną oraz ogórkiem polanymi oliwą."
+                    ]
+                },
+                {
+                    id: 'd16',
+                    name: "Kanapka z szynką z indyka i camembertem",
+                    kcal: 780, protein: 59, fat: 29, carbs: 71,
+                    ingredients: [
+                        { item: "Chleb żytni razowy", amount: 4, unit: "kromki" },
+                        { item: "Żurawina do mięs", amount: 20, unit: "g" },
+                        { item: "Rukola", amount: 20, unit: "g" },
+                        { item: "Szynka z indyka", amount: 100, unit: "g" },
+                        { item: "Ser camembert", amount: 60, unit: "g" },
+                        { item: "Masło", amount: 10, unit: "g" },
+                        { item: "Jajka", amount: 3, unit: "szt" }
+                    ],
+                    steps: [
+                        "Jajka ugotuj na twardo.",
+                        "Chleb żytni razowy smarujemy żurawiną oraz masłem.",
+                        "Na chlebie razowym układamy rukolę, szynkę z indyka, jajka oraz ser camembert. Przykrywamy kromką chleba żytniego razowego."
+                    ]
+                },
+                {
+                    id: 'd17',
+                    name: "Kanapka z szynką z kurczaka i pastą z suszonych pomidorów",
+                    kcal: 780, protein: 59, fat: 29, carbs: 71,
+                    ingredients: [
+                        { item: "Chleb żytni razowy", amount: 4, unit: "kromki" },
+                        { item: "Pomidory suszone w oleju", amount: 60, unit: "g" },
+                        { item: "Nasiona słonecznika", amount: 25, unit: "g" },
+                        { item: "Rukola", amount: 20, unit: "g" },
+                        { item: "Szynka z kurczaka", amount: 120, unit: "g" },
+                        { item: "Papryka słodka", amount: 0.5, unit: "g" },
+                        { item: "Czosnek granulowany", amount: 1, unit: "g" }
+                    ],
+                    steps: [
+                        "Suszone pomidory oraz słonecznik blendujemy z wodą. Przyprawiamy wedle uznania słodką papryką oraz czosnkiem granulowanym.",
+                        "Pieczywo smarujemy przygotowaną pastą, układamy na niej rukolę oraz szynkę z kurczaka."
+                    ]
+                },
+                {
+                    id: 'd18',
+                    name: "Skyr z orzechami i bananem",
+                    kcal: 780, protein: 59, fat: 29, carbs: 71,
+                    ingredients: [
+                        { item: "Jogurt Skyr naturalny", amount: 350, unit: "g" },
+                        { item: "Banan", amount: 2, unit: "szt" },
+                        { item: "Mieszanka orzechów", amount: 45, unit: "g" },
+                        { item: "Odżywka białkowa", amount: 20, unit: "g" }
+                    ],
+                    steps: [
+                        "Jogurt wymieszaj z odżywką białkową.",
+                        "Zjedz z owocami i orzechami."
+                    ]
+                },
+                {
+                    id: 'd19',
+                    name: "Serek wiejski z migdałami i waflami",
+                    kcal: 780, protein: 59, fat: 29, carbs: 71,
+                    ingredients: [
+                        { item: "Serek wiejski naturalny", amount: 350, unit: "g" },
+                        { item: "Migdały", amount: 25, unit: "g" },
+                        { item: "Wafle ryżowe", amount: 6, unit: "szt" },
+                        { item: "Dżem truskawkowy", amount: 40, unit: "g" },
+                        { item: "Odżywka białkowa", amount: 15, unit: "g" }
+                    ],
+                    steps: [
+                        "Serek wiejski wymieszaj z dżemem truskawkowym, migdałami oraz odżywką.",
+                        "Zjedz z waflami ryżowymi."
+                    ]
+                },
+                {
+                    id: 'd20',
+                    name: "Kanapki z jajkiem i awokado (duża porcja)",
+                    kcal: 780, protein: 59, fat: 29, carbs: 71,
+                    ingredients: [
+                        { item: "Awokado", amount: 80, unit: "g" },
+                        { item: "Sok z cytryny", amount: 12, unit: "g" },
+                        { item: "Jajka", amount: 4, unit: "szt" },
+                        { item: "Rzodkiewka", amount: 10, unit: "szt" },
+                        { item: "Chleb żytni razowy", amount: 4, unit: "kromki" },
+                        { item: "Oregano suszone", amount: 3, unit: "g" },
+                        { item: "Natka pietruszki", amount: 20, unit: "g" }
+                    ],
+                    steps: [
+                        "Do małego garnka wlewamy wodę w ilości wystarczającej do całkowitego przykrycia jajek. Zagotowujemy wodę na dużym ogniu, następnie zmniejszamy na średni ogień, delikatnie wkładamy jajka i gotujemy przez 7 minut, aby były półtwarde.",
+                        "Awokado obieramy, usuwamy pestkę i kroimy w cienkie plasterki. Polewamy sokiem z cytryny. Doprawiamy solą oraz pieprzem według własnego smaku. Awokado możemy również rozgnieść za pomocą widelca.",
+                        "Rzodkiewkę kroimy w cienkie plasterki. Jajka kroimy w grubsze plasterki.",
+                        "Na pieczywie układamy awokado, plasterki jajka, a następnie rzodkiewkę.",
+                        "Doprawiamy całość solą, pieprzem oraz oregano wedle uznania. Wierzch posypujemy posiekaną natką pietruszki."
+                    ]
+                },
+                {
+                    id: 'd21',
+                    name: "Sałatka grecka z serem feta",
+                    kcal: 780, protein: 59, fat: 29, carbs: 71,
+                    ingredients: [
+                        { item: "Miks sałat", amount: 30, unit: "g" },
+                        { item: "Ser typu Feta", amount: 150, unit: "g" },
+                        { item: "Oliwki zielone", amount: 20, unit: "g" },
+                        { item: "Oregano suszone", amount: 3, unit: "g" },
+                        { item: "Papryka czerwona", amount: 1, unit: "szt" },
+                        { item: "Cebula", amount: 1, unit: "szt" },
+                        { item: "Oliwa z oliwek", amount: 10, unit: "g" },
+                        { item: "Sok z cytryny", amount: 3, unit: "g" },
+                        { item: "Pomidor", amount: 1, unit: "szt" },
+                        { item: "Ogórek świeży", amount: 1, unit: "szt" },
+                        { item: "Chleb żytni razowy", amount: 4, unit: "kromki" },
+                        { item: "Szynka z kurczaka", amount: 60, unit: "g" }
+                    ],
+                    steps: [
+                        "Warzywa oraz ser typu feta kroimy.",
+                        "Mieszamy oliwę, oregano, sól, pieprz oraz sok z cytryny.",
+                        "Na talerz nakładamy sałatę, pokrojone warzywa, oliwki oraz ser typu feta, polewamy sosem, dokładnie mieszamy i podajemy z chlebem razowym i szynką."
+                    ]
+                },
+                {
+                    id: 'd22',
+                    name: "Smoothie z bananem, kiwi i selerem",
+                    kcal: 780, protein: 59, fat: 29, carbs: 71,
+                    ingredients: [
+                        { item: "Banan", amount: 2, unit: "szt" },
+                        { item: "Kiwi", amount: 1, unit: "szt" },
+                        { item: "Seler naciowy", amount: 90, unit: "g" },
+                        { item: "Masło orzechowe", amount: 35, unit: "g" },
+                        { item: "Płatki owsiane górskie", amount: 30, unit: "g" },
+                        { item: "Odżywka białkowa", amount: 40, unit: "g" },
+                        { item: "Woda", amount: 125, unit: "g" }
+                    ],
+                    steps: [
+                        "Wszystkie składniki blendujemy na gładkie smoothie. Jeżeli koktajl jest zbyt gęsty możemy dodać wody, aby uzyskać ulubioną konsystencję."
+                    ]
+                },
+                {
+                    id: 'd23',
+                    name: "Shake a la Snickers",
+                    kcal: 780, protein: 59, fat: 29, carbs: 71,
+                    ingredients: [
+                        { item: "Mleko 1.5%", amount: 200, unit: "g" },
+                        { item: "Pudding proteinowy karmel", amount: 200, unit: "g" },
+                        { item: "Masło orzechowe", amount: 15, unit: "g" },
+                        { item: "Daktyle suszone", amount: 20, unit: "g" },
+                        { item: "Orzechy arachidowe", amount: 15, unit: "g" },
+                        { item: "Czekolada gorzka 70%", amount: 15, unit: "g" },
+                        { item: "Banan", amount: 1, unit: "szt" },
+                        { item: "Odżywka białkowa", amount: 15, unit: "g" }
+                    ],
+                    steps: [
+                        "Daktyle zalewamy gorącą wodą i pozostawiamy na min. 15 minut, aż zmiękną. Odsączamy.",
+                        "Do naczynia blendera wlewamy mleko, pudding, masło orzechowe, daktyle, orzechy arachidowe, gorzką czekoladę, odżywkę oraz banana. Wszystko blendujemy na gładki koktajl.",
+                        "Kawałek czekolady i orzechów możemy pozostawić do dekoracji."
+                    ]
+                },
+                {
+                    id: 'd24',
+                    name: "Grzanki z pstrągiem wędzonym",
+                    kcal: 780, protein: 59, fat: 29, carbs: 71,
+                    ingredients: [
+                        { item: "Chleb tostowy pełnoziarnisty", amount: 4, unit: "kromki" },
+                        { item: "Pstrąg wędzony", amount: 150, unit: "g" },
+                        { item: "Serek kremowy", amount: 60, unit: "g" },
+                        { item: "Kapary", amount: 1, unit: "łyżka" },
+                        { item: "Rukola", amount: 30, unit: "g" },
+                        { item: "Jajka", amount: 2, unit: "szt" },
+                        { item: "Sok z cytryny", amount: 1, unit: "łyżka" },
+                        { item: "Koperek", amount: 1, unit: "łyżka" }
+                    ],
+                    steps: [
+                        "Tosty opiekamy do złotego koloru.",
+                        "Serek kremowy mieszamy z posiekanym koperkiem i sokiem z cytryny.",
+                        "Jajka gotujemy na miękko (6 minut).",
+                        "Na tosty smarujemy serek, układamy rukolę i plastry pstrąga.",
+                        "Dodajemy kapary i przekrojone jajka.",
+                        "Doprawiamy pieprzem i podajemy."
+                    ]
+                },
+                {
+                    id: 'd25',
+                    name: "Kanapki z pastą z awokado i mozzarellą",
+                    kcal: 780, protein: 59, fat: 29, carbs: 71,
+                    ingredients: [
+                        { item: "Chleb żytni razowy", amount: 4, unit: "kromki" },
+                        { item: "Awokado", amount: 1, unit: "szt" },
+                        { item: "Mozzarella", amount: 100, unit: "g" },
+                        { item: "Pomidor", amount: 1, unit: "szt" },
+                        { item: "Szynka z indyka", amount: 100, unit: "g" },
+                        { item: "Sok z limonki", amount: 1, unit: "łyżka" },
+                        { item: "Bazylia świeża", amount: 5, unit: "listków" },
+                        { item: "Jajka", amount: 2, unit: "szt" }
+                    ],
+                    steps: [
+                        "Awokado rozgniatamy widelcem z sokiem z limonki, solą i pieprzem.",
+                        "Jajka gotujemy na twardo, kroimy w plastry.",
+                        "Mozzarellę kroimy w plastry.",
+                        "Chleb smarujemy pastą z awokado.",
+                        "Układamy szynkę, plastry mozzarelli, pomidora i jajka.",
+                        "Dekorujemy bazylią i doprawiamy pieprzem."
+                    ]
+                },
+                {
+                    id: 'd26',
+                    name: "Koktajl mango lassi",
+                    kcal: 780, protein: 59, fat: 29, carbs: 71,
+                    ingredients: [
+                        { item: "Mango mrożone", amount: 150, unit: "g" },
+                        { item: "Jogurt grecki", amount: 250, unit: "g" },
+                        { item: "Mleko 1.5%", amount: 150, unit: "ml" },
+                        { item: "Miód", amount: 1, unit: "łyżka" },
+                        { item: "Odżywka białkowa waniliowa", amount: 30, unit: "g" },
+                        { item: "Kardamon", amount: 1, unit: "szczypta" },
+                        { item: "Orzechy nerkowca", amount: 20, unit: "g" }
+                    ],
+                    steps: [
+                        "Wszystkie składniki oprócz orzechów wrzucamy do blendera.",
+                        "Blendujemy na gładki, kremowy koktajl.",
+                        "Przelewamy do szklanki.",
+                        "Posypujemy posiekanymi orzechami nerkowca.",
+                        "Podajemy schłodzony."
+                    ]
+                },
+                {
+                    id: 'd27',
+                    name: "Sałatka a la cezar",
+                    kcal: 780, protein: 59, fat: 29, carbs: 71,
+                    ingredients: [
+                        { item: "Sałata rzymska", amount: 150, unit: "g" },
+                        { item: "Pierś z kurczaka", amount: 200, unit: "g" },
+                        { item: "Parmezan tarty", amount: 30, unit: "g" },
+                        { item: "Grzanki pełnoziarniste", amount: 40, unit: "g" },
+                        { item: "Jogurt grecki", amount: 60, unit: "g" },
+                        { item: "Anchois", amount: 2, unit: "szt" },
+                        { item: "Czosnek", amount: 1, unit: "ząbek" },
+                        { item: "Oliwa z oliwek", amount: 15, unit: "g" },
+                        { item: "Sok z cytryny", amount: 1, unit: "łyżka" }
+                    ],
+                    steps: [
+                        "Kurczaka doprawiamy i smażymy na patelni, kroimy w paski.",
+                        "Sos: mieszamy jogurt, parmezan, posiekane anchois, przeciśnięty czosnek, sok z cytryny i oliwę.",
+                        "Sałatę rwemy na kawałki, układamy na talerzu.",
+                        "Dodajemy kurczaka i grzanki.",
+                        "Polewamy sosem i posypujemy parmezanem."
+                    ]
+                },
+                {
+                    id: 'd28',
+                    name: "Serek wiejski z miodem, orzechami i gruszką",
+                    kcal: 780, protein: 59, fat: 29, carbs: 71,
+                    ingredients: [
+                        { item: "Serek wiejski wysokobiałkowy", amount: 400, unit: "g" },
+                        { item: "Gruszka", amount: 1, unit: "szt" },
+                        { item: "Orzechy włoskie", amount: 30, unit: "g" },
+                        { item: "Miód", amount: 2, unit: "łyżki" },
+                        { item: "Cynamon", amount: 1, unit: "szczypta" },
+                        { item: "Płatki migdałowe", amount: 15, unit: "g" }
+                    ],
+                    steps: [
+                        "Serek wiejski przekładamy do miski.",
+                        "Gruszkę myjemy i kroimy w kostkę.",
+                        "Orzechy włoskie grubo siekamy.",
+                        "Na serek układamy gruszkę, orzechy i migdały.",
+                        "Polewamy miodem i posypujemy cynamonem.",
+                        "Podajemy od razu."
+                    ]
+                },
+                {
+                    id: 'd29',
+                    name: "Kasza gryczana z suszonymi pomidorami, szpinakiem i camembertem",
+                    kcal: 780, protein: 59, fat: 29, carbs: 71,
+                    ingredients: [
+                        { item: "Kasza gryczana", amount: 80, unit: "g" },
+                        { item: "Ser camembert", amount: 60, unit: "g" },
+                        { item: "Szpinak świeży", amount: 80, unit: "g" },
+                        { item: "Pomidory suszone w oleju", amount: 40, unit: "g" },
+                        { item: "Orzechy włoskie", amount: 25, unit: "g" },
+                        { item: "Pierś z kurczaka", amount: 120, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 10, unit: "g" }
+                    ],
+                    steps: [
+                        "Kaszę gryczaną gotujemy według instrukcji na opakowaniu.",
+                        "Kurczaka kroimy w kostkę i smażymy na patelni z oliwą.",
+                        "Pomidory suszone kroimy w paski.",
+                        "Szpinak podsmażamy chwilę na patelni, aż zwiędnie.",
+                        "Camembert kroimy w kostkę.",
+                        "Wszystko mieszamy: kaszę, kurczaka, szpinak, pomidory, ser i orzechy.",
+                        "Doprawiamy solą i pieprzem."
+                    ]
+                },
+                {
+                    id: 'd30',
+                    name: "Tosty z ricottą, szpinakiem i jajkiem",
+                    kcal: 780, protein: 59, fat: 29, carbs: 71,
+                    ingredients: [
+                        { item: "Chleb tostowy pełnoziarnisty", amount: 4, unit: "kromki" },
+                        { item: "Ricotta", amount: 120, unit: "g" },
+                        { item: "Szpinak świeży", amount: 60, unit: "g" },
+                        { item: "Jajka", amount: 3, unit: "szt" },
+                        { item: "Pomidorki koktajlowe", amount: 8, unit: "szt" },
+                        { item: "Szynka z indyka", amount: 100, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 10, unit: "g" },
+                        { item: "Czosnek", amount: 1, unit: "ząbek" }
+                    ],
+                    steps: [
+                        "Tosty opiekamy do złotego koloru.",
+                        "Szpinak podsmażamy na patelni z oliwą i czosnkiem.",
+                        "Jajka smażymy na sadzone.",
+                        "Na tosty nakładamy ricottę, szpinak, szynkę.",
+                        "Układamy jajka sadzone i pomidorki koktajlowe.",
+                        "Doprawiamy solą i pieprzem."
                     ]
                 }
             ]
@@ -1078,13 +3071,13 @@
             }
         ];
 
-        // Plan posiłków - nowa struktura: { recipe: 'id', persons: [1,2] }
+        // Plan posiłków - V5: osobne przepisy per osoba { personId: recipeId }
         let plan = {};
         days.forEach(day => {
             plan[day] = {
-                breakfast: { recipe: null, persons: [1, 2] },
-                lunch: { recipe: null, persons: [1, 2] },
-                dinner: { recipe: null, persons: [1, 2] }
+                breakfast: { 1: null, 2: null },
+                lunch: { 1: null, 2: null },
+                dinner: { 1: null, 2: null }
             };
         });
 
@@ -1277,8 +3270,9 @@
                     let dayKcal = 0, dayProtein = 0, dayFat = 0, dayCarbs = 0;
                     mealTypes.forEach(mt => {
                         const meal = plan[day][mt];
-                        if (meal.recipe && meal.persons.includes(person.id)) {
-                            const r = recipes[mt].find(x => x.id === meal.recipe);
+                        const recipeId = meal[person.id];
+                        if (recipeId) {
+                            const r = recipes[mt].find(x => x.id === recipeId);
                             if (r) {
                                 dayKcal += Math.round(r.kcal * person.portion);
                                 dayProtein += Math.round(r.protein * person.portion);
@@ -1386,30 +3380,27 @@
                 mealTypes.forEach(mealType => {
                     const td = document.createElement('td');
                     const meal = plan[day][mealType];
-                    const recipeId = meal.recipe;
-                    if (recipeId) totalMeals++;
 
-                    let opts = `<option value="">-- wybierz --</option>`;
-                    recipes[mealType].forEach(r => {
-                        opts += `<option value="${r.id}" ${recipeId === r.id ? 'selected' : ''}>${r.name}</option>`;
-                    });
+                    // Dwa dropdowny - jeden dla każdej osoby
+                    const dropdownsHtml = persons.map(p => {
+                        const recipeId = meal[p.id];
+                        if (recipeId) totalMeals++;
 
-                    // Checkboxy osób
-                    const checksHtml = persons.map(p => {
-                        const checked = meal.persons.includes(p.id) ? 'checked' : '';
-                        const colorClass = p.id === 1 ? 'blue' : 'pink';
-                        return `<label class="person-check">
-                            <input type="checkbox" ${checked} onchange="togglePersonMeal('${day}', '${mealType}', ${p.id})">
-                            <span class="check-dot ${colorClass}"></span>
-                        </label>`;
+                        let opts = `<option value="">--</option>`;
+                        recipes[mealType].forEach(r => {
+                            opts += `<option value="${r.id}" ${recipeId === r.id ? 'selected' : ''}>${r.name}</option>`;
+                        });
+
+                        return `
+                        <div class="person-meal-row">
+                            <span class="person-indicator" style="background: ${p.color}"></span>
+                            <select class="meal-select-compact ${mealType} ${recipeId ? 'has-value' : ''}"
+                                onchange="setMealForPerson('${day}', '${mealType}', ${p.id}, this.value)">${opts}</select>
+                            <button class="preview-btn" onclick="previewRecipe('${mealType}', '${recipeId || ''}')" ${recipeId ? '' : 'disabled'}>👁</button>
+                        </div>`;
                     }).join('');
 
-                    td.innerHTML = `
-                        <div class="meal-cell">
-                            <select class="meal-select ${mealType} ${recipeId ? 'has-value' : ''}"
-                                onchange="setMeal('${day}', '${mealType}', this.value)">${opts}</select>
-                            <div class="person-checks">${checksHtml}</div>
-                        </div>`;
+                    td.innerHTML = `<div class="meal-cell-dual">${dropdownsHtml}</div>`;
                     row.appendChild(td);
                 });
 
@@ -1418,8 +3409,9 @@
                     let kcal = 0;
                     mealTypes.forEach(mt => {
                         const meal = plan[day][mt];
-                        if (meal.recipe && meal.persons.includes(person.id)) {
-                            const r = recipes[mt].find(x => x.id === meal.recipe);
+                        const recipeId = meal[person.id];
+                        if (recipeId) {
+                            const r = recipes[mt].find(x => x.id === recipeId);
                             if (r) kcal += Math.round(r.kcal * person.portion);
                         }
                     });
@@ -1442,34 +3434,102 @@
             renderKcalSummary();
         }
 
-        function setMeal(day, mealType, id) {
-            plan[day][mealType].recipe = id || null;
+        function setMealForPerson(day, mealType, personId, recipeId) {
+            plan[day][mealType][personId] = recipeId || null;
             renderPlannerTable();
             savePlan();
         }
 
-        function togglePersonMeal(day, mealType, personId) {
-            const meal = plan[day][mealType];
-            const idx = meal.persons.indexOf(personId);
-            if (idx > -1) {
-                meal.persons.splice(idx, 1);
-            } else {
-                meal.persons.push(personId);
+        // 10 zoptymalizowanych wariantów - zgrupowane według wspólnych składników
+        const optimizedVariants = {
+            1: { // Jajka + Chleb żytni + Szynka
+                breakfast: ['b1', 'b2', 'b5'],
+                lunch: ['l1', 'l3', 'l7'],
+                dinner: ['d2', 'd7', 'd13']
+            },
+            2: { // Jogurt Skyr + Owoce + Orzechy
+                breakfast: ['b4', 'b8', 'b15'],
+                lunch: ['l5', 'l10', 'l6'],
+                dinner: ['d1', 'd8', 'd10']
+            },
+            3: { // Tortilla + Serek wiejski
+                breakfast: ['b7', 'b9', 'b14'],
+                lunch: ['l8', 'l14', 'l16'],
+                dinner: ['d3', 'd5', 'd12']
+            },
+            4: { // Makaron + Szpinak + Parmezan
+                breakfast: ['b6', 'b12', 'b16'],
+                lunch: ['l9', 'l11', 'l18'],
+                dinner: ['d4', 'd11', 'd15']
+            },
+            5: { // Łosoś + Serek śmietankowy
+                breakfast: ['b3', 'b10', 'b11'],
+                lunch: ['l4', 'l12', 'l17'],
+                dinner: ['d5', 'd14', 'd24']
+            },
+            6: { // Mięso mielone + Ryż + Passata
+                breakfast: ['b17', 'b18', 'b19'],
+                lunch: ['l2', 'l19', 'l25'],
+                dinner: ['d6', 'd9', 'd16']
+            },
+            7: { // Kurczak pieczony + Ziemniaki
+                breakfast: ['b20', 'b21', 'b22'],
+                lunch: ['l6', 'l20', 'l29'],
+                dinner: ['d17', 'd18', 'd19']
+            },
+            8: { // Azjatyckie + Sos sojowy + Ryż
+                breakfast: ['b23', 'b24', 'b25'],
+                lunch: ['l5', 'l21', 'l31'],
+                dinner: ['d20', 'd21', 'd22']
+            },
+            9: { // Pizza/Tosty + Mozzarella + Szynka
+                breakfast: ['b24', 'b26', 'b27'],
+                lunch: ['l23', 'l26', 'l27'],
+                dinner: ['d23', 'd25', 'd26']
+            },
+            10: { // Quesadilla/Burger + Kurczak
+                breakfast: ['b28', 'b29', 'b30'],
+                lunch: ['l26', 'l30', 'l24'],
+                dinner: ['d27', 'd28', 'd29']
+            },
+            11: { // 💰 BUDŻETOWY 1 - Jajka + Twaróg + Kurczak + Ryż/Ziemniaki
+                // Najtańsze składniki: jajka, twaróg, kurczak, ryż, ziemniaki, kapusta
+                breakfast: ['b1', 'b2', 'b14'],  // Jajecznica, tosty z jajkiem, serek wiejski z warzywami
+                lunch: ['l1', 'l6', 'l2'],       // Kurczak z ryżem, kurczak z ziemniakami, mielone z frytkami
+                dinner: ['d2', 'd1', 'd7']       // Pasta jajeczna, twarożek z owocami, kanapki z serem
+            },
+            12: { // 💰 BUDŻETOWY 2 - Owsianka + Makaron + Placki
+                // Tanie: płatki owsiane, makaron, mąka, jajka, twaróg, kurczak
+                breakfast: ['b13', 'b8', 'b15'], // Owsianka waniliowa, placuszki proteinowe, owsianka z owocami
+                lunch: ['l3', 'l2', 'l30'],      // Makaron z kurczakiem, mielone z frytkami, nuggetsy z ziemniakami
+                dinner: ['d6', 'd9', 'd2']       // Racuszki jabłkowe, placki bananowe, kanapki z pastą jajeczną
+            },
+            13: { // 💰 BUDŻETOWY 3 - Kanapki + Surówki + Proste dania
+                // Tanie: chleb, jajka, szynka, ser żółty, kapusta, marchew
+                breakfast: ['b10', 'b2', 'b1'],  // Kanapki z serkiem, tosty z jajkiem, jajecznica
+                lunch: ['l6', 'l1', 'l29'],      // Kurczak z ziemniakami, kurczak z ryżem, kotlet z ziemniakami
+                dinner: ['d7', 'd2', 'd15']      // Kanapki z serem gouda, pasta jajeczna, kanapki z hummusem
             }
-            renderPlannerTable();
-            savePlan();
-        }
+        };
 
-        function fillAllWith(v) {
-            const idx = { 'A': 0, 'B': 1, 'C': 2 }[v];
-            days.forEach(day => {
+        function fillAllWith(variantNum) {
+            const variantRecipes = optimizedVariants[variantNum];
+            if (!variantRecipes) return;
+
+            // Schemat: dni 0-2 -> przepis[0], dni 3-5 -> przepis[1], dzień 6 -> przepis[2]
+            const dayToRecipeIndex = [0, 0, 0, 1, 1, 1, 2];
+
+            days.forEach((day, dayIndex) => {
+                const recipeIdx = dayToRecipeIndex[dayIndex];
+
                 mealTypes.forEach(mt => {
-                    if (recipes[mt][idx]) {
-                        plan[day][mt].recipe = recipes[mt][idx].id;
-                        plan[day][mt].persons = [1, 2]; // Obie osoby domyślnie
-                    }
+                    const recipeId = variantRecipes[mt][recipeIdx];
+                    persons.forEach(p => {
+                        plan[day][mt][p.id] = recipeId;
+                    });
                 });
             });
+
             renderPlannerTable();
             savePlan();
         }
@@ -1477,7 +3537,7 @@
         function resetPlan() {
             days.forEach(day => {
                 mealTypes.forEach(mt => {
-                    plan[day][mt] = { recipe: null, persons: [1, 2] };
+                    plan[day][mt] = { 1: null, 2: null };
                 });
             });
             renderPlannerTable();
@@ -1517,6 +3577,15 @@
             document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
             btn.classList.add('active');
             renderRecipes(f);
+        }
+
+        // Funkcja podglądu przepisu z planera
+        function previewRecipe(mealType, recipeId) {
+            if (!recipeId) return;
+            const recipe = recipes[mealType].find(r => r.id === recipeId);
+            if (recipe) {
+                openRecipeModal(mealType, recipe);
+            }
         }
 
         // Aktualnie wyświetlany przepis i wybrane osoby
@@ -1622,32 +3691,28 @@
         // LISTA ZAKUPÓW - z uwzględnieniem mnożników porcji
         function renderShoppingList() {
             const list = {};
+            let total = 0;
             days.forEach(day => {
                 mealTypes.forEach(mt => {
                     const meal = plan[day][mt];
-                    if (meal.recipe && meal.persons.length > 0) {
-                        const r = recipes[mt].find(x => x.id === meal.recipe);
-                        if (r) {
-                            // Oblicz mnożnik na podstawie osób jedzących posiłek
-                            let multiplier = 0;
-                            meal.persons.forEach(personId => {
-                                const person = persons.find(p => p.id === personId);
-                                if (person) multiplier += person.portion;
-                            });
-
-                            r.ingredients.forEach(ing => {
-                                const k = `${ing.item} (${ing.unit})`;
-                                list[k] = (list[k] || 0) + (ing.amount * multiplier);
-                            });
+                    // Osobne receptury dla każdej osoby
+                    persons.forEach(person => {
+                        const recipeId = meal[person.id];
+                        if (recipeId) {
+                            total++;
+                            const r = recipes[mt].find(x => x.id === recipeId);
+                            if (r) {
+                                r.ingredients.forEach(ing => {
+                                    const k = `${ing.item} (${ing.unit})`;
+                                    list[k] = (list[k] || 0) + (ing.amount * person.portion);
+                                });
+                            }
                         }
-                    }
+                    });
                 });
             });
 
             Object.keys(list).forEach(k => list[k] = Math.ceil(list[k] * 10) / 10);
-
-            let total = 0;
-            Object.values(plan).forEach(d => mealTypes.forEach(mt => { if (d[mt].recipe) total++; }));
 
             // Pokaż info o osobach
             const personsInfo = persons.map(p => `${p.name} (${p.portion}x)`).join(' + ');
@@ -1689,22 +3754,19 @@
             days.forEach(day => {
                 mealTypes.forEach(mt => {
                     const meal = plan[day][mt];
-                    if (meal.recipe && meal.persons.length > 0) {
-                        const r = recipes[mt].find(x => x.id === meal.recipe);
-                        if (r) {
-                            // Oblicz mnożnik na podstawie osób jedzących posiłek
-                            let multiplier = 0;
-                            meal.persons.forEach(personId => {
-                                const person = persons.find(p => p.id === personId);
-                                if (person) multiplier += person.portion;
-                            });
-
-                            r.ingredients.forEach(ing => {
-                                const k = `${ing.item} (${ing.unit})`;
-                                list[k] = (list[k] || 0) + (ing.amount * multiplier);
-                            });
+                    // Osobne receptury dla każdej osoby
+                    persons.forEach(person => {
+                        const recipeId = meal[person.id];
+                        if (recipeId) {
+                            const r = recipes[mt].find(x => x.id === recipeId);
+                            if (r) {
+                                r.ingredients.forEach(ing => {
+                                    const k = `${ing.item} (${ing.unit})`;
+                                    list[k] = (list[k] || 0) + (ing.amount * person.portion);
+                                });
+                            }
                         }
-                    }
+                    });
                 });
             });
             Object.keys(list).forEach(k => list[k] = Math.ceil(list[k] * 10) / 10);
@@ -1725,7 +3787,7 @@
 
         // ZAPIS/ODCZYT
         function savePlan() {
-            localStorage.setItem('mealPlanV4', JSON.stringify(plan));
+            localStorage.setItem('mealPlanV5', JSON.stringify(plan));
         }
 
         function savePersons() {
@@ -1741,20 +3803,35 @@
             }
         }
 
-        // Migracja starych danych do nowej struktury
+        // Migracja starych danych do nowej struktury V5 (osobne receptury per osoba)
         function migratePlan(oldPlan) {
             const newPlan = {};
             days.forEach(day => {
                 newPlan[day] = {};
                 mealTypes.forEach(mt => {
                     const oldValue = oldPlan[day] ? oldPlan[day][mt] : null;
-                    // Sprawdź czy to stary format (string) czy nowy (obiekt)
-                    if (oldValue && typeof oldValue === 'string') {
-                        newPlan[day][mt] = { recipe: oldValue, persons: [1, 2] };
-                    } else if (oldValue && typeof oldValue === 'object' && oldValue.recipe !== undefined) {
+
+                    // V5 format: { 1: 'recipeId', 2: 'recipeId' }
+                    if (oldValue && typeof oldValue === 'object' && oldValue[1] !== undefined) {
                         newPlan[day][mt] = oldValue;
-                    } else {
-                        newPlan[day][mt] = { recipe: null, persons: [1, 2] };
+                    }
+                    // V4 format: { recipe: 'id', persons: [1,2] }
+                    else if (oldValue && typeof oldValue === 'object' && oldValue.recipe !== undefined) {
+                        newPlan[day][mt] = { 1: null, 2: null };
+                        if (oldValue.persons && oldValue.persons.includes(1)) {
+                            newPlan[day][mt][1] = oldValue.recipe;
+                        }
+                        if (oldValue.persons && oldValue.persons.includes(2)) {
+                            newPlan[day][mt][2] = oldValue.recipe;
+                        }
+                    }
+                    // V3 format: string recipe ID
+                    else if (oldValue && typeof oldValue === 'string') {
+                        newPlan[day][mt] = { 1: oldValue, 2: oldValue };
+                    }
+                    // Pusty
+                    else {
+                        newPlan[day][mt] = { 1: null, 2: null };
                     }
                 });
             });
@@ -1771,15 +3848,27 @@
                     plan = migratePlan(loadedPlan);
                     document.getElementById('loaded-alert').style.display = 'flex';
                     window.history.replaceState({}, '', window.location.pathname);
+                    savePlan();
                     return;
                 } catch(e) {}
             }
 
-            // Sprawdź localStorage - nowy format V4
-            let saved = localStorage.getItem('mealPlanV4');
+            // Sprawdź localStorage - nowy format V5
+            let saved = localStorage.getItem('mealPlanV5');
             if (saved) {
                 try {
                     plan = JSON.parse(saved);
+                    return;
+                } catch(e) {}
+            }
+
+            // Migracja z V4
+            saved = localStorage.getItem('mealPlanV4');
+            if (saved) {
+                try {
+                    const oldPlan = JSON.parse(saved);
+                    plan = migratePlan(oldPlan);
+                    savePlan();
                     return;
                 } catch(e) {}
             }
@@ -1790,7 +3879,7 @@
                 try {
                     const oldPlan = JSON.parse(saved);
                     plan = migratePlan(oldPlan);
-                    savePlan(); // Zapisz w nowym formacie
+                    savePlan();
                 } catch(e) {}
             }
         }
