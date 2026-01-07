@@ -135,55 +135,278 @@
         .kcal-cell { text-align: right; font-weight: 700; font-size: 15px; }
         .kcal-value { color: #22c55e; }
         .kcal-empty { color: #d1d5db; }
-        
-        /* MODAL SHARE */
-        .share-modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.7);
-            z-index: 300;
-            padding: 20px;
+
+        /* PANEL OSÓB */
+        .persons-panel {
+            display: flex;
+            gap: 20px;
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .person-config {
+            display: flex;
             align-items: center;
+            gap: 10px;
+            flex: 1;
+            min-width: 200px;
+        }
+        .person-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .person-name {
+            width: 80px;
+            padding: 6px 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .person-name:focus { outline: none; border-color: #8b5cf6; }
+        .portion-slider {
+            width: 80px;
+            height: 6px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: #e5e7eb;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .portion-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .portion-value {
+            font-weight: 700;
+            font-size: 13px;
+            color: #6b7280;
+            min-width: 35px;
+        }
+
+        /* CHECKBOXY OSÓB PRZY POSIŁKACH */
+        .meal-cell {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .person-checks {
+            display: flex;
+            gap: 6px;
             justify-content: center;
         }
-        .share-modal.active { display: flex; }
-        .share-box {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            max-width: 500px;
-            width: 100%;
-            text-align: center;
+        .person-check {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
         }
-        .share-box h2 { margin-bottom: 15px; color: #1f2937; }
-        .share-box p { color: #6b7280; margin-bottom: 20px; font-size: 14px; }
-        .share-link {
-            background: #f3f4f6;
-            border: 2px solid #e5e7eb;
-            border-radius: 10px;
-            padding: 15px;
-            word-break: break-all;
-            font-size: 12px;
-            color: #374151;
-            margin-bottom: 20px;
-            max-height: 100px;
-            overflow-y: auto;
-        }
-        .share-buttons { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-        .share-buttons .btn { min-width: 140px; }
-        .btn-copy { background: #22c55e; color: white; }
-        .btn-close { background: #f3f4f6; color: #374151; }
-        .copied-msg {
-            background: #dcfce7;
-            color: #16a34a;
-            padding: 10px;
-            border-radius: 8px;
-            margin-top: 15px;
+        .person-check input {
             display: none;
         }
-        .copied-msg.show { display: block; }
-        
+        .person-check .check-dot {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid #d1d5db;
+            transition: all 0.15s;
+        }
+        .person-check input:checked + .check-dot {
+            border-color: transparent;
+        }
+        .person-check input:checked + .check-dot.blue {
+            background: #3b82f6;
+            box-shadow: 0 2px 6px rgba(59, 130, 246, 0.4);
+        }
+        .person-check input:checked + .check-dot.pink {
+            background: #ec4899;
+            box-shadow: 0 2px 6px rgba(236, 72, 153, 0.4);
+        }
+        .person-check:hover .check-dot {
+            border-color: #9ca3af;
+        }
+
+        /* KOLUMNY KALORII DLA OSÓB */
+        .kcal-person {
+            text-align: center;
+            font-weight: 700;
+            font-size: 13px;
+            min-width: 50px;
+        }
+        .kcal-person.blue { color: #3b82f6; }
+        .kcal-person.pink { color: #ec4899; }
+        .kcal-person.empty { color: #d1d5db; }
+
+        /* PANEL USTAWIEŃ TDEE */
+        .settings-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: #f3f4f6;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            color: #374151;
+            margin-bottom: 15px;
+            transition: all 0.2s;
+        }
+        .settings-toggle:hover { background: #e5e7eb; }
+        .settings-toggle.active { background: #dbeafe; color: #1d4ed8; }
+        .settings-panel {
+            display: none;
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .settings-panel.active { display: block; }
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .person-settings {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            border-left: 4px solid;
+        }
+        .person-settings.blue { border-color: #3b82f6; }
+        .person-settings.pink { border-color: #ec4899; }
+        .person-settings h4 {
+            margin-bottom: 12px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .settings-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+        .settings-field {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex: 1;
+            min-width: 70px;
+        }
+        .settings-field label {
+            font-size: 11px;
+            color: #6b7280;
+            text-transform: uppercase;
+        }
+        .settings-field input,
+        .settings-field select {
+            padding: 8px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .settings-field input:focus,
+        .settings-field select:focus {
+            outline: none;
+            border-color: #8b5cf6;
+        }
+        .tdee-result {
+            background: #f3f4f6;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+        .tdee-result strong {
+            color: #1f2937;
+        }
+
+        /* PODSUMOWANIE KALORII */
+        .kcal-summary {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 12px;
+            flex-wrap: wrap;
+        }
+        .person-summary {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid;
+        }
+        .person-summary.blue { border-color: #3b82f6; }
+        .person-summary.pink { border-color: #ec4899; }
+        .person-summary-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .person-summary-name {
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .person-summary-name.blue { color: #3b82f6; }
+        .person-summary-name.pink { color: #ec4899; }
+        .person-summary-percent {
+            font-weight: 700;
+            font-size: 13px;
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+        .person-summary-percent.good { background: #dcfce7; color: #16a34a; }
+        .person-summary-percent.over { background: #fee2e2; color: #dc2626; }
+        .person-summary-percent.under { background: #fef3c7; color: #d97706; }
+        .person-summary-values {
+            font-size: 13px;
+            color: #6b7280;
+        }
+        .person-summary-values strong {
+            color: #1f2937;
+        }
+        .progress-bar {
+            height: 6px;
+            background: #e5e7eb;
+            border-radius: 3px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.3s;
+        }
+        .progress-fill.blue { background: #3b82f6; }
+        .progress-fill.pink { background: #ec4899; }
+        .progress-fill.over { background: #dc2626; }
+
+        /* NAGŁÓWKI TABELI Z CELEM */
+        .kcal-header {
+            font-size: 11px;
+            text-align: center;
+        }
+        .kcal-header-target {
+            font-weight: 700;
+            font-size: 12px;
+        }
+
         /* ALERT LOADED */
         .loaded-alert {
             background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
@@ -458,8 +681,53 @@
             font-weight: 600;
         }
         
+        /* PRZEŁĄCZNIK OSÓB W MODALU */
+        .modal-persons-toggle {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            background: #f3f4f6;
+            padding: 6px;
+            border-radius: 10px;
+        }
+        .modal-person-btn {
+            flex: 1;
+            padding: 10px 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            background: transparent;
+            color: #6b7280;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .modal-person-btn:hover { background: rgba(255,255,255,0.5); }
+        .modal-person-btn.active {
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .modal-person-btn.active.blue { color: #3b82f6; }
+        .modal-person-btn.active.pink { color: #ec4899; }
+        .modal-person-btn.active.both { color: #7c3aed; }
+        .modal-person-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .modal-multiplier {
+            font-size: 11px;
+            color: #9ca3af;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
         .hidden { display: none; }
-        
+
         @media (max-width: 600px) {
             .nav { padding: 10px; gap: 6px; }
             .nav-btn { padding: 8px 12px; font-size: 12px; }
@@ -497,9 +765,19 @@
                     <button class="btn btn-blue" onclick="fillAllWith('B')">Wariant 2</button>
                     <button class="btn btn-purple" onclick="fillAllWith('C')">Wariant 3</button>
                     <button class="btn btn-gray" onclick="resetPlan()">🔄 Reset</button>
-                    <button class="btn btn-share" onclick="openShareModal()">📤 Udostępnij</button>
                 </div>
-                
+
+                <!-- Przycisk toggle ustawień -->
+                <button class="settings-toggle" id="settings-toggle" onclick="toggleSettings()">
+                    ⚙️ Ustawienia TDEE
+                </button>
+
+                <!-- Panel ustawień TDEE -->
+                <div class="settings-panel" id="settings-panel"></div>
+
+                <!-- Podsumowanie osób (kompaktowe) -->
+                <div class="persons-panel" id="persons-panel"></div>
+
                 <table class="plan-table">
                     <thead>
                         <tr>
@@ -507,12 +785,16 @@
                             <th>🍳 Śniadanie</th>
                             <th>🍽️ Obiad</th>
                             <th>🥗 Kolacja</th>
-                            <th style="width: 55px; text-align: right;">Kcal</th>
+                            <th id="kcal-header-1" class="kcal-header" style="width: 55px;"></th>
+                            <th id="kcal-header-2" class="kcal-header" style="width: 55px;"></th>
                         </tr>
                     </thead>
                     <tbody id="plan-table-body"></tbody>
                 </table>
-                
+
+                <!-- Podsumowanie kalorii -->
+                <div class="kcal-summary" id="kcal-summary"></div>
+
                 <button class="btn btn-green" id="generate-btn" onclick="showSection('shopping')" disabled>
                     🛒 Lista zakupów (0 posiłków)
                 </button>
@@ -545,20 +827,6 @@
         </div>
     </div>
     
-    <!-- MODAL: UDOSTĘPNIJ -->
-    <div class="share-modal" id="share-modal" onclick="closeShareModal(event)">
-        <div class="share-box" onclick="event.stopPropagation()">
-            <h2>📤 Udostępnij plan</h2>
-            <p>Skopiuj link i wyślij na telefon (SMS, Messenger, mail) albo zapisz w notatkach.</p>
-            <div class="share-link" id="share-link"></div>
-            <div class="share-buttons">
-                <button class="btn btn-copy" onclick="copyShareLink()">📋 Kopiuj link</button>
-                <button class="btn btn-close" onclick="closeShareModal()">Zamknij</button>
-            </div>
-            <div class="copied-msg" id="copied-msg">✅ Link skopiowany!</div>
-        </div>
-    </div>
-    
     <!-- MODAL: PRZEPIS -->
     <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
         <div class="modal" onclick="event.stopPropagation()">
@@ -568,6 +836,8 @@
                 <div class="modal-name" id="modal-name"></div>
             </div>
             <div class="modal-body">
+                <div class="modal-persons-toggle" id="modal-persons-toggle"></div>
+                <div class="modal-multiplier" id="modal-multiplier"></div>
                 <div class="modal-macros" id="modal-macros"></div>
                 <div class="modal-section">
                     <h3>📝 Składniki</h3>
@@ -771,10 +1041,51 @@
         const daysShort = ['Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'Sb', 'Nd'];
         const mealTypes = ['breakfast', 'lunch', 'dinner'];
         const mealNames = { breakfast: 'Śniadanie', lunch: 'Obiad', dinner: 'Kolacja' };
-        
+
+        // Konfiguracja osób z kalkulatorem TDEE
+        const BASE_KCAL = 2450; // Bazowe kalorie (Twoje wymagania)
+        const BASE_MACROS = {   // Bazowe makroskładniki (Twoje wymagania)
+            protein: 185,       // g białka
+            fat: 85,            // g tłuszczu
+            carbs: 215          // g węglowodanów
+        };
+        const GOALS = {
+            cut: -400,      // Redukcja
+            maintain: 0,    // Utrzymanie
+            bulk: 300       // Masa
+        };
+        const ACTIVITIES = {
+            sedentary: { value: 1.2, label: "Siedzący" },
+            light: { value: 1.375, label: "Lekka aktywność" },
+            moderate: { value: 1.55, label: "Umiarkowana" },
+            active: { value: 1.725, label: "Aktywny" }
+        };
+
+        let persons = [
+            {
+                id: 1, name: "Ja", color: "#3b82f6",
+                gender: "male", age: 32, height: 190, weight: 107,
+                activity: "moderate", goal: "cut",
+                tdee: 2944, targetKcal: 2450, portion: 1.0,
+                targetProtein: 185, targetFat: 85, targetCarbs: 215
+            },
+            {
+                id: 2, name: "Żona", color: "#ec4899",
+                gender: "female", age: 24, height: 178, weight: 68,
+                activity: "moderate", goal: "cut",
+                tdee: 2117, targetKcal: 1800, portion: 0.73,
+                targetProtein: 135, targetFat: 62, targetCarbs: 157
+            }
+        ];
+
+        // Plan posiłków - nowa struktura: { recipe: 'id', persons: [1,2] }
         let plan = {};
         days.forEach(day => {
-            plan[day] = { breakfast: null, lunch: null, dinner: null };
+            plan[day] = {
+                breakfast: { recipe: null, persons: [1, 2] },
+                lunch: { recipe: null, persons: [1, 2] },
+                dinner: { recipe: null, persons: [1, 2] }
+            };
         });
 
         const categories = [
@@ -798,53 +1109,353 @@
             if (name === 'shopping') renderShoppingList();
         }
 
+        // ==========================================
+        // KALKULATOR TDEE
+        // ==========================================
+
+        function calculateTDEE(person) {
+            // Mifflin-St Jeor
+            let bmr;
+            if (person.gender === 'male') {
+                bmr = 10 * person.weight + 6.25 * person.height - 5 * person.age + 5;
+            } else {
+                bmr = 10 * person.weight + 6.25 * person.height - 5 * person.age - 161;
+            }
+            return Math.round(bmr * ACTIVITIES[person.activity].value);
+        }
+
+        function calculateTargetKcal(tdee, goal) {
+            return tdee + GOALS[goal];
+        }
+
+        function calculatePortion(targetKcal) {
+            return Math.round((targetKcal / BASE_KCAL) * 100) / 100;
+        }
+
+        function recalculatePerson(person) {
+            person.tdee = calculateTDEE(person);
+            person.targetKcal = calculateTargetKcal(person.tdee, person.goal);
+            person.portion = calculatePortion(person.targetKcal);
+            // Oblicz cele makroskładników proporcjonalnie
+            person.targetProtein = Math.round(BASE_MACROS.protein * person.portion);
+            person.targetFat = Math.round(BASE_MACROS.fat * person.portion);
+            person.targetCarbs = Math.round(BASE_MACROS.carbs * person.portion);
+        }
+
+        // Toggle panelu ustawień
+        function toggleSettings() {
+            const panel = document.getElementById('settings-panel');
+            const toggle = document.getElementById('settings-toggle');
+            panel.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
+
+        // Renderowanie panelu ustawień TDEE
+        function renderSettingsPanel() {
+            const panel = document.getElementById('settings-panel');
+            panel.innerHTML = `
+                <div class="settings-grid">
+                    ${persons.map(p => {
+                        const colorClass = p.id === 1 ? 'blue' : 'pink';
+                        return `
+                        <div class="person-settings ${colorClass}">
+                            <h4>
+                                <span class="person-dot" style="background: ${p.color}"></span>
+                                <input type="text" class="person-name" value="${p.name}"
+                                    onchange="updatePersonField(${p.id}, 'name', this.value)">
+                            </h4>
+                            <div class="settings-row">
+                                <div class="settings-field">
+                                    <label>Płeć</label>
+                                    <select onchange="updatePersonField(${p.id}, 'gender', this.value)">
+                                        <option value="male" ${p.gender === 'male' ? 'selected' : ''}>Mężczyzna</option>
+                                        <option value="female" ${p.gender === 'female' ? 'selected' : ''}>Kobieta</option>
+                                    </select>
+                                </div>
+                                <div class="settings-field">
+                                    <label>Wiek</label>
+                                    <input type="number" value="${p.age}" min="15" max="80"
+                                        onchange="updatePersonField(${p.id}, 'age', parseInt(this.value))">
+                                </div>
+                            </div>
+                            <div class="settings-row">
+                                <div class="settings-field">
+                                    <label>Wzrost (cm)</label>
+                                    <input type="number" value="${p.height}" min="140" max="220"
+                                        onchange="updatePersonField(${p.id}, 'height', parseInt(this.value))">
+                                </div>
+                                <div class="settings-field">
+                                    <label>Waga (kg)</label>
+                                    <input type="number" value="${p.weight}" min="40" max="200"
+                                        onchange="updatePersonField(${p.id}, 'weight', parseFloat(this.value))">
+                                </div>
+                            </div>
+                            <div class="settings-row">
+                                <div class="settings-field">
+                                    <label>Aktywność</label>
+                                    <select onchange="updatePersonField(${p.id}, 'activity', this.value)">
+                                        ${Object.entries(ACTIVITIES).map(([key, val]) =>
+                                            `<option value="${key}" ${p.activity === key ? 'selected' : ''}>${val.label}</option>`
+                                        ).join('')}
+                                    </select>
+                                </div>
+                                <div class="settings-field">
+                                    <label>Cel</label>
+                                    <select onchange="updatePersonField(${p.id}, 'goal', this.value)">
+                                        <option value="cut" ${p.goal === 'cut' ? 'selected' : ''}>Redukcja (-400)</option>
+                                        <option value="maintain" ${p.goal === 'maintain' ? 'selected' : ''}>Utrzymanie</option>
+                                        <option value="bulk" ${p.goal === 'bulk' ? 'selected' : ''}>Masa (+300)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="tdee-result">
+                                BMR: <strong>${Math.round(p.gender === 'male'
+                                    ? 10 * p.weight + 6.25 * p.height - 5 * p.age + 5
+                                    : 10 * p.weight + 6.25 * p.height - 5 * p.age - 161)} kcal</strong><br>
+                                TDEE: <strong>${p.tdee} kcal</strong><br>
+                                Cel: <strong>${p.targetKcal} kcal</strong> → Porcja: <strong>${p.portion}x</strong><br>
+                                <span style="color: #6b7280;">
+                                    B: <strong>${p.targetProtein}g</strong> |
+                                    T: <strong>${p.targetFat}g</strong> |
+                                    W: <strong>${p.targetCarbs}g</strong>
+                                </span>
+                            </div>
+                        </div>
+                        `;
+                    }).join('')}
+                </div>
+            `;
+        }
+
+        // Kompaktowy panel osób (widoczny zawsze)
+        function renderPersonsPanel() {
+            const panel = document.getElementById('persons-panel');
+            panel.innerHTML = persons.map(p => {
+                const colorClass = p.id === 1 ? 'blue' : 'pink';
+                return `
+                <div class="person-config" style="flex-direction: column; align-items: flex-start; gap: 6px;">
+                    <div style="display: flex; align-items: center; gap: 8px; width: 100%;">
+                        <span class="person-dot" style="background: ${p.color}"></span>
+                        <span style="font-weight: 600; font-size: 13px;">${p.name}</span>
+                        <span style="color: #6b7280; font-size: 12px;">(${p.age}l, ${p.height}cm, ${p.weight}kg)</span>
+                        <span style="margin-left: auto; font-weight: 700; font-size: 14px; color: ${p.color};">
+                            ${p.targetKcal} kcal
+                        </span>
+                    </div>
+                    <div style="display: flex; gap: 12px; font-size: 12px; color: #6b7280; padding-left: 22px;">
+                        <span>B: <strong style="color: #1f2937;">${p.targetProtein}g</strong></span>
+                        <span>T: <strong style="color: #1f2937;">${p.targetFat}g</strong></span>
+                        <span>W: <strong style="color: #1f2937;">${p.targetCarbs}g</strong></span>
+                    </div>
+                </div>
+            `}).join('');
+        }
+
+        // Aktualizacja nagłówków tabeli z celem kcal
+        function updateTableHeaders() {
+            persons.forEach(p => {
+                const header = document.getElementById(`kcal-header-${p.id}`);
+                if (header) {
+                    const colorClass = p.id === 1 ? 'blue' : 'pink';
+                    header.innerHTML = `
+                        <div class="kcal-header-target" style="color: ${p.color};">${p.targetKcal}</div>
+                    `;
+                }
+            });
+        }
+
+        // Renderowanie podsumowania kalorii i makroskładników
+        function renderKcalSummary() {
+            const summary = document.getElementById('kcal-summary');
+
+            // Oblicz średnie dzienne kalorie i makro dla każdej osoby
+            const personStats = persons.map(person => {
+                let totalKcal = 0, totalProtein = 0, totalFat = 0, totalCarbs = 0;
+                let daysWithMeals = 0;
+
+                days.forEach(day => {
+                    let dayKcal = 0, dayProtein = 0, dayFat = 0, dayCarbs = 0;
+                    mealTypes.forEach(mt => {
+                        const meal = plan[day][mt];
+                        if (meal.recipe && meal.persons.includes(person.id)) {
+                            const r = recipes[mt].find(x => x.id === meal.recipe);
+                            if (r) {
+                                dayKcal += Math.round(r.kcal * person.portion);
+                                dayProtein += Math.round(r.protein * person.portion);
+                                dayFat += Math.round(r.fat * person.portion);
+                                dayCarbs += Math.round(r.carbs * person.portion);
+                            }
+                        }
+                    });
+                    if (dayKcal > 0) {
+                        totalKcal += dayKcal;
+                        totalProtein += dayProtein;
+                        totalFat += dayFat;
+                        totalCarbs += dayCarbs;
+                        daysWithMeals++;
+                    }
+                });
+
+                const avgKcal = daysWithMeals > 0 ? Math.round(totalKcal / daysWithMeals) : 0;
+                const avgProtein = daysWithMeals > 0 ? Math.round(totalProtein / daysWithMeals) : 0;
+                const avgFat = daysWithMeals > 0 ? Math.round(totalFat / daysWithMeals) : 0;
+                const avgCarbs = daysWithMeals > 0 ? Math.round(totalCarbs / daysWithMeals) : 0;
+                const percent = person.targetKcal > 0 ? Math.round((avgKcal / person.targetKcal) * 100) : 0;
+
+                return { person, totalKcal, avgKcal, avgProtein, avgFat, avgCarbs, daysWithMeals, percent };
+            });
+
+            summary.innerHTML = personStats.map(stat => {
+                const colorClass = stat.person.id === 1 ? 'blue' : 'pink';
+                let percentClass = 'good';
+                if (stat.percent > 105) percentClass = 'over';
+                else if (stat.percent < 90 && stat.percent > 0) percentClass = 'under';
+
+                const progressWidth = Math.min(stat.percent, 120);
+
+                // Procenty makroskładników
+                const proteinPercent = stat.person.targetProtein > 0 ? Math.round((stat.avgProtein / stat.person.targetProtein) * 100) : 0;
+                const fatPercent = stat.person.targetFat > 0 ? Math.round((stat.avgFat / stat.person.targetFat) * 100) : 0;
+                const carbsPercent = stat.person.targetCarbs > 0 ? Math.round((stat.avgCarbs / stat.person.targetCarbs) * 100) : 0;
+
+                return `
+                <div class="person-summary ${colorClass}">
+                    <div class="person-summary-header">
+                        <span class="person-summary-name ${colorClass}">${stat.person.name}</span>
+                        ${stat.avgKcal > 0 ? `<span class="person-summary-percent ${percentClass}">${stat.percent}%</span>` : ''}
+                    </div>
+                    <div class="person-summary-values">
+                        ${stat.avgKcal > 0
+                            ? `Średnio: <strong>${stat.avgKcal}</strong> / ${stat.person.targetKcal} kcal/dzień`
+                            : 'Brak zaplanowanych posiłków'}
+                    </div>
+                    ${stat.avgKcal > 0 ? `
+                    <div class="progress-bar">
+                        <div class="progress-fill ${percentClass === 'over' ? 'over' : colorClass}"
+                             style="width: ${progressWidth}%"></div>
+                    </div>
+                    <div style="display: flex; gap: 10px; margin-top: 10px; font-size: 11px;">
+                        <div style="flex: 1; text-align: center;">
+                            <div style="color: #6b7280;">Białko</div>
+                            <div style="font-weight: 700; color: ${proteinPercent >= 90 && proteinPercent <= 110 ? '#16a34a' : proteinPercent > 110 ? '#dc2626' : '#d97706'};">
+                                ${stat.avgProtein}g <span style="font-weight: 400; color: #9ca3af;">/ ${stat.person.targetProtein}g</span>
+                            </div>
+                        </div>
+                        <div style="flex: 1; text-align: center;">
+                            <div style="color: #6b7280;">Tłuszcze</div>
+                            <div style="font-weight: 700; color: ${fatPercent >= 90 && fatPercent <= 110 ? '#16a34a' : fatPercent > 110 ? '#dc2626' : '#d97706'};">
+                                ${stat.avgFat}g <span style="font-weight: 400; color: #9ca3af;">/ ${stat.person.targetFat}g</span>
+                            </div>
+                        </div>
+                        <div style="flex: 1; text-align: center;">
+                            <div style="color: #6b7280;">Węgle</div>
+                            <div style="font-weight: 700; color: ${carbsPercent >= 90 && carbsPercent <= 110 ? '#16a34a' : carbsPercent > 110 ? '#dc2626' : '#d97706'};">
+                                ${stat.avgCarbs}g <span style="font-weight: 400; color: #9ca3af;">/ ${stat.person.targetCarbs}g</span>
+                            </div>
+                        </div>
+                    </div>
+                    ` : ''}
+                </div>
+                `;
+            }).join('');
+        }
+
+        function updatePersonField(id, field, value) {
+            const person = persons.find(p => p.id === id);
+            if (person) {
+                person[field] = value;
+                recalculatePerson(person);
+                renderSettingsPanel();
+                renderPersonsPanel();
+                updateTableHeaders();
+                renderPlannerTable();
+                renderKcalSummary();
+                savePersons();
+            }
+        }
+
         function renderPlannerTable() {
             const tbody = document.getElementById('plan-table-body');
             tbody.innerHTML = '';
             let totalMeals = 0;
-            
+
             days.forEach((day, i) => {
                 const row = document.createElement('tr');
                 row.innerHTML = `<td class="day-name">${daysShort[i]}</td>`;
-                
+
                 mealTypes.forEach(mealType => {
                     const td = document.createElement('td');
-                    const val = plan[day][mealType];
-                    if (val) totalMeals++;
-                    
+                    const meal = plan[day][mealType];
+                    const recipeId = meal.recipe;
+                    if (recipeId) totalMeals++;
+
                     let opts = `<option value="">-- wybierz --</option>`;
                     recipes[mealType].forEach(r => {
-                        opts += `<option value="${r.id}" ${val === r.id ? 'selected' : ''}>${r.name}</option>`;
+                        opts += `<option value="${r.id}" ${recipeId === r.id ? 'selected' : ''}>${r.name}</option>`;
                     });
-                    
-                    td.innerHTML = `<select class="meal-select ${mealType} ${val ? 'has-value' : ''}" 
-                        onchange="setMeal('${day}', '${mealType}', this.value)">${opts}</select>`;
+
+                    // Checkboxy osób
+                    const checksHtml = persons.map(p => {
+                        const checked = meal.persons.includes(p.id) ? 'checked' : '';
+                        const colorClass = p.id === 1 ? 'blue' : 'pink';
+                        return `<label class="person-check">
+                            <input type="checkbox" ${checked} onchange="togglePersonMeal('${day}', '${mealType}', ${p.id})">
+                            <span class="check-dot ${colorClass}"></span>
+                        </label>`;
+                    }).join('');
+
+                    td.innerHTML = `
+                        <div class="meal-cell">
+                            <select class="meal-select ${mealType} ${recipeId ? 'has-value' : ''}"
+                                onchange="setMeal('${day}', '${mealType}', this.value)">${opts}</select>
+                            <div class="person-checks">${checksHtml}</div>
+                        </div>`;
                     row.appendChild(td);
                 });
-                
-                let kcal = 0;
-                mealTypes.forEach(mt => {
-                    const rid = plan[day][mt];
-                    if (rid) {
-                        const r = recipes[mt].find(x => x.id === rid);
-                        if (r) kcal += r.kcal;
-                    }
+
+                // Kalorie dla każdej osoby osobno
+                persons.forEach(person => {
+                    let kcal = 0;
+                    mealTypes.forEach(mt => {
+                        const meal = plan[day][mt];
+                        if (meal.recipe && meal.persons.includes(person.id)) {
+                            const r = recipes[mt].find(x => x.id === meal.recipe);
+                            if (r) kcal += Math.round(r.kcal * person.portion);
+                        }
+                    });
+
+                    const kcalTd = document.createElement('td');
+                    const colorClass = person.id === 1 ? 'blue' : 'pink';
+                    kcalTd.className = `kcal-person ${colorClass}`;
+                    kcalTd.innerHTML = kcal > 0 ? kcal : '<span class="empty">-</span>';
+                    row.appendChild(kcalTd);
                 });
-                
-                const kcalTd = document.createElement('td');
-                kcalTd.className = 'kcal-cell';
-                kcalTd.innerHTML = kcal > 0 ? `<span class="kcal-value">${kcal}</span>` : `<span class="kcal-empty">-</span>`;
-                row.appendChild(kcalTd);
+
                 tbody.appendChild(row);
             });
-            
+
             const btn = document.getElementById('generate-btn');
             btn.textContent = `🛒 Lista zakupów (${totalMeals} posiłków)`;
             btn.disabled = totalMeals === 0;
+
+            // Aktualizuj podsumowanie
+            renderKcalSummary();
         }
 
         function setMeal(day, mealType, id) {
-            plan[day][mealType] = id || null;
+            plan[day][mealType].recipe = id || null;
+            renderPlannerTable();
+            savePlan();
+        }
+
+        function togglePersonMeal(day, mealType, personId) {
+            const meal = plan[day][mealType];
+            const idx = meal.persons.indexOf(personId);
+            if (idx > -1) {
+                meal.persons.splice(idx, 1);
+            } else {
+                meal.persons.push(personId);
+            }
             renderPlannerTable();
             savePlan();
         }
@@ -853,7 +1464,10 @@
             const idx = { 'A': 0, 'B': 1, 'C': 2 }[v];
             days.forEach(day => {
                 mealTypes.forEach(mt => {
-                    if (recipes[mt][idx]) plan[day][mt] = recipes[mt][idx].id;
+                    if (recipes[mt][idx]) {
+                        plan[day][mt].recipe = recipes[mt][idx].id;
+                        plan[day][mt].persons = [1, 2]; // Obie osoby domyślnie
+                    }
                 });
             });
             renderPlannerTable();
@@ -861,7 +1475,11 @@
         }
 
         function resetPlan() {
-            days.forEach(day => mealTypes.forEach(mt => plan[day][mt] = null));
+            days.forEach(day => {
+                mealTypes.forEach(mt => {
+                    plan[day][mt] = { recipe: null, persons: [1, 2] };
+                });
+            });
             renderPlannerTable();
             savePlan();
         }
@@ -901,22 +1519,97 @@
             renderRecipes(f);
         }
 
+        // Aktualnie wyświetlany przepis i wybrane osoby
+        let currentModalRecipe = null;
+        let modalSelectedPersons = [1]; // Domyślnie tylko "Ja"
+
         function openRecipeModal(mt, r) {
+            currentModalRecipe = r;
+            modalSelectedPersons = [1]; // Reset do "tylko ja"
+
             document.getElementById('modal-overlay').classList.add('active');
             document.getElementById('modal-header').className = 'modal-header ' + mt;
             document.getElementById('modal-type').textContent = mealNames[mt];
             document.getElementById('modal-name').textContent = r.name;
-            
-            document.getElementById('modal-macros').innerHTML = `
-                <div class="modal-macro"><div class="modal-macro-value">${r.kcal}</div><div class="modal-macro-label">Kalorie</div></div>
-                <div class="modal-macro"><div class="modal-macro-value">${r.protein}g</div><div class="modal-macro-label">Białko</div></div>
-                <div class="modal-macro"><div class="modal-macro-value">${r.fat}g</div><div class="modal-macro-label">Tłuszcze</div></div>
-                <div class="modal-macro"><div class="modal-macro-value">${r.carbs}g</div><div class="modal-macro-label">Węgle</div></div>`;
-            
-            document.getElementById('modal-ingredients').innerHTML = r.ingredients.map(i => 
-                `<li>${i.item} - <strong>${i.amount} ${i.unit}</strong></li>`).join('');
+
+            // Renderuj przełącznik osób
+            renderModalPersonsToggle();
+
+            // Renderuj resztę (makra, składniki)
+            updateModalContent();
+
             document.getElementById('modal-steps').innerHTML = r.steps.map(s => `<li>${s}</li>`).join('');
             document.body.style.overflow = 'hidden';
+        }
+
+        function renderModalPersonsToggle() {
+            const toggle = document.getElementById('modal-persons-toggle');
+            const p1 = persons[0];
+            const p2 = persons[1];
+
+            toggle.innerHTML = `
+                <button class="modal-person-btn blue ${modalSelectedPersons.length === 1 && modalSelectedPersons[0] === 1 ? 'active' : ''}"
+                    onclick="setModalPersons([1])">
+                    <span class="modal-person-dot" style="background: ${p1.color}"></span>
+                    ${p1.name}
+                </button>
+                <button class="modal-person-btn pink ${modalSelectedPersons.length === 1 && modalSelectedPersons[0] === 2 ? 'active' : ''}"
+                    onclick="setModalPersons([2])">
+                    <span class="modal-person-dot" style="background: ${p2.color}"></span>
+                    ${p2.name}
+                </button>
+                <button class="modal-person-btn both ${modalSelectedPersons.length === 2 ? 'active' : ''}"
+                    onclick="setModalPersons([1, 2])">
+                    <span class="modal-person-dot" style="background: ${p1.color}"></span>
+                    <span class="modal-person-dot" style="background: ${p2.color}"></span>
+                    Razem
+                </button>
+            `;
+        }
+
+        function setModalPersons(personIds) {
+            modalSelectedPersons = personIds;
+            renderModalPersonsToggle();
+            updateModalContent();
+        }
+
+        function updateModalContent() {
+            const r = currentModalRecipe;
+            if (!r) return;
+
+            // Oblicz mnożnik na podstawie wybranych osób
+            let multiplier = 0;
+            modalSelectedPersons.forEach(id => {
+                const person = persons.find(p => p.id === id);
+                if (person) multiplier += person.portion;
+            });
+
+            // Pokaż info o mnożniku
+            const multiplierEl = document.getElementById('modal-multiplier');
+            if (modalSelectedPersons.length === 2) {
+                multiplierEl.innerHTML = `Składniki dla obu osób (${persons[0].portion}x + ${persons[1].portion}x = <strong>${multiplier.toFixed(2)}x</strong>)`;
+            } else {
+                const person = persons.find(p => p.id === modalSelectedPersons[0]);
+                multiplierEl.innerHTML = `Składniki dla: <strong>${person.name}</strong> (mnożnik: <strong>${person.portion}x</strong>)`;
+            }
+
+            // Przelicz makra
+            const kcal = Math.round(r.kcal * multiplier);
+            const protein = Math.round(r.protein * multiplier);
+            const fat = Math.round(r.fat * multiplier);
+            const carbs = Math.round(r.carbs * multiplier);
+
+            document.getElementById('modal-macros').innerHTML = `
+                <div class="modal-macro"><div class="modal-macro-value">${kcal}</div><div class="modal-macro-label">Kalorie</div></div>
+                <div class="modal-macro"><div class="modal-macro-value">${protein}g</div><div class="modal-macro-label">Białko</div></div>
+                <div class="modal-macro"><div class="modal-macro-value">${fat}g</div><div class="modal-macro-label">Tłuszcze</div></div>
+                <div class="modal-macro"><div class="modal-macro-value">${carbs}g</div><div class="modal-macro-label">Węgle</div></div>`;
+
+            // Przelicz składniki
+            document.getElementById('modal-ingredients').innerHTML = r.ingredients.map(i => {
+                const amount = Math.round(i.amount * multiplier * 10) / 10;
+                return `<li>${i.item} - <strong>${amount} ${i.unit}</strong></li>`;
+            }).join('');
         }
 
         function closeModal(e) {
@@ -926,42 +1619,55 @@
             }
         }
 
-        // LISTA ZAKUPÓW
+        // LISTA ZAKUPÓW - z uwzględnieniem mnożników porcji
         function renderShoppingList() {
             const list = {};
             days.forEach(day => {
                 mealTypes.forEach(mt => {
-                    const rid = plan[day][mt];
-                    if (rid) {
-                        const r = recipes[mt].find(x => x.id === rid);
-                        if (r) r.ingredients.forEach(ing => {
-                            const k = `${ing.item} (${ing.unit})`;
-                            list[k] = (list[k] || 0) + ing.amount;
-                        });
+                    const meal = plan[day][mt];
+                    if (meal.recipe && meal.persons.length > 0) {
+                        const r = recipes[mt].find(x => x.id === meal.recipe);
+                        if (r) {
+                            // Oblicz mnożnik na podstawie osób jedzących posiłek
+                            let multiplier = 0;
+                            meal.persons.forEach(personId => {
+                                const person = persons.find(p => p.id === personId);
+                                if (person) multiplier += person.portion;
+                            });
+
+                            r.ingredients.forEach(ing => {
+                                const k = `${ing.item} (${ing.unit})`;
+                                list[k] = (list[k] || 0) + (ing.amount * multiplier);
+                            });
+                        }
                     }
                 });
             });
-            
+
             Object.keys(list).forEach(k => list[k] = Math.ceil(list[k] * 10) / 10);
-            
+
             let total = 0;
-            Object.values(plan).forEach(d => mealTypes.forEach(mt => { if (d[mt]) total++; }));
-            
-            document.getElementById('shopping-info').textContent = total > 0 ? `${total} posiłków zaplanowanych` : '';
-            
+            Object.values(plan).forEach(d => mealTypes.forEach(mt => { if (d[mt].recipe) total++; }));
+
+            // Pokaż info o osobach
+            const personsInfo = persons.map(p => `${p.name} (${p.portion}x)`).join(' + ');
+            document.getElementById('shopping-info').textContent = total > 0
+                ? `${total} posiłków dla: ${personsInfo}`
+                : '';
+
             const container = document.getElementById('shopping-list');
             container.innerHTML = '';
-            
+
             if (Object.keys(list).length === 0) {
                 container.innerHTML = '<p style="text-align:center;color:#9ca3af;padding:40px;">Najpierw zaplanuj posiłki</p>';
                 return;
             }
-            
+
             categories.forEach(cat => {
-                const items = Object.entries(list).filter(([item]) => 
+                const items = Object.entries(list).filter(([item]) =>
                     cat.keywords.some(kw => item.toLowerCase().includes(kw)));
                 if (items.length === 0) return;
-                
+
                 const div = document.createElement('div');
                 div.className = 'category';
                 div.innerHTML = `<h3>${cat.name}</h3>`;
@@ -982,56 +1688,77 @@
             const list = {};
             days.forEach(day => {
                 mealTypes.forEach(mt => {
-                    const rid = plan[day][mt];
-                    if (rid) {
-                        const r = recipes[mt].find(x => x.id === rid);
-                        if (r) r.ingredients.forEach(ing => {
-                            const k = `${ing.item} (${ing.unit})`;
-                            list[k] = (list[k] || 0) + ing.amount;
-                        });
+                    const meal = plan[day][mt];
+                    if (meal.recipe && meal.persons.length > 0) {
+                        const r = recipes[mt].find(x => x.id === meal.recipe);
+                        if (r) {
+                            // Oblicz mnożnik na podstawie osób jedzących posiłek
+                            let multiplier = 0;
+                            meal.persons.forEach(personId => {
+                                const person = persons.find(p => p.id === personId);
+                                if (person) multiplier += person.portion;
+                            });
+
+                            r.ingredients.forEach(ing => {
+                                const k = `${ing.item} (${ing.unit})`;
+                                list[k] = (list[k] || 0) + (ing.amount * multiplier);
+                            });
+                        }
                     }
                 });
             });
             Object.keys(list).forEach(k => list[k] = Math.ceil(list[k] * 10) / 10);
-            
-            let txt = "🛒 LISTA ZAKUPÓW\n\n";
+
+            const personsInfo = persons.map(p => `${p.name} (${p.portion}x)`).join(' + ');
+            let txt = `🛒 LISTA ZAKUPÓW\nDla: ${personsInfo}\n\n`;
             categories.forEach(cat => {
-                const items = Object.entries(list).filter(([item]) => 
+                const items = Object.entries(list).filter(([item]) =>
                     cat.keywords.some(kw => item.toLowerCase().includes(kw)));
                 if (items.length === 0) return;
                 txt += cat.name + "\n";
                 items.forEach(([item, amt]) => txt += `☐ ${item}: ${amt}\n`);
                 txt += "\n";
             });
-            
+
             navigator.clipboard.writeText(txt).then(() => alert('Lista skopiowana do schowka!'));
-        }
-
-        // UDOSTĘPNIANIE
-        function openShareModal() {
-            const data = btoa(encodeURIComponent(JSON.stringify(plan)));
-            const url = window.location.href.split('?')[0] + '?plan=' + data;
-            document.getElementById('share-link').textContent = url;
-            document.getElementById('share-modal').classList.add('active');
-            document.getElementById('copied-msg').classList.remove('show');
-        }
-
-        function closeShareModal(e) {
-            if (!e || e.target.id === 'share-modal') {
-                document.getElementById('share-modal').classList.remove('active');
-            }
-        }
-
-        function copyShareLink() {
-            const link = document.getElementById('share-link').textContent;
-            navigator.clipboard.writeText(link).then(() => {
-                document.getElementById('copied-msg').classList.add('show');
-            });
         }
 
         // ZAPIS/ODCZYT
         function savePlan() {
-            localStorage.setItem('mealPlanV3', JSON.stringify(plan));
+            localStorage.setItem('mealPlanV4', JSON.stringify(plan));
+        }
+
+        function savePersons() {
+            localStorage.setItem('mealPersons', JSON.stringify(persons));
+        }
+
+        function loadPersons() {
+            const saved = localStorage.getItem('mealPersons');
+            if (saved) {
+                try {
+                    persons = JSON.parse(saved);
+                } catch(e) {}
+            }
+        }
+
+        // Migracja starych danych do nowej struktury
+        function migratePlan(oldPlan) {
+            const newPlan = {};
+            days.forEach(day => {
+                newPlan[day] = {};
+                mealTypes.forEach(mt => {
+                    const oldValue = oldPlan[day] ? oldPlan[day][mt] : null;
+                    // Sprawdź czy to stary format (string) czy nowy (obiekt)
+                    if (oldValue && typeof oldValue === 'string') {
+                        newPlan[day][mt] = { recipe: oldValue, persons: [1, 2] };
+                    } else if (oldValue && typeof oldValue === 'object' && oldValue.recipe !== undefined) {
+                        newPlan[day][mt] = oldValue;
+                    } else {
+                        newPlan[day][mt] = { recipe: null, persons: [1, 2] };
+                    }
+                });
+            });
+            return newPlan;
         }
 
         function loadPlan() {
@@ -1040,18 +1767,31 @@
             const urlPlan = params.get('plan');
             if (urlPlan) {
                 try {
-                    plan = JSON.parse(decodeURIComponent(atob(urlPlan)));
+                    const loadedPlan = JSON.parse(decodeURIComponent(atob(urlPlan)));
+                    plan = migratePlan(loadedPlan);
                     document.getElementById('loaded-alert').style.display = 'flex';
-                    // Wyczyść URL bez przeładowania
                     window.history.replaceState({}, '', window.location.pathname);
                     return;
                 } catch(e) {}
             }
-            
-            // Sprawdź localStorage
-            const saved = localStorage.getItem('mealPlanV3');
+
+            // Sprawdź localStorage - nowy format V4
+            let saved = localStorage.getItem('mealPlanV4');
             if (saved) {
-                try { plan = JSON.parse(saved); } catch(e) {}
+                try {
+                    plan = JSON.parse(saved);
+                    return;
+                } catch(e) {}
+            }
+
+            // Migracja ze starego formatu V3
+            saved = localStorage.getItem('mealPlanV3');
+            if (saved) {
+                try {
+                    const oldPlan = JSON.parse(saved);
+                    plan = migratePlan(oldPlan);
+                    savePlan(); // Zapisz w nowym formacie
+                } catch(e) {}
             }
         }
 
@@ -1061,7 +1801,13 @@
         }
 
         // INIT
+        loadPersons();
         loadPlan();
+        // Przelicz TDEE dla załadowanych osób
+        persons.forEach(p => recalculatePerson(p));
+        renderSettingsPanel();
+        renderPersonsPanel();
+        updateTableHeaders();
         renderPlannerTable();
         renderRecipes();
     </script>
