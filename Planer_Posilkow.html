@@ -236,6 +236,19 @@
         .meal-select-compact.has-value.lunch { background-color: #eff6ff; }
         .meal-select-compact.has-value.dinner { background-color: #faf5ff; }
 
+        /* Style dla optgroup w dropdownach */
+        .meal-select-compact optgroup {
+            font-weight: bold;
+            color: #374151;
+            background: #f3f4f6;
+            font-size: 11px;
+        }
+        .meal-select-compact option {
+            font-weight: normal;
+            padding-left: 10px;
+            color: #1f2937;
+        }
+
         /* KOLUMNY KALORII DLA OSÓB */
         .kcal-person {
             text-align: center;
@@ -1378,6 +1391,7 @@
                 {
                     id: 'b1',
                     name: "Jajecznica z szynką + kanapki",
+                    category: "🍳 Jajka",
                     kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Jajka", amount: 4, unit: "szt" },
@@ -1398,6 +1412,7 @@
                 {
                     id: 'b2',
                     name: "Tosty z jajkiem i serem",
+                    category: "🍳 Jajka",
                     kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Chleb tostowy pełnoziarnisty", amount: 4, unit: "kromki" },
@@ -1417,6 +1432,7 @@
                 {
                     id: 'b3',
                     name: "Kanapki z łososiem",
+                    category: "🥪 Kanapki/Wrapy",
                     kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Bułki grahamki", amount: 2, unit: "szt" },
@@ -1435,6 +1451,7 @@
                 {
                     id: 'b4',
                     name: "Skyr z orzechami i bananem",
+                    category: "🥛 Nabiał",
                     kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Jogurt Skyr naturalny", amount: 400, unit: "g" },
@@ -1451,6 +1468,7 @@
                 {
                     id: 'b5',
                     name: "Tost z mozzarellą i szynką",
+                    category: "🥪 Kanapki/Wrapy",
                     kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Chleb żytni razowy", amount: 3, unit: "kromki" },
@@ -1469,6 +1487,7 @@
                 {
                     id: 'b6',
                     name: "Sałatka a la cezar",
+                    category: "🍲 Inne",
                     kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Pierś z kurczaka", amount: 200, unit: "g" },
@@ -1492,6 +1511,7 @@
                 {
                     id: 'b7',
                     name: "Quesadilla z kurczakiem",
+                    category: "🥪 Kanapki/Wrapy",
                     kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Pierś z kurczaka", amount: 180, unit: "g" },
@@ -1512,6 +1532,7 @@
                 {
                     id: 'b8',
                     name: "Fit Placuszki proteinowe",
+                    category: "🥞 Naleśniki",
                     kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Jajka", amount: 3, unit: "szt" },
@@ -1531,6 +1552,7 @@
                 {
                     id: 'b9',
                     name: "Chrupiące tosty z jajkiem i szpinakiem",
+                    category: "🍳 Jajka",
                     kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Chleb żytni razowy", amount: 3, unit: "kromki" },
@@ -1550,6 +1572,7 @@
                 {
                     id: 'b10',
                     name: "Kanapki z serkiem i wędliną",
+                    category: "🥪 Kanapki/Wrapy",
                     kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Chleb pszenny", amount: 4, unit: "kromki" },
@@ -1573,6 +1596,7 @@
                 {
                     id: 'b11',
                     name: "Pinsa z szynką i pomidorami",
+                    category: "🍲 Inne",
                     kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Pinsa", amount: 0.5, unit: "szt" },
@@ -1597,6 +1621,7 @@
                 {
                     id: 'b12',
                     name: "Sałatka z melonem i fetą",
+                    category: "🍲 Inne",
                     kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Szpinak", amount: 100, unit: "g" },
@@ -1622,6 +1647,7 @@
                 {
                     id: 'b13',
                     name: "Waniliowa owsianka z wiśniami",
+                    category: "🥣 Owsianki",
                     kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Płatki owsiane górskie", amount: 50, unit: "g" },
@@ -1642,6 +1668,7 @@
                 {
                     id: 'b14',
                     name: "Pieczywo z serkiem wiejskim i warzywami",
+                    category: "🥛 Nabiał",
                     kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Serek wiejski naturalny", amount: 350, unit: "g" },
@@ -1662,6 +1689,7 @@
                 {
                     id: 'b15',
                     name: "Jogurt skyr z waflami ryżowymi",
+                    category: "🥛 Nabiał",
                     kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Jogurt Skyr naturalny", amount: 300, unit: "g" },
@@ -1678,6 +1706,7 @@
                 {
                     id: 'b16',
                     name: "Sałatka z serem i kukurydzą",
+                    category: "🍲 Inne",
                     kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Miks sałat", amount: 25, unit: "g" },
@@ -1699,6 +1728,7 @@
                 {
                     id: 'b17',
                     name: "Tost z szynką, serem i warzywami",
+                    category: "🥪 Kanapki/Wrapy",
                     kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Chleb żytni razowy", amount: 4, unit: "kromki" },
@@ -1721,6 +1751,7 @@
                 {
                     id: 'b18',
                     name: "Tost z mozzarellą i szynką z kurczaka",
+                    category: "🥪 Kanapki/Wrapy",
                     kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Chleb żytni razowy", amount: 4, unit: "kromki" },
@@ -1739,6 +1770,7 @@
                 {
                     id: 'b19',
                     name: "Kanapki z kiszonym kalafiorem",
+                    category: "🥪 Kanapki/Wrapy",
                     kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Chleb żytni razowy", amount: 4, unit: "kromki" },
@@ -1762,6 +1794,7 @@
                 {
                     id: 'b20',
                     name: "Kanapka z jajkiem, awokado i serem cheddar",
+                    category: "🥪 Kanapki/Wrapy",
                     kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Jajka", amount: 4, unit: "szt" },
@@ -1781,6 +1814,7 @@
                 {
                     id: 'b21',
                     name: "Serek proteinowy z owocami",
+                    category: "🥛 Nabiał",
                     kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Serek high protein", amount: 200, unit: "g" },
@@ -1798,6 +1832,7 @@
                 {
                     id: 'b22',
                     name: "Omlet z serem gouda i szynką",
+                    category: "🍳 Jajka",
                     kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Jajka", amount: 4, unit: "szt" },
@@ -1820,6 +1855,7 @@
                 {
                     id: 'b23',
                     name: "Jajecznica z kiełbaską roślinną",
+                    category: "🍳 Jajka",
                     kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Oliwa z oliwek", amount: 5, unit: "g" },
@@ -1838,6 +1874,7 @@
                 {
                     id: 'b24',
                     name: "Tosty a la pizza",
+                    category: "🥪 Kanapki/Wrapy",
                     kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Chleb tostowy pełnoziarnisty", amount: 4, unit: "kromki" },
@@ -1861,6 +1898,7 @@
                 {
                     id: 'b25',
                     name: "Chrupiące tosty z serkiem, szpinakiem i pomidorem",
+                    category: "🍳 Jajka",
                     kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Chleb tostowy pełnoziarnisty", amount: 4, unit: "kromki" },
@@ -1883,6 +1921,7 @@
                 {
                     id: 'b26',
                     name: "Jajka w koszulkach z bułką",
+                    category: "🍳 Jajka",
                     kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Jajka", amount: 4, unit: "szt" },
@@ -1905,6 +1944,7 @@
                 {
                     id: 'b27',
                     name: "Tosty z serem pleśniowym i szynką",
+                    category: "🥪 Kanapki/Wrapy",
                     kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Chleb tostowy pełnoziarnisty", amount: 4, unit: "kromki" },
@@ -1928,6 +1968,7 @@
                 {
                     id: 'b28',
                     name: "Quesadilla z kurczakiem",
+                    category: "🥪 Kanapki/Wrapy",
                     kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Tortilla pszenna", amount: 2, unit: "szt" },
@@ -1951,6 +1992,7 @@
                 {
                     id: 'b29',
                     name: "Tosty z kurczakiem i awokado",
+                    category: "🥪 Kanapki/Wrapy",
                     kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Chleb tostowy pełnoziarnisty", amount: 4, unit: "kromki" },
@@ -1973,6 +2015,7 @@
                 {
                     id: 'b30',
                     name: "Bajgiel z domowym twarożkiem",
+                    category: "🥪 Kanapki/Wrapy",
                     kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Bajgiel pełnoziarnisty", amount: 2, unit: "szt" },
@@ -1995,6 +2038,7 @@
                 {
                     id: 'b31',
                     name: "Nadziewane kajzerki z kurczakiem",
+                    category: "🥪 Kanapki/Wrapy",
                     kcal: 820, protein: 65, fat: 24, carbs: 86,
                     ingredients: [
                         { item: "Kajzerki", amount: 2.5, unit: "szt" },
@@ -2018,6 +2062,7 @@
                 {
                     id: 'b32',
                     name: "Owsianka proteinowa z masłem orzechowym",
+                    category: "🥣 Owsianki",
                     kcal: 820, protein: 58, fat: 32, carbs: 78,
                     ingredients: [
                         { item: "Płatki owsiane górskie", amount: 80, unit: "g" },
@@ -2037,6 +2082,7 @@
                 {
                     id: 'b33',
                     name: "Jajecznica na bekonie z tostami",
+                    category: "🍳 Jajka",
                     kcal: 820, protein: 62, fat: 38, carbs: 58,
                     ingredients: [
                         { item: "Jajka", amount: 5, unit: "szt" },
@@ -2057,6 +2103,7 @@
                 {
                     id: 'b34',
                     name: "Wrap śniadaniowy z kurczakiem i jajkiem",
+                    category: "🥪 Kanapki/Wrapy",
                     kcal: 820, protein: 64, fat: 28, carbs: 76,
                     ingredients: [
                         { item: "Tortilla pszenna", amount: 2, unit: "szt" },
@@ -2078,6 +2125,7 @@
                 {
                     id: 'b35',
                     name: "Shakshuka ekspresowa z fetą",
+                    category: "🍳 Jajka",
                     kcal: 820, protein: 56, fat: 34, carbs: 72,
                     ingredients: [
                         { item: "Jajka", amount: 4, unit: "szt" },
@@ -2100,6 +2148,7 @@
                 {
                     id: 'b36',
                     name: "Serek wiejski z owocami i orzechami",
+                    category: "🥛 Nabiał",
                     kcal: 820, protein: 58, fat: 32, carbs: 72,
                     ingredients: [
                         { item: "Serek wiejski wysokobiałkowy", amount: 400, unit: "g" },
@@ -2118,6 +2167,7 @@
                 {
                     id: 'b37',
                     name: "Jogurt grecki z granolą i owocami",
+                    category: "🥛 Nabiał",
                     kcal: 820, protein: 52, fat: 30, carbs: 82,
                     ingredients: [
                         { item: "Jogurt grecki", amount: 300, unit: "g" },
@@ -2137,6 +2187,7 @@
                 {
                     id: 'b38',
                     name: "Skyr z bananem i masłem orzechowym",
+                    category: "🥛 Nabiał",
                     kcal: 820, protein: 62, fat: 28, carbs: 76,
                     ingredients: [
                         { item: "Skyr naturalny", amount: 350, unit: "g" },
@@ -2155,6 +2206,7 @@
                 {
                     id: 'b39',
                     name: "Twarożek z rodzynkami i jabłkiem",
+                    category: "🥛 Nabiał",
                     kcal: 820, protein: 56, fat: 26, carbs: 84,
                     ingredients: [
                         { item: "Twaróg półtłusty", amount: 300, unit: "g" },
@@ -2175,6 +2227,7 @@
                 {
                     id: 'b40',
                     name: "Jajka w koszulce na tostach z awokado",
+                    category: "🍳 Jajka",
                     kcal: 820, protein: 42, fat: 48, carbs: 56,
                     ingredients: [
                         { item: "Jajka", amount: 4, unit: "szt" },
@@ -2201,6 +2254,7 @@
                 {
                     id: 'b41',
                     name: "Jajka w koszulce po benedyktyńsku",
+                    category: "🍳 Jajka",
                     kcal: 820, protein: 48, fat: 52, carbs: 46,
                     ingredients: [
                         { item: "Jajka", amount: 4, unit: "szt" },
@@ -2227,6 +2281,7 @@
                 {
                     id: 'b42',
                     name: "Overnight oats - owsianka na zimno",
+                    category: "🥣 Owsianki",
                     kcal: 820, protein: 52, fat: 28, carbs: 92,
                     ingredients: [
                         { item: "Płatki owsiane górskie", amount: 100, unit: "g" },
@@ -2249,6 +2304,7 @@
                 {
                     id: 'b43',
                     name: "Owsianka jabłkowo-cynamonowa",
+                    category: "🥣 Owsianki",
                     kcal: 820, protein: 48, fat: 26, carbs: 102,
                     ingredients: [
                         { item: "Płatki owsiane górskie", amount: 100, unit: "g" },
@@ -2272,6 +2328,7 @@
                 {
                     id: 'b44',
                     name: "Owsianka z owocami leśnymi",
+                    category: "🥣 Owsianki",
                     kcal: 820, protein: 50, fat: 24, carbs: 104,
                     ingredients: [
                         { item: "Płatki owsiane górskie", amount: 100, unit: "g" },
@@ -2293,6 +2350,7 @@
                 {
                     id: 'b45',
                     name: "Owsianka bananowo-orzechowa",
+                    category: "🥣 Owsianki",
                     kcal: 820, protein: 54, fat: 32, carbs: 86,
                     ingredients: [
                         { item: "Płatki owsiane górskie", amount: 80, unit: "g" },
@@ -2316,6 +2374,7 @@
                 {
                     id: 'b46',
                     name: "Owsianka z karmelizowaną gruszką",
+                    category: "🥣 Owsianki",
                     kcal: 820, protein: 46, fat: 28, carbs: 98,
                     ingredients: [
                         { item: "Płatki owsiane górskie", amount: 100, unit: "g" },
@@ -2339,6 +2398,7 @@
                 {
                     id: 'b47',
                     name: "Owsianka tiramisu",
+                    category: "🥣 Owsianki",
                     kcal: 820, protein: 52, fat: 26, carbs: 94,
                     ingredients: [
                         { item: "Płatki owsiane górskie", amount: 80, unit: "g" },
@@ -2363,6 +2423,7 @@
                 {
                     id: 'b48',
                     name: "Owsianka słony karmel",
+                    category: "🥣 Owsianki",
                     kcal: 820, protein: 50, fat: 30, carbs: 90,
                     ingredients: [
                         { item: "Płatki owsiane górskie", amount: 80, unit: "g" },
@@ -2387,6 +2448,7 @@
                 {
                     id: 'b49',
                     name: "Naleśniki z serem i truskawkami",
+                    category: "🥞 Naleśniki",
                     kcal: 820, protein: 48, fat: 28, carbs: 94,
                     ingredients: [
                         { item: "Mąka pszenna", amount: 100, unit: "g" },
@@ -2410,6 +2472,7 @@
                 {
                     id: 'b50',
                     name: "Pancakes amerykańskie z syropem",
+                    category: "🥞 Naleśniki",
                     kcal: 820, protein: 42, fat: 32, carbs: 96,
                     ingredients: [
                         { item: "Mąka pszenna", amount: 120, unit: "g" },
@@ -2435,6 +2498,7 @@
                 {
                     id: 'b51',
                     name: "Naleśniki z kurczakiem i warzywami",
+                    category: "🥞 Naleśniki",
                     kcal: 820, protein: 58, fat: 32, carbs: 72,
                     ingredients: [
                         { item: "Mąka pszenna", amount: 80, unit: "g" },
@@ -2460,6 +2524,7 @@
                 {
                     id: 'b52',
                     name: "Racuchy z jabłkami",
+                    category: "🥞 Naleśniki",
                     kcal: 820, protein: 38, fat: 28, carbs: 104,
                     ingredients: [
                         { item: "Mąka pszenna", amount: 150, unit: "g" },
@@ -2480,12 +2545,37 @@
                         "Smaż racuchy na oleju do złotego koloru.",
                         "Posyp cukrem pudrem z cynamonem."
                     ]
+                },
+                {
+                    id: 'b53',
+                    name: "Tosty z ricottą, szpinakiem i jajkiem",
+                    category: "🥪 Kanapki/Wrapy",
+                    kcal: 820, protein: 62, fat: 30, carbs: 75,
+                    ingredients: [
+                        { item: "Chleb tostowy pełnoziarnisty", amount: 4, unit: "kromki" },
+                        { item: "Ricotta", amount: 130, unit: "g" },
+                        { item: "Szpinak świeży", amount: 65, unit: "g" },
+                        { item: "Jajka", amount: 3, unit: "szt" },
+                        { item: "Pomidorki koktajlowe", amount: 8, unit: "szt" },
+                        { item: "Szynka z indyka", amount: 110, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 10, unit: "g" },
+                        { item: "Czosnek", amount: 1, unit: "ząbek" }
+                    ],
+                    steps: [
+                        "Tosty opiekamy do złotego koloru.",
+                        "Szpinak podsmażamy na patelni z oliwą i czosnkiem.",
+                        "Jajka smażymy na sadzone.",
+                        "Na tosty nakładamy ricottę, szpinak, szynkę.",
+                        "Układamy jajka sadzone i pomidorki koktajlowe.",
+                        "Doprawiamy solą i pieprzem."
+                    ]
                 }
             ],
             lunch: [
                 {
                     id: 'l1',
                     name: "Kurczak z ryżem i brokułem",
+                    category: "🍗 Kurczak",
                     kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Pierś z kurczaka", amount: 280, unit: "g" },
@@ -2504,6 +2594,7 @@
                 {
                     id: 'l2',
                     name: "Mielone z frytkami",
+                    category: "🥩 Wołowina/Wieprzowina",
                     kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Mięso mielone z indyka", amount: 280, unit: "g" },
@@ -2523,6 +2614,7 @@
                 {
                     id: 'l3',
                     name: "Makaron z kurczakiem",
+                    category: "🍝 Makarony",
                     kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Makaron pełnoziarnisty", amount: 80, unit: "g" },
@@ -2543,6 +2635,7 @@
                 {
                     id: 'l4',
                     name: "Frytki z batatów z kurczakiem",
+                    category: "🍗 Kurczak",
                     kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Batat", amount: 200, unit: "g" },
@@ -2569,6 +2662,7 @@
                 {
                     id: 'l5',
                     name: "Kurczak teriyaki z ryżem",
+                    category: "🍚 Ryż/Azja",
                     kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Pierś z kurczaka", amount: 250, unit: "g" },
@@ -2601,6 +2695,7 @@
                 {
                     id: 'l6',
                     name: "Kurczak pieczony z ziemniakami",
+                    category: "🍗 Kurczak",
                     kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Pierś z kurczaka", amount: 260, unit: "g" },
@@ -2625,6 +2720,7 @@
                 {
                     id: 'l7',
                     name: "Makaron po włosku ze szpinakiem",
+                    category: "🍝 Makarony",
                     kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Makaron spaghetti pełnoziarnisty", amount: 80, unit: "g" },
@@ -2648,6 +2744,7 @@
                 {
                     id: 'l8',
                     name: "Kebab gyros",
+                    category: "🍕 Pizza/Kebab",
                     kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Pierś z kurczaka", amount: 250, unit: "g" },
@@ -2675,6 +2772,7 @@
                 {
                     id: 'l9',
                     name: "Makaron z indykiem i szpinakiem",
+                    category: "🍝 Makarony",
                     kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Makaron pełnoziarnisty", amount: 80, unit: "g" },
@@ -2697,6 +2795,7 @@
                 {
                     id: 'l10',
                     name: "Kurczak słodko kwaśny",
+                    category: "🍚 Ryż/Azja",
                     kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Pierś z kurczaka", amount: 250, unit: "g" },
@@ -2726,6 +2825,7 @@
                 {
                     id: 'l11',
                     name: "Makaron z kurczakiem w sosie gorgonzola",
+                    category: "🍝 Makarony",
                     kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Makaron pełnoziarnisty", amount: 80, unit: "g" },
@@ -2751,6 +2851,7 @@
                 {
                     id: 'l12',
                     name: "Placek po węgiersku",
+                    category: "🍲 Inne",
                     kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Placki ziemniaczane mrożone", amount: 300, unit: "g" },
@@ -2776,6 +2877,7 @@
                 {
                     id: 'l13',
                     name: "Spaghetti bolognese z granulatem sojowym",
+                    category: "🍝 Makarony",
                     kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Makaron spaghetti", amount: 70, unit: "g" },
@@ -2803,6 +2905,7 @@
                 {
                     id: 'l14',
                     name: "Kebab z grilla",
+                    category: "🍕 Pizza/Kebab",
                     kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Tortilla pełnoziarnista", amount: 2, unit: "szt" },
@@ -2827,6 +2930,7 @@
                 {
                     id: 'l15',
                     name: "Makaron z boczkiem i wędzonym twarogiem",
+                    category: "🍝 Makarony",
                     kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Makaron pełnoziarnisty", amount: 90, unit: "g" },
@@ -2848,6 +2952,7 @@
                 {
                     id: 'l16',
                     name: "Makaron z sosem z serka wiejskiego",
+                    category: "🍝 Makarony",
                     kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Makaron pełnoziarnisty", amount: 80, unit: "g" },
@@ -2874,6 +2979,7 @@
                 {
                     id: 'l17',
                     name: "Pulpety drobiowe z suszonymi pomidorami",
+                    category: "🍗 Kurczak",
                     kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Kasza jaglana", amount: 80, unit: "g" },
@@ -2903,6 +3009,7 @@
                 {
                     id: 'l18',
                     name: "Makaron z kurczakiem, pesto i cukinią",
+                    category: "🍝 Makarony",
                     kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Makaron pełnoziarnisty", amount: 70, unit: "g" },
@@ -2931,6 +3038,7 @@
                 {
                     id: 'l19',
                     name: "Chilli con carne z ryżem",
+                    category: "🌮 Meksykańskie",
                     kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Fasola czarna konserwowa", amount: 100, unit: "g" },
@@ -2959,6 +3067,7 @@
                 {
                     id: 'l20',
                     name: "Placek po węgiersku z wieprzowiną",
+                    category: "🍲 Inne",
                     kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Placki ziemniaczane mrożone", amount: 250, unit: "g" },
@@ -2984,6 +3093,7 @@
                 {
                     id: 'l21',
                     name: "Kurczak po seczuańsku",
+                    category: "🍚 Ryż/Azja",
                     kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Cebula", amount: 1, unit: "szt" },
@@ -3014,6 +3124,7 @@
                 {
                     id: 'l22',
                     name: "Kurczak sweet chilli z papryką",
+                    category: "🍚 Ryż/Azja",
                     kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Kurczak sweet chilli z papryką (gotowe danie)", amount: 350, unit: "g" },
@@ -3029,6 +3140,7 @@
                 {
                     id: 'l23',
                     name: "Pizza na gotowym spodzie z pieczarkami",
+                    category: "🍕 Pizza/Kebab",
                     kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Placek pszenny Piadina", amount: 1, unit: "szt" },
@@ -3052,6 +3164,7 @@
                 {
                     id: 'l24',
                     name: "Tortelloni vegan z pesto",
+                    category: "🍝 Makarony",
                     kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Tortelloni vegan z pomidorami i bazylią", amount: 125, unit: "g" },
@@ -3071,6 +3184,7 @@
                 {
                     id: 'l25',
                     name: "Jednogarnkowe danie z mięsem mielonym",
+                    category: "🍲 Inne",
                     kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Mięso mielone z indyka", amount: 250, unit: "g" },
@@ -3095,6 +3209,7 @@
                 {
                     id: 'l26',
                     name: "Burger curry z mięsa",
+                    category: "🥩 Wołowina/Wieprzowina",
                     kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Mięso mielone wołowe chude", amount: 200, unit: "g" },
@@ -3119,6 +3234,7 @@
                 {
                     id: 'l27',
                     name: "Lekka sałatka cezar z kurczakiem",
+                    category: "🥗 Sałatki",
                     kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Pierś z kurczaka", amount: 280, unit: "g" },
@@ -3142,6 +3258,7 @@
                 {
                     id: 'l28',
                     name: "Makaron z indykiem podsmażanym ze szpinakiem",
+                    category: "🍝 Makarony",
                     kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Makaron penne", amount: 80, unit: "g" },
@@ -3165,6 +3282,7 @@
                 {
                     id: 'l29',
                     name: "Chrupiące kotlety z kurczaka z pieczonymi ziemniakami",
+                    category: "🍗 Kurczak",
                     kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Pierś z kurczaka", amount: 280, unit: "g" },
@@ -3187,6 +3305,7 @@
                 {
                     id: 'l30',
                     name: "Pieczone nuggetsy z ziemniakami",
+                    category: "🍗 Kurczak",
                     kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Pierś z kurczaka", amount: 300, unit: "g" },
@@ -3210,6 +3329,7 @@
                 {
                     id: 'l31',
                     name: "Pikantne skrzydełka kurczaka z ryżem i surówką",
+                    category: "🍗 Kurczak",
                     kcal: 850, protein: 64, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Skrzydełka z kurczaka", amount: 400, unit: "g" },
@@ -3232,6 +3352,7 @@
                 {
                     id: 'l32',
                     name: "Kurczak w sosie piwno-miodowym z ziemniakami",
+                    category: "🍗 Kurczak",
                     kcal: 820, protein: 64, fat: 21, carbs: 101,
                     ingredients: [
                         { item: "Pierś z kurczaka", amount: 260, unit: "g" },
@@ -3256,6 +3377,7 @@
                 {
                     id: 'l33',
                     name: "Döner Kebab z piekarnika",
+                    category: "🍕 Pizza/Kebab",
                     kcal: 820, protein: 51, fat: 48, carbs: 45,
                     ingredients: [
                         { item: "Wołowina mielona", amount: 95, unit: "g" },
@@ -3282,6 +3404,7 @@
                 {
                     id: 'l34',
                     name: "Wieprzowina po chińsku z ryżem",
+                    category: "🍚 Ryż/Azja",
                     kcal: 820, protein: 52, fat: 25, carbs: 96,
                     ingredients: [
                         { item: "Schab wieprzowy", amount: 180, unit: "g" },
@@ -3308,6 +3431,7 @@
                 {
                     id: 'l35',
                     name: "Medaliony z indyka z młodymi ziemniakami",
+                    category: "🍗 Kurczak",
                     kcal: 820, protein: 67, fat: 20, carbs: 85,
                     ingredients: [
                         { item: "Polędwica z indyka", amount: 220, unit: "g" },
@@ -3334,6 +3458,7 @@
                 {
                     id: 'l36',
                     name: "Makaron z kurczakiem w sosie śmietanowym",
+                    category: "🍝 Makarony",
                     kcal: 820, protein: 62, fat: 26, carbs: 84,
                     ingredients: [
                         { item: "Makaron penne", amount: 100, unit: "g" },
@@ -3356,6 +3481,7 @@
                 {
                     id: 'l37',
                     name: "Ryż smażony z kurczakiem i warzywami",
+                    category: "🍚 Ryż/Azja",
                     kcal: 820, protein: 48, fat: 24, carbs: 102,
                     ingredients: [
                         { item: "Ryż basmati", amount: 120, unit: "g" },
@@ -3379,6 +3505,7 @@
                 {
                     id: 'l38',
                     name: "Kotlet schabowy z ziemniakami i surówką",
+                    category: "🥩 Wołowina/Wieprzowina",
                     kcal: 820, protein: 58, fat: 32, carbs: 72,
                     ingredients: [
                         { item: "Schab wieprzowy", amount: 180, unit: "g" },
@@ -3400,6 +3527,7 @@
                 {
                     id: 'l39',
                     name: "Taco bowl z mięsem mielonym",
+                    category: "🌮 Meksykańskie",
                     kcal: 820, protein: 54, fat: 36, carbs: 68,
                     ingredients: [
                         { item: "Mięso mielone wołowo-wieprzowe", amount: 200, unit: "g" },
@@ -3423,6 +3551,7 @@
                 {
                     id: 'l40',
                     name: "Kurczak śródziemnomorski z frytkami z piekarnika",
+                    category: "🍗 Kurczak",
                     kcal: 820, protein: 58, fat: 32, carbs: 68,
                     ingredients: [
                         { item: "Udka z kurczaka", amount: 300, unit: "g" },
@@ -3446,6 +3575,7 @@
                 {
                     id: 'l41',
                     name: "Kurczak z brokułem i marchewką z ziemniakami",
+                    category: "🍗 Kurczak",
                     kcal: 820, protein: 62, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Pierś z kurczaka", amount: 250, unit: "g" },
@@ -3468,6 +3598,7 @@
                 {
                     id: 'l42',
                     name: "Kurczak fajita z kolorowymi paprykami i frytkami",
+                    category: "🍗 Kurczak",
                     kcal: 820, protein: 56, fat: 30, carbs: 76,
                     ingredients: [
                         { item: "Pierś z kurczaka", amount: 220, unit: "g" },
@@ -3491,6 +3622,7 @@
                 {
                     id: 'l43',
                     name: "Kurczak z pieczarkami w śmietanie z ziemniakami",
+                    category: "🍗 Kurczak",
                     kcal: 820, protein: 60, fat: 34, carbs: 64,
                     ingredients: [
                         { item: "Udka z kurczaka (bez kości)", amount: 280, unit: "g" },
@@ -3513,6 +3645,7 @@
                 {
                     id: 'l44',
                     name: "Kurczak cytrynowo-ziołowy z młodymi ziemniakami",
+                    category: "🍗 Kurczak",
                     kcal: 820, protein: 60, fat: 30, carbs: 70,
                     ingredients: [
                         { item: "Udka z kurczaka", amount: 300, unit: "g" },
@@ -3535,6 +3668,7 @@
                 {
                     id: 'l45',
                     name: "Kurczak z batatami i szpinakiem",
+                    category: "🍗 Kurczak",
                     kcal: 820, protein: 58, fat: 28, carbs: 76,
                     ingredients: [
                         { item: "Pierś z kurczaka", amount: 250, unit: "g" },
@@ -3557,6 +3691,7 @@
                 {
                     id: 'l46',
                     name: "Kurczak z cukinią i pomidorami w ziołach",
+                    category: "🍗 Kurczak",
                     kcal: 820, protein: 62, fat: 32, carbs: 64,
                     ingredients: [
                         { item: "Udka z kurczaka (bez kości)", amount: 280, unit: "g" },
@@ -3579,6 +3714,7 @@
                 {
                     id: 'l47',
                     name: "Kurczak z dynią piżmową i rozmarynem",
+                    category: "🍗 Kurczak",
                     kcal: 820, protein: 56, fat: 30, carbs: 78,
                     ingredients: [
                         { item: "Udka z kurczaka", amount: 280, unit: "g" },
@@ -3601,6 +3737,7 @@
                 {
                     id: 'l48',
                     name: "Klasyczny befsztyk tatarski z grzankami",
+                    category: "🥩 Wołowina/Wieprzowina",
                     kcal: 820, protein: 62, fat: 38, carbs: 52,
                     ingredients: [
                         { item: "Polędwica wołowa", amount: 200, unit: "g" },
@@ -3626,6 +3763,7 @@
                 {
                     id: 'l49',
                     name: "Tatar na ciepło z jajkiem sadzonym",
+                    category: "🥩 Wołowina/Wieprzowina",
                     kcal: 820, protein: 58, fat: 42, carbs: 48,
                     ingredients: [
                         { item: "Polędwica wołowa", amount: 180, unit: "g" },
@@ -3650,6 +3788,7 @@
                 {
                     id: 'l50',
                     name: "Tatar azjatycki z sezamem i imbirem",
+                    category: "🥩 Wołowina/Wieprzowina",
                     kcal: 820, protein: 56, fat: 36, carbs: 58,
                     ingredients: [
                         { item: "Polędwica wołowa", amount: 180, unit: "g" },
@@ -3676,6 +3815,7 @@
                 {
                     id: 'l51',
                     name: "Klasyczny kebab w picie",
+                    category: "🍕 Pizza/Kebab",
                     kcal: 820, protein: 52, fat: 36, carbs: 72,
                     ingredients: [
                         { item: "Mięso mielone wołowo-wieprzowe", amount: 180, unit: "g" },
@@ -3702,6 +3842,7 @@
                 {
                     id: 'l52',
                     name: "Kebab na talerzu z frytkami",
+                    category: "🍕 Pizza/Kebab",
                     kcal: 820, protein: 48, fat: 38, carbs: 76,
                     ingredients: [
                         { item: "Mięso mielone wołowo-wieprzowe", amount: 160, unit: "g" },
@@ -3727,6 +3868,7 @@
                 {
                     id: 'l53',
                     name: "Chicken shawarma wrap",
+                    category: "🍕 Pizza/Kebab",
                     kcal: 820, protein: 58, fat: 32, carbs: 74,
                     ingredients: [
                         { item: "Pierś z kurczaka", amount: 200, unit: "g" },
@@ -3754,6 +3896,7 @@
                 {
                     id: 'l54',
                     name: "Pizza Margherita domowa",
+                    category: "🍕 Pizza/Kebab",
                     kcal: 820, protein: 38, fat: 32, carbs: 96,
                     ingredients: [
                         { item: "Mąka pszenna", amount: 120, unit: "g" },
@@ -3779,6 +3922,7 @@
                 {
                     id: 'l55',
                     name: "Pizza z kurczakiem BBQ",
+                    category: "🍕 Pizza/Kebab",
                     kcal: 820, protein: 52, fat: 28, carbs: 88,
                     ingredients: [
                         { item: "Mąka pszenna", amount: 100, unit: "g" },
@@ -3804,6 +3948,7 @@
                 {
                     id: 'l56',
                     name: "Pizza pepperoni z jalapeno",
+                    category: "🍕 Pizza/Kebab",
                     kcal: 820, protein: 42, fat: 38, carbs: 78,
                     ingredients: [
                         { item: "Mąka pszenna", amount: 100, unit: "g" },
@@ -3830,6 +3975,7 @@
                 {
                     id: 'l57',
                     name: "Klasyczny burger wołowy",
+                    category: "🥩 Wołowina/Wieprzowina",
                     kcal: 820, protein: 52, fat: 42, carbs: 58,
                     ingredients: [
                         { item: "Wołowina mielona", amount: 180, unit: "g" },
@@ -3856,6 +4002,7 @@
                 {
                     id: 'l58',
                     name: "Burger z kurczaka crispy",
+                    category: "🍗 Kurczak",
                     kcal: 820, protein: 56, fat: 36, carbs: 68,
                     ingredients: [
                         { item: "Pierś z kurczaka", amount: 180, unit: "g" },
@@ -3881,6 +4028,7 @@
                 {
                     id: 'l59',
                     name: "Smash burger podwójny",
+                    category: "🥩 Wołowina/Wieprzowina",
                     kcal: 820, protein: 58, fat: 48, carbs: 52,
                     ingredients: [
                         { item: "Wołowina mielona", amount: 200, unit: "g" },
@@ -3906,6 +4054,7 @@
                 {
                     id: 'l60',
                     name: "Spaghetti carbonara",
+                    category: "🍝 Makarony",
                     kcal: 820, protein: 42, fat: 38, carbs: 78,
                     ingredients: [
                         { item: "Spaghetti", amount: 120, unit: "g" },
@@ -3929,6 +4078,7 @@
                 {
                     id: 'l61',
                     name: "Spaghetti bolognese",
+                    category: "🍝 Makarony",
                     kcal: 820, protein: 48, fat: 32, carbs: 82,
                     ingredients: [
                         { item: "Spaghetti", amount: 100, unit: "g" },
@@ -3955,6 +4105,7 @@
                 {
                     id: 'l62',
                     name: "Penne arrabiata",
+                    category: "🍝 Makarony",
                     kcal: 820, protein: 32, fat: 28, carbs: 108,
                     ingredients: [
                         { item: "Penne", amount: 140, unit: "g" },
@@ -3977,6 +4128,7 @@
                 {
                     id: 'l63',
                     name: "Makaron z łososiem w sosie śmietanowym",
+                    category: "🐟 Ryby",
                     kcal: 820, protein: 48, fat: 36, carbs: 74,
                     ingredients: [
                         { item: "Tagliatelle", amount: 100, unit: "g" },
@@ -4002,6 +4154,7 @@
                 {
                     id: 'l64',
                     name: "Makaron z pesto i kurczakiem",
+                    category: "🍝 Makarony",
                     kcal: 820, protein: 54, fat: 34, carbs: 76,
                     ingredients: [
                         { item: "Fusilli (świderki)", amount: 100, unit: "g" },
@@ -4024,6 +4177,7 @@
                 {
                     id: 'l65',
                     name: "Lasagne bolognese",
+                    category: "🍝 Makarony",
                     kcal: 820, protein: 46, fat: 38, carbs: 72,
                     ingredients: [
                         { item: "Płaty lasagne", amount: 100, unit: "g" },
@@ -4049,6 +4203,7 @@
                 {
                     id: 'l66',
                     name: "Makaron z krewetkami aglio olio",
+                    category: "🐟 Ryby",
                     kcal: 820, protein: 42, fat: 32, carbs: 86,
                     ingredients: [
                         { item: "Spaghetti", amount: 120, unit: "g" },
@@ -4073,6 +4228,7 @@
                 {
                     id: 'l67',
                     name: "Rosół z makaronem i mięsem",
+                    category: "🍜 Zupy",
                     kcal: 820, protein: 52, fat: 28, carbs: 86,
                     ingredients: [
                         { item: "Udka z kurczaka", amount: 250, unit: "g" },
@@ -4098,6 +4254,7 @@
                 {
                     id: 'l68',
                     name: "Krem z dyni z pestkami",
+                    category: "🍜 Zupy",
                     kcal: 820, protein: 32, fat: 38, carbs: 86,
                     ingredients: [
                         { item: "Dynia piżmowa", amount: 500, unit: "g" },
@@ -4121,6 +4278,7 @@
                 {
                     id: 'l69',
                     name: "Zupa pomidorowa z ryżem",
+                    category: "🍜 Zupy",
                     kcal: 820, protein: 38, fat: 26, carbs: 104,
                     ingredients: [
                         { item: "Pomidory (puszka)", amount: 400, unit: "g" },
@@ -4145,6 +4303,7 @@
                 {
                     id: 'l70',
                     name: "Żurek z kiełbasą i jajkiem",
+                    category: "🍜 Zupy",
                     kcal: 820, protein: 42, fat: 36, carbs: 78,
                     ingredients: [
                         { item: "Zakwas żurowy", amount: 300, unit: "ml" },
@@ -4169,6 +4328,7 @@
                 {
                     id: 'l71',
                     name: "Krem z brokułów z grzankami",
+                    category: "🍜 Zupy",
                     kcal: 820, protein: 38, fat: 42, carbs: 72,
                     ingredients: [
                         { item: "Brokuły", amount: 400, unit: "g" },
@@ -4192,6 +4352,7 @@
                 {
                     id: 'l72',
                     name: "Sałatka Cezar z kurczakiem",
+                    category: "🥗 Sałatki",
                     kcal: 820, protein: 58, fat: 42, carbs: 52,
                     ingredients: [
                         { item: "Pierś z kurczaka", amount: 200, unit: "g" },
@@ -4214,6 +4375,7 @@
                 {
                     id: 'l73',
                     name: "Sałatka grecka z fetą i kurczakiem",
+                    category: "🥗 Sałatki",
                     kcal: 820, protein: 52, fat: 46, carbs: 48,
                     ingredients: [
                         { item: "Pierś z kurczaka", amount: 180, unit: "g" },
@@ -4238,6 +4400,7 @@
                 {
                     id: 'l74',
                     name: "Poke bowl z łososiem",
+                    category: "🐟 Ryby",
                     kcal: 820, protein: 48, fat: 32, carbs: 84,
                     ingredients: [
                         { item: "Łosoś świeży (sashimi)", amount: 150, unit: "g" },
@@ -4262,6 +4425,7 @@
                 {
                     id: 'l75',
                     name: "Buddha bowl warzywny",
+                    category: "🥗 Sałatki",
                     kcal: 820, protein: 36, fat: 38, carbs: 86,
                     ingredients: [
                         { item: "Ciecierzyca (puszka)", amount: 150, unit: "g" },
@@ -4287,6 +4451,7 @@
                 {
                     id: 'l76',
                     name: "Kurczak curry z ryżem",
+                    category: "🍚 Ryż/Azja",
                     kcal: 820, protein: 52, fat: 32, carbs: 82,
                     ingredients: [
                         { item: "Pierś z kurczaka", amount: 200, unit: "g" },
@@ -4312,6 +4477,7 @@
                 {
                     id: 'l77',
                     name: "Pad Thai z kurczakiem",
+                    category: "🍚 Ryż/Azja",
                     kcal: 820, protein: 48, fat: 28, carbs: 94,
                     ingredients: [
                         { item: "Makaron ryżowy", amount: 120, unit: "g" },
@@ -4337,6 +4503,7 @@
                 {
                     id: 'l78',
                     name: "Bibimbap koreański",
+                    category: "🍚 Ryż/Azja",
                     kcal: 820, protein: 46, fat: 32, carbs: 88,
                     ingredients: [
                         { item: "Ryż", amount: 120, unit: "g" },
@@ -4362,6 +4529,7 @@
                 {
                     id: 'l79',
                     name: "Ramen z kurczakiem",
+                    category: "🍚 Ryż/Azja",
                     kcal: 820, protein: 52, fat: 28, carbs: 86,
                     ingredients: [
                         { item: "Makaron ramen", amount: 100, unit: "g" },
@@ -4388,6 +4556,7 @@
                 {
                     id: 'l80',
                     name: "Burrito z wołowiną",
+                    category: "🌮 Meksykańskie",
                     kcal: 820, protein: 48, fat: 34, carbs: 78,
                     ingredients: [
                         { item: "Wołowina mielona", amount: 180, unit: "g" },
@@ -4413,6 +4582,7 @@
                 {
                     id: 'l81',
                     name: "Quesadilla z kurczakiem",
+                    category: "🌮 Meksykańskie",
                     kcal: 820, protein: 54, fat: 38, carbs: 64,
                     ingredients: [
                         { item: "Pierś z kurczaka", amount: 180, unit: "g" },
@@ -4436,6 +4606,7 @@
                 {
                     id: 'l82',
                     name: "Nachos supreme",
+                    category: "🌮 Meksykańskie",
                     kcal: 820, protein: 42, fat: 44, carbs: 68,
                     ingredients: [
                         { item: "Chipsy tortilla", amount: 120, unit: "g" },
@@ -4460,6 +4631,7 @@
                 {
                     id: 'l83',
                     name: "Chili con carne z ryżem",
+                    category: "🌮 Meksykańskie",
                     kcal: 820, protein: 48, fat: 28, carbs: 88,
                     ingredients: [
                         { item: "Wołowina mielona", amount: 180, unit: "g" },
@@ -4485,6 +4657,7 @@
                 {
                     id: 'l84',
                     name: "Stek wołowy z frytkami",
+                    category: "🥩 Wołowina/Wieprzowina",
                     kcal: 820, protein: 58, fat: 42, carbs: 52,
                     ingredients: [
                         { item: "Stek wołowy (antrykot)", amount: 220, unit: "g" },
@@ -4508,6 +4681,7 @@
                 {
                     id: 'l85',
                     name: "Szaszłyki z kurczaka z ryżem",
+                    category: "🍗 Kurczak",
                     kcal: 820, protein: 56, fat: 28, carbs: 84,
                     ingredients: [
                         { item: "Pierś z kurczaka", amount: 250, unit: "g" },
@@ -4532,6 +4706,7 @@
                 {
                     id: 'l86',
                     name: "Karkówka BBQ z ziemniakami",
+                    category: "🥩 Wołowina/Wieprzowina",
                     kcal: 820, protein: 52, fat: 42, carbs: 56,
                     ingredients: [
                         { item: "Karkówka wieprzowa", amount: 200, unit: "g" },
@@ -4555,6 +4730,7 @@
                 {
                     id: 'l87',
                     name: "Łosoś pieczony z warzywami",
+                    category: "🐟 Ryby",
                     kcal: 820, protein: 52, fat: 42, carbs: 56,
                     ingredients: [
                         { item: "Filet z łososia", amount: 200, unit: "g" },
@@ -4578,6 +4754,7 @@
                 {
                     id: 'l88',
                     name: "Fish and chips",
+                    category: "🐟 Ryby",
                     kcal: 820, protein: 48, fat: 38, carbs: 72,
                     ingredients: [
                         { item: "Filet z dorsza", amount: 200, unit: "g" },
@@ -4601,6 +4778,7 @@
                 {
                     id: 'l89',
                     name: "Dorsz w panierce z puree",
+                    category: "🐟 Ryby",
                     kcal: 820, protein: 52, fat: 32, carbs: 76,
                     ingredients: [
                         { item: "Filet z dorsza", amount: 200, unit: "g" },
@@ -4626,6 +4804,7 @@
                 {
                     id: 'd1',
                     name: "Twarożek z owocami",
+                    category: "🧀 Nabiał",
                     kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
                         { item: "Serek wiejski wysokobiałkowy", amount: 350, unit: "g" },
@@ -4644,6 +4823,7 @@
                 {
                     id: 'd2',
                     name: "Kanapki z pastą jajeczną",
+                    category: "🥪 Kanapki",
                     kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
                         { item: "Chleb żytni razowy", amount: 4, unit: "kromki" },
@@ -4664,6 +4844,7 @@
                 {
                     id: 'd3',
                     name: "Wrap z kurczakiem",
+                    category: "🥪 Kanapki",
                     kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
                         { item: "Tortilla pełnoziarnista", amount: 2, unit: "szt" },
@@ -4684,6 +4865,7 @@
                 {
                     id: 'd4',
                     name: "Sałatka śródziemnomorska z indykiem",
+                    category: "🥗 Sałatki",
                     kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
                         { item: "Pierś z indyka", amount: 220, unit: "g" },
@@ -4710,6 +4892,7 @@
                 {
                     id: 'd5',
                     name: "Tortilla z łososiem i warzywami",
+                    category: "🥪 Kanapki",
                     kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
                         { item: "Tortilla pełnoziarnista", amount: 2, unit: "szt" },
@@ -4732,6 +4915,7 @@
                 {
                     id: 'd6',
                     name: "Racuszki jabłkowo-owsiane",
+                    category: "🍲 Inne",
                     kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
                         { item: "Jabłko", amount: 1, unit: "szt" },
@@ -4756,6 +4940,7 @@
                 {
                     id: 'd7',
                     name: "Kanapki z serem gouda",
+                    category: "🥪 Kanapki",
                     kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
                         { item: "Chleb żytni razowy", amount: 4, unit: "kromki" },
@@ -4776,6 +4961,7 @@
                 {
                     id: 'd8',
                     name: "Sałatka owocowa ze skyr",
+                    category: "🧀 Nabiał",
                     kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
                         { item: "Banan", amount: 1, unit: "szt" },
@@ -4794,6 +4980,7 @@
                 {
                     id: 'd9',
                     name: "Placki bananowe",
+                    category: "🍲 Inne",
                     kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
                         { item: "Banan", amount: 1, unit: "szt" },
@@ -4813,6 +5000,7 @@
                 {
                     id: 'd10',
                     name: "Czekoladowa owsianka",
+                    category: "🧀 Nabiał",
                     kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
                         { item: "Płatki owsiane górskie", amount: 50, unit: "g" },
@@ -4834,6 +5022,7 @@
                 {
                     id: 'd11',
                     name: "Kanapki z jajkiem i awokado",
+                    category: "🥪 Kanapki",
                     kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
                         { item: "Awokado", amount: 50, unit: "g" },
@@ -4856,6 +5045,7 @@
                 {
                     id: 'd12',
                     name: "Twarożek z suszonymi pomidorami",
+                    category: "🧀 Nabiał",
                     kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
                         { item: "Ogórek świeży", amount: 1, unit: "szt" },
@@ -4878,6 +5068,7 @@
                 {
                     id: 'd13',
                     name: "Kanapki z szynką i mozzarellą",
+                    category: "🥪 Kanapki",
                     kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
                         { item: "Chleb żytni razowy", amount: 4, unit: "kromki" },
@@ -4897,6 +5088,7 @@
                 {
                     id: 'd14',
                     name: "Bułka owsiana z łososiem i warzywami",
+                    category: "🥪 Kanapki",
                     kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
                         { item: "Bułka owsiana", amount: 1, unit: "szt" },
@@ -4916,6 +5108,7 @@
                 {
                     id: 'd15',
                     name: "Kanapki z hummusem i wędliną",
+                    category: "🥪 Kanapki",
                     kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
                         { item: "Chleb żytni razowy", amount: 4, unit: "kromki" },
@@ -4939,6 +5132,7 @@
                 {
                     id: 'd16',
                     name: "Kanapka z szynką z indyka i camembertem",
+                    category: "🥪 Kanapki",
                     kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
                         { item: "Chleb żytni razowy", amount: 4, unit: "kromki" },
@@ -4958,6 +5152,7 @@
                 {
                     id: 'd17',
                     name: "Kanapka z szynką z kurczaka i pastą z suszonych pomidorów",
+                    category: "🥪 Kanapki",
                     kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
                         { item: "Chleb żytni razowy", amount: 4, unit: "kromki" },
@@ -4976,6 +5171,7 @@
                 {
                     id: 'd18',
                     name: "Skyr z orzechami i bananem",
+                    category: "🧀 Nabiał",
                     kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
                         { item: "Jogurt Skyr naturalny", amount: 350, unit: "g" },
@@ -4991,6 +5187,7 @@
                 {
                     id: 'd19',
                     name: "Serek wiejski z migdałami i waflami",
+                    category: "🧀 Nabiał",
                     kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
                         { item: "Serek wiejski naturalny", amount: 350, unit: "g" },
@@ -5007,6 +5204,7 @@
                 {
                     id: 'd20',
                     name: "Kanapki z jajkiem i awokado (duża porcja)",
+                    category: "🥪 Kanapki",
                     kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
                         { item: "Awokado", amount: 80, unit: "g" },
@@ -5028,6 +5226,7 @@
                 {
                     id: 'd21',
                     name: "Sałatka grecka z serem feta",
+                    category: "🥗 Sałatki",
                     kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
                         { item: "Miks sałat", amount: 30, unit: "g" },
@@ -5052,6 +5251,7 @@
                 {
                     id: 'd22',
                     name: "Smoothie z bananem, kiwi i selerem",
+                    category: "🥤 Shake'i",
                     kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
                         { item: "Banan", amount: 2, unit: "szt" },
@@ -5069,6 +5269,7 @@
                 {
                     id: 'd23',
                     name: "Shake a la Snickers",
+                    category: "🥤 Shake'i",
                     kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
                         { item: "Mleko 1.5%", amount: 200, unit: "g" },
@@ -5089,6 +5290,7 @@
                 {
                     id: 'd24',
                     name: "Grzanki z pstrągiem wędzonym",
+                    category: "🥪 Kanapki",
                     kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
                         { item: "Chleb tostowy pełnoziarnisty", amount: 4, unit: "kromki" },
@@ -5112,6 +5314,7 @@
                 {
                     id: 'd25',
                     name: "Kanapki z pastą z awokado i mozzarellą",
+                    category: "🥪 Kanapki",
                     kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
                         { item: "Chleb żytni razowy", amount: 4, unit: "kromki" },
@@ -5135,6 +5338,7 @@
                 {
                     id: 'd26',
                     name: "Koktajl mango lassi",
+                    category: "🥤 Shake'i",
                     kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
                         { item: "Mango mrożone", amount: 150, unit: "g" },
@@ -5156,6 +5360,7 @@
                 {
                     id: 'd27',
                     name: "Sałatka a la cezar",
+                    category: "🥗 Sałatki",
                     kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
                         { item: "Sałata rzymska", amount: 150, unit: "g" },
@@ -5179,6 +5384,7 @@
                 {
                     id: 'd28',
                     name: "Serek wiejski z miodem, orzechami i gruszką",
+                    category: "🧀 Nabiał",
                     kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
                         { item: "Serek wiejski wysokobiałkowy", amount: 400, unit: "g" },
@@ -5200,6 +5406,7 @@
                 {
                     id: 'd29',
                     name: "Kasza gryczana z suszonymi pomidorami, szpinakiem i camembertem",
+                    category: "🍲 Inne",
                     kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
                         { item: "Kasza gryczana", amount: 80, unit: "g" },
@@ -5223,6 +5430,7 @@
                 {
                     id: 'd30',
                     name: "Tosty z ricottą, szpinakiem i jajkiem",
+                    category: "🥪 Kanapki",
                     kcal: 780, protein: 59, fat: 29, carbs: 71,
                     ingredients: [
                         { item: "Chleb tostowy pełnoziarnisty", amount: 4, unit: "kromki" },
@@ -5246,6 +5454,7 @@
                 {
                     id: 'd31',
                     name: "Sałatka z tuńczykiem i jajkiem",
+                    category: "🥗 Sałatki",
                     kcal: 780, protein: 58, fat: 34, carbs: 56,
                     ingredients: [
                         { item: "Tuńczyk w sosie własnym (puszka)", amount: 2, unit: "szt" },
@@ -5268,6 +5477,7 @@
                 {
                     id: 'd32',
                     name: "Twarożek ze szczypiorkiem i warzywami",
+                    category: "🧀 Nabiał",
                     kcal: 780, protein: 62, fat: 28, carbs: 68,
                     ingredients: [
                         { item: "Twaróg półtłusty", amount: 300, unit: "g" },
@@ -5289,6 +5499,7 @@
                 {
                     id: 'd33',
                     name: "Omlet z szynką, serem i warzywami",
+                    category: "🍳 Jajka",
                     kcal: 780, protein: 56, fat: 42, carbs: 42,
                     ingredients: [
                         { item: "Jajka", amount: 5, unit: "szt" },
@@ -5310,6 +5521,7 @@
                 {
                     id: 'd34',
                     name: "Kanapki z awokado i łososiem wędzonym",
+                    category: "🥪 Kanapki",
                     kcal: 780, protein: 48, fat: 38, carbs: 58,
                     ingredients: [
                         { item: "Chleb pełnoziarnisty", amount: 4, unit: "kromki" },
@@ -5331,6 +5543,7 @@
                 {
                     id: 'd35',
                     name: "Shake bananowo-orzechowy",
+                    category: "🥤 Shake'i",
                     kcal: 780, protein: 54, fat: 32, carbs: 68,
                     ingredients: [
                         { item: "Mleko 2%", amount: 400, unit: "ml" },
@@ -5349,6 +5562,7 @@
                 {
                     id: 'd36',
                     name: "Shake czekoladowo-bananowy",
+                    category: "🥤 Shake'i",
                     kcal: 780, protein: 58, fat: 28, carbs: 72,
                     ingredients: [
                         { item: "Mleko 2%", amount: 400, unit: "ml" },
@@ -5368,6 +5582,7 @@
                 {
                     id: 'd37',
                     name: "Shake owocowy z jogurtem greckim",
+                    category: "🥤 Shake'i",
                     kcal: 780, protein: 52, fat: 24, carbs: 84,
                     ingredients: [
                         { item: "Jogurt grecki", amount: 200, unit: "g" },
@@ -5387,6 +5602,7 @@
                 {
                     id: 'd38',
                     name: "Shake zielony z awokado i szpinakiem",
+                    category: "🥤 Shake'i",
                     kcal: 780, protein: 50, fat: 36, carbs: 62,
                     ingredients: [
                         { item: "Mleko 2%", amount: 350, unit: "ml" },
@@ -5407,6 +5623,7 @@
                 {
                     id: 'd39',
                     name: "Shake kawowy - proteinowe latte",
+                    category: "🥤 Shake'i",
                     kcal: 780, protein: 52, fat: 30, carbs: 70,
                     ingredients: [
                         { item: "Mleko 2%", amount: 350, unit: "ml" },
@@ -5427,6 +5644,7 @@
                 {
                     id: 'd40',
                     name: "Shake truskawkowo-kokosowy",
+                    category: "🥤 Shake'i",
                     kcal: 780, protein: 50, fat: 32, carbs: 72,
                     ingredients: [
                         { item: "Mleko kokosowe", amount: 200, unit: "ml" },
@@ -5447,6 +5665,7 @@
                 {
                     id: 'd41',
                     name: "Shake jabłkowo-cynamonowy (szarlotka)",
+                    category: "🥤 Shake'i",
                     kcal: 780, protein: 48, fat: 28, carbs: 82,
                     ingredients: [
                         { item: "Mleko 2%", amount: 400, unit: "ml" },
@@ -5467,6 +5686,7 @@
                 {
                     id: 'd42',
                     name: "Shake mango-kurkuma (złoty shake)",
+                    category: "🥤 Shake'i",
                     kcal: 780, protein: 50, fat: 26, carbs: 84,
                     ingredients: [
                         { item: "Mleko 2%", amount: 350, unit: "ml" },
@@ -5488,6 +5708,7 @@
                 {
                     id: 'd43',
                     name: "Tatar lekki z sałatką i grzankami",
+                    category: "🥩 Tatar",
                     kcal: 780, protein: 52, fat: 34, carbs: 54,
                     ingredients: [
                         { item: "Polędwica wołowa", amount: 150, unit: "g" },
@@ -5512,6 +5733,7 @@
                 {
                     id: 'd44',
                     name: "Tatar na tostach z jajkiem na miękko",
+                    category: "🥩 Tatar",
                     kcal: 780, protein: 54, fat: 38, carbs: 48,
                     ingredients: [
                         { item: "Polędwica wołowa", amount: 160, unit: "g" },
@@ -5544,6 +5766,37 @@
         const daysShort = ['Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'Sb', 'Nd'];
         const mealTypes = ['breakfast', 'lunch', 'dinner'];
         const mealNames = { breakfast: 'Śniadanie', lunch: 'Obiad', dinner: 'Kolacja' };
+
+        // Kategorie przepisów dla dropdownów
+        const breakfastCategories = [
+            "🍳 Jajka",
+            "🥣 Owsianki",
+            "🥞 Naleśniki",
+            "🥛 Nabiał",
+            "🥪 Kanapki/Wrapy",
+            "🍲 Inne"
+        ];
+        const lunchCategories = [
+            "🍗 Kurczak",
+            "🥩 Wołowina/Wieprzowina",
+            "🐟 Ryby",
+            "🍝 Makarony",
+            "🍚 Ryż/Azja",
+            "🌮 Meksykańskie",
+            "🍕 Pizza/Kebab",
+            "🥗 Sałatki",
+            "🍜 Zupy",
+            "🍲 Inne"
+        ];
+        const dinnerCategories = [
+            "🥤 Shake'i",
+            "🥗 Sałatki",
+            "🧀 Nabiał",
+            "🍳 Jajka",
+            "🥪 Kanapki",
+            "🥩 Tatar",
+            "🍲 Inne"
+        ];
 
         // Konfiguracja osób z kalkulatorem TDEE
         const BASE_KCAL = 2450; // Bazowe kalorie (Twoje wymagania)
@@ -6037,17 +6290,36 @@
                         const recipeId = meal[p.id];
                         if (recipeId) totalMeals++;
 
-                        // Sortuj przepisy - ulubione na górze
-                        const sortedRecipes = [...recipes[mealType]].sort((a, b) => {
-                            const aFav = favoriteRecipes.has(a.id) ? 0 : 1;
-                            const bFav = favoriteRecipes.has(b.id) ? 0 : 1;
-                            return aFav - bFav;
+                        // Grupuj przepisy według kategorii
+                        const categoryOrder = mealType === 'breakfast' ? breakfastCategories :
+                                              mealType === 'lunch' ? lunchCategories : dinnerCategories;
+
+                        const grouped = {};
+                        categoryOrder.forEach(cat => grouped[cat] = []);
+
+                        recipes[mealType].forEach(r => {
+                            const cat = r.category || "🍲 Inne";
+                            if (!grouped[cat]) grouped[cat] = [];
+                            grouped[cat].push(r);
                         });
 
-                        let opts = `<option value="">--</option>`;
-                        sortedRecipes.forEach(r => {
-                            const favPrefix = favoriteRecipes.has(r.id) ? '❤️ ' : '';
-                            opts += `<option value="${r.id}" ${recipeId === r.id ? 'selected' : ''}>${favPrefix}${r.name}</option>`;
+                        // Sortuj alfabetycznie w każdej kategorii
+                        Object.keys(grouped).forEach(cat => {
+                            grouped[cat].sort((a, b) => a.name.localeCompare(b.name, 'pl'));
+                        });
+
+                        // Buduj HTML z optgroup
+                        let opts = `<option value="">-- wybierz --</option>`;
+                        categoryOrder.forEach(cat => {
+                            if (grouped[cat] && grouped[cat].length > 0) {
+                                opts += `<optgroup label="${cat}">`;
+                                grouped[cat].forEach(r => {
+                                    const favPrefix = favoriteRecipes.has(r.id) ? '❤️ ' : '';
+                                    const selected = recipeId === r.id ? 'selected' : '';
+                                    opts += `<option value="${r.id}" ${selected}>${favPrefix}${r.name}</option>`;
+                                });
+                                opts += `</optgroup>`;
+                            }
                         });
 
                         // Sprawdź status zjedzenia
