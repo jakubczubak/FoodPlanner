@@ -1344,6 +1344,7 @@
                     <button class="btn btn-budget" onclick="fillAllWith(13)">💰 Budżet 3</button>
                     <button class="btn btn-gray" onclick="resetPlan()">🔄 Reset</button>
                     <button class="btn btn-gray" onclick="resetEatenStatus()">✅ Reset ptaszków</button>
+                    <button class="btn btn-share" onclick="sharePlan()">📤 Udostępnij plan</button>
                 </div>
 
                 <!-- Przycisk toggle ustawień -->
@@ -1407,7 +1408,11 @@
             <div class="card">
                 <div class="list-header">
                     <h2>🛒 Lista zakupów</h2>
-                    <button class="btn btn-share" onclick="copyShoppingList()">📋 Kopiuj listę</button>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <button class="btn btn-share" onclick="shareShoppingList()">📤 Wyślij listę</button>
+                        <button class="btn btn-share" onclick="copyShoppingList()">📋 Kopiuj</button>
+                        <button class="btn btn-gray" onclick="clearCheckedItems()">🔄 Odznacz wszystko</button>
+                    </div>
                 </div>
                 <p id="shopping-info" style="color: #6b7280; margin-bottom: 15px;"></p>
 
@@ -7728,6 +7733,37 @@
             localStorage.setItem('shoppingListSelection', JSON.stringify(shoppingListSelection));
         }
 
+        // ODHACZONE PRODUKTY NA LIŚCIE ZAKUPÓW
+        let checkedShoppingItems = new Set();
+
+        function loadCheckedItems() {
+            const saved = localStorage.getItem('checkedShoppingItems');
+            if (saved) {
+                try {
+                    checkedShoppingItems = new Set(JSON.parse(saved));
+                } catch(e) {}
+            }
+        }
+
+        function saveCheckedItems() {
+            localStorage.setItem('checkedShoppingItems', JSON.stringify([...checkedShoppingItems]));
+        }
+
+        function toggleShoppingItem(item, checked) {
+            if (checked) {
+                checkedShoppingItems.add(item);
+            } else {
+                checkedShoppingItems.delete(item);
+            }
+            saveCheckedItems();
+        }
+
+        function clearCheckedItems() {
+            checkedShoppingItems.clear();
+            saveCheckedItems();
+            renderShoppingList();
+        }
+
         function renderShoppingDaysFilter() {
             const container = document.getElementById('shopping-days');
             if (!container) return;
@@ -7875,9 +7911,11 @@
                 items.forEach(([item, amt]) => {
                     const itemDiv = document.createElement('div');
                     itemDiv.className = 'item';
+                    const isChecked = checkedShoppingItems.has(item);
+                    const escapedItem = item.replace(/'/g, "\\'");
                     itemDiv.innerHTML = `
-                        <input type="checkbox" onchange="this.nextElementSibling.classList.toggle('checked',this.checked)">
-                        <span class="item-name">${item}</span>
+                        <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleShoppingItem('${escapedItem}', this.checked); this.nextElementSibling.classList.toggle('checked', this.checked)">
+                        <span class="item-name ${isChecked ? 'checked' : ''}">${item}</span>
                         <span class="item-amount">${amt}</span>`;
                     div.appendChild(itemDiv);
                 });
@@ -7909,16 +7947,80 @@
 
             const personsInfo = persons.map(p => `${p.name} (${p.portion}x)`).join(' + ');
             let txt = `🛒 LISTA ZAKUPÓW\nDla: ${personsInfo}\n\n`;
+            let hasItems = false;
             categories.forEach(cat => {
                 const items = Object.entries(list).filter(([item]) =>
-                    cat.keywords.some(kw => item.toLowerCase().includes(kw)));
+                    cat.keywords.some(kw => item.toLowerCase().includes(kw)) && !checkedShoppingItems.has(item));
                 if (items.length === 0) return;
+                hasItems = true;
                 txt += cat.name + "\n";
                 items.forEach(([item, amt]) => txt += `☐ ${item}: ${amt}\n`);
                 txt += "\n";
             });
 
-            navigator.clipboard.writeText(txt).then(() => alert('Lista skopiowana do schowka!'));
+            if (!hasItems) {
+                alert('Wszystkie produkty zostały odhaczone! Nie ma nic do skopiowania.');
+                return;
+            }
+
+            navigator.clipboard.writeText(txt).then(() => alert('Lista skopiowana do schowka!\n\n(Odhaczone produkty zostały pominięte)'));
+        }
+
+        // Udostępnianie listy zakupów (natywne iOS/Android)
+        function shareShoppingList() {
+            const list = {};
+            days.forEach(day => {
+                mealTypes.forEach(mt => {
+                    const meal = plan[day][mt];
+                    persons.forEach(person => {
+                        const recipeId = meal[person.id];
+                        if (recipeId) {
+                            const r = recipes[mt].find(x => x.id === recipeId);
+                            if (r) {
+                                r.ingredients.forEach(ing => {
+                                    const k = `${ing.item} (${ing.unit})`;
+                                    list[k] = (list[k] || 0) + (ing.amount * person.portion);
+                                });
+                            }
+                        }
+                    });
+                });
+            });
+            Object.keys(list).forEach(k => list[k] = Math.ceil(list[k] * 10) / 10);
+
+            const personsInfo = persons.map(p => `${p.name} (${p.portion}x)`).join(' + ');
+            let txt = `🛒 LISTA ZAKUPÓW\nDla: ${personsInfo}\n\n`;
+            let hasItems = false;
+            categories.forEach(cat => {
+                const items = Object.entries(list).filter(([item]) =>
+                    cat.keywords.some(kw => item.toLowerCase().includes(kw)) && !checkedShoppingItems.has(item));
+                if (items.length === 0) return;
+                hasItems = true;
+                txt += cat.name + "\n";
+                items.forEach(([item, amt]) => txt += `☐ ${item}: ${amt}\n`);
+                txt += "\n";
+            });
+
+            if (!hasItems) {
+                alert('Wszystkie produkty zostały odhaczone! Nie ma nic do wysłania.');
+                return;
+            }
+
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Lista zakupów',
+                    text: txt
+                }).catch(() => {
+                    // Użytkownik anulował - kopiuj do schowka
+                    navigator.clipboard.writeText(txt).then(() => {
+                        alert('Lista skopiowana do schowka!\nWyślij przez SMS lub komunikator.');
+                    });
+                });
+            } else {
+                navigator.clipboard.writeText(txt).then(() => {
+                    alert('Lista skopiowana do schowka!\nWyślij przez SMS lub komunikator.');
+                });
+            }
         }
 
         // ZAPIS/ODCZYT
@@ -8025,12 +8127,47 @@
             savePlan();
         }
 
+        // Udostępnianie planu przez link
+        function sharePlan() {
+            try {
+                const planData = btoa(encodeURIComponent(JSON.stringify(plan)));
+                const shareUrl = window.location.origin + window.location.pathname + '?plan=' + planData;
+
+                if (navigator.share) {
+                    // Natywne udostępnianie (iOS/Android)
+                    navigator.share({
+                        title: 'Mój jadłospis',
+                        text: 'Sprawdź mój plan posiłków na tydzień!',
+                        url: shareUrl
+                    }).catch(() => {
+                        // Użytkownik anulował - kopiuj do schowka jako fallback
+                        copyToClipboard(shareUrl);
+                    });
+                } else {
+                    // Brak natywnego udostępniania - kopiuj do schowka
+                    copyToClipboard(shareUrl);
+                }
+            } catch(e) {
+                alert('Błąd podczas generowania linku. Spróbuj ponownie.');
+            }
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('✅ Link skopiowany do schowka!\n\nWyślij go przez SMS, WhatsApp lub inny komunikator.');
+            }).catch(() => {
+                // Fallback dla starszych przeglądarek
+                prompt('Skopiuj ten link:', text);
+            });
+        }
+
         // INIT
         loadPersons();
         loadPlan();
         loadEatenMeals();
         loadFavorites();
         loadShoppingSelection();
+        loadCheckedItems();
         // Przelicz TDEE dla załadowanych osób
         persons.forEach(p => recalculatePerson(p));
         renderSettingsPanel();
