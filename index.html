@@ -902,6 +902,96 @@
             margin-bottom: 15px;
         }
 
+        /* TRYB 50/50 */
+        .modal-person-btn.active.split { color: #059669; }
+        .modal-5050-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .modal-5050-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 100;
+            min-width: 160px;
+            overflow: hidden;
+        }
+        .modal-5050-menu.show { display: block; }
+        .modal-5050-menu button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            padding: 10px 15px;
+            border: none;
+            background: white;
+            cursor: pointer;
+            font-size: 12px;
+            text-align: left;
+        }
+        .modal-5050-menu button:hover { background: #f3f4f6; }
+
+        /* INFO O PODZIALE 50/50 */
+        .split-info {
+            background: #ecfdf5;
+            border: 1px solid #10b981;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 12px;
+            color: #047857;
+        }
+        .split-warning {
+            color: #dc2626;
+            font-size: 11px;
+        }
+
+        /* TABELA PODZIAŁU NA TALERZE */
+        .portion-split-table {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        .portion-split-header {
+            display: grid;
+            grid-template-columns: 1fr 80px 80px;
+            background: #f9fafb;
+            padding: 10px 12px;
+            font-weight: 600;
+            font-size: 12px;
+            color: #6b7280;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .portion-split-row {
+            display: grid;
+            grid-template-columns: 1fr 80px 80px;
+            padding: 10px 12px;
+            font-size: 13px;
+            border-bottom: 1px solid #f3f4f6;
+            align-items: center;
+        }
+        .portion-split-row:last-child { border-bottom: none; }
+        .portion-split-row:hover { background: #f9fafb; }
+        .portion-split-item { color: #374151; }
+        .portion-split-amount { font-weight: 600; text-align: center; }
+        .portion-split-amount.person1 { color: #3b82f6; }
+        .portion-split-amount.person2 { color: #ec4899; }
+        .portion-split-person {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            justify-content: center;
+        }
+        .portion-split-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
         /* PRZYCISK PODGLĄDU PRZEPISU */
         .preview-btn {
             background: none;
@@ -2612,6 +2702,99 @@
                         "Na tosty połóż ser, parówki, ketchup i musztardę.",
                         "Przykryj drugim tostem.",
                         "Podawaj z ogórkami kiszonymi."
+                    ]
+                },
+                {
+                    id: 'b56',
+                    name: "Hotdog klasyczny",
+                    category: "🥪 Kanapki/Wrapy",
+                    kcal: 820, protein: 36, fat: 42, carbs: 68,
+                    ingredients: [
+                        { item: "Bułka do hotdoga", amount: 3, unit: "szt" },
+                        { item: "Parówki (wysokiej jakości)", amount: 3, unit: "szt" },
+                        { item: "Ketchup", amount: 30, unit: "g" },
+                        { item: "Musztarda", amount: 20, unit: "g" },
+                        { item: "Cebula prażona", amount: 40, unit: "g" },
+                        { item: "Ogórek kiszony", amount: 2, unit: "szt" },
+                        { item: "Jajko gotowane", amount: 2, unit: "szt" }
+                    ],
+                    steps: [
+                        "Parówki ugotuj lub podsmaż na patelni.",
+                        "Bułki lekko podgrzej w piekarniku.",
+                        "Włóż parówki do bułek.",
+                        "Polej ketchupem i musztardą.",
+                        "Posyp prażoną cebulą.",
+                        "Podawaj z jajkami i ogórkami."
+                    ]
+                },
+                {
+                    id: 'b57',
+                    name: "Hotdog z serem i boczkiem",
+                    category: "🥪 Kanapki/Wrapy",
+                    kcal: 820, protein: 42, fat: 46, carbs: 58,
+                    ingredients: [
+                        { item: "Bułka do hotdoga", amount: 2, unit: "szt" },
+                        { item: "Parówki (wysokiej jakości)", amount: 3, unit: "szt" },
+                        { item: "Boczek wędzony", amount: 60, unit: "g" },
+                        { item: "Ser żółty", amount: 60, unit: "g" },
+                        { item: "Ketchup", amount: 20, unit: "g" },
+                        { item: "Jalapeno", amount: 20, unit: "g" },
+                        { item: "Jajko sadzone", amount: 1, unit: "szt" }
+                    ],
+                    steps: [
+                        "Boczek podsmaż do chrupkości.",
+                        "Parówki podsmaż na patelni.",
+                        "Bułki przekrój i posyp serem, zapiecz 2 min.",
+                        "Włóż parówki, boczek i jalapeno.",
+                        "Polej ketchupem.",
+                        "Podawaj z jajkiem sadzonym."
+                    ]
+                },
+                {
+                    id: 'b58',
+                    name: "Wrap z kurczakiem i warzywami",
+                    category: "🥪 Kanapki/Wrapy",
+                    kcal: 820, protein: 58, fat: 32, carbs: 68,
+                    ingredients: [
+                        { item: "Tortilla pszenna", amount: 2, unit: "szt" },
+                        { item: "Pierś z kurczaka", amount: 200, unit: "g" },
+                        { item: "Sałata lodowa", amount: 50, unit: "g" },
+                        { item: "Pomidor", amount: 1, unit: "szt" },
+                        { item: "Ogórek", amount: 1, unit: "szt" },
+                        { item: "Sos czosnkowy", amount: 50, unit: "g" },
+                        { item: "Ser żółty", amount: 40, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 10, unit: "ml" }
+                    ],
+                    steps: [
+                        "Kurczaka pokrój w paski, dopraw i usmaż na oliwie.",
+                        "Warzywa pokrój w paski.",
+                        "Tortillę podgrzej na suchej patelni.",
+                        "Na tortillę nałóż sos, sałatę, kurczaka, warzywa i ser.",
+                        "Zwiń ciasno w rulon.",
+                        "Opcjonalnie podgrzej na patelni z obu stron."
+                    ]
+                },
+                {
+                    id: 'b59',
+                    name: "Wrap śniadaniowy z jajkiem i bekonem",
+                    category: "🥪 Kanapki/Wrapy",
+                    kcal: 820, protein: 44, fat: 46, carbs: 54,
+                    ingredients: [
+                        { item: "Tortilla pszenna", amount: 2, unit: "szt" },
+                        { item: "Jajka", amount: 3, unit: "szt" },
+                        { item: "Boczek wędzony", amount: 80, unit: "g" },
+                        { item: "Ser żółty", amount: 50, unit: "g" },
+                        { item: "Pomidor", amount: 1, unit: "szt" },
+                        { item: "Sos czosnkowy", amount: 30, unit: "g" },
+                        { item: "Masło", amount: 10, unit: "g" }
+                    ],
+                    steps: [
+                        "Boczek podsmaż do chrupkości.",
+                        "Jajka roztrzep i usmaż jajecznicę na maśle.",
+                        "Tortillę podgrzej.",
+                        "Nałóż sos, jajecznicę, boczek, ser i pomidora.",
+                        "Zwiń w rulon.",
+                        "Opcjonalnie zapiecz 2 min."
                     ]
                 }
             ],
@@ -4941,6 +5124,307 @@
                         "Kurczaka usmaż osobno.",
                         "Podawaj z pestkami dyni, kurczakiem i grzankami."
                     ]
+                },
+                {
+                    id: 'l94',
+                    name: "Wrap meksykański z kurczakiem",
+                    category: "🌮 Meksykańskie",
+                    kcal: 850, protein: 62, fat: 36, carbs: 68,
+                    ingredients: [
+                        { item: "Tortilla pszenna duża", amount: 2, unit: "szt" },
+                        { item: "Pierś z kurczaka", amount: 250, unit: "g" },
+                        { item: "Fasola czerwona (puszka)", amount: 100, unit: "g" },
+                        { item: "Kukurydza", amount: 80, unit: "g" },
+                        { item: "Papryka czerwona", amount: 1, unit: "szt" },
+                        { item: "Ser żółty", amount: 60, unit: "g" },
+                        { item: "Śmietana", amount: 40, unit: "g" },
+                        { item: "Przyprawa meksykańska", amount: 10, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 15, unit: "ml" }
+                    ],
+                    steps: [
+                        "Kurczaka pokrój w paski, dopraw przyprawą meksykańską.",
+                        "Smaż na oliwie 6-8 min.",
+                        "Dodaj pokrojoną paprykę, fasolę i kukurydzę.",
+                        "Smaż jeszcze 3 min.",
+                        "Na tortillę nałóż farsz, śmietanę i ser.",
+                        "Zwiń w rulon i opcjonalnie podgrzej na patelni."
+                    ]
+                },
+                {
+                    id: 'l95',
+                    name: "Wrap gyros z kurczakiem",
+                    category: "🍕 Pizza/Kebab",
+                    kcal: 850, protein: 58, fat: 38, carbs: 70,
+                    ingredients: [
+                        { item: "Tortilla pszenna duża", amount: 2, unit: "szt" },
+                        { item: "Pierś z kurczaka", amount: 250, unit: "g" },
+                        { item: "Kapusta pekińska", amount: 80, unit: "g" },
+                        { item: "Pomidor", amount: 1, unit: "szt" },
+                        { item: "Ogórek", amount: 1, unit: "szt" },
+                        { item: "Cebula czerwona", amount: 0.5, unit: "szt" },
+                        { item: "Sos czosnkowy", amount: 60, unit: "g" },
+                        { item: "Przyprawa gyros", amount: 10, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 15, unit: "ml" }
+                    ],
+                    steps: [
+                        "Kurczaka pokrój w paski, dopraw przyprawą gyros.",
+                        "Smaż na oliwie 6-8 min do zrumienienia.",
+                        "Warzywa pokrój w cienkie paski.",
+                        "Na tortillę nałóż sos, warzywa i kurczaka.",
+                        "Zwiń ciasno w rulon.",
+                        "Opcjonalnie zapiecz 2 min na patelni."
+                    ]
+                },
+                {
+                    id: 'l96',
+                    name: "Wrap z kurczakiem i hummusem",
+                    category: "🍗 Kurczak",
+                    kcal: 850, protein: 56, fat: 34, carbs: 74,
+                    ingredients: [
+                        { item: "Tortilla pszenna duża", amount: 2, unit: "szt" },
+                        { item: "Pierś z kurczaka", amount: 220, unit: "g" },
+                        { item: "Hummus", amount: 100, unit: "g" },
+                        { item: "Mix sałat", amount: 60, unit: "g" },
+                        { item: "Pomidorki koktajlowe", amount: 100, unit: "g" },
+                        { item: "Feta", amount: 50, unit: "g" },
+                        { item: "Oliwki", amount: 30, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 10, unit: "ml" }
+                    ],
+                    steps: [
+                        "Kurczaka usmaż na oliwie, pokrój w paski.",
+                        "Tortillę posmaruj hummusem.",
+                        "Nałóż sałatę, kurczaka, pomidorki, fetę i oliwki.",
+                        "Zwiń ciasno w rulon.",
+                        "Przekrój na pół ukośnie."
+                    ]
+                },
+                {
+                    id: 'l97',
+                    name: "Pad Thai z kurczakiem",
+                    category: "🍚 Ryż/Azja",
+                    kcal: 850, protein: 52, fat: 32, carbs: 86,
+                    ingredients: [
+                        { item: "Makaron ryżowy", amount: 150, unit: "g" },
+                        { item: "Pierś z kurczaka", amount: 200, unit: "g" },
+                        { item: "Jajka", amount: 2, unit: "szt" },
+                        { item: "Kiełki fasoli mung", amount: 100, unit: "g" },
+                        { item: "Sos rybny", amount: 30, unit: "ml" },
+                        { item: "Cukier palmowy/brązowy", amount: 20, unit: "g" },
+                        { item: "Sok z limonki", amount: 30, unit: "ml" },
+                        { item: "Orzeszki ziemne", amount: 30, unit: "g" },
+                        { item: "Szczypiorek", amount: 20, unit: "g" },
+                        { item: "Olej", amount: 20, unit: "ml" }
+                    ],
+                    steps: [
+                        "Makaron namocz w ciepłej wodzie 20 min, odcedź.",
+                        "Kurczaka pokrój w paski, usmaż na oleju.",
+                        "Dodaj jajka, zrób jajecznicę.",
+                        "Wrzuć makaron, polej sosem rybnym, cukrem i limonką.",
+                        "Dodaj kiełki, smaż 2 min.",
+                        "Posyp orzeszkami i szczypiorkiem."
+                    ]
+                },
+                {
+                    id: 'l98',
+                    name: "Smażony ryż po chińsku",
+                    category: "🍚 Ryż/Azja",
+                    kcal: 850, protein: 48, fat: 34, carbs: 82,
+                    ingredients: [
+                        { item: "Ryż jaśminowy (ugotowany)", amount: 300, unit: "g" },
+                        { item: "Pierś z kurczaka", amount: 180, unit: "g" },
+                        { item: "Jajka", amount: 2, unit: "szt" },
+                        { item: "Groszek mrożony", amount: 80, unit: "g" },
+                        { item: "Marchewka", amount: 1, unit: "szt" },
+                        { item: "Sos sojowy", amount: 40, unit: "ml" },
+                        { item: "Olej sezamowy", amount: 15, unit: "ml" },
+                        { item: "Czosnek", amount: 3, unit: "ząbki" },
+                        { item: "Szczypiorek", amount: 20, unit: "g" }
+                    ],
+                    steps: [
+                        "Ryż najlepiej ugotować dzień wcześniej (suchy).",
+                        "Kurczaka pokrój, usmaż na oleju z czosnkiem.",
+                        "Dodaj marchewkę w kostce i groszek.",
+                        "Wrzuć ryż, smaż na dużym ogniu.",
+                        "Zrób miejsce, wbij jajka, wymieszaj.",
+                        "Polej sosem sojowym i olejem sezamowym."
+                    ]
+                },
+                {
+                    id: 'l99',
+                    name: "Kurczak słodko-kwaśny",
+                    category: "🍚 Ryż/Azja",
+                    kcal: 850, protein: 54, fat: 28, carbs: 88,
+                    ingredients: [
+                        { item: "Pierś z kurczaka", amount: 250, unit: "g" },
+                        { item: "Ryż jaśminowy", amount: 100, unit: "g" },
+                        { item: "Ananas (puszka)", amount: 150, unit: "g" },
+                        { item: "Papryka czerwona", amount: 1, unit: "szt" },
+                        { item: "Ketchup", amount: 60, unit: "g" },
+                        { item: "Ocet ryżowy", amount: 30, unit: "ml" },
+                        { item: "Sos sojowy", amount: 20, unit: "ml" },
+                        { item: "Mąka kukurydziana", amount: 30, unit: "g" },
+                        { item: "Olej", amount: 25, unit: "ml" }
+                    ],
+                    steps: [
+                        "Ryż ugotuj.",
+                        "Kurczaka pokrój w kostkę, obtocz w mące kukurydzianej.",
+                        "Smaż na oleju do złotego koloru.",
+                        "Sos: wymieszaj ketchup, ocet, sos sojowy i sok z ananasa.",
+                        "Dodaj paprykę i ananas, wlej sos.",
+                        "Gotuj 3 min, podawaj z ryżem."
+                    ]
+                },
+                {
+                    id: 'l100',
+                    name: "Kurczak Kung Pao",
+                    category: "🍚 Ryż/Azja",
+                    kcal: 850, protein: 56, fat: 36, carbs: 72,
+                    ingredients: [
+                        { item: "Pierś z kurczaka", amount: 250, unit: "g" },
+                        { item: "Ryż jaśminowy", amount: 100, unit: "g" },
+                        { item: "Orzeszki ziemne", amount: 50, unit: "g" },
+                        { item: "Papryka czerwona", amount: 1, unit: "szt" },
+                        { item: "Suszone chili", amount: 5, unit: "szt" },
+                        { item: "Sos sojowy", amount: 40, unit: "ml" },
+                        { item: "Ocet ryżowy", amount: 20, unit: "ml" },
+                        { item: "Czosnek", amount: 3, unit: "ząbki" },
+                        { item: "Imbir", amount: 10, unit: "g" },
+                        { item: "Olej", amount: 20, unit: "ml" }
+                    ],
+                    steps: [
+                        "Ryż ugotuj.",
+                        "Kurczaka pokrój w kostkę, usmaż na oleju.",
+                        "Dodaj czosnek, imbir i suszone chili.",
+                        "Wrzuć paprykę, smaż 2 min.",
+                        "Polej sosem sojowym i octem.",
+                        "Dodaj orzeszki, wymieszaj, podawaj z ryżem."
+                    ]
+                },
+                {
+                    id: 'l101',
+                    name: "Bao buns z wieprzowiną",
+                    category: "🍚 Ryż/Azja",
+                    kcal: 850, protein: 48, fat: 38, carbs: 78,
+                    ingredients: [
+                        { item: "Bułeczki bao (gotowe)", amount: 4, unit: "szt" },
+                        { item: "Boczek wieprzowy", amount: 200, unit: "g" },
+                        { item: "Sos hoisin", amount: 50, unit: "g" },
+                        { item: "Ogórek", amount: 1, unit: "szt" },
+                        { item: "Marchewka", amount: 1, unit: "szt" },
+                        { item: "Szczypiorek", amount: 20, unit: "g" },
+                        { item: "Sos sojowy", amount: 30, unit: "ml" },
+                        { item: "Miód", amount: 20, unit: "g" },
+                        { item: "Sezam", amount: 10, unit: "g" }
+                    ],
+                    steps: [
+                        "Boczek piecz 2h w 150°C z sosem sojowym i miodem.",
+                        "Lub: podsmaż plastry boczku na patelni.",
+                        "Bułeczki bao podgrzej na parze 5 min.",
+                        "Ogórek i marchew pokrój w cienkie słupki.",
+                        "Do bułeczek włóż mięso, warzywa, polej sosem hoisin.",
+                        "Posyp sezamem i szczypiorkiem."
+                    ]
+                },
+                {
+                    id: 'l102',
+                    name: "Kurczak Teriyaki z ryżem",
+                    category: "🍚 Ryż/Azja",
+                    kcal: 850, protein: 58, fat: 26, carbs: 88,
+                    ingredients: [
+                        { item: "Udka z kurczaka bez kości", amount: 280, unit: "g" },
+                        { item: "Ryż jaśminowy", amount: 120, unit: "g" },
+                        { item: "Sos sojowy", amount: 60, unit: "ml" },
+                        { item: "Mirin/wino ryżowe", amount: 30, unit: "ml" },
+                        { item: "Miód", amount: 30, unit: "g" },
+                        { item: "Czosnek", amount: 2, unit: "ząbki" },
+                        { item: "Imbir", amount: 10, unit: "g" },
+                        { item: "Brokuły", amount: 150, unit: "g" },
+                        { item: "Sezam", amount: 10, unit: "g" }
+                    ],
+                    steps: [
+                        "Sos teriyaki: wymieszaj sos sojowy, mirin, miód, czosnek i imbir.",
+                        "Kurczaka marynuj 30 min (lub dłużej).",
+                        "Ryż ugotuj, brokuły ugotuj na parze.",
+                        "Kurczaka smaż 5-6 min z każdej strony, polewając sosem.",
+                        "Pokrój w paski, ułóż na ryżu z brokułami.",
+                        "Posyp sezamem."
+                    ]
+                },
+                {
+                    id: 'l103',
+                    name: "Zupa Pho z wołowiną",
+                    category: "🍜 Zupy",
+                    kcal: 850, protein: 52, fat: 28, carbs: 86,
+                    ingredients: [
+                        { item: "Makaron ryżowy", amount: 150, unit: "g" },
+                        { item: "Wołowina (rostbef)", amount: 200, unit: "g" },
+                        { item: "Bulion wołowy", amount: 800, unit: "ml" },
+                        { item: "Sos rybny", amount: 30, unit: "ml" },
+                        { item: "Anyż gwiazdkowy", amount: 2, unit: "szt" },
+                        { item: "Cynamon (laska)", amount: 1, unit: "szt" },
+                        { item: "Kiełki fasoli mung", amount: 80, unit: "g" },
+                        { item: "Bazylia tajska", amount: 10, unit: "g" },
+                        { item: "Limonka", amount: 1, unit: "szt" },
+                        { item: "Chili świeże", amount: 1, unit: "szt" }
+                    ],
+                    steps: [
+                        "Bulion gotuj z anyżem i cynamonem 20 min, przecedź.",
+                        "Makaron ugotuj według instrukcji.",
+                        "Wołowinę pokrój w cienkie plastry.",
+                        "Do miski daj makaron, surową wołowinę.",
+                        "Zalej wrzącym bulionem (ugotuje mięso).",
+                        "Dodaj kiełki, bazylię, chili i sok z limonki."
+                    ]
+                },
+                {
+                    id: 'l104',
+                    name: "Tom Yum z krewetkami",
+                    category: "🍜 Zupy",
+                    kcal: 850, protein: 54, fat: 32, carbs: 78,
+                    ingredients: [
+                        { item: "Krewetki obrane", amount: 250, unit: "g" },
+                        { item: "Makaron ryżowy", amount: 100, unit: "g" },
+                        { item: "Pasta Tom Yum", amount: 50, unit: "g" },
+                        { item: "Mleczko kokosowe", amount: 200, unit: "ml" },
+                        { item: "Bulion drobiowy", amount: 500, unit: "ml" },
+                        { item: "Pieczarki", amount: 100, unit: "g" },
+                        { item: "Pomidorki koktajlowe", amount: 100, unit: "g" },
+                        { item: "Sok z limonki", amount: 30, unit: "ml" },
+                        { item: "Kolendra", amount: 10, unit: "g" }
+                    ],
+                    steps: [
+                        "Bulion zagotuj z pastą Tom Yum.",
+                        "Dodaj pokrojone pieczarki, gotuj 5 min.",
+                        "Wlej mleczko kokosowe.",
+                        "Dodaj krewetki i pomidorki, gotuj 3 min.",
+                        "Makaron ugotuj osobno.",
+                        "Podawaj zupę z makaronem, sokiem z limonki i kolendrą."
+                    ]
+                },
+                {
+                    id: 'l105',
+                    name: "Zielone curry z kurczakiem",
+                    category: "🍚 Ryż/Azja",
+                    kcal: 850, protein: 54, fat: 42, carbs: 64,
+                    ingredients: [
+                        { item: "Pierś z kurczaka", amount: 250, unit: "g" },
+                        { item: "Ryż jaśminowy", amount: 100, unit: "g" },
+                        { item: "Pasta curry zielona", amount: 50, unit: "g" },
+                        { item: "Mleczko kokosowe", amount: 400, unit: "ml" },
+                        { item: "Bakłażan tajski/zwykły", amount: 100, unit: "g" },
+                        { item: "Fasolka szparagowa", amount: 80, unit: "g" },
+                        { item: "Sos rybny", amount: 20, unit: "ml" },
+                        { item: "Cukier palmowy", amount: 10, unit: "g" },
+                        { item: "Bazylia tajska", amount: 10, unit: "g" }
+                    ],
+                    steps: [
+                        "Ryż ugotuj.",
+                        "Na patelni rozgrzej część mleczka, dodaj pastę curry.",
+                        "Smaż 2 min, dodaj pokrojonego kurczaka.",
+                        "Wlej resztę mleczka, dodaj warzywa.",
+                        "Gotuj 10 min, dopraw sosem rybnym i cukrem.",
+                        "Podawaj z ryżem i bazylią."
+                    ]
                 }
             ],
             dinner: [
@@ -6729,10 +7213,12 @@
         // Aktualnie wyświetlany przepis i wybrane osoby
         let currentModalRecipe = null;
         let modalSelectedPersons = [1]; // Domyślnie tylko "Ja"
+        let modalSplitMode = 'normal'; // 'normal', '5050-person1', '5050-person2'
 
         function openRecipeModal(mt, r) {
             currentModalRecipe = r;
             modalSelectedPersons = [1]; // Reset do "tylko ja"
+            modalSplitMode = 'normal'; // Reset trybu
 
             document.getElementById('modal-overlay').classList.add('active');
             document.getElementById('modal-header').className = 'modal-header ' + mt;
@@ -6755,27 +7241,61 @@
             const p2 = persons[1];
 
             toggle.innerHTML = `
-                <button class="modal-person-btn blue ${modalSelectedPersons.length === 1 && modalSelectedPersons[0] === 1 ? 'active' : ''}"
-                    onclick="setModalPersons([1])">
+                <button class="modal-person-btn blue ${modalSplitMode === 'normal' && modalSelectedPersons.length === 1 && modalSelectedPersons[0] === 1 ? 'active' : ''}"
+                    onclick="setModalPersons([1], 'normal')">
                     <span class="modal-person-dot" style="background: ${p1.color}"></span>
                     ${p1.name}
                 </button>
-                <button class="modal-person-btn pink ${modalSelectedPersons.length === 1 && modalSelectedPersons[0] === 2 ? 'active' : ''}"
-                    onclick="setModalPersons([2])">
+                <button class="modal-person-btn pink ${modalSplitMode === 'normal' && modalSelectedPersons.length === 1 && modalSelectedPersons[0] === 2 ? 'active' : ''}"
+                    onclick="setModalPersons([2], 'normal')">
                     <span class="modal-person-dot" style="background: ${p2.color}"></span>
                     ${p2.name}
                 </button>
-                <button class="modal-person-btn both ${modalSelectedPersons.length === 2 ? 'active' : ''}"
-                    onclick="setModalPersons([1, 2])">
+                <button class="modal-person-btn both ${modalSplitMode === 'normal' && modalSelectedPersons.length === 2 ? 'active' : ''}"
+                    onclick="setModalPersons([1, 2], 'normal')">
                     <span class="modal-person-dot" style="background: ${p1.color}"></span>
                     <span class="modal-person-dot" style="background: ${p2.color}"></span>
                     Razem
                 </button>
+                <div class="modal-5050-dropdown">
+                    <button class="modal-person-btn split ${modalSplitMode.startsWith('5050') ? 'active' : ''}"
+                        onclick="toggle5050Menu(event)">
+                        50/50 ▼
+                    </button>
+                    <div class="modal-5050-menu" id="modal-5050-menu">
+                        <button onclick="setModalPersons([1, 2], '5050-person1')">
+                            <span class="modal-person-dot" style="background: ${p1.color}"></span>
+                            wg ${p1.name} (${p1.portion}x)
+                        </button>
+                        <button onclick="setModalPersons([1, 2], '5050-person2')">
+                            <span class="modal-person-dot" style="background: ${p2.color}"></span>
+                            wg ${p2.name} (${p2.portion}x)
+                        </button>
+                    </div>
+                </div>
             `;
         }
 
-        function setModalPersons(personIds) {
+        function toggle5050Menu(event) {
+            event.stopPropagation();
+            const menu = document.getElementById('modal-5050-menu');
+            menu.classList.toggle('show');
+        }
+
+        // Zamknij menu 50/50 po kliknięciu gdziekolwiek
+        document.addEventListener('click', function(e) {
+            const menu = document.getElementById('modal-5050-menu');
+            if (menu && !e.target.closest('.modal-5050-dropdown')) {
+                menu.classList.remove('show');
+            }
+        });
+
+        function setModalPersons(personIds, mode = 'normal') {
             modalSelectedPersons = personIds;
+            modalSplitMode = mode;
+            // Zamknij menu 50/50
+            const menu = document.getElementById('modal-5050-menu');
+            if (menu) menu.classList.remove('show');
             renderModalPersonsToggle();
             updateModalContent();
         }
@@ -6784,17 +7304,49 @@
             const r = currentModalRecipe;
             if (!r) return;
 
-            // Oblicz mnożnik na podstawie wybranych osób
+            const p1 = persons[0];
+            const p2 = persons[1];
             let multiplier = 0;
-            modalSelectedPersons.forEach(id => {
-                const person = persons.find(p => p.id === id);
-                if (person) multiplier += person.portion;
-            });
+            let splitInfo = '';
+            let portionPerPerson = 0; // Porcja na osobę przy 50/50
+
+            // Oblicz mnożnik w zależności od trybu
+            if (modalSplitMode === '5050-person1') {
+                // 50/50 wg osoby 1 (większej porcji)
+                multiplier = p1.portion * 2;
+                portionPerPerson = p1.portion;
+                const kcalPerPerson = Math.round(r.kcal * p1.portion);
+                const diff = Math.round(r.kcal * p1.portion - r.kcal * p2.portion);
+                splitInfo = `<div class="split-info">
+                    <strong>Tryb 50/50</strong> (wg ${p1.name})<br>
+                    Łącznie: ${multiplier.toFixed(2)}x → dzielisz na pół<br>
+                    <span class="split-warning">⚠️ ${p2.name}: +${diff} kcal nadwyżki</span>
+                </div>`;
+            } else if (modalSplitMode === '5050-person2') {
+                // 50/50 wg osoby 2 (mniejszej porcji)
+                multiplier = p2.portion * 2;
+                portionPerPerson = p2.portion;
+                const diff = Math.round(r.kcal * p1.portion - r.kcal * p2.portion);
+                splitInfo = `<div class="split-info">
+                    <strong>Tryb 50/50</strong> (wg ${p2.name})<br>
+                    Łącznie: ${multiplier.toFixed(2)}x → dzielisz na pół<br>
+                    <span class="split-warning">⚠️ ${p1.name}: -${diff} kcal niedobór</span>
+                </div>`;
+            } else if (modalSelectedPersons.length === 2) {
+                // Tryb "Razem" - normalne sumowanie
+                multiplier = p1.portion + p2.portion;
+            } else {
+                // Pojedyncza osoba
+                const person = persons.find(p => p.id === modalSelectedPersons[0]);
+                if (person) multiplier = person.portion;
+            }
 
             // Pokaż info o mnożniku
             const multiplierEl = document.getElementById('modal-multiplier');
-            if (modalSelectedPersons.length === 2) {
-                multiplierEl.innerHTML = `Składniki dla obu osób (${persons[0].portion}x + ${persons[1].portion}x = <strong>${multiplier.toFixed(2)}x</strong>)`;
+            if (modalSplitMode.startsWith('5050')) {
+                multiplierEl.innerHTML = splitInfo;
+            } else if (modalSelectedPersons.length === 2) {
+                multiplierEl.innerHTML = `Składniki dla obu osób (${p1.portion}x + ${p2.portion}x = <strong>${multiplier.toFixed(2)}x</strong>)`;
             } else {
                 const person = persons.find(p => p.id === modalSelectedPersons[0]);
                 multiplierEl.innerHTML = `Składniki dla: <strong>${person.name}</strong> (mnożnik: <strong>${person.portion}x</strong>)`;
@@ -6817,6 +7369,64 @@
                 const amount = Math.round(i.amount * multiplier * 10) / 10;
                 return `<li>${i.item} - <strong>${amount} ${i.unit}</strong></li>`;
             }).join('');
+
+            // Sekcja podziału na talerze
+            let portionSplitSection = document.getElementById('modal-portion-split');
+            if (!portionSplitSection) {
+                // Utwórz sekcję jeśli nie istnieje
+                const ingredientsSection = document.getElementById('modal-ingredients').parentElement;
+                portionSplitSection = document.createElement('div');
+                portionSplitSection.className = 'modal-section';
+                portionSplitSection.id = 'modal-portion-split';
+                ingredientsSection.after(portionSplitSection);
+            }
+
+            // Pokaż tabelę podziału tylko dla "Razem" lub "50/50"
+            if (modalSelectedPersons.length === 2 || modalSplitMode.startsWith('5050')) {
+                let amount1, amount2;
+
+                if (modalSplitMode.startsWith('5050')) {
+                    // 50/50 - równy podział
+                    amount1 = portionPerPerson;
+                    amount2 = portionPerPerson;
+                } else {
+                    // Razem - proporcjonalny podział
+                    amount1 = p1.portion;
+                    amount2 = p2.portion;
+                }
+
+                let tableHTML = `
+                    <h3>📋 Podział na talerze</h3>
+                    <div class="portion-split-table">
+                        <div class="portion-split-header">
+                            <span>Składnik</span>
+                            <span class="portion-split-person">
+                                <span class="portion-split-dot" style="background: ${p1.color}"></span>
+                                ${p1.name}
+                            </span>
+                            <span class="portion-split-person">
+                                <span class="portion-split-dot" style="background: ${p2.color}"></span>
+                                ${p2.name}
+                            </span>
+                        </div>`;
+
+                tableHTML += r.ingredients.map(i => {
+                    const a1 = Math.round(i.amount * amount1 * 10) / 10;
+                    const a2 = Math.round(i.amount * amount2 * 10) / 10;
+                    return `
+                        <div class="portion-split-row">
+                            <span class="portion-split-item">${i.item}</span>
+                            <span class="portion-split-amount person1">${a1} ${i.unit}</span>
+                            <span class="portion-split-amount person2">${a2} ${i.unit}</span>
+                        </div>`;
+                }).join('');
+
+                tableHTML += '</div>';
+                portionSplitSection.innerHTML = tableHTML;
+                portionSplitSection.style.display = 'block';
+            } else {
+                portionSplitSection.style.display = 'none';
+            }
         }
 
         function closeModal(e) {
