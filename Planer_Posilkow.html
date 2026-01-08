@@ -749,6 +749,120 @@
 
         .hidden { display: none; }
 
+        /* CHECKBOX DLA ZJEDZONYCH POSIŁKÓW */
+        .eaten-checkbox {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            accent-color: #22c55e;
+            flex-shrink: 0;
+        }
+        .eaten-checkbox:disabled {
+            opacity: 0.3;
+            cursor: default;
+        }
+        .person-meal-row.eaten {
+            background-color: #f0fdf4;
+            border-radius: 4px;
+            padding: 2px 4px;
+            margin: -2px -4px;
+        }
+        .person-meal-row.eaten .meal-select-compact {
+            opacity: 0.6;
+            text-decoration: line-through;
+        }
+        .kcal-split {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1px;
+        }
+        .kcal-eaten {
+            color: #22c55e;
+            font-weight: 700;
+        }
+        .kcal-planned {
+            color: #9ca3af;
+            font-size: 10px;
+        }
+        .eaten-summary {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed #e5e7eb;
+        }
+        .eaten-progress-bar {
+            height: 4px;
+            background: #e5e7eb;
+            border-radius: 2px;
+            margin-top: 4px;
+        }
+        .eaten-progress-fill {
+            height: 100%;
+            background: #22c55e;
+            border-radius: 2px;
+            transition: width 0.3s;
+        }
+
+        /* SERDUSZKA - ULUBIONE PRZEPISY */
+        .favorite-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+        .favorite-btn:hover {
+            transform: scale(1.15);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .favorite-btn.active {
+            background: #fef2f2;
+        }
+        .recipe-header {
+            position: relative;
+        }
+        .filter-tab.favorites {
+            background: #fef2f2;
+            border-color: #fecaca;
+            color: #dc2626;
+        }
+        .filter-tab.favorites:hover {
+            background: #fee2e2;
+        }
+        .filter-tab.favorites.active {
+            background: #fee2e2;
+            border-color: #ef4444;
+            color: #dc2626;
+        }
+        .no-favorites {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            color: #9ca3af;
+        }
+        .no-favorites-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+        .no-favorites-text {
+            font-size: 16px;
+        }
+        .no-favorites-hint {
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
         /* RESPONSYWNOŚĆ - Tablet */
         @media (max-width: 1024px) {
             .container { max-width: 100%; padding: 15px; }
@@ -945,6 +1059,7 @@
                     <button class="btn btn-budget" onclick="fillAllWith(12)">💰 Budżet 2</button>
                     <button class="btn btn-budget" onclick="fillAllWith(13)">💰 Budżet 3</button>
                     <button class="btn btn-gray" onclick="resetPlan()">🔄 Reset</button>
+                    <button class="btn btn-gray" onclick="resetEatenStatus()">✅ Reset ptaszków</button>
                 </div>
 
                 <!-- Przycisk toggle ustawień -->
@@ -986,6 +1101,7 @@
             <div class="card">
                 <div class="filter-tabs">
                     <button class="filter-tab active" onclick="filterRecipes('all', this)">Wszystkie</button>
+                    <button class="filter-tab favorites" onclick="filterRecipes('favorites', this)">❤️ Ulubione</button>
                     <button class="filter-tab" onclick="filterRecipes('breakfast', this)">🍳 Śniadania</button>
                     <button class="filter-tab" onclick="filterRecipes('lunch', this)">🍽️ Obiady</button>
                     <button class="filter-tab" onclick="filterRecipes('dinner', this)">🥗 Kolacje</button>
@@ -1652,6 +1768,29 @@
                         "Na bajgle nakładamy twarożek, łososia wędzonego, plastry jajek.",
                         "Dodajemy pokrojone rzodkiewki i ogórek.",
                         "Doprawiamy pieprzem i podajemy."
+                    ]
+                },
+                {
+                    id: 'b31',
+                    name: "Nadziewane kajzerki z kurczakiem",
+                    kcal: 820, protein: 65, fat: 24, carbs: 86,
+                    ingredients: [
+                        { item: "Kajzerki", amount: 2.5, unit: "szt" },
+                        { item: "Pierś z kurczaka", amount: 190, unit: "g" },
+                        { item: "Mozzarella", amount: 25, unit: "g" },
+                        { item: "Papryka czerwona", amount: 0.3, unit: "szt" },
+                        { item: "Cebula czerwona", amount: 0.3, unit: "szt" },
+                        { item: "Jajko", amount: 0.6, unit: "szt" },
+                        { item: "Oliwa", amount: 13, unit: "ml" },
+                        { item: "Czosnek", amount: 1, unit: "ząbek" },
+                        { item: "Natka pietruszki", amount: 5, unit: "g" }
+                    ],
+                    steps: [
+                        "Kurczaka pokrój w kostkę, obtocz w oliwie i przyprawach, usmaż 2 min z każdej strony.",
+                        "Paprykę i cebulę pokrój w kostkę, wymieszaj z kurczakiem i serem.",
+                        "Dodaj roztrzepane jajko z mlekiem i przyprawami.",
+                        "Kajzerki natnij gwiaździście, uklepnij środek, posmaruj oliwą z czosnkiem.",
+                        "Nadziej kajzerki farszem, posyp serem i piecz 8-10 min w 200°C."
                     ]
                 }
             ],
@@ -2401,6 +2540,108 @@
                         "Kapustę szatkujemy, marchewkę ścieramy. Mieszamy z octem ryżowym.",
                         "Podajemy skrzydełka z ryżem i surówką."
                     ]
+                },
+                {
+                    id: 'l32',
+                    name: "Kurczak w sosie piwno-miodowym z ziemniakami",
+                    kcal: 820, protein: 64, fat: 21, carbs: 101,
+                    ingredients: [
+                        { item: "Pierś z kurczaka", amount: 260, unit: "g" },
+                        { item: "Ziemniaki", amount: 345, unit: "g" },
+                        { item: "Szparagi", amount: 5, unit: "szt" },
+                        { item: "Szynka szwarcwaldzka", amount: 46, unit: "g" },
+                        { item: "Piwo bezalkoholowe", amount: 290, unit: "ml" },
+                        { item: "Miód", amount: 34, unit: "g" },
+                        { item: "Oliwa", amount: 23, unit: "ml" },
+                        { item: "Sos sojowy", amount: 14, unit: "ml" },
+                        { item: "Cebula", amount: 0.5, unit: "szt" },
+                        { item: "Czosnek", amount: 2, unit: "ząbki" }
+                    ],
+                    steps: [
+                        "Ziemniaki pokrój w łódeczki, obtocz w oliwie z papryką wędzoną. Piecz 45-50 min w 180°C.",
+                        "Szparagi owiń szynką, posmaruj oliwą i piecz 15 min przed końcem pieczenia ziemniaków.",
+                        "Kurczaka pokrój i usmaż na patelni do przyrumienienia, odłóż.",
+                        "Na patelni zeszklij cebulę i czosnek, dodaj sos sojowy, piwo, miód.",
+                        "Wygotuj sos, dodaj kurczaka i polewaj sosem aż zgęstnieje."
+                    ]
+                },
+                {
+                    id: 'l33',
+                    name: "Döner Kebab z piekarnika",
+                    kcal: 820, protein: 51, fat: 48, carbs: 45,
+                    ingredients: [
+                        { item: "Wołowina mielona", amount: 95, unit: "g" },
+                        { item: "Wieprzowina mielona", amount: 95, unit: "g" },
+                        { item: "Pita", amount: 1, unit: "szt" },
+                        { item: "Skyr", amount: 35, unit: "g" },
+                        { item: "Jogurt naturalny", amount: 35, unit: "g" },
+                        { item: "Majonez", amount: 18, unit: "g" },
+                        { item: "Mix sałat", amount: 30, unit: "g" },
+                        { item: "Kapusta czerwona", amount: 30, unit: "g" },
+                        { item: "Pomidor", amount: 50, unit: "g" },
+                        { item: "Ogórek", amount: 30, unit: "g" },
+                        { item: "Cebula", amount: 20, unit: "g" }
+                    ],
+                    steps: [
+                        "Mięso mielone dopraw przyprawą i solą, wyrób na kleistą masę.",
+                        "Rozpłaszcz mięso między papierem do pieczenia na cienki placek.",
+                        "Piecz w 200°C aż się przyrumieni, potem porwij na paski.",
+                        "Dopiecz paski na patelni dla chrupiących krawędzi.",
+                        "Przygotuj sos z skyru, jogurtu i majonezu z przyprawą tzatziki.",
+                        "Złóż kebaba w ciepłej picie z warzywami i sosem."
+                    ]
+                },
+                {
+                    id: 'l34',
+                    name: "Wieprzowina po chińsku z ryżem",
+                    kcal: 820, protein: 52, fat: 25, carbs: 96,
+                    ingredients: [
+                        { item: "Schab wieprzowy", amount: 180, unit: "g" },
+                        { item: "Ryż basmati", amount: 80, unit: "g" },
+                        { item: "Marchew", amount: 80, unit: "g" },
+                        { item: "Miód", amount: 24, unit: "g" },
+                        { item: "Sos sojowy jasny", amount: 36, unit: "ml" },
+                        { item: "Sos sojowy ciemny", amount: 12, unit: "ml" },
+                        { item: "Imbir", amount: 10, unit: "g" },
+                        { item: "Czosnek", amount: 2, unit: "ząbki" },
+                        { item: "Olej", amount: 18, unit: "ml" },
+                        { item: "Skrobia ziemniaczana", amount: 5, unit: "g" },
+                        { item: "Zielona cebulka", amount: 10, unit: "g" }
+                    ],
+                    steps: [
+                        "Schab pokrój w plastry, zamarynuj w sosie sojowym z pieprzem i skrobią.",
+                        "Ugotuj ryż. Pokrój marchew, imbir i czosnek.",
+                        "Na rozgrzanym oleju przysmaż imbir, czosnek i cebulkę.",
+                        "Dodaj mięso, smaż do przyrumienienia, dodaj marchew.",
+                        "Wlej wodę z sosem sojowym ciemnym, gotuj 5-6 min.",
+                        "Na końcu dodaj miód, ocet i skrobię, zagotuj do zgęstnienia."
+                    ]
+                },
+                {
+                    id: 'l35',
+                    name: "Medaliony z indyka z młodymi ziemniakami",
+                    kcal: 820, protein: 67, fat: 20, carbs: 85,
+                    ingredients: [
+                        { item: "Polędwica z indyka", amount: 220, unit: "g" },
+                        { item: "Młode ziemniaki", amount: 585, unit: "g" },
+                        { item: "Ser feta", amount: 73, unit: "g" },
+                        { item: "Brokuł", amount: 75, unit: "g" },
+                        { item: "Suszone pomidory", amount: 15, unit: "g" },
+                        { item: "Jajko", amount: 1.5, unit: "szt" },
+                        { item: "Oliwa", amount: 10, unit: "ml" },
+                        { item: "Skyr", amount: 50, unit: "g" },
+                        { item: "Jogurt naturalny", amount: 50, unit: "g" },
+                        { item: "Koperek", amount: 5, unit: "g" },
+                        { item: "Mix sałat", amount: 30, unit: "g" }
+                    ],
+                    steps: [
+                        "Ziemniaki ugotuj 10 min, nastroszyj i obtocz w oliwie z przyprawami.",
+                        "Brokuł ugotuj na parze 5 min, pokrój w kostkę.",
+                        "Indyka posiekaj, wymieszaj z brokułem, fetą, pomidorami i jajkiem.",
+                        "Uformuj kotlety, piecz z ziemniakami 20 min w 200°C.",
+                        "Przygotuj sos z skyru, jogurtu, koperku i czosnku.",
+                        "Podawaj z sałatką z ogórka i rzodkiewki."
+                    ]
                 }
             ],
             dinner: [
@@ -3089,6 +3330,99 @@
             { name: "🍚 INNE", keywords: ["ryż", "makaron", "frytki", "oliwa", "orzechy", "miód", "płatki", "passata", "szczypiorek"] }
         ];
 
+        // Status zjedzonych posiłków: { day: { mealType: { personId: boolean } } }
+        let eatenMeals = {};
+
+        // Ulubione przepisy (Set z ID przepisów)
+        let favoriteRecipes = new Set();
+
+        // Aktualny filtr przepisów
+        let currentRecipeFilter = 'all';
+
+        // ===========================================
+        // FUNKCJE - ZJEDZONE POSIŁKI (PTASZKI)
+        // ===========================================
+
+        function initEatenMeals() {
+            let em = {};
+            days.forEach(day => {
+                em[day] = {};
+                mealTypes.forEach(mt => {
+                    em[day][mt] = { 1: false, 2: false };
+                });
+            });
+            return em;
+        }
+
+        function saveEatenMeals() {
+            localStorage.setItem('mealEatenStatus', JSON.stringify(eatenMeals));
+        }
+
+        function loadEatenMeals() {
+            const saved = localStorage.getItem('mealEatenStatus');
+            if (saved) {
+                try {
+                    eatenMeals = JSON.parse(saved);
+                } catch(e) {
+                    eatenMeals = initEatenMeals();
+                }
+            } else {
+                eatenMeals = initEatenMeals();
+            }
+        }
+
+        function toggleEaten(day, mealType, personId) {
+            if (!eatenMeals[day]) eatenMeals[day] = {};
+            if (!eatenMeals[day][mealType]) eatenMeals[day][mealType] = { 1: false, 2: false };
+
+            eatenMeals[day][mealType][personId] = !eatenMeals[day][mealType][personId];
+            saveEatenMeals();
+            renderPlannerTable();
+        }
+
+        function resetEatenStatus() {
+            if (confirm('Czy na pewno zresetować status zjedzonych posiłków?')) {
+                eatenMeals = initEatenMeals();
+                saveEatenMeals();
+                renderPlannerTable();
+            }
+        }
+
+        // ===========================================
+        // FUNKCJE - ULUBIONE PRZEPISY (SERDUSZKA)
+        // ===========================================
+
+        function saveFavorites() {
+            localStorage.setItem('recipeFavorites', JSON.stringify([...favoriteRecipes]));
+        }
+
+        function loadFavorites() {
+            const saved = localStorage.getItem('recipeFavorites');
+            if (saved) {
+                try {
+                    favoriteRecipes = new Set(JSON.parse(saved));
+                } catch(e) {
+                    favoriteRecipes = new Set();
+                }
+            }
+        }
+
+        function toggleFavorite(recipeId, event) {
+            if (event) {
+                event.stopPropagation();
+            }
+
+            if (favoriteRecipes.has(recipeId)) {
+                favoriteRecipes.delete(recipeId);
+            } else {
+                favoriteRecipes.add(recipeId);
+            }
+
+            saveFavorites();
+            renderRecipes(currentRecipeFilter);
+            renderPlannerTable();
+        }
+
         // ===========================================
         // FUNKCJE
         // ===========================================
@@ -3264,25 +3598,33 @@
             // Oblicz średnie dzienne kalorie i makro dla każdej osoby
             const personStats = persons.map(person => {
                 let totalKcal = 0, totalProtein = 0, totalFat = 0, totalCarbs = 0;
+                let totalKcalEaten = 0;
                 let daysWithMeals = 0;
 
                 days.forEach(day => {
                     let dayKcal = 0, dayProtein = 0, dayFat = 0, dayCarbs = 0;
+                    let dayKcalEaten = 0;
                     mealTypes.forEach(mt => {
                         const meal = plan[day][mt];
                         const recipeId = meal[person.id];
                         if (recipeId) {
                             const r = recipes[mt].find(x => x.id === recipeId);
                             if (r) {
-                                dayKcal += Math.round(r.kcal * person.portion);
+                                const mealKcal = Math.round(r.kcal * person.portion);
+                                dayKcal += mealKcal;
                                 dayProtein += Math.round(r.protein * person.portion);
                                 dayFat += Math.round(r.fat * person.portion);
                                 dayCarbs += Math.round(r.carbs * person.portion);
+                                // Sprawdź czy zjedzone
+                                if (eatenMeals[day]?.[mt]?.[person.id]) {
+                                    dayKcalEaten += mealKcal;
+                                }
                             }
                         }
                     });
                     if (dayKcal > 0) {
                         totalKcal += dayKcal;
+                        totalKcalEaten += dayKcalEaten;
                         totalProtein += dayProtein;
                         totalFat += dayFat;
                         totalCarbs += dayCarbs;
@@ -3291,12 +3633,13 @@
                 });
 
                 const avgKcal = daysWithMeals > 0 ? Math.round(totalKcal / daysWithMeals) : 0;
+                const avgKcalEaten = daysWithMeals > 0 ? Math.round(totalKcalEaten / daysWithMeals) : 0;
                 const avgProtein = daysWithMeals > 0 ? Math.round(totalProtein / daysWithMeals) : 0;
                 const avgFat = daysWithMeals > 0 ? Math.round(totalFat / daysWithMeals) : 0;
                 const avgCarbs = daysWithMeals > 0 ? Math.round(totalCarbs / daysWithMeals) : 0;
                 const percent = person.targetKcal > 0 ? Math.round((avgKcal / person.targetKcal) * 100) : 0;
 
-                return { person, totalKcal, avgKcal, avgProtein, avgFat, avgCarbs, daysWithMeals, percent };
+                return { person, totalKcal, totalKcalEaten, avgKcal, avgKcalEaten, avgProtein, avgFat, avgCarbs, daysWithMeals, percent };
             });
 
             summary.innerHTML = personStats.map(stat => {
@@ -3306,6 +3649,7 @@
                 else if (stat.percent < 90 && stat.percent > 0) percentClass = 'under';
 
                 const progressWidth = Math.min(stat.percent, 120);
+                const eatenPercent = stat.avgKcal > 0 ? Math.round((stat.avgKcalEaten / stat.avgKcal) * 100) : 0;
 
                 // Procenty makroskładników
                 const proteinPercent = stat.person.targetProtein > 0 ? Math.round((stat.avgProtein / stat.person.targetProtein) * 100) : 0;
@@ -3327,6 +3671,14 @@
                     <div class="progress-bar">
                         <div class="progress-fill ${percentClass === 'over' ? 'over' : colorClass}"
                              style="width: ${progressWidth}%"></div>
+                    </div>
+                    <div class="eaten-summary">
+                        <div style="font-size: 12px; color: #6b7280; margin-bottom: 4px;">
+                            Zjedzone: <strong style="color: #22c55e;">${stat.avgKcalEaten}</strong> / ${stat.avgKcal} kcal
+                        </div>
+                        <div class="eaten-progress-bar">
+                            <div class="eaten-progress-fill" style="width: ${eatenPercent}%"></div>
+                        </div>
                     </div>
                     <div style="display: flex; gap: 10px; margin-top: 10px; font-size: 11px;">
                         <div style="flex: 1; text-align: center;">
@@ -3386,13 +3738,30 @@
                         const recipeId = meal[p.id];
                         if (recipeId) totalMeals++;
 
-                        let opts = `<option value="">--</option>`;
-                        recipes[mealType].forEach(r => {
-                            opts += `<option value="${r.id}" ${recipeId === r.id ? 'selected' : ''}>${r.name}</option>`;
+                        // Sortuj przepisy - ulubione na górze
+                        const sortedRecipes = [...recipes[mealType]].sort((a, b) => {
+                            const aFav = favoriteRecipes.has(a.id) ? 0 : 1;
+                            const bFav = favoriteRecipes.has(b.id) ? 0 : 1;
+                            return aFav - bFav;
                         });
 
+                        let opts = `<option value="">--</option>`;
+                        sortedRecipes.forEach(r => {
+                            const favPrefix = favoriteRecipes.has(r.id) ? '❤️ ' : '';
+                            opts += `<option value="${r.id}" ${recipeId === r.id ? 'selected' : ''}>${favPrefix}${r.name}</option>`;
+                        });
+
+                        // Sprawdź status zjedzenia
+                        const isEaten = eatenMeals[day]?.[mealType]?.[p.id] || false;
+
                         return `
-                        <div class="person-meal-row">
+                        <div class="person-meal-row ${isEaten ? 'eaten' : ''}">
+                            <input type="checkbox"
+                                class="eaten-checkbox"
+                                ${isEaten ? 'checked' : ''}
+                                ${recipeId ? '' : 'disabled'}
+                                onchange="toggleEaten('${day}', '${mealType}', ${p.id})"
+                                title="Oznacz jako zjedzone">
                             <span class="person-indicator" style="background: ${p.color}"></span>
                             <select class="meal-select-compact ${mealType} ${recipeId ? 'has-value' : ''}"
                                 onchange="setMealForPerson('${day}', '${mealType}', ${p.id}, this.value)">${opts}</select>
@@ -3404,22 +3773,38 @@
                     row.appendChild(td);
                 });
 
-                // Kalorie dla każdej osoby osobno
+                // Kalorie dla każdej osoby osobno - pokaż zjedzone/zaplanowane
                 persons.forEach(person => {
-                    let kcal = 0;
+                    let kcalPlanned = 0;
+                    let kcalEaten = 0;
                     mealTypes.forEach(mt => {
                         const meal = plan[day][mt];
                         const recipeId = meal[person.id];
                         if (recipeId) {
                             const r = recipes[mt].find(x => x.id === recipeId);
-                            if (r) kcal += Math.round(r.kcal * person.portion);
+                            if (r) {
+                                const mealKcal = Math.round(r.kcal * person.portion);
+                                kcalPlanned += mealKcal;
+                                if (eatenMeals[day]?.[mt]?.[person.id]) {
+                                    kcalEaten += mealKcal;
+                                }
+                            }
                         }
                     });
 
                     const kcalTd = document.createElement('td');
                     const colorClass = person.id === 1 ? 'blue' : 'pink';
                     kcalTd.className = `kcal-person ${colorClass}`;
-                    kcalTd.innerHTML = kcal > 0 ? kcal : '<span class="empty">-</span>';
+
+                    if (kcalPlanned > 0) {
+                        kcalTd.innerHTML = `
+                            <div class="kcal-split">
+                                <span class="kcal-eaten">${kcalEaten}</span>
+                                <span class="kcal-planned">/ ${kcalPlanned}</span>
+                            </div>`;
+                    } else {
+                        kcalTd.innerHTML = '<span class="empty">-</span>';
+                    }
                     row.appendChild(kcalTd);
                 });
 
@@ -3546,17 +3931,32 @@
 
         // PRZEPISY
         function renderRecipes(filter = 'all') {
+            currentRecipeFilter = filter;
             const grid = document.getElementById('recipes-grid');
             grid.innerHTML = '';
-            const types = filter === 'all' ? mealTypes : [filter];
-            
+            const types = (filter === 'all' || filter === 'favorites') ? mealTypes : [filter];
+
+            let hasRecipes = false;
+
             types.forEach(mt => {
                 recipes[mt].forEach(r => {
+                    // Jeśli filtrujemy ulubione, pomiń nie-ulubione
+                    if (filter === 'favorites' && !favoriteRecipes.has(r.id)) {
+                        return;
+                    }
+
+                    hasRecipes = true;
+                    const isFav = favoriteRecipes.has(r.id);
                     const card = document.createElement('div');
                     card.className = 'recipe-card';
                     card.onclick = () => openRecipeModal(mt, r);
                     card.innerHTML = `
                         <div class="recipe-header ${mt}">
+                            <button class="favorite-btn ${isFav ? 'active' : ''}"
+                                onclick="toggleFavorite('${r.id}', event)"
+                                title="${isFav ? 'Usuń z ulubionych' : 'Dodaj do ulubionych'}">
+                                ${isFav ? '❤️' : '🤍'}
+                            </button>
                             <div class="recipe-type">${mealNames[mt]}</div>
                             <div class="recipe-name">${r.name}</div>
                         </div>
@@ -3571,6 +3971,16 @@
                     grid.appendChild(card);
                 });
             });
+
+            // Pokaż komunikat gdy brak ulubionych
+            if (filter === 'favorites' && !hasRecipes) {
+                grid.innerHTML = `
+                    <div class="no-favorites">
+                        <div class="no-favorites-icon">🤍</div>
+                        <div class="no-favorites-text">Nie masz jeszcze ulubionych przepisów</div>
+                        <div class="no-favorites-hint">Kliknij serduszko na karcie przepisu, aby dodać go do ulubionych</div>
+                    </div>`;
+            }
         }
 
         function filterRecipes(f, btn) {
@@ -3892,6 +4302,8 @@
         // INIT
         loadPersons();
         loadPlan();
+        loadEatenMeals();
+        loadFavorites();
         // Przelicz TDEE dla załadowanych osób
         persons.forEach(p => recalculatePerson(p));
         renderSettingsPanel();
