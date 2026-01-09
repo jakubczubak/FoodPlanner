@@ -978,7 +978,50 @@
             color: #6b7280;
             text-transform: uppercase;
         }
-        
+
+        /* Kontrolka porcji */
+        .modal-portions-control {
+            padding: 12px 16px;
+            background: #fef3c7;
+            border-bottom: 1px solid #fcd34d;
+            margin-bottom: 16px;
+        }
+        .portions-selector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .portions-label {
+            font-weight: 600;
+            color: #92400e;
+        }
+        .portions-btn {
+            width: 36px;
+            height: 36px;
+            border: 2px solid #f59e0b;
+            background: white;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #f59e0b;
+        }
+        .portions-btn:hover:not(:disabled) {
+            background: #fef3c7;
+        }
+        .portions-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        .portions-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #92400e;
+            min-width: 40px;
+            text-align: center;
+        }
+
         .modal-section {
             margin-bottom: 20px;
         }
@@ -1657,6 +1700,7 @@
             <div class="modal-body">
                 <div class="modal-persons-toggle" id="modal-persons-toggle"></div>
                 <div class="modal-multiplier" id="modal-multiplier"></div>
+                <div class="modal-portions-control" id="modal-portions-control"></div>
                 <div class="modal-macros" id="modal-macros"></div>
                 <div class="modal-section">
                     <h3>📝 Składniki</h3>
@@ -7841,11 +7885,13 @@
         let currentModalRecipe = null;
         let modalSelectedPersons = [1]; // Domyślnie tylko "Ja"
         let modalSplitMode = 'normal'; // 'normal', '5050-person1', '5050-person2'
+        let modalPortions = 1; // Liczba porcji wybrana przez użytkownika
 
         function openRecipeModal(mt, r) {
             currentModalRecipe = r;
             modalSelectedPersons = [1]; // Reset do "tylko ja"
             modalSplitMode = 'normal'; // Reset trybu
+            modalPortions = 1; // Reset porcji do 1
 
             document.getElementById('modal-overlay').classList.add('active');
             document.getElementById('modal-header').className = 'modal-header ' + mt;
@@ -7927,9 +7973,24 @@
             updateModalContent();
         }
 
+        function changePortions(delta) {
+            modalPortions = Math.max(1, modalPortions + delta);
+            updateModalContent();
+        }
+
         function updateModalContent() {
             const r = currentModalRecipe;
             if (!r) return;
+
+            // Renderuj kontrolkę porcji
+            document.getElementById('modal-portions-control').innerHTML = `
+                <div class="portions-selector">
+                    <span class="portions-label">🍽️ Porcji:</span>
+                    <button class="portions-btn" onclick="changePortions(-1)" ${modalPortions <= 1 ? 'disabled' : ''}>−</button>
+                    <span class="portions-value">${modalPortions}</span>
+                    <button class="portions-btn" onclick="changePortions(1)">+</button>
+                </div>
+            `;
 
             const p1 = persons[0];
             const p2 = persons[1];
@@ -7968,15 +8029,20 @@
                 if (person) multiplier = person.portion;
             }
 
+            // Mnożenie przez liczbę porcji wybranych przez użytkownika
+            const baseMultiplier = multiplier; // Zapamiętaj przed mnożeniem przez porcje
+            multiplier *= modalPortions;
+
             // Pokaż info o mnożniku
             const multiplierEl = document.getElementById('modal-multiplier');
+            const portionsInfo = modalPortions > 1 ? ` × ${modalPortions} porcji` : '';
             if (modalSplitMode.startsWith('5050')) {
-                multiplierEl.innerHTML = splitInfo;
+                multiplierEl.innerHTML = splitInfo + (modalPortions > 1 ? `<div style="margin-top:8px">📦 <strong>${modalPortions} porcji</strong> = łącznie ${multiplier.toFixed(2)}x</div>` : '');
             } else if (modalSelectedPersons.length === 2) {
-                multiplierEl.innerHTML = `Składniki dla obu osób (${p1.portion}x + ${p2.portion}x = <strong>${multiplier.toFixed(2)}x</strong>)`;
+                multiplierEl.innerHTML = `Składniki dla obu osób (${p1.portion}x + ${p2.portion}x = ${baseMultiplier.toFixed(2)}x)${portionsInfo}` + (modalPortions > 1 ? ` = <strong>${multiplier.toFixed(2)}x</strong>` : '');
             } else {
                 const person = persons.find(p => p.id === modalSelectedPersons[0]);
-                multiplierEl.innerHTML = `Składniki dla: <strong>${person.name}</strong> (mnożnik: <strong>${person.portion}x</strong>)`;
+                multiplierEl.innerHTML = `Składniki dla: <strong>${person.name}</strong> (${person.portion}x)${portionsInfo}` + (modalPortions > 1 ? ` = <strong>${multiplier.toFixed(2)}x</strong>` : '');
             }
 
             // Przelicz makra
