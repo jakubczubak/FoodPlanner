@@ -1390,12 +1390,29 @@
                     <button class="filter-tab" onclick="filterRecipes('breakfast', this)">🍳 Śniadania</button>
                     <button class="filter-tab" onclick="filterRecipes('lunch', this)">🍽️ Obiady</button>
                     <button class="filter-tab" onclick="filterRecipes('dinner', this)">🥗 Kolacje</button>
+                    <button class="filter-tab" onclick="filterRecipes('oven', this)">🔥 Z piekarnika</button>
+                    <button class="filter-tab" onclick="filterRecipes('chicken', this)">🍗 Kurczak</button>
+                    <button class="filter-tab" onclick="filterRecipes('pasta', this)">🍝 Makarony</button>
+                    <button class="filter-tab" onclick="filterRecipes('asian', this)">🍚 Azjatyckie</button>
+                    <button class="filter-tab" onclick="filterRecipes('mexican', this)">🌮 Meksykańskie</button>
+                    <button class="filter-tab" onclick="filterRecipes('eggs', this)">🍳 Jajka</button>
+                    <button class="filter-tab" onclick="filterRecipes('sandwiches', this)">🥪 Kanapki</button>
+                    <button class="filter-tab" onclick="filterRecipes('dairy', this)">🥛 Nabiał</button>
+                    <button class="filter-tab" onclick="filterRecipes('pancakes', this)">🥞 Naleśniki</button>
+                    <button class="filter-tab" onclick="filterRecipes('oatmeal', this)">🥣 Owsianki</button>
+                    <button class="filter-tab" onclick="filterRecipes('meat', this)">🥩 Mięso</button>
+                    <button class="filter-tab" onclick="filterRecipes('pizza', this)">🍕 Pizza/Kebab</button>
+                    <button class="filter-tab" onclick="filterRecipes('soups', this)">🍜 Zupy</button>
+                    <button class="filter-tab" onclick="filterRecipes('salads', this)">🥗 Sałatki</button>
+                    <button class="filter-tab" onclick="filterRecipes('fish', this)">🐟 Ryby</button>
+                    <button class="filter-tab" onclick="filterRecipes('casseroles', this)">🥘 Zapiekanki</button>
+                    <button class="filter-tab" onclick="filterRecipes('shakes', this)">🥤 Shake'i</button>
                 </div>
                 <div class="search-container">
                     <input type="text"
                            id="recipeSearch"
                            class="recipe-search-input"
-                           placeholder="Szukaj przepisu po nazwie..."
+                           placeholder="Szukaj po nazwie, składniku lub instrukcji (np. piekarnik)..."
                            oninput="searchRecipes(this.value)">
                     <button class="search-clear-btn" onclick="clearSearch()">✕</button>
                 </div>
@@ -7436,7 +7453,31 @@
             currentRecipeFilter = filter;
             const grid = document.getElementById('recipes-grid');
             grid.innerHTML = '';
-            const types = (filter === 'all' || filter === 'favorites') ? mealTypes : [filter];
+
+            // Dla nowych filtrów przeszukuj wszystkie typy posiłków
+            const specialFilters = ['all', 'favorites', 'oven', 'chicken', 'pasta', 'asian', 'mexican',
+                'eggs', 'sandwiches', 'dairy', 'pancakes', 'oatmeal', 'meat', 'pizza', 'soups', 'salads', 'fish', 'casseroles', 'shakes'];
+            const types = specialFilters.includes(filter) ? mealTypes : [filter];
+
+            // Mapowanie filtrów na kategorie
+            const categoryFilters = {
+                eggs: 'Jajka',
+                sandwiches: 'Kanapki',
+                dairy: 'Nabiał',
+                pancakes: 'Naleśniki',
+                oatmeal: 'Owsianki',
+                chicken: 'Kurczak',
+                meat: 'Wołowina/Wieprzowina',
+                pasta: 'Makarony',
+                asian: 'Ryż/Azja',
+                pizza: 'Pizza/Kebab',
+                mexican: 'Meksykańskie',
+                soups: 'Zupy',
+                salads: 'Sałatki',
+                fish: 'Ryby',
+                casseroles: 'Zapiekanki',
+                shakes: "Shake'i"
+            };
 
             let hasRecipes = false;
 
@@ -7447,14 +7488,30 @@
                         return;
                     }
 
-                    // Filtrowanie po wyszukiwanym tekście (nazwa i składniki)
+                    // NOWE: Filtr "z piekarnika" - szuka w steps
+                    if (filter === 'oven') {
+                        const hasOven = r.steps.some(step =>
+                            step.toLowerCase().includes('piekarnik')
+                        );
+                        if (!hasOven) return;
+                    }
+
+                    // Filtry po kategorii (uniwersalne)
+                    if (categoryFilters[filter] && !r.category.includes(categoryFilters[filter])) {
+                        return;
+                    }
+
+                    // Filtrowanie po wyszukiwanym tekście (nazwa, składniki i instrukcje)
                     if (currentSearchTerm) {
                         const termLower = currentSearchTerm;
                         const matchesName = r.name.toLowerCase().includes(termLower);
                         const matchesIngredient = r.ingredients.some(ing =>
                             ing.item.toLowerCase().includes(termLower)
                         );
-                        if (!matchesName && !matchesIngredient) return;
+                        const matchesSteps = r.steps.some(step =>
+                            step.toLowerCase().includes(termLower)
+                        );
+                        if (!matchesName && !matchesIngredient && !matchesSteps) return;
                     }
 
                     hasRecipes = true;
