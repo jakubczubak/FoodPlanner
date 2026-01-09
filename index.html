@@ -1329,19 +1329,19 @@
         <div id="section-planner" class="section active">
             <div class="card">
                 <div class="quick-buttons">
-                    <button class="btn btn-orange" onclick="fillAllWith(1)">Wariant 1</button>
-                    <button class="btn btn-blue" onclick="fillAllWith(2)">Wariant 2</button>
-                    <button class="btn btn-purple" onclick="fillAllWith(3)">Wariant 3</button>
-                    <button class="btn btn-orange" onclick="fillAllWith(4)">Wariant 4</button>
-                    <button class="btn btn-blue" onclick="fillAllWith(5)">Wariant 5</button>
-                    <button class="btn btn-purple" onclick="fillAllWith(6)">Wariant 6</button>
-                    <button class="btn btn-orange" onclick="fillAllWith(7)">Wariant 7</button>
-                    <button class="btn btn-blue" onclick="fillAllWith(8)">Wariant 8</button>
-                    <button class="btn btn-purple" onclick="fillAllWith(9)">Wariant 9</button>
-                    <button class="btn btn-gray" onclick="fillAllWith(10)">Wariant 10</button>
-                    <button class="btn btn-budget" onclick="fillAllWith(11)">💰 Budżet 1</button>
-                    <button class="btn btn-budget" onclick="fillAllWith(12)">💰 Budżet 2</button>
-                    <button class="btn btn-budget" onclick="fillAllWith(13)">💰 Budżet 3</button>
+                    <button class="btn btn-orange" onclick="fillAllWith(1)">🍳 Klasyczne polskie</button>
+                    <button class="btn btn-blue" onclick="fillAllWith(2)">🥛 Nabiałowe & Fit</button>
+                    <button class="btn btn-purple" onclick="fillAllWith(3)">🌮 Meksykańskie</button>
+                    <button class="btn btn-orange" onclick="fillAllWith(4)">🍝 Włoskie</button>
+                    <button class="btn btn-blue" onclick="fillAllWith(5)">🐟 Rybne</button>
+                    <button class="btn btn-purple" onclick="fillAllWith(6)">🥩 Mięsne</button>
+                    <button class="btn btn-orange" onclick="fillAllWith(7)">🍗 Kurczakowe</button>
+                    <button class="btn btn-blue" onclick="fillAllWith(8)">🍚 Azjatyckie</button>
+                    <button class="btn btn-purple" onclick="fillAllWith(9)">🍕 Pizza & Tosty</button>
+                    <button class="btn btn-gray" onclick="fillAllWith(10)">🍔 Street Food</button>
+                    <button class="btn btn-budget" onclick="fillAllWith(11)">💰 Budżetowy Jajka</button>
+                    <button class="btn btn-budget" onclick="fillAllWith(12)">💰 Budżetowy Owsianka</button>
+                    <button class="btn btn-budget" onclick="fillAllWith(13)">💰 Budżetowy Kanapki</button>
                     <button class="btn btn-gray" onclick="resetPlan()">🔄 Reset</button>
                     <button class="btn btn-gray" onclick="resetEatenStatus()">✅ Reset ptaszków</button>
                     <button class="btn btn-share" onclick="sharePlan()">📤 Udostępnij plan</button>
@@ -2800,6 +2800,26 @@
                         "Nałóż sos, jajecznicę, boczek, ser i pomidora.",
                         "Zwiń w rulon.",
                         "Opcjonalnie zapiecz 2 min."
+                    ]
+                },
+                {
+                    id: 'b60',
+                    name: "Jajecznica na boczku",
+                    category: "🍳 Jajka",
+                    kcal: 880, protein: 47, fat: 62, carbs: 34,
+                    ingredients: [
+                        { item: "Jajka", amount: 4, unit: "szt" },
+                        { item: "Boczek wędzony", amount: 100, unit: "g" },
+                        { item: "Chleb żytni razowy", amount: 2, unit: "kromki" },
+                        { item: "Masło", amount: 5, unit: "g" },
+                        { item: "Szczypiorek", amount: 10, unit: "g" }
+                    ],
+                    steps: [
+                        "Boczek pokrój w kostkę i podsmaż na patelni aż będzie chrupiący.",
+                        "Na tłuszczu z boczku wbij jajka i mieszaj łopatką.",
+                        "Pod koniec dodaj boczek do jajecznicy.",
+                        "Dopraw solą i pieprzem, posyp szczypiorkiem.",
+                        "Podawaj z chlebem żytnim posmarowanym masłem."
                     ]
                 }
             ],
@@ -7299,93 +7319,101 @@
             savePlan();
         }
 
-        // 10 zoptymalizowanych wariantów - zgrupowane według wspólnych składników
-        const optimizedVariants = {
-            1: { // Jajka + Chleb żytni + Szynka
-                breakfast: ['b1', 'b2', 'b5'],
-                lunch: ['l1', 'l3', 'l7'],
-                dinner: ['d2', 'd7', 'd13']
+        // Mapowanie wariantów na kategorie przepisów - losowanie przy każdym kliknięciu
+        const variantCategories = {
+            1: { // Klasyczne polskie
+                breakfast: ["🍳 Jajka", "🥪 Kanapki/Wrapy"],
+                lunch: ["🍗 Kurczak", "🥩 Wołowina/Wieprzowina"],
+                dinner: ["🧀 Nabiał", "🥪 Kanapki"]
             },
-            2: { // Jogurt Skyr + Owoce + Orzechy
-                breakfast: ['b4', 'b8', 'b15'],
-                lunch: ['l5', 'l10', 'l6'],
-                dinner: ['d1', 'd8', 'd10']
+            2: { // Nabiałowe & Fit
+                breakfast: ["🥛 Nabiał", "🥣 Owsianki"],
+                lunch: ["🥗 Sałatki", "🍗 Kurczak"],
+                dinner: ["🥤 Shake'i", "🥗 Sałatki"]
             },
-            3: { // Tortilla + Serek wiejski
-                breakfast: ['b7', 'b9', 'b14'],
-                lunch: ['l8', 'l14', 'l16'],
-                dinner: ['d3', 'd5', 'd12']
+            3: { // Meksykańskie
+                breakfast: ["🥪 Kanapki/Wrapy"],
+                lunch: ["🌮 Meksykańskie"],
+                dinner: ["🥪 Kanapki", "🥗 Sałatki"]
             },
-            4: { // Makaron + Szpinak + Parmezan
-                breakfast: ['b6', 'b12', 'b16'],
-                lunch: ['l9', 'l11', 'l18'],
-                dinner: ['d4', 'd11', 'd15']
+            4: { // Włoskie
+                breakfast: ["🍳 Jajka", "🥪 Kanapki/Wrapy"],
+                lunch: ["🍝 Makarony"],
+                dinner: ["🧀 Nabiał", "🥗 Sałatki"]
             },
-            5: { // Łosoś + Serek śmietankowy
-                breakfast: ['b3', 'b10', 'b11'],
-                lunch: ['l4', 'l12', 'l17'],
-                dinner: ['d5', 'd14', 'd24']
+            5: { // Rybne
+                breakfast: ["🥪 Kanapki/Wrapy"],
+                lunch: ["🐟 Ryby"],
+                dinner: ["🥗 Sałatki", "🧀 Nabiał"]
             },
-            6: { // Mięso mielone + Ryż + Passata
-                breakfast: ['b17', 'b18', 'b19'],
-                lunch: ['l2', 'l19', 'l25'],
-                dinner: ['d6', 'd9', 'd16']
+            6: { // Mięsne
+                breakfast: ["🍳 Jajka", "🥪 Kanapki/Wrapy"],
+                lunch: ["🥩 Wołowina/Wieprzowina"],
+                dinner: ["🥘 Zapiekanki", "🧀 Nabiał"]
             },
-            7: { // Kurczak pieczony + Ziemniaki
-                breakfast: ['b20', 'b21', 'b22'],
-                lunch: ['l6', 'l20', 'l29'],
-                dinner: ['d17', 'd18', 'd19']
+            7: { // Kurczakowe
+                breakfast: ["🥪 Kanapki/Wrapy", "🍳 Jajka"],
+                lunch: ["🍗 Kurczak"],
+                dinner: ["🥗 Sałatki", "🧀 Nabiał"]
             },
-            8: { // Azjatyckie + Sos sojowy + Ryż
-                breakfast: ['b23', 'b24', 'b25'],
-                lunch: ['l5', 'l21', 'l31'],
-                dinner: ['d20', 'd21', 'd22']
+            8: { // Azjatyckie
+                breakfast: ["🥪 Kanapki/Wrapy"],
+                lunch: ["🍚 Ryż/Azja"],
+                dinner: ["🥗 Sałatki", "🧀 Nabiał"]
             },
-            9: { // Pizza/Tosty + Mozzarella + Szynka
-                breakfast: ['b24', 'b26', 'b27'],
-                lunch: ['l23', 'l26', 'l27'],
-                dinner: ['d23', 'd25', 'd26']
+            9: { // Pizza & Tosty
+                breakfast: ["🥪 Kanapki/Wrapy", "🍳 Jajka"],
+                lunch: ["🍕 Pizza/Kebab"],
+                dinner: ["🥪 Kanapki", "🧀 Nabiał"]
             },
-            10: { // Quesadilla/Burger + Kurczak
-                breakfast: ['b28', 'b29', 'b30'],
-                lunch: ['l26', 'l30', 'l24'],
-                dinner: ['d27', 'd28', 'd29']
+            10: { // Street Food
+                breakfast: ["🥪 Kanapki/Wrapy"],
+                lunch: ["🍕 Pizza/Kebab", "🌮 Meksykańskie"],
+                dinner: ["🥪 Kanapki", "🥗 Sałatki"]
             },
-            11: { // 💰 BUDŻETOWY 1 - Jajka + Twaróg + Kurczak + Ryż/Ziemniaki
-                // Najtańsze składniki: jajka, twaróg, kurczak, ryż, ziemniaki, kapusta
-                breakfast: ['b1', 'b2', 'b14'],  // Jajecznica, tosty z jajkiem, serek wiejski z warzywami
-                lunch: ['l1', 'l6', 'l2'],       // Kurczak z ryżem, kurczak z ziemniakami, mielone z frytkami
-                dinner: ['d2', 'd1', 'd7']       // Pasta jajeczna, twarożek z owocami, kanapki z serem
-            },
-            12: { // 💰 BUDŻETOWY 2 - Owsianka + Makaron + Placki
-                // Tanie: płatki owsiane, makaron, mąka, jajka, twaróg, kurczak
-                breakfast: ['b13', 'b8', 'b15'], // Owsianka waniliowa, placuszki proteinowe, owsianka z owocami
-                lunch: ['l3', 'l2', 'l30'],      // Makaron z kurczakiem, mielone z frytkami, nuggetsy z ziemniakami
-                dinner: ['d6', 'd9', 'd2']       // Racuszki jabłkowe, placki bananowe, kanapki z pastą jajeczną
-            },
-            13: { // 💰 BUDŻETOWY 3 - Kanapki + Surówki + Proste dania
-                // Tanie: chleb, jajka, szynka, ser żółty, kapusta, marchew
-                breakfast: ['b10', 'b2', 'b1'],  // Kanapki z serkiem, tosty z jajkiem, jajecznica
-                lunch: ['l6', 'l1', 'l29'],      // Kurczak z ziemniakami, kurczak z ryżem, kotlet z ziemniakami
-                dinner: ['d7', 'd2', 'd15']      // Kanapki z serem gouda, pasta jajeczna, kanapki z hummusem
-            }
+            // Budżetowe - losują z tanich kategorii
+            11: { breakfast: ["🍳 Jajka"], lunch: ["🍗 Kurczak"], dinner: ["🧀 Nabiał"] },
+            12: { breakfast: ["🥣 Owsianki"], lunch: ["🍝 Makarony"], dinner: ["🥞 Naleśniki"] },
+            13: { breakfast: ["🥪 Kanapki/Wrapy"], lunch: ["🍗 Kurczak"], dinner: ["🥪 Kanapki"] }
         };
 
         function fillAllWith(variantNum) {
-            const variantRecipes = optimizedVariants[variantNum];
-            if (!variantRecipes) return;
+            const categories = variantCategories[variantNum];
+            if (!categories) return;
 
-            // Schemat: dni 0-2 -> przepis[0], dni 3-5 -> przepis[1], dzień 6 -> przepis[2]
-            const dayToRecipeIndex = [0, 0, 0, 1, 1, 1, 2];
+            const workDays = ['Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota'];
 
-            days.forEach((day, dayIndex) => {
-                const recipeIdx = dayToRecipeIndex[dayIndex];
+            // Dla każdego typu posiłku wylosuj 2 przepisy z dozwolonych kategorii
+            const selectedRecipes = {};
+            mealTypes.forEach(mt => {
+                const allowedCategories = categories[mt];
+                // Znajdź wszystkie przepisy z dozwolonych kategorii
+                const matchingRecipes = recipes[mt].filter(r =>
+                    allowedCategories.some(cat => r.category.includes(cat))
+                );
+                // Wylosuj 2 różne przepisy (shuffle i weź pierwsze 2)
+                const shuffled = [...matchingRecipes].sort(() => Math.random() - 0.5);
+                selectedRecipes[mt] = [
+                    shuffled[0]?.id || null,
+                    shuffled[1]?.id || shuffled[0]?.id || null
+                ];
+            });
 
+            // Wypełnij plan: Pn-Śr przepis[0], Cz-Sb przepis[1]
+            workDays.forEach((day, i) => {
+                const recipeIdx = i < 3 ? 0 : 1;
                 mealTypes.forEach(mt => {
-                    const recipeId = variantRecipes[mt][recipeIdx];
+                    const recipeId = selectedRecipes[mt][recipeIdx];
                     persons.forEach(p => {
                         plan[day][mt][p.id] = recipeId;
                     });
+                });
+            });
+
+            // Wyczyść niedzielę
+            mealTypes.forEach(mt => {
+                persons.forEach(p => {
+                    plan['Niedziela'][mt][p.id] = null;
                 });
             });
 
@@ -7419,9 +7447,14 @@
                         return;
                     }
 
-                    // Filtrowanie po wyszukiwanym tekście
-                    if (currentSearchTerm && !r.name.toLowerCase().includes(currentSearchTerm)) {
-                        return;
+                    // Filtrowanie po wyszukiwanym tekście (nazwa i składniki)
+                    if (currentSearchTerm) {
+                        const termLower = currentSearchTerm;
+                        const matchesName = r.name.toLowerCase().includes(termLower);
+                        const matchesIngredient = r.ingredients.some(ing =>
+                            ing.item.toLowerCase().includes(termLower)
+                        );
+                        if (!matchesName && !matchesIngredient) return;
                     }
 
                     hasRecipes = true;
