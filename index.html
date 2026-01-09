@@ -342,10 +342,25 @@
         .meal-picker-option .recipe-name {
             flex: 1;
         }
-        .meal-picker-option .recipe-kcal {
-            color: #9ca3af;
+        .meal-picker-option .recipe-macros {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
             font-size: 11px;
             white-space: nowrap;
+        }
+        .meal-picker-option .macro-kcal {
+            color: #374151;
+            font-weight: 600;
+        }
+        .meal-picker-option .macro-kcal::after {
+            content: ' kcal';
+            font-weight: 400;
+            color: #9ca3af;
+        }
+        .meal-picker-option .macro-detail {
+            color: #9ca3af;
+            font-size: 10px;
         }
 
         .meal-picker-category {
@@ -2516,13 +2531,13 @@
                     id: 'b40',
                     name: "Jajka w koszulce na tostach z awokado",
                     category: "🍳 Jajka",
-                    kcal: 820, protein: 42, fat: 48, carbs: 56,
+                    kcal: 820, protein: 58, fat: 32, carbs: 68,
                     ingredients: [
                         { item: "Jajka", amount: 4, unit: "szt" },
-                        { item: "Chleb pszenny (tosty)", amount: 4, unit: "kromki" },
-                        { item: "Awokado", amount: 1, unit: "szt" },
-                        { item: "Bekon", amount: 60, unit: "g" },
-                        { item: "Masło", amount: 20, unit: "g" },
+                        { item: "Chleb pszenny (tosty)", amount: 5, unit: "kromki" },
+                        { item: "Awokado", amount: 0.5, unit: "szt" },
+                        { item: "Bekon", amount: 100, unit: "g" },
+                        { item: "Masło", amount: 10, unit: "g" },
                         { item: "Ocet winny", amount: 15, unit: "ml" },
                         { item: "Szczypiorek", amount: 10, unit: "g" },
                         { item: "Cytryna (sok)", amount: 5, unit: "ml" }
@@ -2543,13 +2558,13 @@
                     id: 'b41',
                     name: "Jajka w koszulce po benedyktyńsku",
                     category: "🍳 Jajka",
-                    kcal: 820, protein: 48, fat: 52, carbs: 46,
+                    kcal: 820, protein: 62, fat: 32, carbs: 68,
                     ingredients: [
                         { item: "Jajka", amount: 4, unit: "szt" },
-                        { item: "Bułka angielska (English muffin)", amount: 2, unit: "szt" },
-                        { item: "Szynka", amount: 100, unit: "g" },
-                        { item: "Żółtko jajka (do sosu)", amount: 2, unit: "szt" },
-                        { item: "Masło", amount: 60, unit: "g" },
+                        { item: "Bułka angielska (English muffin)", amount: 3, unit: "szt" },
+                        { item: "Szynka", amount: 150, unit: "g" },
+                        { item: "Żółtko jajka (do sosu)", amount: 1, unit: "szt" },
+                        { item: "Masło", amount: 25, unit: "g" },
                         { item: "Cytryna (sok)", amount: 10, unit: "ml" },
                         { item: "Ocet winny", amount: 15, unit: "ml" },
                         { item: "Szczypiorek", amount: 5, unit: "g" }
@@ -2862,15 +2877,15 @@
                     id: 'b54',
                     name: "Jajecznica z parówkami i pieczywem",
                     category: "🍳 Jajka",
-                    kcal: 820, protein: 42, fat: 48, carbs: 52,
+                    kcal: 820, protein: 60, fat: 30, carbs: 70,
                     ingredients: [
-                        { item: "Jajka", amount: 4, unit: "szt" },
-                        { item: "Parówki (wysokiej jakości)", amount: 3, unit: "szt" },
-                        { item: "Masło", amount: 15, unit: "g" },
-                        { item: "Chleb pszenny", amount: 3, unit: "kromki" },
+                        { item: "Jajka", amount: 5, unit: "szt" },
+                        { item: "Parówki (wysokiej jakości)", amount: 4, unit: "szt" },
+                        { item: "Masło", amount: 8, unit: "g" },
+                        { item: "Chleb pszenny", amount: 4, unit: "kromki" },
                         { item: "Pomidor", amount: 1, unit: "szt" },
                         { item: "Szczypiorek", amount: 10, unit: "g" },
-                        { item: "Ser żółty", amount: 30, unit: "g" }
+                        { item: "Ser żółty", amount: 15, unit: "g" }
                     ],
                     steps: [
                         "Parówki pokrój w plasterki i podsmaż na patelni.",
@@ -2999,20 +3014,22 @@
                     id: 'b60',
                     name: "Jajecznica na boczku",
                     category: "🍳 Jajka",
-                    kcal: 880, protein: 47, fat: 62, carbs: 34,
+                    kcal: 820, protein: 62, fat: 38, carbs: 58,
                     ingredients: [
                         { item: "Jajka", amount: 4, unit: "szt" },
-                        { item: "Boczek wędzony", amount: 100, unit: "g" },
-                        { item: "Chleb żytni razowy", amount: 2, unit: "kromki" },
+                        { item: "Boczek wędzony", amount: 50, unit: "g" },
+                        { item: "Szynka", amount: 80, unit: "g" },
+                        { item: "Chleb żytni razowy", amount: 3, unit: "kromki" },
                         { item: "Masło", amount: 5, unit: "g" },
+                        { item: "Pomidor", amount: 100, unit: "g" },
                         { item: "Szczypiorek", amount: 10, unit: "g" }
                     ],
                     steps: [
                         "Boczek pokrój w kostkę i podsmaż na patelni aż będzie chrupiący.",
-                        "Na tłuszczu z boczku wbij jajka i mieszaj łopatką.",
-                        "Pod koniec dodaj boczek do jajecznicy.",
+                        "Dodaj pokrojoną szynkę i podsmaż chwilę.",
+                        "Na tłuszczu wbij jajka i mieszaj łopatką.",
                         "Dopraw solą i pieprzem, posyp szczypiorkiem.",
-                        "Podawaj z chlebem żytnim posmarowanym masłem."
+                        "Podawaj z chlebem żytnim posmarowanym masłem i pokrojonym pomidorem."
                     ]
                 }
             ],
@@ -4137,16 +4154,16 @@
                     id: 'l46',
                     name: "Kurczak z cukinią i pomidorami w ziołach",
                     category: "🍗 Kurczak",
-                    kcal: 820, protein: 62, fat: 32, carbs: 64,
+                    kcal: 820, protein: 58, fat: 28, carbs: 86,
                     ingredients: [
-                        { item: "Udka z kurczaka (bez kości)", amount: 280, unit: "g" },
-                        { item: "Ziemniaki", amount: 250, unit: "g" },
+                        { item: "Udka z kurczaka (bez kości)", amount: 250, unit: "g" },
+                        { item: "Ziemniaki", amount: 400, unit: "g" },
                         { item: "Cukinia", amount: 200, unit: "g" },
                         { item: "Pomidory", amount: 150, unit: "g" },
                         { item: "Cebula", amount: 1, unit: "szt" },
-                        { item: "Oliwa z oliwek", amount: 25, unit: "ml" },
+                        { item: "Oliwa z oliwek", amount: 20, unit: "ml" },
                         { item: "Bazylia świeża", amount: 10, unit: "g" },
-                        { item: "Parmezan", amount: 30, unit: "g" }
+                        { item: "Parmezan", amount: 25, unit: "g" }
                     ],
                     steps: [
                         "Piekarnik nagrzej do 200°C.",
@@ -7556,7 +7573,10 @@
                         <div class="meal-picker-option ${isSelected ? 'selected' : ''}"
                              onclick="selectMealOption('${r.id}')">
                             <span class="recipe-name">${isFav ? '❤️ ' : ''}${r.name}</span>
-                            <span class="recipe-kcal">${r.kcal} kcal</span>
+                            <span class="recipe-macros">
+                                <span class="macro-kcal">${r.kcal}</span>
+                                <span class="macro-detail">B${r.protein} T${r.fat} W${r.carbs}</span>
+                            </span>
                         </div>
                     `;
                 });
