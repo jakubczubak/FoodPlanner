@@ -249,6 +249,163 @@
             color: #1f2937;
         }
 
+        /* MEAL PICKER MODAL (mobile-friendly) */
+        .meal-picker-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+        .meal-picker-modal.hidden { display: none; }
+
+        .meal-picker-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .meal-picker-content {
+            position: relative;
+            background: white;
+            width: 100%;
+            max-width: 500px;
+            max-height: 70vh;
+            border-radius: 16px 16px 0 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            animation: slideUp 0.2s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+
+        .meal-picker-header {
+            display: flex;
+            padding: 12px;
+            gap: 8px;
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            background: white;
+        }
+
+        .meal-picker-header input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        .meal-picker-header input:focus {
+            outline: none;
+            border-color: #8b5cf6;
+        }
+
+        .meal-picker-close {
+            padding: 10px 14px;
+            background: #f3f4f6;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .meal-picker-close:active {
+            background: #e5e7eb;
+        }
+
+        .meal-picker-options {
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            flex: 1;
+        }
+
+        .meal-picker-option {
+            padding: 14px 16px;
+            border-bottom: 1px solid #f3f4f6;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .meal-picker-option:active {
+            background: #f3f4f6;
+        }
+        .meal-picker-option.selected {
+            background: #dbeafe;
+        }
+        .meal-picker-option .recipe-name {
+            flex: 1;
+        }
+        .meal-picker-option .recipe-kcal {
+            color: #9ca3af;
+            font-size: 11px;
+            white-space: nowrap;
+        }
+
+        .meal-picker-category {
+            padding: 10px 16px;
+            background: #f9fafb;
+            font-weight: 600;
+            font-size: 12px;
+            color: #6b7280;
+            text-transform: uppercase;
+            position: sticky;
+            top: 0;
+        }
+
+        /* Combobox trigger (zamiast select) */
+        .combobox-trigger {
+            width: 100%;
+            padding: 6px 8px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 11px;
+            cursor: pointer;
+            background: white;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+        .combobox-trigger:active {
+            background: #f3f4f6;
+        }
+        .combobox-trigger.breakfast { border-left: 3px solid #f97316; }
+        .combobox-trigger.lunch { border-left: 3px solid #3b82f6; }
+        .combobox-trigger.dinner { border-left: 3px solid #8b5cf6; }
+        .combobox-trigger.has-value.breakfast { background-color: #fff7ed; }
+        .combobox-trigger.has-value.lunch { background-color: #eff6ff; }
+        .combobox-trigger.has-value.dinner { background-color: #faf5ff; }
+
+        .combobox-text {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .combobox-arrow {
+            font-size: 10px;
+            color: #9ca3af;
+            margin-left: 4px;
+        }
+
+        @media (max-width: 500px) {
+            .combobox-trigger {
+                padding: 4px 6px;
+                font-size: 9px;
+            }
+        }
+        @media (max-width: 380px) {
+            .combobox-trigger { font-size: 8px; }
+        }
+
         /* KOLUMNY KALORII DLA OSÓB */
         .kcal-person {
             text-align: center;
@@ -1030,8 +1187,11 @@
             padding: 2px 4px;
             margin: -2px -4px;
         }
-        .person-meal-row.eaten .meal-select-compact {
+        .person-meal-row.eaten .meal-select-compact,
+        .person-meal-row.eaten .combobox-trigger {
             opacity: 0.6;
+        }
+        .person-meal-row.eaten .combobox-text {
             text-decoration: line-through;
         }
         .kcal-split {
@@ -1490,6 +1650,22 @@
                     <h3>👨‍🍳 Przygotowanie</h3>
                     <ul class="modal-steps" id="modal-steps"></ul>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MEAL PICKER MODAL (mobile-friendly searchable dropdown) -->
+    <div id="mealPickerModal" class="meal-picker-modal hidden">
+        <div class="meal-picker-overlay" onclick="closeMealPicker()"></div>
+        <div class="meal-picker-content">
+            <div class="meal-picker-header">
+                <input type="text" id="mealPickerSearch"
+                       placeholder="Szukaj przepisu..."
+                       oninput="filterMealPickerOptions(this.value)">
+                <button class="meal-picker-close" onclick="closeMealPicker()">✕</button>
+            </div>
+            <div class="meal-picker-options" id="mealPickerOptions">
+                <!-- Opcje generowane dynamicznie -->
             </div>
         </div>
     </div>
@@ -7225,42 +7401,16 @@
                     const td = document.createElement('td');
                     const meal = plan[day][mealType];
 
-                    // Dwa dropdowny - jeden dla każdej osoby
+                    // Dwa dropdowny - jeden dla każdej osoby (combobox z wyszukiwaniem)
                     const dropdownsHtml = persons.map(p => {
                         const recipeId = meal[p.id];
                         if (recipeId) totalMeals++;
 
-                        // Grupuj przepisy według kategorii
-                        const categoryOrder = mealType === 'breakfast' ? breakfastCategories :
-                                              mealType === 'lunch' ? lunchCategories : dinnerCategories;
-
-                        const grouped = {};
-                        categoryOrder.forEach(cat => grouped[cat] = []);
-
-                        recipes[mealType].forEach(r => {
-                            const cat = r.category || "🍲 Inne";
-                            if (!grouped[cat]) grouped[cat] = [];
-                            grouped[cat].push(r);
-                        });
-
-                        // Sortuj alfabetycznie w każdej kategorii
-                        Object.keys(grouped).forEach(cat => {
-                            grouped[cat].sort((a, b) => a.name.localeCompare(b.name, 'pl'));
-                        });
-
-                        // Buduj HTML z optgroup
-                        let opts = `<option value="">-- wybierz --</option>`;
-                        categoryOrder.forEach(cat => {
-                            if (grouped[cat] && grouped[cat].length > 0) {
-                                opts += `<optgroup label="${cat}">`;
-                                grouped[cat].forEach(r => {
-                                    const favPrefix = favoriteRecipes.has(r.id) ? '❤️ ' : '';
-                                    const selected = recipeId === r.id ? 'selected' : '';
-                                    opts += `<option value="${r.id}" ${selected}>${favPrefix}${r.name}</option>`;
-                                });
-                                opts += `</optgroup>`;
-                            }
-                        });
+                        // Pobierz nazwę wybranego przepisu
+                        const selectedRecipe = recipeId ? recipes[mealType].find(r => r.id === recipeId) : null;
+                        const displayName = selectedRecipe
+                            ? (favoriteRecipes.has(recipeId) ? '❤️ ' : '') + selectedRecipe.name
+                            : '-- wybierz --';
 
                         // Sprawdź status zjedzenia
                         const isEaten = eatenMeals[day]?.[mealType]?.[p.id] || false;
@@ -7274,8 +7424,11 @@
                                 onchange="toggleEaten('${day}', '${mealType}', ${p.id})"
                                 title="Oznacz jako zjedzone">
                             <span class="person-indicator" style="background: ${p.color}"></span>
-                            <select class="meal-select-compact ${mealType} ${recipeId ? 'has-value' : ''}"
-                                onchange="setMealForPerson('${day}', '${mealType}', ${p.id}, this.value)">${opts}</select>
+                            <button class="combobox-trigger ${mealType} ${recipeId ? 'has-value' : ''}"
+                                onclick="openMealPicker('${day}', '${mealType}', ${p.id})">
+                                <span class="combobox-text">${displayName}</span>
+                                <span class="combobox-arrow">▼</span>
+                            </button>
                             <button class="preview-btn" onclick="previewRecipe('${mealType}', '${recipeId || ''}')" ${recipeId ? '' : 'disabled'}>👁</button>
                         </div>`;
                     }).join('');
@@ -7334,6 +7487,95 @@
             plan[day][mealType][personId] = recipeId || null;
             renderPlannerTable();
             savePlan();
+        }
+
+        // ===========================================
+        // MEAL PICKER (mobile-friendly searchable dropdown)
+        // ===========================================
+        let currentMealPicker = { day: null, mealType: null, personId: null };
+
+        function openMealPicker(day, mealType, personId) {
+            currentMealPicker = { day, mealType, personId };
+
+            const modal = document.getElementById('mealPickerModal');
+            const searchInput = document.getElementById('mealPickerSearch');
+
+            // Generuj opcje
+            renderMealPickerOptions(mealType, '');
+
+            // Wyczyść wyszukiwanie
+            searchInput.value = '';
+
+            // Pokaż modal
+            modal.classList.remove('hidden');
+
+            // Focus na input (po animacji)
+            setTimeout(() => searchInput.focus(), 100);
+        }
+
+        function closeMealPicker() {
+            document.getElementById('mealPickerModal').classList.add('hidden');
+            currentMealPicker = { day: null, mealType: null, personId: null };
+        }
+
+        function filterMealPickerOptions(searchTerm) {
+            renderMealPickerOptions(currentMealPicker.mealType, searchTerm.toLowerCase());
+        }
+
+        function renderMealPickerOptions(mealType, searchTerm) {
+            const container = document.getElementById('mealPickerOptions');
+            const currentValue = plan[currentMealPicker.day]?.[mealType]?.[currentMealPicker.personId];
+
+            // Grupuj przepisy po kategorii
+            const grouped = {};
+            recipes[mealType].forEach(r => {
+                // Filtruj po wyszukiwaniu
+                if (searchTerm) {
+                    const matchesName = r.name.toLowerCase().includes(searchTerm);
+                    const matchesIngredient = r.ingredients.some(ing =>
+                        ing.item.toLowerCase().includes(searchTerm)
+                    );
+                    if (!matchesName && !matchesIngredient) return;
+                }
+
+                if (!grouped[r.category]) grouped[r.category] = [];
+                grouped[r.category].push(r);
+            });
+
+            // Sortuj kategorie i przepisy
+            let html = `<div class="meal-picker-option" onclick="selectMealOption('')">
+                <span class="recipe-name">-- wybierz --</span>
+            </div>`;
+
+            Object.keys(grouped).sort().forEach(category => {
+                html += `<div class="meal-picker-category">${category}</div>`;
+                grouped[category].sort((a,b) => a.name.localeCompare(b.name, 'pl')).forEach(r => {
+                    const isFav = favoriteRecipes.has(r.id);
+                    const isSelected = r.id === currentValue;
+                    html += `
+                        <div class="meal-picker-option ${isSelected ? 'selected' : ''}"
+                             onclick="selectMealOption('${r.id}')">
+                            <span class="recipe-name">${isFav ? '❤️ ' : ''}${r.name}</span>
+                            <span class="recipe-kcal">${r.kcal} kcal</span>
+                        </div>
+                    `;
+                });
+            });
+
+            container.innerHTML = html;
+        }
+
+        function selectMealOption(recipeId) {
+            const { day, mealType, personId } = currentMealPicker;
+            setMealForPerson(day, mealType, personId, recipeId);
+            closeMealPicker();
+        }
+
+        // Pomocnicza funkcja do pobrania nazwy przepisu po ID
+        function getRecipeNameById(mealType, recipeId) {
+            if (!recipeId) return null;
+            const recipe = recipes[mealType].find(r => r.id === recipeId);
+            return recipe ? recipe.name : null;
         }
 
         // Mapowanie wariantów na kategorie przepisów - losowanie przy każdym kliknięciu
