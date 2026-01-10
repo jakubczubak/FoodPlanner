@@ -1748,7 +1748,7 @@
                     <input type="text"
                            id="recipeSearch"
                            class="recipe-search-input"
-                           placeholder="Szukaj po nazwie, składniku lub instrukcji (np. piekarnik)..."
+                           placeholder="Szukaj po nazwie, składniku, zamienniku lub instrukcji..."
                            oninput="searchRecipes(this.value)">
                     <button class="search-clear-btn" onclick="clearSearch()">✕</button>
                 </div>
@@ -12362,17 +12362,22 @@
                         return;
                     }
 
-                    // Filtrowanie po wyszukiwanym tekście (nazwa, składniki i instrukcje)
+                    // Filtrowanie po wyszukiwanym tekście (nazwa, składniki, zamienniki i instrukcje)
                     if (currentSearchTerm) {
                         const termLower = currentSearchTerm;
                         const matchesName = r.name.toLowerCase().includes(termLower);
                         const matchesIngredient = r.ingredients.some(ing =>
                             ing.item.toLowerCase().includes(termLower)
                         );
+                        const matchesSubstitute = r.ingredients.some(ing =>
+                            ing.substitutes && ing.substitutes.some(sub =>
+                                sub.item.toLowerCase().includes(termLower)
+                            )
+                        );
                         const matchesSteps = r.steps.some(step =>
                             step.toLowerCase().includes(termLower)
                         );
-                        if (!matchesName && !matchesIngredient && !matchesSteps) return;
+                        if (!matchesName && !matchesIngredient && !matchesSubstitute && !matchesSteps) return;
                     }
 
                     hasRecipes = true;
