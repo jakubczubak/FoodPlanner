@@ -157,6 +157,52 @@
             flex: 1;
             min-width: 200px;
         }
+        .persons-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .person-remove-btn {
+            background: #fee2e2;
+            color: #dc2626;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+        .person-remove-btn:hover {
+            background: #dc2626;
+            color: white;
+        }
+        .person-add-container {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #e5e7eb;
+        }
+        .person-add-btn {
+            background: #ecfdf5;
+            color: #059669;
+            border: 2px dashed #a7f3d0;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.2s;
+        }
+        .person-add-btn:hover {
+            background: #d1fae5;
+            border-color: #059669;
+        }
         .person-dot {
             width: 14px;
             height: 14px;
@@ -657,6 +703,51 @@
             border-radius: 8px;
             font-weight: 700;
             font-size: 13px;
+        }
+
+        /* MNOŻNIK LISTY ZAKUPÓW */
+        .shopping-multiplier {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        .multiplier-label {
+            font-weight: 600;
+            font-size: 14px;
+            color: #92400e;
+        }
+        .multiplier-buttons {
+            display: flex;
+            gap: 6px;
+        }
+        .multiplier-btn {
+            padding: 6px 14px;
+            border: 2px solid #d97706;
+            border-radius: 6px;
+            background: white;
+            color: #92400e;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .multiplier-btn:hover {
+            background: #fef3c7;
+        }
+        .multiplier-btn.active {
+            background: #d97706;
+            color: white;
+            border-color: #b45309;
+        }
+        .multiplier-info {
+            font-size: 12px;
+            color: #78350f;
+            font-style: italic;
         }
 
         /* PANEL FILTRÓW ZAKUPÓW */
@@ -1696,13 +1787,12 @@
 
                 <table class="plan-table">
                     <thead>
-                        <tr>
+                        <tr id="plan-table-header-row">
                             <th style="width: 50px;">Dzień</th>
                             <th>🍳 Śniadanie</th>
                             <th>🍽️ Obiad</th>
                             <th>🥗 Kolacja</th>
-                            <th id="kcal-header-1" class="kcal-header" style="width: 55px;"></th>
-                            <th id="kcal-header-2" class="kcal-header" style="width: 55px;"></th>
+                            <!-- Nagłówki kcal generowane dynamicznie przez updateTableHeaders() -->
                         </tr>
                     </thead>
                     <tbody id="plan-table-body"></tbody>
@@ -1768,6 +1858,17 @@
                     </div>
                 </div>
                 <p id="shopping-info" style="color: #6b7280; margin-bottom: 15px;"></p>
+
+                <!-- Mnożnik listy zakupów -->
+                <div class="shopping-multiplier" id="shopping-multiplier-container">
+                    <span class="multiplier-label">Mnożnik listy:</span>
+                    <div class="multiplier-buttons">
+                        <button class="multiplier-btn active" onclick="setShoppingMultiplier(1)">x1</button>
+                        <button class="multiplier-btn" onclick="setShoppingMultiplier(2)">x2</button>
+                        <button class="multiplier-btn" onclick="setShoppingMultiplier(3)">x3</button>
+                    </div>
+                    <span class="multiplier-info" id="multiplier-info"></span>
+                </div>
 
                 <!-- Panel filtrów zakupów -->
                 <div class="shopping-filters">
@@ -11593,6 +11694,11 @@
             active: { value: 1.725, label: "Aktywny" }
         };
 
+        // Konfiguracja dynamicznej liczby osób
+        const PERSON_COLORS = ['#3b82f6', '#ec4899', '#22c55e', '#f59e0b']; // niebieski, różowy, zielony, pomarańczowy
+        const MAX_PERSONS = 4;
+        const MIN_PERSONS = 1;
+
         let persons = [
             {
                 id: 1, name: "Ja", color: "#3b82f6",
@@ -11611,14 +11717,20 @@
         ];
 
         // Plan posiłków - V5: osobne przepisy per osoba { personId: recipeId }
-        let plan = {};
-        days.forEach(day => {
-            plan[day] = {
-                breakfast: { 1: null, 2: null },
-                lunch: { 1: null, 2: null },
-                dinner: { 1: null, 2: null }
-            };
-        });
+        // Dynamiczna inicjalizacja planu dla dowolnej liczby osób
+        function initPlanStructure() {
+            let newPlan = {};
+            days.forEach(day => {
+                newPlan[day] = { breakfast: {}, lunch: {}, dinner: {} };
+                persons.forEach(p => {
+                    newPlan[day].breakfast[p.id] = null;
+                    newPlan[day].lunch[p.id] = null;
+                    newPlan[day].dinner[p.id] = null;
+                });
+            });
+            return newPlan;
+        }
+        let plan = initPlanStructure();
 
         const categories = [
             { name: "🥚 BIAŁKO", keywords: ["jajka", "pierś", "mielone", "łosoś", "szynka", "kurczak"] },
@@ -11630,6 +11742,9 @@
 
         // Status zjedzonych posiłków: { day: { mealType: { personId: boolean } } }
         let eatenMeals = {};
+
+        // Mnożnik listy zakupów
+        let shoppingListMultiplier = 1;
 
         // Ulubione przepisy (Set z ID przepisów)
         let favoriteRecipes = new Set();
@@ -11673,7 +11788,10 @@
             days.forEach(day => {
                 em[day] = {};
                 mealTypes.forEach(mt => {
-                    em[day][mt] = { 1: false, 2: false };
+                    em[day][mt] = {};
+                    persons.forEach(p => {
+                        em[day][mt][p.id] = false;
+                    });
                 });
             });
             return em;
@@ -11885,8 +12003,9 @@
         // Kompaktowy panel osób (widoczny zawsze)
         function renderPersonsPanel() {
             const panel = document.getElementById('persons-panel');
-            panel.innerHTML = persons.map(p => {
-                const colorClass = p.id === 1 ? 'blue' : 'pink';
+
+            let html = '<div class="persons-list">';
+            html += persons.map(p => {
                 return `
                 <div class="person-config" style="flex-direction: column; align-items: flex-start; gap: 6px;">
                     <div style="display: flex; align-items: center; gap: 8px; width: 100%;">
@@ -11896,6 +12015,9 @@
                         <span style="margin-left: auto; font-weight: 700; font-size: 14px; color: ${p.color};">
                             ${p.targetKcal} kcal
                         </span>
+                        ${persons.length > MIN_PERSONS ? `
+                            <button class="person-remove-btn" onclick="removePerson(${p.id})" title="Usuń osobę">−</button>
+                        ` : ''}
                     </div>
                     <div style="display: flex; gap: 12px; font-size: 12px; color: #6b7280; padding-left: 22px;">
                         <span>B: <strong style="color: #1f2937;">${p.targetProtein}g</strong></span>
@@ -11904,18 +12026,40 @@
                     </div>
                 </div>
             `}).join('');
+            html += '</div>';
+
+            // Przycisk dodawania osoby
+            if (persons.length < MAX_PERSONS) {
+                html += `
+                <div class="person-add-container">
+                    <button class="person-add-btn" onclick="addPerson()">
+                        + Dodaj osobę
+                    </button>
+                </div>
+                `;
+            }
+
+            panel.innerHTML = html;
         }
 
-        // Aktualizacja nagłówków tabeli z celem kcal
+        // Aktualizacja nagłówków tabeli z celem kcal - dynamicznie dla dowolnej liczby osób
         function updateTableHeaders() {
+            const headerRow = document.getElementById('plan-table-header-row');
+            if (!headerRow) return;
+
+            // Usuń stare nagłówki kcal (wszystkie po 4. th)
+            while (headerRow.children.length > 4) {
+                headerRow.removeChild(headerRow.lastChild);
+            }
+
+            // Dodaj nowe nagłówki dla każdej osoby
             persons.forEach(p => {
-                const header = document.getElementById(`kcal-header-${p.id}`);
-                if (header) {
-                    const colorClass = p.id === 1 ? 'blue' : 'pink';
-                    header.innerHTML = `
-                        <div class="kcal-header-target" style="color: ${p.color};">${p.targetKcal}</div>
-                    `;
-                }
+                const th = document.createElement('th');
+                th.id = `kcal-header-${p.id}`;
+                th.className = 'kcal-header';
+                th.style.width = '55px';
+                th.innerHTML = `<div class="kcal-header-target" style="color: ${p.color};">${p.targetKcal}</div>`;
+                headerRow.appendChild(th);
             });
         }
 
@@ -12117,8 +12261,8 @@
                     });
 
                     const kcalTd = document.createElement('td');
-                    const colorClass = person.id === 1 ? 'blue' : 'pink';
-                    kcalTd.className = `kcal-person ${colorClass}`;
+                    kcalTd.className = 'kcal-person';
+                    kcalTd.style.borderLeft = `3px solid ${person.color}`;
 
                     if (kcalPlanned > 0) {
                         kcalTd.innerHTML = `
@@ -12516,43 +12660,63 @@
 
         function renderModalPersonsToggle() {
             const toggle = document.getElementById('modal-persons-toggle');
-            const p1 = persons[0];
-            const p2 = persons[1];
 
-            toggle.innerHTML = `
-                <button class="modal-person-btn blue ${modalSplitMode === 'normal' && modalSelectedPersons.length === 1 && modalSelectedPersons[0] === 1 ? 'active' : ''}"
-                    onclick="setModalPersons([1], 'normal')">
-                    <span class="modal-person-dot" style="background: ${p1.color}"></span>
-                    ${p1.name}
-                </button>
-                <button class="modal-person-btn pink ${modalSplitMode === 'normal' && modalSelectedPersons.length === 1 && modalSelectedPersons[0] === 2 ? 'active' : ''}"
-                    onclick="setModalPersons([2], 'normal')">
-                    <span class="modal-person-dot" style="background: ${p2.color}"></span>
-                    ${p2.name}
-                </button>
-                <button class="modal-person-btn both ${modalSplitMode === 'normal' && modalSelectedPersons.length === 2 ? 'active' : ''}"
-                    onclick="setModalPersons([1, 2], 'normal')">
-                    <span class="modal-person-dot" style="background: ${p1.color}"></span>
-                    <span class="modal-person-dot" style="background: ${p2.color}"></span>
-                    Razem
-                </button>
-                <div class="modal-5050-dropdown">
-                    <button class="modal-person-btn split ${modalSplitMode.startsWith('5050') ? 'active' : ''}"
-                        onclick="toggle5050Menu(event)">
-                        50/50 ▼
+            let html = '';
+
+            // Przyciski dla każdej osoby
+            persons.forEach(p => {
+                const isActive = modalSplitMode === 'normal' &&
+                                modalSelectedPersons.length === 1 &&
+                                modalSelectedPersons[0] === p.id;
+                html += `
+                    <button class="modal-person-btn ${isActive ? 'active' : ''}"
+                        style="border-color: ${p.color}; ${isActive ? `background: ${p.color}20` : ''}"
+                        onclick="setModalPersons([${p.id}], 'normal')">
+                        <span class="modal-person-dot" style="background: ${p.color}"></span>
+                        ${p.name}
                     </button>
-                    <div class="modal-5050-menu" id="modal-5050-menu">
-                        <button onclick="setModalPersons([1, 2], '5050-person1')">
-                            <span class="modal-person-dot" style="background: ${p1.color}"></span>
-                            wg ${p1.name} (${p1.portion}x)
+                `;
+            });
+
+            // Przycisk "Razem" (dla wszystkich osób) - tylko gdy więcej niż 1 osoba
+            if (persons.length > 1) {
+                const allIds = persons.map(p => p.id);
+                const isRazemActive = modalSplitMode === 'normal' &&
+                                     modalSelectedPersons.length === persons.length;
+                html += `
+                    <button class="modal-person-btn both ${isRazemActive ? 'active' : ''}"
+                        onclick="setModalPersons([${allIds.join(',')}], 'normal')">
+                        ${persons.map(p => `<span class="modal-person-dot" style="background: ${p.color}"></span>`).join('')}
+                        Razem
+                    </button>
+                `;
+            }
+
+            // Menu 50/50 (tylko dla dokładnie 2 osób)
+            if (persons.length === 2) {
+                const p1 = persons[0];
+                const p2 = persons[1];
+                html += `
+                    <div class="modal-5050-dropdown">
+                        <button class="modal-person-btn split ${modalSplitMode.startsWith('5050') ? 'active' : ''}"
+                            onclick="toggle5050Menu(event)">
+                            50/50 ▼
                         </button>
-                        <button onclick="setModalPersons([1, 2], '5050-person2')">
-                            <span class="modal-person-dot" style="background: ${p2.color}"></span>
-                            wg ${p2.name} (${p2.portion}x)
-                        </button>
+                        <div class="modal-5050-menu" id="modal-5050-menu">
+                            <button onclick="setModalPersons([${p1.id}, ${p2.id}], '5050-person1')">
+                                <span class="modal-person-dot" style="background: ${p1.color}"></span>
+                                wg ${p1.name} (${p1.portion}x)
+                            </button>
+                            <button onclick="setModalPersons([${p1.id}, ${p2.id}], '5050-person2')">
+                                <span class="modal-person-dot" style="background: ${p2.color}"></span>
+                                wg ${p2.name} (${p2.portion}x)
+                            </button>
+                        </div>
                     </div>
-                </div>
-            `;
+                `;
+            }
+
+            toggle.innerHTML = html;
         }
 
         function toggle5050Menu(event) {
@@ -12598,37 +12762,40 @@
                 </div>
             `;
 
-            const p1 = persons[0];
-            const p2 = persons[1];
             let multiplier = 0;
             let splitInfo = '';
             let portionPerPerson = 0; // Porcja na osobę przy 50/50
 
             // Oblicz mnożnik w zależności od trybu
-            if (modalSplitMode === '5050-person1') {
-                // 50/50 wg osoby 1 (większej porcji)
-                multiplier = p1.portion * 2;
-                portionPerPerson = p1.portion;
-                const kcalPerPerson = Math.round(r.kcal * p1.portion);
-                const diff = Math.round(r.kcal * p1.portion - r.kcal * p2.portion);
-                splitInfo = `<div class="split-info">
-                    <strong>Tryb 50/50</strong> (wg ${p1.name})<br>
-                    Łącznie: ${multiplier.toFixed(2)}x → dzielisz na pół<br>
-                    <span class="split-warning">⚠️ ${p2.name}: +${diff} kcal nadwyżki</span>
-                </div>`;
-            } else if (modalSplitMode === '5050-person2') {
-                // 50/50 wg osoby 2 (mniejszej porcji)
-                multiplier = p2.portion * 2;
-                portionPerPerson = p2.portion;
-                const diff = Math.round(r.kcal * p1.portion - r.kcal * p2.portion);
-                splitInfo = `<div class="split-info">
-                    <strong>Tryb 50/50</strong> (wg ${p2.name})<br>
-                    Łącznie: ${multiplier.toFixed(2)}x → dzielisz na pół<br>
-                    <span class="split-warning">⚠️ ${p1.name}: -${diff} kcal niedobór</span>
-                </div>`;
-            } else if (modalSelectedPersons.length === 2) {
-                // Tryb "Razem" - normalne sumowanie
-                multiplier = p1.portion + p2.portion;
+            if (modalSplitMode.startsWith('5050') && persons.length === 2) {
+                // Tryb 50/50 - tylko dla 2 osób
+                const p1 = persons[0];
+                const p2 = persons[1];
+                if (modalSplitMode === '5050-person1') {
+                    multiplier = p1.portion * 2;
+                    portionPerPerson = p1.portion;
+                    const diff = Math.round(r.kcal * p1.portion - r.kcal * p2.portion);
+                    splitInfo = `<div class="split-info">
+                        <strong>Tryb 50/50</strong> (wg ${p1.name})<br>
+                        Łącznie: ${multiplier.toFixed(2)}x → dzielisz na pół<br>
+                        <span class="split-warning">⚠️ ${p2.name}: +${diff} kcal nadwyżki</span>
+                    </div>`;
+                } else {
+                    multiplier = p2.portion * 2;
+                    portionPerPerson = p2.portion;
+                    const diff = Math.round(r.kcal * p1.portion - r.kcal * p2.portion);
+                    splitInfo = `<div class="split-info">
+                        <strong>Tryb 50/50</strong> (wg ${p2.name})<br>
+                        Łącznie: ${multiplier.toFixed(2)}x → dzielisz na pół<br>
+                        <span class="split-warning">⚠️ ${p1.name}: -${diff} kcal niedobór</span>
+                    </div>`;
+                }
+            } else if (modalSelectedPersons.length > 1) {
+                // Tryb "Razem" - sumuj porcje wybranych osób
+                multiplier = modalSelectedPersons.reduce((sum, id) => {
+                    const person = persons.find(p => p.id === id);
+                    return sum + (person ? person.portion : 0);
+                }, 0);
             } else {
                 // Pojedyncza osoba
                 const person = persons.find(p => p.id === modalSelectedPersons[0]);
@@ -12644,11 +12811,16 @@
             const portionsInfo = modalPortions > 1 ? ` × ${modalPortions} porcji` : '';
             if (modalSplitMode.startsWith('5050')) {
                 multiplierEl.innerHTML = splitInfo + (modalPortions > 1 ? `<div style="margin-top:8px">📦 <strong>${modalPortions} porcji</strong> = łącznie ${multiplier.toFixed(2)}x</div>` : '');
-            } else if (modalSelectedPersons.length === 2) {
-                multiplierEl.innerHTML = `Składniki dla obu osób (${p1.portion}x + ${p2.portion}x = ${baseMultiplier.toFixed(2)}x)${portionsInfo}` + (modalPortions > 1 ? ` = <strong>${multiplier.toFixed(2)}x</strong>` : '');
+            } else if (modalSelectedPersons.length > 1) {
+                const personsStr = modalSelectedPersons.map(id => {
+                    const p = persons.find(x => x.id === id);
+                    return p ? `${p.portion}x` : '';
+                }).join(' + ');
+                const personsLabel = modalSelectedPersons.length === persons.length ? 'wszystkich' : 'wybranych osób';
+                multiplierEl.innerHTML = `Składniki dla ${personsLabel} (${personsStr} = ${baseMultiplier.toFixed(2)}x)${portionsInfo}` + (modalPortions > 1 ? ` = <strong>${multiplier.toFixed(2)}x</strong>` : '');
             } else {
                 const person = persons.find(p => p.id === modalSelectedPersons[0]);
-                multiplierEl.innerHTML = `Składniki dla: <strong>${person.name}</strong> (${person.portion}x)${portionsInfo}` + (modalPortions > 1 ? ` = <strong>${multiplier.toFixed(2)}x</strong>` : '');
+                multiplierEl.innerHTML = `Składniki dla: <strong>${person?.name || 'Nieznany'}</strong> (${person?.portion || 1}x)${portionsInfo}` + (modalPortions > 1 ? ` = <strong>${multiplier.toFixed(2)}x</strong>` : '');
             }
 
             // Przelicz makra
@@ -12987,6 +13159,33 @@
             }
         }
 
+        // MNOŻNIK LISTY ZAKUPÓW
+        function setShoppingMultiplier(value) {
+            shoppingListMultiplier = value;
+            renderShoppingMultiplierButtons();
+            renderShoppingList();
+        }
+
+        function renderShoppingMultiplierButtons() {
+            const container = document.getElementById('shopping-multiplier-container');
+            if (!container) return;
+
+            const buttons = container.querySelectorAll('.multiplier-btn');
+            buttons.forEach(btn => {
+                const val = parseInt(btn.textContent.replace('x', ''));
+                btn.classList.toggle('active', val === shoppingListMultiplier);
+            });
+
+            const info = document.getElementById('multiplier-info');
+            if (info) {
+                if (shoppingListMultiplier > 1) {
+                    info.textContent = `(np. na ${shoppingListMultiplier} tygodnie)`;
+                } else {
+                    info.textContent = '';
+                }
+            }
+        }
+
         // LISTA ZAKUPÓW - z uwzględnieniem mnożników porcji i filtrów
         function renderShoppingList() {
             const list = {};
@@ -13005,7 +13204,8 @@
                             if (r) {
                                 r.ingredients.forEach(ing => {
                                     const k = `${ing.item} (${ing.unit})`;
-                                    list[k] = (list[k] || 0) + (ing.amount * person.portion);
+                                    // Uwzględnij mnożnik listy zakupów
+                                    list[k] = (list[k] || 0) + (ing.amount * person.portion * shoppingListMultiplier);
                                 });
                             }
                         }
@@ -13015,10 +13215,11 @@
 
             Object.keys(list).forEach(k => list[k] = Math.ceil(list[k] * 10) / 10);
 
-            // Pokaż info o osobach
+            // Pokaż info o osobach i mnożniku
             const personsInfo = persons.map(p => `${p.name} (${p.portion}x)`).join(' + ');
+            const multiplierText = shoppingListMultiplier > 1 ? ` (×${shoppingListMultiplier})` : '';
             document.getElementById('shopping-info').textContent = total > 0
-                ? `${total} posiłków dla: ${personsInfo}`
+                ? `${total} posiłków dla: ${personsInfo}${multiplierText}`
                 : '';
 
             const container = document.getElementById('shopping-list');
@@ -13065,7 +13266,8 @@
                             if (r) {
                                 r.ingredients.forEach(ing => {
                                     const k = `${ing.item} (${ing.unit})`;
-                                    list[k] = (list[k] || 0) + (ing.amount * person.portion);
+                                    // Uwzględnij mnożnik listy zakupów
+                                    list[k] = (list[k] || 0) + (ing.amount * person.portion * shoppingListMultiplier);
                                 });
                             }
                         }
@@ -13075,7 +13277,8 @@
             Object.keys(list).forEach(k => list[k] = Math.ceil(list[k] * 10) / 10);
 
             const personsInfo = persons.map(p => `${p.name} (${p.portion}x)`).join(' + ');
-            let txt = `🛒 LISTA ZAKUPÓW\nDla: ${personsInfo}\n\n`;
+            const multiplierText = shoppingListMultiplier > 1 ? ` [×${shoppingListMultiplier}]` : '';
+            let txt = `🛒 LISTA ZAKUPÓW${multiplierText}\nDla: ${personsInfo}\n\n`;
             let hasItems = false;
             categories.forEach(cat => {
                 const items = Object.entries(list).filter(([item]) =>
@@ -13108,7 +13311,8 @@
                             if (r) {
                                 r.ingredients.forEach(ing => {
                                     const k = `${ing.item} (${ing.unit})`;
-                                    list[k] = (list[k] || 0) + (ing.amount * person.portion);
+                                    // Uwzględnij mnożnik listy zakupów
+                                    list[k] = (list[k] || 0) + (ing.amount * person.portion * shoppingListMultiplier);
                                 });
                             }
                         }
@@ -13118,7 +13322,8 @@
             Object.keys(list).forEach(k => list[k] = Math.ceil(list[k] * 10) / 10);
 
             const personsInfo = persons.map(p => `${p.name} (${p.portion}x)`).join(' + ');
-            let txt = `🛒 LISTA ZAKUPÓW\nDla: ${personsInfo}\n\n`;
+            const multiplierText = shoppingListMultiplier > 1 ? ` [×${shoppingListMultiplier}]` : '';
+            let txt = `🛒 LISTA ZAKUPÓW${multiplierText}\nDla: ${personsInfo}\n\n`;
             let hasItems = false;
             categories.forEach(cat => {
                 const items = Object.entries(list).filter(([item]) =>
@@ -13170,7 +13375,111 @@
             }
         }
 
-        // Migracja starych danych do nowej struktury V5 (osobne receptury per osoba)
+        // ===========================================
+        // FUNKCJE - DODAWANIE/USUWANIE OSÓB
+        // ===========================================
+
+        function addPerson() {
+            if (persons.length >= MAX_PERSONS) {
+                alert('Maksymalna liczba osób to ' + MAX_PERSONS);
+                return;
+            }
+
+            const newId = Math.max(...persons.map(p => p.id), 0) + 1;
+            const newPerson = {
+                id: newId,
+                name: `Osoba ${newId}`,
+                color: PERSON_COLORS[persons.length % PERSON_COLORS.length],
+                gender: 'male',
+                age: 30,
+                height: 175,
+                weight: 75,
+                activity: 'moderate',
+                goal: 'maintain',
+                tdee: 2500,
+                targetKcal: 2420,
+                portion: 1.0,
+                targetProtein: 166,
+                targetFat: 82,
+                targetCarbs: 238
+            };
+
+            recalculatePerson(newPerson);
+            persons.push(newPerson);
+
+            // Rozszerz plan o nową osobę
+            days.forEach(day => {
+                mealTypes.forEach(mt => {
+                    if (plan[day] && plan[day][mt]) {
+                        plan[day][mt][newId] = null;
+                    }
+                });
+            });
+
+            // Rozszerz eatenMeals
+            days.forEach(day => {
+                mealTypes.forEach(mt => {
+                    if (!eatenMeals[day]) eatenMeals[day] = {};
+                    if (!eatenMeals[day][mt]) eatenMeals[day][mt] = {};
+                    eatenMeals[day][mt][newId] = false;
+                });
+            });
+
+            savePersons();
+            savePlan();
+            saveEatenMeals();
+            refreshAllViews();
+        }
+
+        function removePerson(personId) {
+            if (persons.length <= MIN_PERSONS) {
+                alert('Musi być co najmniej ' + MIN_PERSONS + ' osoba');
+                return;
+            }
+
+            const personToRemove = persons.find(p => p.id === personId);
+            if (!personToRemove) return;
+
+            if (!confirm(`Czy na pewno usunąć osobę "${personToRemove.name}"? Przepisy przypisane do tej osoby zostaną usunięte.`)) {
+                return;
+            }
+
+            persons = persons.filter(p => p.id !== personId);
+
+            // Usuń z planu
+            days.forEach(day => {
+                mealTypes.forEach(mt => {
+                    if (plan[day] && plan[day][mt]) {
+                        delete plan[day][mt][personId];
+                    }
+                });
+            });
+
+            // Usuń z eatenMeals
+            days.forEach(day => {
+                mealTypes.forEach(mt => {
+                    if (eatenMeals[day] && eatenMeals[day][mt]) {
+                        delete eatenMeals[day][mt][personId];
+                    }
+                });
+            });
+
+            savePersons();
+            savePlan();
+            saveEatenMeals();
+            refreshAllViews();
+        }
+
+        function refreshAllViews() {
+            renderSettingsPanel();
+            renderPersonsPanel();
+            updateTableHeaders();
+            renderPlannerTable();
+            renderKcalSummary();
+            renderShoppingList();
+        }
+
+        // Migracja starych danych do nowej struktury V5+ (osobne receptury per osoba, dynamiczna liczba osób)
         function migratePlan(oldPlan) {
             const newPlan = {};
             days.forEach(day => {
@@ -13178,27 +13487,36 @@
                 mealTypes.forEach(mt => {
                     const oldValue = oldPlan[day] ? oldPlan[day][mt] : null;
 
-                    // V5 format: { 1: 'recipeId', 2: 'recipeId' }
-                    if (oldValue && typeof oldValue === 'object' && oldValue[1] !== undefined) {
-                        newPlan[day][mt] = oldValue;
+                    // Inicjalizuj wszystkie osoby jako null
+                    newPlan[day][mt] = {};
+                    persons.forEach(p => {
+                        newPlan[day][mt][p.id] = null;
+                    });
+
+                    // V5+ format: { 1: 'recipeId', 2: 'recipeId', ... }
+                    if (oldValue && typeof oldValue === 'object' && (oldValue[1] !== undefined || oldValue[2] !== undefined)) {
+                        Object.keys(oldValue).forEach(key => {
+                            const personId = parseInt(key);
+                            if (persons.find(p => p.id === personId)) {
+                                newPlan[day][mt][personId] = oldValue[key];
+                            }
+                        });
                     }
                     // V4 format: { recipe: 'id', persons: [1,2] }
                     else if (oldValue && typeof oldValue === 'object' && oldValue.recipe !== undefined) {
-                        newPlan[day][mt] = { 1: null, 2: null };
-                        if (oldValue.persons && oldValue.persons.includes(1)) {
-                            newPlan[day][mt][1] = oldValue.recipe;
-                        }
-                        if (oldValue.persons && oldValue.persons.includes(2)) {
-                            newPlan[day][mt][2] = oldValue.recipe;
+                        if (oldValue.persons) {
+                            oldValue.persons.forEach(pid => {
+                                if (persons.find(p => p.id === pid)) {
+                                    newPlan[day][mt][pid] = oldValue.recipe;
+                                }
+                            });
                         }
                     }
                     // V3 format: string recipe ID
                     else if (oldValue && typeof oldValue === 'string') {
-                        newPlan[day][mt] = { 1: oldValue, 2: oldValue };
-                    }
-                    // Pusty
-                    else {
-                        newPlan[day][mt] = { 1: null, 2: null };
+                        persons.forEach(p => {
+                            newPlan[day][mt][p.id] = oldValue;
+                        });
                     }
                 });
             });
