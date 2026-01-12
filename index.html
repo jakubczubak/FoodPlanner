@@ -6,6 +6,11 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <title>Planer Posiłków</title>
+    <link rel="icon" type="image/x-icon" href="1486505264-food-fork-kitchen-knife-meanns-restaurant_81404.ico">
+    <link rel="apple-touch-icon" href="1486505264-food-fork-kitchen-knife-meanns-restaurant_81404.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
@@ -44,12 +49,18 @@
         
         .container { max-width: 1500px; margin: 0 auto; padding: 20px; }
         
-        h1 { 
-            color: white; 
-            text-align: center; 
+        h1 {
+            color: white;
+            text-align: center;
             margin-bottom: 8px;
             font-size: 28px;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .header-logo {
+            height: 40px;
+            width: 40px;
+            vertical-align: middle;
+            margin-right: 10px;
         }
         .subtitle {
             color: rgba(255,255,255,0.7);
@@ -1742,7 +1753,7 @@
     </nav>
 
     <div class="container">
-        <h1>🍽️ Planer Posiłków</h1>
+        <h1><img src="1486505264-food-fork-kitchen-knife-meanns-restaurant_81404.svg" alt="Logo" class="header-logo">Planer Posiłków</h1>
         <p class="subtitle">Zaplanuj tydzień • Przeglądaj przepisy • Generuj listę zakupów</p>
         
         <!-- ALERT: Plan załadowany z linku -->
@@ -13622,6 +13633,11 @@
         updateTableHeaders();
         renderPlannerTable();
         renderRecipes();
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./service-worker.js');
+        }
     </script>
 </body>
 </html>

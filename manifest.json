@@ -1,0 +1,17 @@
+{
+  "name": "Planer Posiłków",
+  "short_name": "Planer",
+  "description": "Aplikacja do planowania posiłków",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#1a1a2e",
+  "theme_color": "#667eea",
+  "icons": [
+    {
+      "src": "1486505264-food-fork-kitchen-knife-meanns-restaurant_81404.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
