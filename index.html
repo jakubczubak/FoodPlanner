@@ -106,7 +106,9 @@
         .btn-green { background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); color: white; width: 100%; padding: 16px; font-size: 16px; margin-top: 10px; }
         .btn-green:disabled { background: #d1d5db; color: #9ca3af; cursor: not-allowed; transform: none; box-shadow: none; }
         .btn-share { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; }
-        
+        .variant-separator { width: 100%; text-align: center; padding: 10px 0 5px 0; font-size: 12px; color: #166534; font-weight: 600; margin-top: 5px; }
+        .variant-separator.action-separator { color: #1e40af; }
+
         /* TABELA */
         .plan-table { width: 100%; border-collapse: collapse; min-width: 900px; }
         .plan-table th { 
@@ -263,6 +265,10 @@
             display: flex;
             align-items: center;
             gap: 5px;
+        }
+        /* Domyślnie kontrolki w jednej linii z resztą (desktop/landscape) */
+        .meal-row-controls {
+            display: contents;
         }
         .person-indicator {
             width: 10px;
@@ -565,6 +571,162 @@
         .settings-field select:focus {
             outline: none;
             border-color: #8b5cf6;
+        }
+        /* SUWAKI MAKROSKŁADNIKÓW */
+        .macro-ratios-section {
+            margin-top: 12px;
+            padding: 10px;
+            background: #fef3c7;
+            border-radius: 8px;
+        }
+        .macro-ratios-section .settings-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #92400e;
+            margin-bottom: 8px;
+        }
+        .macro-slider-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px 8px;
+            margin: 10px 0;
+            padding: 8px 0 12px 0;
+            border-bottom: 1px solid #fcd34d;
+        }
+        .macro-slider-row:last-of-type {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .macro-header {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            pointer-events: none;
+        }
+        .macro-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #78350f;
+        }
+        .macro-value {
+            font-weight: 700;
+            font-size: 13px;
+            color: #78350f;
+        }
+        .macro-slider {
+            width: 100%;
+            height: 8px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: #e5e7eb;
+            border-radius: 4px;
+            cursor: pointer;
+            touch-action: manipulation;
+            position: relative;
+            z-index: 10;
+        }
+        .macro-slider::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .macro-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            margin-top: -10px;
+            background: #667eea;
+            border: 3px solid white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+        .protein-slider::-webkit-slider-thumb { background: #ef4444 !important; }
+        .fat-slider::-webkit-slider-thumb { background: #f59e0b !important; }
+        .carbs-slider::-webkit-slider-thumb { background: #22c55e !important; }
+        /* Firefox */
+        .macro-slider::-moz-range-track {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+        }
+        .macro-slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #667eea;
+            border: 3px solid white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            cursor: pointer;
+        }
+        .protein-slider::-moz-range-thumb { background: #ef4444; }
+        .fat-slider::-moz-range-thumb { background: #f59e0b; }
+        .carbs-slider::-moz-range-thumb { background: #22c55e; }
+        .macro-slider:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .macro-details {
+            display: flex;
+            width: 100%;
+            justify-content: flex-end;
+            gap: 12px;
+            font-size: 11px;
+            pointer-events: none;
+        }
+        .macro-grams {
+            font-weight: 600;
+            color: #1f2937;
+        }
+        .macro-per-kg {
+            color: #6b7280;
+        }
+        .macro-sum {
+            text-align: center;
+            font-size: 10px;
+            color: #059669;
+            margin-top: 6px;
+            font-weight: 600;
+        }
+        .macro-info-section {
+            margin-top: 10px;
+            padding: 8px;
+            background: #fef9c3;
+            border-radius: 6px;
+            border: 1px solid #fcd34d;
+        }
+        .macro-info-header {
+            font-size: 10px;
+            font-weight: 600;
+            color: #92400e;
+            margin-bottom: 6px;
+        }
+        .macro-info-table {
+            width: 100%;
+            font-size: 9px;
+            border-collapse: collapse;
+        }
+        .macro-info-table th,
+        .macro-info-table td {
+            padding: 3px 6px;
+            text-align: center;
+            border: 1px solid #fcd34d;
+        }
+        .macro-info-table th {
+            background: #fef3c7;
+            font-weight: 600;
+            color: #78350f;
+        }
+        .macro-info-table td:first-child {
+            text-align: left;
+            font-weight: 600;
+            background: #fef3c7;
         }
         .tdee-result {
             background: #f3f4f6;
@@ -1720,6 +1882,128 @@
             .meal-select-compact { font-size: 8px; }
         }
 
+        /* ===== MOBILE PORTRAIT - UKŁAD DWULINIOWY ===== */
+        @media (max-width: 500px) and (orientation: portrait) {
+            /* Ukryj kolumny kcal w portrait */
+            .kcal-person,
+            th.kcal-header,
+            .plan-table th:nth-child(n+5),
+            .plan-table td:nth-child(n+5) {
+                display: none !important;
+            }
+
+            /* Tabela na pełną szerokość bez przewijania */
+            .plan-table {
+                min-width: unset !important;
+                width: 100% !important;
+                table-layout: fixed;
+            }
+
+            /* Układ dwuliniowy dla każdego wiersza posiłku */
+            .person-meal-row {
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+                padding: 3px;
+                border-radius: 6px;
+                margin-bottom: 4px;
+                background: #f9fafb;
+            }
+
+            .person-meal-row.eaten {
+                background: #f0fdf4;
+            }
+
+            /* Linia 1: kontrolki (kropka, checkbox, oczko) */
+            .meal-row-controls {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+            }
+
+            .person-indicator {
+                width: 10px;
+                height: 10px;
+                min-width: 10px;
+            }
+
+            .eaten-checkbox {
+                width: 16px;
+                height: 16px;
+            }
+
+            .preview-btn {
+                margin-left: auto;
+                padding: 2px 6px;
+                font-size: 14px;
+                display: inline-flex !important;
+            }
+
+            /* Linia 2: dropdown na pełną szerokość */
+            .combobox-trigger {
+                width: 100%;
+                padding: 4px 6px;
+                font-size: 10px;
+            }
+
+            .combobox-text {
+                flex: 1;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .combobox-arrow {
+                font-size: 8px;
+            }
+
+            /* Nagłówki */
+            .plan-table th {
+                padding: 4px 2px;
+                font-size: 9px;
+            }
+
+            .plan-table td {
+                padding: 3px 2px;
+            }
+
+            .day-name {
+                font-size: 9px;
+                min-width: 28px;
+            }
+
+            /* Kolumna z dniem */
+            .plan-table th:first-child,
+            .plan-table td:first-child {
+                width: 32px !important;
+                max-width: 32px !important;
+            }
+
+            /* Równe kolumny posiłków */
+            .plan-table th:nth-child(2),
+            .plan-table th:nth-child(3),
+            .plan-table th:nth-child(4),
+            .plan-table td:nth-child(2),
+            .plan-table td:nth-child(3),
+            .plan-table td:nth-child(4) {
+                width: calc((100% - 32px) / 3) !important;
+            }
+
+            /* Komórka posiłku */
+            .meal-cell-dual {
+                padding: 2px !important;
+            }
+        }
+
+        /* ===== MOBILE LANDSCAPE - STARY UKŁAD JEDNOLINIOWY ===== */
+        @media (max-width: 850px) and (orientation: landscape) {
+            .kcal-person { display: table-cell !important; }
+            .preview-btn { display: inline-flex !important; }
+            /* Kontrolki w jednej linii */
+            .meal-row-controls { display: contents; }
+            .person-meal-row { flex-direction: row; }
+        }
+
         /* RESPONSYWNOŚĆ - iPhone poziomo */
         @media (max-height: 500px) and (orientation: landscape) {
             .nav { padding: 5px; }
@@ -1765,25 +2049,8 @@
         <!-- SEKCJA: PLANER -->
         <div id="section-planner" class="section active">
             <div class="card">
-                <div class="quick-buttons">
-                    <button class="btn btn-orange" onclick="fillAllWith(1)">🍳 Klasyczne polskie</button>
-                    <button class="btn btn-blue" onclick="fillAllWith(2)">🥛 Nabiałowe & Fit</button>
-                    <button class="btn btn-purple" onclick="fillAllWith(3)">🌮 Meksykańskie</button>
-                    <button class="btn btn-orange" onclick="fillAllWith(4)">🍝 Włoskie</button>
-                    <button class="btn btn-blue" onclick="fillAllWith(5)">🐟 Rybne</button>
-                    <button class="btn btn-purple" onclick="fillAllWith(6)">🥩 Mięsne</button>
-                    <button class="btn btn-orange" onclick="fillAllWith(7)">🍗 Kurczakowe</button>
-                    <button class="btn btn-blue" onclick="fillAllWith(8)">🍚 Azjatyckie</button>
-                    <button class="btn btn-purple" onclick="fillAllWith(9)">🍕 Pizza & Tosty</button>
-                    <button class="btn btn-gray" onclick="fillAllWith(10)">🍔 Street Food</button>
-                    <button class="btn btn-budget" onclick="fillAllWith(11)">💰 Budżetowy Jajka</button>
-                    <button class="btn btn-budget" onclick="fillAllWith(12)">💰 Budżetowy Owsianka</button>
-                    <button class="btn btn-budget" onclick="fillAllWith(13)">💰 Budżetowy Kanapki</button>
-                    <button class="btn btn-budget" onclick="fillAllWith(14)">💰 Budżetowy Naleśniki</button>
-                    <button class="btn btn-gray" onclick="resetPlan()">🔄 Reset</button>
-                    <button class="btn btn-gray" onclick="resetEatenStatus()">✅ Reset ptaszków</button>
-                    <button class="btn btn-share" onclick="sharePlan()">📤 Udostępnij plan</button>
-                </div>
+                <!-- Przyciski wariantów generowane dynamicznie przez renderVariantButtons() -->
+                <div id="variant-buttons" class="quick-buttons"></div>
 
                 <!-- Przycisk toggle ustawień -->
                 <button class="settings-toggle" id="settings-toggle" onclick="toggleSettings()">
@@ -11871,6 +12138,12 @@
             fat: 82,            // 28 + 28 + 26
             carbs: 238          // 72 + 88 + 78
         };
+        // Domyślne proporcje makroskładników (% kcal)
+        const DEFAULT_MACRO_RATIOS = {
+            protein: 27,  // % kcal z białka (166*4=664 kcal / 2420 = 27%)
+            fat: 31,      // % kcal z tłuszczu (82*9=738 kcal / 2420 = 31%)
+            carbs: 42     // % kcal z węglowodanów (238*4=952 kcal / 2420 = 42%)
+        };
         const GOALS = {
             cut: -400,      // Redukcja
             maintain: 0,    // Utrzymanie
@@ -11894,14 +12167,16 @@
                 gender: "male", age: 32, height: 190, weight: 107,
                 activity: "moderate", goal: "cut",
                 tdee: 2944, targetKcal: 2450, portion: 1.0,
-                targetProtein: 185, targetFat: 85, targetCarbs: 215
+                targetProtein: 185, targetFat: 85, targetCarbs: 215,
+                macroRatios: { protein: 27, fat: 31, carbs: 42 }
             },
             {
                 id: 2, name: "Żona", color: "#ec4899",
                 gender: "female", age: 24, height: 178, weight: 68,
                 activity: "moderate", goal: "cut",
                 tdee: 2117, targetKcal: 1800, portion: 0.73,
-                targetProtein: 135, targetFat: 62, targetCarbs: 157
+                targetProtein: 135, targetFat: 62, targetCarbs: 157,
+                macroRatios: { protein: 27, fat: 31, carbs: 42 }
             }
         ];
 
@@ -12098,10 +12373,11 @@
             person.tdee = calculateTDEE(person);
             person.targetKcal = calculateTargetKcal(person.tdee, person.goal);
             person.portion = calculatePortion(person.targetKcal);
-            // Oblicz cele makroskładników proporcjonalnie
-            person.targetProtein = Math.round(BASE_MACROS.protein * person.portion);
-            person.targetFat = Math.round(BASE_MACROS.fat * person.portion);
-            person.targetCarbs = Math.round(BASE_MACROS.carbs * person.portion);
+            // Oblicz cele makroskładników z procentów kcal
+            const ratios = person.macroRatios || DEFAULT_MACRO_RATIOS;
+            person.targetProtein = Math.round((person.targetKcal * ratios.protein / 100) / 4);  // 4 kcal/g
+            person.targetFat = Math.round((person.targetKcal * ratios.fat / 100) / 9);          // 9 kcal/g
+            person.targetCarbs = Math.round((person.targetKcal * ratios.carbs / 100) / 4);      // 4 kcal/g
         }
 
         // Toggle panelu ustawień
@@ -12168,6 +12444,77 @@
                                         <option value="maintain" ${p.goal === 'maintain' ? 'selected' : ''}>Utrzymanie</option>
                                         <option value="bulk" ${p.goal === 'bulk' ? 'selected' : ''}>Masa (+300)</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="macro-ratios-section" data-person="${p.id}">
+                                <div class="settings-label">Proporcje makro</div>
+                                <div class="macro-slider-row">
+                                    <div class="macro-header">
+                                        <span class="macro-label">Bialko</span>
+                                        <span class="macro-value protein-value">${(p.macroRatios || DEFAULT_MACRO_RATIOS).protein}%</span>
+                                    </div>
+                                    <input type="range" min="15" max="45" value="${(p.macroRatios || DEFAULT_MACRO_RATIOS).protein}"
+                                        class="macro-slider protein-slider"
+                                        oninput="updateMacroRatio(${p.id}, 'protein', this.value)"
+                                        onchange="updateMacroRatio(${p.id}, 'protein', this.value, true)">
+                                    <div class="macro-details">
+                                        <span class="macro-grams protein-grams">${p.targetProtein}g</span>
+                                        <span class="macro-per-kg protein-perkg">(${(p.targetProtein / p.weight).toFixed(2)} g/kg)</span>
+                                    </div>
+                                </div>
+                                <div class="macro-slider-row">
+                                    <div class="macro-header">
+                                        <span class="macro-label">Tluszcz</span>
+                                        <span class="macro-value fat-value">${(p.macroRatios || DEFAULT_MACRO_RATIOS).fat}%</span>
+                                    </div>
+                                    <input type="range" min="15" max="45" value="${(p.macroRatios || DEFAULT_MACRO_RATIOS).fat}"
+                                        class="macro-slider fat-slider"
+                                        oninput="updateMacroRatio(${p.id}, 'fat', this.value)"
+                                        onchange="updateMacroRatio(${p.id}, 'fat', this.value, true)">
+                                    <div class="macro-details">
+                                        <span class="macro-grams fat-grams">${p.targetFat}g</span>
+                                        <span class="macro-per-kg fat-perkg">(${(p.targetFat / p.weight).toFixed(2)} g/kg)</span>
+                                    </div>
+                                </div>
+                                <div class="macro-slider-row">
+                                    <div class="macro-header">
+                                        <span class="macro-label">Wegle</span>
+                                        <span class="macro-value carbs-value">${(p.macroRatios || DEFAULT_MACRO_RATIOS).carbs}%</span>
+                                    </div>
+                                    <input type="range" min="20" max="60" value="${(p.macroRatios || DEFAULT_MACRO_RATIOS).carbs}"
+                                        class="macro-slider carbs-slider" disabled title="Auto-dopelnienie do 100%">
+                                    <div class="macro-details">
+                                        <span class="macro-grams carbs-grams">${p.targetCarbs}g</span>
+                                        <span class="macro-per-kg carbs-perkg">(${(p.targetCarbs / p.weight).toFixed(2)} g/kg)</span>
+                                    </div>
+                                </div>
+                                <div class="macro-sum">Suma: <span class="macro-sum-value">${(p.macroRatios || DEFAULT_MACRO_RATIOS).protein + (p.macroRatios || DEFAULT_MACRO_RATIOS).fat + (p.macroRatios || DEFAULT_MACRO_RATIOS).carbs}%</span></div>
+                                <div class="macro-info-section">
+                                    <div class="macro-info-header">Zalecane zakresy g/kg:</div>
+                                    <table class="macro-info-table">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Redukcja</th>
+                                                <th>Utrzymanie</th>
+                                                <th>Masa</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Bialko</td>
+                                                <td>1.8-2.2</td>
+                                                <td>1.6-2.0</td>
+                                                <td>1.4-1.8</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tluszcz</td>
+                                                <td>0.8-1.0</td>
+                                                <td>0.8-1.2</td>
+                                                <td>0.8-1.2</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                             <div class="tdee-result">
@@ -12381,6 +12728,87 @@
             }
         }
 
+        function updateMacroDisplay(personId) {
+            const person = persons.find(p => p.id === personId);
+            if (!person) return;
+
+            const ratios = person.macroRatios || DEFAULT_MACRO_RATIOS;
+            const container = document.querySelector(`.macro-ratios-section[data-person="${personId}"]`);
+            if (!container) return;
+
+            // Aktualizuj tylko teksty, nie przebudowuj HTML
+            const proteinValue = container.querySelector('.protein-value');
+            const fatValue = container.querySelector('.fat-value');
+            const carbsValue = container.querySelector('.carbs-value');
+            if (proteinValue) proteinValue.textContent = ratios.protein + '%';
+            if (fatValue) fatValue.textContent = ratios.fat + '%';
+            if (carbsValue) carbsValue.textContent = ratios.carbs + '%';
+
+            const proteinGrams = container.querySelector('.protein-grams');
+            const fatGrams = container.querySelector('.fat-grams');
+            const carbsGrams = container.querySelector('.carbs-grams');
+            if (proteinGrams) proteinGrams.textContent = person.targetProtein + 'g';
+            if (fatGrams) fatGrams.textContent = person.targetFat + 'g';
+            if (carbsGrams) carbsGrams.textContent = person.targetCarbs + 'g';
+
+            const proteinPerkg = container.querySelector('.protein-perkg');
+            const fatPerkg = container.querySelector('.fat-perkg');
+            const carbsPerkg = container.querySelector('.carbs-perkg');
+            if (proteinPerkg) proteinPerkg.textContent = '(' + (person.targetProtein / person.weight).toFixed(2) + ' g/kg)';
+            if (fatPerkg) fatPerkg.textContent = '(' + (person.targetFat / person.weight).toFixed(2) + ' g/kg)';
+            if (carbsPerkg) carbsPerkg.textContent = '(' + (person.targetCarbs / person.weight).toFixed(2) + ' g/kg)';
+
+            const macroSum = container.querySelector('.macro-sum-value');
+            if (macroSum) macroSum.textContent = (ratios.protein + ratios.fat + ratios.carbs) + '%';
+
+            // Zaktualizuj też suwak węglowodanów (disabled)
+            const carbsSlider = container.querySelector('.carbs-slider');
+            if (carbsSlider) carbsSlider.value = ratios.carbs;
+        }
+
+        function updateMacroRatio(personId, macro, value, isFinal = false) {
+            const person = persons.find(p => p.id === personId);
+            if (!person) return;
+
+            // Zainicjuj jeśli brak
+            if (!person.macroRatios) {
+                person.macroRatios = { ...DEFAULT_MACRO_RATIOS };
+            }
+
+            const newValue = parseInt(value);
+            person.macroRatios[macro] = newValue;
+
+            // Auto-dopełnij węglowodany do 100%
+            if (macro === 'protein' || macro === 'fat') {
+                person.macroRatios.carbs = 100 - person.macroRatios.protein - person.macroRatios.fat;
+                // Ogranicz minimum węglowodanów do 20%
+                if (person.macroRatios.carbs < 20) {
+                    person.macroRatios.carbs = 20;
+                    // Skoryguj białko/tłuszcz
+                    if (macro === 'protein') {
+                        person.macroRatios.protein = 100 - person.macroRatios.fat - 20;
+                    } else {
+                        person.macroRatios.fat = 100 - person.macroRatios.protein - 20;
+                    }
+                }
+            }
+
+            recalculatePerson(person);
+
+            if (isFinal) {
+                // Użytkownik puścił suwak - pełna aktualizacja + zapis
+                renderSettingsPanel();
+                renderPersonsPanel();
+                renderKcalSummary();
+                savePersons();
+            } else {
+                // Podczas przeciągania - tylko aktualizuj wyświetlane wartości
+                updateMacroDisplay(personId);
+                renderPersonsPanel();
+                renderKcalSummary();
+            }
+        }
+
         function renderPlannerTable() {
             const tbody = document.getElementById('plan-table-body');
             tbody.innerHTML = '';
@@ -12410,19 +12838,21 @@
 
                         return `
                         <div class="person-meal-row ${isEaten ? 'eaten' : ''}">
-                            <input type="checkbox"
-                                class="eaten-checkbox"
-                                ${isEaten ? 'checked' : ''}
-                                ${recipeId ? '' : 'disabled'}
-                                onchange="toggleEaten('${day}', '${mealType}', ${p.id})"
-                                title="Oznacz jako zjedzone">
-                            <span class="person-indicator" style="background: ${p.color}"></span>
+                            <div class="meal-row-controls">
+                                <span class="person-indicator" style="background: ${p.color}"></span>
+                                <input type="checkbox"
+                                    class="eaten-checkbox"
+                                    ${isEaten ? 'checked' : ''}
+                                    ${recipeId ? '' : 'disabled'}
+                                    onchange="toggleEaten('${day}', '${mealType}', ${p.id})"
+                                    title="Oznacz jako zjedzone">
+                                <button class="preview-btn" onclick="previewRecipe('${mealType}', '${recipeId || ''}')" ${recipeId ? '' : 'disabled'}>👁</button>
+                            </div>
                             <button class="combobox-trigger ${mealType} ${recipeId ? 'has-value' : ''}"
                                 onclick="openMealPicker('${day}', '${mealType}', ${p.id})">
                                 <span class="combobox-text">${displayName}</span>
                                 <span class="combobox-arrow">▼</span>
                             </button>
-                            <button class="preview-btn" onclick="previewRecipe('${mealType}', '${recipeId || ''}')" ${recipeId ? '' : 'disabled'}>👁</button>
                         </div>`;
                     }).join('');
 
@@ -12574,75 +13004,176 @@
             return recipe ? recipe.name : null;
         }
 
-        // Mapowanie wariantów na kategorie przepisów - losowanie przy każdym kliknięciu
-        const variantCategories = {
-            1: { // Klasyczne polskie
-                breakfast: ["🍳 Jajka", "🥪 Kanapki/Wrapy"],
-                lunch: ["🍗 Kurczak", "🥩 Wołowina/Wieprzowina"],
-                dinner: ["🧀 Nabiał", "🥪 Kanapki"]
-            },
-            2: { // Nabiałowe & Fit
-                breakfast: ["🥛 Nabiał", "🥣 Owsianki"],
-                lunch: ["🥗 Sałatki", "🍗 Kurczak"],
-                dinner: ["🥤 Shake'i", "🥗 Sałatki"]
-            },
-            3: { // Meksykańskie
-                breakfast: ["🥪 Kanapki/Wrapy"],
-                lunch: ["🌮 Meksykańskie"],
-                dinner: ["🥪 Kanapki", "🥗 Sałatki"]
-            },
-            4: { // Włoskie
-                breakfast: ["🍳 Jajka", "🥪 Kanapki/Wrapy"],
-                lunch: ["🍝 Makarony"],
-                dinner: ["🧀 Nabiał", "🥗 Sałatki"]
-            },
-            5: { // Rybne
-                breakfast: ["🥪 Kanapki/Wrapy"],
-                lunch: ["🐟 Ryby"],
-                dinner: ["🥗 Sałatki", "🧀 Nabiał"]
-            },
-            6: { // Mięsne
-                breakfast: ["🍳 Jajka", "🥪 Kanapki/Wrapy"],
-                lunch: ["🥩 Wołowina/Wieprzowina"],
-                dinner: ["🥘 Zapiekanki", "🧀 Nabiał"]
-            },
-            7: { // Kurczakowe
-                breakfast: ["🥪 Kanapki/Wrapy", "🍳 Jajka"],
-                lunch: ["🍗 Kurczak"],
-                dinner: ["🥗 Sałatki", "🧀 Nabiał"]
-            },
-            8: { // Azjatyckie
-                breakfast: ["🥪 Kanapki/Wrapy"],
-                lunch: ["🍚 Ryż/Azja"],
-                dinner: ["🥗 Sałatki", "🧀 Nabiał"]
-            },
-            9: { // Pizza & Tosty
-                breakfast: ["🥪 Kanapki/Wrapy", "🍳 Jajka"],
-                lunch: ["🍕 Pizza/Kebab"],
-                dinner: ["🥪 Kanapki", "🧀 Nabiał"]
-            },
-            10: { // Street Food
-                breakfast: ["🥪 Kanapki/Wrapy"],
-                lunch: ["🍕 Pizza/Kebab", "🌮 Meksykańskie"],
-                dinner: ["🥪 Kanapki", "🥗 Sałatki"]
-            },
-            // Budżetowe - losują z tanich kategorii
-            11: { breakfast: ["🍳 Jajka"], lunch: ["🍗 Kurczak"], dinner: ["🧀 Nabiał"] },
-            12: { breakfast: ["🥣 Owsianki"], lunch: ["🍝 Makarony"], dinner: ["🧀 Nabiał"] },
-            13: { breakfast: ["🥪 Kanapki/Wrapy"], lunch: ["🍗 Kurczak"], dinner: ["🥪 Kanapki"] },
-            14: { breakfast: ["🥞 Naleśniki"], lunch: ["🍝 Makarony"], dinner: ["🥤 Shake'i"] }
-        };
+        // ========== AUTOMATYCZNE GENEROWANIE WARIANTÓW ==========
+        // Warianty generują się automatycznie na podstawie kategorii w przepisach
+        // Dodanie nowego przepisu z nową kategorią = automatycznie nowy przycisk!
 
-        function fillAllWith(variantNum) {
-            const categories = variantCategories[variantNum];
-            if (!categories) return;
+        // Pobierz unikalne kategorie z przepisów
+        function getUniqueCategories(mealType) {
+            const categories = new Set();
+            recipes[mealType].forEach(r => {
+                if (r.category) categories.add(r.category);
+            });
+            return [...categories].sort();
+        }
+
+        // Generuj warianty automatycznie na podstawie kategorii obiadowych
+        function generateVariantsConfig() {
+            const lunchCategories = getUniqueCategories('lunch');
+            const defaultBreakfast = ["🍳 Jajka", "🥪 Kanapki/Wrapy"];
+            const defaultDinner = ["🧀 Nabiał", "🥗 Sałatki"];
+            const colors = ['orange', 'blue', 'purple', 'gray'];
+
+            return lunchCategories.map((cat, i) => {
+                const icon = cat.split(' ')[0]; // Emoji z kategorii
+                const name = cat.replace(/^[^\s]+\s*/, ''); // Nazwa bez emoji
+                return {
+                    id: i + 1,
+                    name: name,
+                    icon: icon,
+                    color: colors[i % colors.length],
+                    lunchCategory: cat,
+                    categories: {
+                        breakfast: defaultBreakfast,
+                        lunch: [cat],
+                        dinner: defaultDinner
+                    }
+                };
+            });
+        }
+
+        // Konfiguracja wariantów budżetowych (tanie składniki na awaryjne sytuacje)
+        const budgetVariants = [
+            {
+                name: "Jajka",
+                icon: "💰",
+                color: "budget",
+                categories: {
+                    breakfast: ["🍳 Jajka"],           // jajka - najtańsze białko
+                    lunch: ["🍗 Kurczak"],             // kurczak - najtańsze mięso
+                    dinner: ["🧀 Nabiał"]             // twaróg/serek - tanie
+                }
+            },
+            {
+                name: "Owsianka",
+                icon: "💰",
+                color: "budget",
+                categories: {
+                    breakfast: ["🥣 Owsianki"],        // owsianka - najtańsze węgle
+                    lunch: ["🍝 Makarony"],            // makaron - bardzo tani
+                    dinner: ["🧀 Nabiał"]             // twaróg/serek - tanie
+                }
+            },
+            {
+                name: "Kanapki",
+                icon: "💰",
+                color: "budget",
+                categories: {
+                    breakfast: ["🥪 Kanapki/Wrapy"],   // kanapki - proste i tanie
+                    lunch: ["🍗 Kurczak"],             // kurczak - najtańsze mięso
+                    dinner: ["🥪 Kanapki"]            // kanapki na kolację
+                }
+            },
+            {
+                name: "Naleśniki",
+                icon: "💰",
+                color: "budget",
+                categories: {
+                    breakfast: ["🥞 Naleśniki"],       // naleśniki - mąka+jajka+mleko
+                    lunch: ["🍝 Makarony"],            // makaron - bardzo tani
+                    dinner: ["🧀 Nabiał"]             // twaróg/serek - tanie
+                }
+            }
+        ];
+
+        // Funkcja generująca przyciski wariantów dynamicznie
+        function renderVariantButtons() {
+            const container = document.getElementById('variant-buttons');
+            if (!container) return;
+
+            // Generuj warianty automatycznie przy każdym renderze
+            const variants = generateVariantsConfig();
+
+            // Przyciski kategorii obiadowych
+            const categoryButtons = variants.map(v =>
+                `<button class="btn btn-${v.color}" onclick="fillAllWith('${v.lunchCategory}')">${v.icon} ${v.name}</button>`
+            ).join('');
+
+            // Przyciski budżetowe
+            const budgetButtons = budgetVariants.map((v, i) =>
+                `<button class="btn btn-${v.color}" onclick="fillAllWithBudget(${i})">${v.icon} ${v.name}</button>`
+            ).join('');
+
+            container.innerHTML = categoryButtons +
+                `<div class="variant-separator">💰 Budżetowe (tanie składniki):</div>` +
+                budgetButtons +
+                `<div class="variant-separator action-separator">⚡ Akcje:</div>` +
+                `<button class="btn btn-gray" onclick="resetPlan()">🔄 Reset</button>` +
+                `<button class="btn btn-gray" onclick="resetEatenStatus()">✅ Reset ptaszków</button>` +
+                `<button class="btn btn-share" onclick="sharePlan()">📤 Udostępnij plan</button>`;
+        }
+
+        // Funkcja wypełniająca plan wariantem budżetowym
+        function fillAllWithBudget(budgetIndex) {
+            const variant = budgetVariants[budgetIndex];
+            if (!variant) return;
 
             const workDays = ['Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota'];
 
             // Dla każdego typu posiłku wylosuj 2 przepisy z dozwolonych kategorii
             const selectedRecipes = {};
             mealTypes.forEach(mt => {
-                const allowedCategories = categories[mt];
+                const allowedCategories = variant.categories[mt];
+                // Znajdź wszystkie przepisy z dozwolonych kategorii
+                const matchingRecipes = recipes[mt].filter(r =>
+                    allowedCategories.some(cat => r.category.includes(cat))
+                );
+                // Wylosuj 2 różne przepisy (shuffle i weź pierwsze 2)
+                const shuffled = [...matchingRecipes].sort(() => Math.random() - 0.5);
+                selectedRecipes[mt] = [
+                    shuffled[0]?.id || null,
+                    shuffled[1]?.id || shuffled[0]?.id || null
+                ];
+            });
+
+            // Wypełnij plan: Pn-Śr przepis[0], Cz-Sb przepis[1]
+            workDays.forEach((day, i) => {
+                const recipeIdx = i < 3 ? 0 : 1;
+                mealTypes.forEach(mt => {
+                    const recipeId = selectedRecipes[mt][recipeIdx];
+                    persons.forEach(p => {
+                        plan[day][mt][p.id] = recipeId;
+                    });
+                });
+            });
+
+            // Wyczyść niedzielę
+            mealTypes.forEach(mt => {
+                persons.forEach(p => {
+                    plan['Niedziela'][mt][p.id] = null;
+                });
+            });
+
+            renderPlannerTable();
+            savePlan();
+        }
+
+        // fillAllWith teraz przyjmuje kategorię obiadową zamiast ID
+        function fillAllWith(lunchCategory) {
+            const workDays = ['Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota'];
+            const defaultBreakfast = ["🍳 Jajka", "🥪 Kanapki/Wrapy"];
+            const defaultDinner = ["🧀 Nabiał", "🥗 Sałatki"];
+
+            const categoryConfig = {
+                breakfast: defaultBreakfast,
+                lunch: [lunchCategory],
+                dinner: defaultDinner
+            };
+
+            // Dla każdego typu posiłku wylosuj 2 przepisy z dozwolonych kategorii
+            const selectedRecipes = {};
+            mealTypes.forEach(mt => {
+                const allowedCategories = categoryConfig[mt];
                 // Znajdź wszystkie przepisy z dozwolonych kategorii
                 const matchingRecipes = recipes[mt].filter(r =>
                     allowedCategories.some(cat => r.category.includes(cat))
@@ -13809,6 +14340,7 @@
         renderSettingsPanel();
         renderPersonsPanel();
         updateTableHeaders();
+        renderVariantButtons(); // Generuj przyciski wariantów dynamicznie
         renderPlannerTable();
         renderRecipes();
     </script>
