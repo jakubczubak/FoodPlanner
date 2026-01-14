@@ -426,6 +426,27 @@
             font-size: 10px;
         }
 
+        /* Score dopasowania do makro */
+        .match-score {
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        .match-score.high {
+            background: #dcfce7;
+            color: #166534;
+        }
+        .match-score.medium {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        .match-score.low {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
         .meal-picker-category {
             padding: 10px 16px;
             background: #f9fafb;
@@ -926,6 +947,19 @@
             color: #1f2937;
         }
 
+        /* MAKRO W KOLUMNACH DZIENNYCH (FAZA 12) */
+        .macro-b { color: #dc2626; font-weight: 600; }
+        .macro-t { color: #f59e0b; font-weight: 600; }
+        .macro-w { color: #22c55e; font-weight: 600; }
+        .macro-daily {
+            font-size: 9px;
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            margin-top: 2px;
+            opacity: 0.9;
+        }
+
         /* PODSUMOWANIE KALORII */
         .kcal-summary {
             display: flex;
@@ -1222,6 +1256,46 @@
         }
 
         /* PRZEPISY */
+        .recipes-person-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            background: #f8fafc;
+            border-radius: 12px;
+        }
+        .recipes-person-selector label {
+            font-size: 13px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+        .recipes-person-btn {
+            padding: 8px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 20px;
+            background: white;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .recipes-person-btn:hover {
+            border-color: #9ca3af;
+        }
+        .recipes-person-btn.active {
+            background: var(--person-color, #3b82f6);
+            border-color: var(--person-color, #3b82f6);
+            color: white;
+        }
+        .recipes-person-info {
+            margin-left: auto;
+            font-size: 12px;
+            color: #6b7280;
+        }
+        .recipes-person-info strong {
+            color: #1f2937;
+        }
         .recipes-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -1274,6 +1348,34 @@
             font-size: 12px;
         }
         .macro strong { color: #1f2937; }
+        .recipe-macros-optimized {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .macro-optimized {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            border: 1px solid #86efac;
+        }
+        .macro-optimized strong { color: #166534; }
+        .recipe-target-info {
+            font-size: 10px;
+            color: #6b7280;
+            margin-top: 6px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .recipe-target-info .target-badge {
+            background: #fef3c7;
+            color: #92400e;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
         .recipe-preview {
             color: #6b7280;
             font-size: 13px;
@@ -2341,6 +2443,7 @@
                            oninput="searchRecipes(this.value)">
                     <button class="search-clear-btn" onclick="clearSearch()">✕</button>
                 </div>
+                <div class="recipes-person-selector" id="recipes-person-selector"></div>
                 <div class="recipes-grid" id="recipes-grid"></div>
             </div>
         </div>
@@ -9830,6 +9933,8 @@
         // Aktualny filtr przepisów
         let currentRecipeFilter = 'all';
         let currentSearchTerm = '';
+        let selectedRecipesPerson = 1; // Osoba dla której pokazujemy zoptymalizowane wartości
+        let selectedRecipesMealType = 'lunch'; // Typ posiłku dla optymalizacji
 
         // ===========================================
         // FUNKCJE - WYSZUKIWARKA PRZEPISÓW
@@ -10407,6 +10512,8 @@
                 updateTableHeaders();
                 renderPlannerTable();
                 renderKcalSummary();
+                renderRecipesPersonSelector();
+                renderRecipes(currentRecipeFilter);
                 savePersons();
             }
         }
@@ -10802,10 +10909,14 @@
                     row.appendChild(td);
                 });
 
-                // Kalorie dla każdej osoby osobno - pokaż zjedzone/zaplanowane
+                // Kalorie i MAKRO dla każdej osoby osobno - pokaż zjedzone/zaplanowane
                 persons.forEach(person => {
                     let kcalPlanned = 0;
                     let kcalEaten = 0;
+                    let proteinPlanned = 0;
+                    let fatPlanned = 0;
+                    let carbsPlanned = 0;
+
                     mealTypes.forEach(mt => {
                         const meal = plan[day][mt];
                         const recipeId = meal[person.id];
@@ -10815,12 +10926,21 @@
                                 // Sprawdź czy jest zoptymalizowana wartość
                                 const optKey = getOptimizationKey(day, mt, person.id, recipeId);
                                 const optimization = mealOptimizations[optKey];
-                                const mealKcal = optimization
-                                    ? optimization.nutrition.kcal
-                                    : Math.round(r.kcal * person.portion);
-                                kcalPlanned += mealKcal;
+
+                                if (optimization) {
+                                    kcalPlanned += optimization.nutrition.kcal;
+                                    proteinPlanned += optimization.nutrition.protein;
+                                    fatPlanned += optimization.nutrition.fat;
+                                    carbsPlanned += optimization.nutrition.carbs;
+                                } else {
+                                    kcalPlanned += Math.round(r.kcal * person.portion);
+                                    proteinPlanned += Math.round(r.protein * person.portion);
+                                    fatPlanned += Math.round(r.fat * person.portion);
+                                    carbsPlanned += Math.round(r.carbs * person.portion);
+                                }
+
                                 if (eatenMeals[day]?.[mt]?.[person.id]) {
-                                    kcalEaten += mealKcal;
+                                    kcalEaten += optimization ? optimization.nutrition.kcal : Math.round(r.kcal * person.portion);
                                 }
                             }
                         }
@@ -10835,6 +10955,11 @@
                             <div class="kcal-split">
                                 <span class="kcal-eaten">${kcalEaten}</span>
                                 <span class="kcal-planned">/ ${kcalPlanned}</span>
+                            </div>
+                            <div class="macro-daily">
+                                <span class="macro-b">B:${proteinPlanned}g</span>
+                                <span class="macro-t">T:${fatPlanned}g</span>
+                                <span class="macro-w">W:${carbsPlanned}g</span>
                             </div>`;
                     } else {
                         kcalTd.innerHTML = '<span class="empty">-</span>';
@@ -10919,9 +11044,37 @@
             renderMealPickerOptions(currentMealPicker.mealType, searchTerm.toLowerCase());
         }
 
+        // Oblicz score dopasowania przepisu do celów makro (0-100)
+        function calculateRecipeMatchScore(recipe, targetMacros, portion) {
+            if (!targetMacros) return 0;
+
+            // Przelicz wartości przepisu na porcję osoby
+            const recipeKcal = Math.round(recipe.kcal * portion);
+            const recipeProtein = Math.round(recipe.protein * portion);
+            const recipeFat = Math.round(recipe.fat * portion);
+            const recipeCarbs = Math.round(recipe.carbs * portion);
+
+            // Różnice procentowe (mniejsza różnica = lepiej)
+            const kcalDiff = targetMacros.kcal > 0 ? Math.abs(recipeKcal - targetMacros.kcal) / targetMacros.kcal : 0;
+            const proteinDiff = targetMacros.protein > 0 ? Math.abs(recipeProtein - targetMacros.protein) / targetMacros.protein : 0;
+            const fatDiff = targetMacros.fat > 0 ? Math.abs(recipeFat - targetMacros.fat) / targetMacros.fat : 0;
+            const carbsDiff = targetMacros.carbs > 0 ? Math.abs(recipeCarbs - targetMacros.carbs) / targetMacros.carbs : 0;
+
+            // Score 0-100 (100 = idealne dopasowanie)
+            const avgDiff = (kcalDiff + proteinDiff + fatDiff + carbsDiff) / 4;
+            const score = Math.max(0, Math.round(100 - (avgDiff * 100)));
+
+            return score;
+        }
+
         function renderMealPickerOptions(mealType, searchTerm) {
             const container = document.getElementById('mealPickerOptions');
             const currentValue = plan[currentMealPicker.day]?.[mealType]?.[currentMealPicker.personId];
+
+            // Pobierz osobę i cele makro dla sortowania wg dopasowania
+            const person = persons.find(p => p.id === currentMealPicker.personId);
+            const targetMacros = calculateMealTargets(person, mealType);
+            const portion = person?.portion || 1;
 
             // Grupuj przepisy po kategorii
             const grouped = {};
@@ -10936,7 +11089,10 @@
                 }
 
                 if (!grouped[r.category]) grouped[r.category] = [];
-                grouped[r.category].push(r);
+
+                // Oblicz score dopasowania do celów makro
+                const matchScore = calculateRecipeMatchScore(r, targetMacros, portion);
+                grouped[r.category].push({ ...r, matchScore });
             });
 
             // Sortuj kategorie i przepisy
@@ -10946,14 +11102,22 @@
 
             Object.keys(grouped).sort().forEach(category => {
                 html += `<div class="meal-picker-category">${category}</div>`;
-                grouped[category].sort((a,b) => a.name.localeCompare(b.name, 'pl')).forEach(r => {
+
+                // Sortuj wg matchScore (od najlepszego dopasowania)
+                grouped[category].sort((a, b) => b.matchScore - a.matchScore).forEach(r => {
                     const isFav = favoriteRecipes.has(r.id);
                     const isSelected = r.id === currentValue;
+
+                    // Badge ze score'em
+                    const scoreBadge = r.matchScore >= 80 ? '🎯 ' : r.matchScore >= 60 ? '✓ ' : '';
+                    const scoreClass = r.matchScore >= 80 ? 'high' : r.matchScore >= 60 ? 'medium' : 'low';
+
                     html += `
                         <div class="meal-picker-option ${isSelected ? 'selected' : ''}"
                              onclick="selectMealOption('${r.id}')">
-                            <span class="recipe-name">${isFav ? '❤️ ' : ''}${r.name}</span>
+                            <span class="recipe-name">${scoreBadge}${isFav ? '❤️ ' : ''}${r.name}</span>
                             <span class="recipe-macros">
+                                <span class="match-score ${scoreClass}">${r.matchScore}%</span>
                                 <span class="macro-kcal">${r.kcal}</span>
                                 <span class="macro-detail">B${r.protein} T${r.fat} W${r.carbs}</span>
                             </span>
@@ -11088,6 +11252,32 @@
         }
 
         // Funkcja wypełniająca plan wariantem budżetowym
+        // Funkcja pomocnicza - optymalizuje wszystkie posiłki w planie
+        function optimizeAllMealsInPlan() {
+            const workDays = ['Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota'];
+
+            workDays.forEach(day => {
+                mealTypes.forEach(mt => {
+                    persons.forEach(p => {
+                        const recipeId = plan[day][mt][p.id];
+                        if (recipeId) {
+                            const recipe = recipes[mt].find(r => r.id === recipeId);
+                            const person = persons.find(pers => pers.id === p.id);
+                            if (recipe && person) {
+                                const target = calculateMealTargets(person, mt);
+                                if (target) {
+                                    const result = optimizeIngredients(recipe, target, person.portion);
+                                    const key = getOptimizationKey(day, mt, p.id, recipeId);
+                                    mealOptimizations[key] = result;
+                                }
+                            }
+                        }
+                    });
+                });
+            });
+            saveMealOptimizations();
+        }
+
         function fillAllWithBudget(budgetIndex) {
             const variant = budgetVariants[budgetIndex];
             if (!variant) return;
@@ -11127,6 +11317,9 @@
                     plan['Niedziela'][mt][p.id] = null;
                 });
             });
+
+            // Automatyczna optymalizacja wszystkich posiłków
+            optimizeAllMealsInPlan();
 
             renderPlannerTable();
             savePlan();
@@ -11178,6 +11371,9 @@
                 });
             });
 
+            // Automatyczna optymalizacja wszystkich posiłków
+            optimizeAllMealsInPlan();
+
             renderPlannerTable();
             savePlan();
         }
@@ -11190,6 +11386,58 @@
             });
             renderPlannerTable();
             savePlan();
+        }
+
+        // PRZEPISY - PRZEŁĄCZNIK OSOBY
+        function renderRecipesPersonSelector() {
+            const container = document.getElementById('recipes-person-selector');
+            if (!container) return;
+
+            const person = persons.find(p => p.id === selectedRecipesPerson) || persons[0];
+            const mealTarget = calculateMealTargets(person, selectedRecipesMealType);
+
+            const mealTypeNames = {
+                breakfast: 'Śniadanie',
+                lunch: 'Obiad',
+                dinner: 'Kolacja'
+            };
+
+            container.innerHTML = `
+                <label>Pokaż wartości dla:</label>
+                ${persons.map(p => `
+                    <button class="recipes-person-btn ${p.id === selectedRecipesPerson ? 'active' : ''}"
+                            style="--person-color: ${p.color}"
+                            onclick="setRecipesPerson(${p.id})">
+                        ${p.name}
+                    </button>
+                `).join('')}
+                <select class="recipes-person-btn" onchange="setRecipesMealType(this.value)" style="padding: 8px 12px;">
+                    ${mealTypes.map(mt => `
+                        <option value="${mt}" ${mt === selectedRecipesMealType ? 'selected' : ''}>
+                            ${mealTypeNames[mt]}
+                        </option>
+                    `).join('')}
+                </select>
+                ${mealTarget ? `
+                    <div class="recipes-person-info">
+                        Cel (${mealTypeNames[selectedRecipesMealType]}):
+                        <strong>${mealTarget.kcal} kcal</strong> |
+                        B:${mealTarget.protein}g T:${mealTarget.fat}g W:${mealTarget.carbs}g
+                    </div>
+                ` : ''}
+            `;
+        }
+
+        function setRecipesPerson(personId) {
+            selectedRecipesPerson = personId;
+            renderRecipesPersonSelector();
+            renderRecipes(currentRecipeFilter);
+        }
+
+        function setRecipesMealType(mealType) {
+            selectedRecipesMealType = mealType;
+            renderRecipesPersonSelector();
+            renderRecipes(currentRecipeFilter);
         }
 
         // PRZEPISY
@@ -11265,6 +11513,20 @@
 
                     hasRecipes = true;
                     const isFav = favoriteRecipes.has(r.id);
+
+                    // Oblicz zoptymalizowane wartości dla wybranej osoby i typu posiłku
+                    const person = persons.find(p => p.id === selectedRecipesPerson) || persons[0];
+                    const mealTarget = calculateMealTargets(person, selectedRecipesMealType);
+                    let optimized = null;
+                    if (mealTarget) {
+                        optimized = optimizeIngredients(r, mealTarget, person.portion);
+                    }
+
+                    const displayKcal = optimized ? optimized.nutrition.kcal : r.kcal;
+                    const displayProtein = optimized ? optimized.nutrition.protein : r.protein;
+                    const displayFat = optimized ? optimized.nutrition.fat : r.fat;
+                    const displayCarbs = optimized ? optimized.nutrition.carbs : r.carbs;
+
                     const card = document.createElement('div');
                     card.className = 'recipe-card';
                     card.onclick = () => openRecipeModal(mt, r);
@@ -11279,10 +11541,15 @@
                             <div class="recipe-name">${r.name}</div>
                         </div>
                         <div class="recipe-body">
-                            <div class="recipe-macros">
-                                <div class="macro"><strong>${r.kcal}</strong> kcal</div>
-                                <div class="macro"><strong>${r.protein}g</strong> B</div>
-                                <div class="macro"><strong>${r.carbs}g</strong> W</div>
+                            <div class="recipe-macros-optimized">
+                                <div class="macro-optimized"><strong>${displayKcal}</strong> kcal</div>
+                                <div class="macro-optimized"><strong>${displayProtein}g</strong> B</div>
+                                <div class="macro-optimized"><strong>${displayFat}g</strong> T</div>
+                                <div class="macro-optimized"><strong>${displayCarbs}g</strong> W</div>
+                            </div>
+                            <div class="recipe-target-info">
+                                <span class="target-badge">${person.name}</span>
+                                Oryginał: ${r.kcal} kcal
                             </div>
                             <div class="recipe-preview">${r.ingredients.slice(0,3).map(x=>x.item).join(', ')}...</div>
                         </div>`;
@@ -12674,6 +12941,7 @@
         updateTableHeaders();
         renderVariantButtons(); // Generuj przyciski wariantów dynamicznie
         renderPlannerTable();
+        renderRecipesPersonSelector();
         renderRecipes();
     </script>
     <script>
