@@ -11044,21 +11044,19 @@
             renderMealPickerOptions(currentMealPicker.mealType, searchTerm.toLowerCase());
         }
 
-        // Oblicz score dopasowania przepisu do celów makro (0-100)
+        // Oblicz score dopasowania przepisu do celów makro (0-100) - PO OPTYMALIZACJI
         function calculateRecipeMatchScore(recipe, targetMacros, portion) {
             if (!targetMacros) return 0;
 
-            // Przelicz wartości przepisu na porcję osoby
-            const recipeKcal = Math.round(recipe.kcal * portion);
-            const recipeProtein = Math.round(recipe.protein * portion);
-            const recipeFat = Math.round(recipe.fat * portion);
-            const recipeCarbs = Math.round(recipe.carbs * portion);
+            // Uruchom optymalizację aby uzyskać rzeczywiste wartości po dopasowaniu
+            const optimized = optimizeIngredients(recipe, targetMacros, portion);
+            const opt = optimized.nutrition;
 
             // Różnice procentowe (mniejsza różnica = lepiej)
-            const kcalDiff = targetMacros.kcal > 0 ? Math.abs(recipeKcal - targetMacros.kcal) / targetMacros.kcal : 0;
-            const proteinDiff = targetMacros.protein > 0 ? Math.abs(recipeProtein - targetMacros.protein) / targetMacros.protein : 0;
-            const fatDiff = targetMacros.fat > 0 ? Math.abs(recipeFat - targetMacros.fat) / targetMacros.fat : 0;
-            const carbsDiff = targetMacros.carbs > 0 ? Math.abs(recipeCarbs - targetMacros.carbs) / targetMacros.carbs : 0;
+            const kcalDiff = targetMacros.kcal > 0 ? Math.abs(opt.kcal - targetMacros.kcal) / targetMacros.kcal : 0;
+            const proteinDiff = targetMacros.protein > 0 ? Math.abs(opt.protein - targetMacros.protein) / targetMacros.protein : 0;
+            const fatDiff = targetMacros.fat > 0 ? Math.abs(opt.fat - targetMacros.fat) / targetMacros.fat : 0;
+            const carbsDiff = targetMacros.carbs > 0 ? Math.abs(opt.carbs - targetMacros.carbs) / targetMacros.carbs : 0;
 
             // Score 0-100 (100 = idealne dopasowanie)
             const avgDiff = (kcalDiff + proteinDiff + fatDiff + carbsDiff) / 4;
