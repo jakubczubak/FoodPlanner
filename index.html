@@ -803,7 +803,7 @@
 
         /* SEKCJA OPTYMALIZACJI SKŁADNIKÓW */
         .optimization-section {
-            margin: 16px 0;
+            margin: 20px 0 16px 0;
             padding: 14px;
             background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
             border-radius: 10px;
@@ -889,7 +889,7 @@
         .reset-optimization-btn:hover {
             background: #e5e7eb;
         }
-        .ingredient-changed {
+        .modal-section li.ingredient-item.ingredient-changed {
             background: #fef3c7 !important;
             border-left: 3px solid #f59e0b;
             padding-left: 8px;
@@ -1604,25 +1604,45 @@
         }
 
         /* ZAMIENNIKI SKŁADNIKÓW */
-        .ingredient-item {
+        .modal-section li.ingredient-item {
             position: relative;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2px;
+            padding: 10px 0;
+        }
+        .modal-section li.ingredient-item::before {
+            content: none;
+        }
+        .ingredient-main-row {
+            display: flex;
             align-items: center;
             gap: 8px;
+            width: 100%;
+        }
+        .ingredient-main-row::before {
+            content: "•";
+            color: #8b5cf6;
+            font-weight: bold;
+            font-size: 18px;
+            flex-shrink: 0;
         }
         .ingredient-text {
             flex: 1;
-            min-width: 150px;
+            min-width: 120px;
+        }
+        .ingredient-macros-row {
+            margin-left: 26px;
+            margin-top: 2px;
         }
         .ingredient-macros {
-            font-size: 0.75em;
-            color: #888;
-            background: #f5f5f5;
-            padding: 2px 6px;
+            font-size: 11px;
+            color: #6b7280;
+            background: #f3f4f6;
+            padding: 3px 8px;
             border-radius: 4px;
-            white-space: nowrap;
+            display: inline-block;
         }
         .info-btn {
             background: none;
@@ -1665,94 +1685,135 @@
             color: white;
             transform: scale(1.05);
         }
-        .substitute-popup {
-            position: absolute;
-            right: 0;
-            top: 100%;
-            z-index: 100;
-            background: white;
-            border: 2px solid #e5e7eb;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            min-width: 280px;
-            margin-top: 8px;
-            animation: popupFadeIn 0.2s ease-out;
+        .substitute-btn.no-substitutes {
+            opacity: 0.5;
+            border-style: dashed;
+            background: #f9fafb;
         }
-        @keyframes popupFadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .substitute-btn.no-substitutes:hover {
+            opacity: 0.7;
+            background: #f3e8ff;
+            transform: none;
+        }
+        .no-substitutes-message {
+            padding: 12px 14px;
+            text-align: center;
+            color: #6b7280;
+            font-size: 13px;
+        }
+        /* MODAL ZAMIENNIKÓW - pełny overlay */
+        .substitute-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 10001;
+            justify-content: center;
+            align-items: center;
+        }
+        .substitute-modal-overlay.active {
+            display: flex;
+        }
+        .substitute-modal-content {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            min-width: 320px;
+            max-width: 90vw;
+            max-height: 80vh;
+            overflow: hidden;
+            animation: substituteModalIn 0.25s ease-out;
+        }
+        @keyframes substituteModalIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
         .substitute-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 14px;
-            background: linear-gradient(135deg, #f3e8ff 0%, #ede9fe 100%);
-            border-radius: 10px 10px 0 0;
-            border-bottom: 1px solid #e5e7eb;
+            padding: 16px 20px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            color: white;
         }
-        .substitute-header span {
+        .substitute-header-title {
             font-weight: 600;
+            font-size: 15px;
+        }
+        .substitute-header-ingredient {
             font-size: 13px;
-            color: #7c3aed;
+            opacity: 0.9;
+            margin-top: 4px;
         }
         .substitute-close {
-            background: none;
+            background: rgba(255,255,255,0.2);
             border: none;
-            font-size: 18px;
-            color: #9ca3af;
+            font-size: 20px;
+            color: white;
             cursor: pointer;
-            padding: 0 4px;
-            line-height: 1;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
         }
         .substitute-close:hover {
-            color: #374151;
+            background: rgba(255,255,255,0.3);
+        }
+        .substitute-body {
+            padding: 16px 20px;
+            max-height: 50vh;
+            overflow-y: auto;
         }
         .substitute-list {
             list-style: none;
-            padding: 8px 0;
+            padding: 0;
             margin: 0;
         }
         .substitute-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 14px;
-            border-bottom: 1px solid #f3f4f6;
-            font-size: 13px;
+            padding: 14px 16px;
+            background: #f9fafb;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            border: 1px solid #e5e7eb;
         }
         .substitute-item:last-child {
-            border-bottom: none;
+            margin-bottom: 0;
         }
-        .substitute-item::before {
-            content: "↔";
+        .substitute-icon {
             color: #8b5cf6;
-            margin-right: 8px;
-            font-size: 12px;
+            margin-right: 12px;
+            font-size: 16px;
         }
         .substitute-name {
             flex: 1;
             color: #374151;
+            font-weight: 500;
         }
         .substitute-amount {
-            font-weight: 600;
+            font-weight: 700;
             color: #1f2937;
-            background: #f3f4f6;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-            margin-left: 10px;
+            background: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            margin-left: 12px;
+            border: 1px solid #e5e7eb;
         }
-        @media (max-width: 600px) {
-            .substitute-popup {
-                position: fixed;
-                left: 10px;
-                right: 10px;
-                top: auto;
-                bottom: 80px;
-                max-width: none;
-                width: auto;
-            }
+        .no-substitutes-message {
+            text-align: center;
+            padding: 30px 20px;
+            color: #6b7280;
+            font-size: 14px;
         }
 
         .modal-steps li {
@@ -2163,6 +2224,64 @@
             .modal-persons-toggle { flex-direction: column; gap: 6px; }
             .modal-person-btn { padding: 10px; font-size: 12px; }
 
+            /* Sekcja optymalizacji/dopasowania - mobile */
+            .optimization-section {
+                margin: 12px 0;
+                padding: 10px;
+            }
+            .optimization-header {
+                font-size: 12px;
+                flex-wrap: wrap;
+            }
+            .optimization-grid {
+                padding: 6px;
+                overflow-x: auto;
+            }
+            .opt-row {
+                grid-template-columns: 50px repeat(4, 1fr);
+                gap: 3px;
+                font-size: 10px;
+                padding: 4px 0;
+            }
+            .opt-label {
+                font-size: 9px;
+            }
+            .opt-header-row {
+                font-size: 9px;
+            }
+            .optimize-btn {
+                padding: 8px 10px;
+                font-size: 11px;
+            }
+            .reset-optimization-btn {
+                padding: 6px 10px;
+                font-size: 10px;
+            }
+
+            /* Składniki - mobile */
+            .ingredient-main-row {
+                flex-wrap: nowrap;
+            }
+            .ingredient-text {
+                min-width: 100px;
+                font-size: 13px;
+            }
+            .ingredient-macros-row {
+                margin-left: 22px;
+            }
+            .ingredient-macros {
+                font-size: 10px;
+                padding: 2px 6px;
+            }
+            .substitute-btn {
+                padding: 3px 8px;
+                font-size: 12px;
+            }
+            .info-btn {
+                font-size: 12px;
+                padding: 2px;
+            }
+
             /* Lista zakupów */
             .shopping-list { padding: 12px; }
             .shopping-category h3 { font-size: 14px; }
@@ -2522,6 +2641,7 @@
                 <div class="modal-multiplier" id="modal-multiplier"></div>
                 <div class="modal-portions-control" id="modal-portions-control"></div>
                 <div class="modal-macros" id="modal-macros"></div>
+                <div class="optimization-section" id="modal-optimization" style="display: none;"></div>
                 <div class="modal-section">
                     <h3>📝 Składniki</h3>
                     <ul id="modal-ingredients"></ul>
@@ -2531,6 +2651,13 @@
                     <ul class="modal-steps" id="modal-steps"></ul>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- MODAL ZAMIENNIKÓW -->
+    <div class="substitute-modal-overlay" id="substitute-modal-overlay" onclick="closeSubstituteModal(event)">
+        <div class="substitute-modal-content" id="substitute-modal-content" onclick="event.stopPropagation()">
+            <!-- Treść generowana dynamicznie -->
         </div>
     </div>
 
@@ -3530,6 +3657,698 @@
                 "łodyga": 40
             }
         };
+
+        // ===========================================
+        // CENTRALNA MAPA ZAMIENNIKÓW SKŁADNIKÓW
+        // ===========================================
+        const ingredientSubstitutes = {
+            // ===================== JAJKA =====================
+            "Jajka": [{ item: "Tofu jedwabiste", ratio: 2.5 }, { item: "Jogurt grecki", ratio: 1 }],
+            "Jajko": [{ item: "Tofu jedwabiste", ratio: 2.5 }, { item: "Jogurt grecki", ratio: 1 }],
+
+            // ===================== NABIAŁ - MLEKO =====================
+            "Mleko": [{ item: "Mleko migdałowe", ratio: 1 }, { item: "Mleko owsiane", ratio: 1 }],
+            "Mleko 2%": [{ item: "Mleko migdałowe", ratio: 1 }, { item: "Mleko owsiane", ratio: 1 }],
+            "Mleko 3.2%": [{ item: "Mleko kokosowe light", ratio: 1 }, { item: "Mleko owsiane", ratio: 1 }],
+            "Mleko 1.5%": [{ item: "Mleko 2%", ratio: 1 }, { item: "Mleko bezlaktozowe", ratio: 1 }],
+            "Mleko bezlaktozowe": [{ item: "Mleko 2%", ratio: 1 }, { item: "Mleko migdałowe", ratio: 1 }],
+            "Mleko roślinne": [{ item: "Mleko migdałowe", ratio: 1 }, { item: "Mleko owsiane", ratio: 1 }],
+            "Mleko migdałowe": [{ item: "Mleko owsiane", ratio: 1 }, { item: "Mleko sojowe", ratio: 1 }],
+            "Mleko owsiane": [{ item: "Mleko migdałowe", ratio: 1 }, { item: "Mleko sojowe", ratio: 1 }],
+            "Mleko sojowe": [{ item: "Mleko owsiane", ratio: 1 }, { item: "Mleko migdałowe", ratio: 1 }],
+            "Mleko kokosowe": [{ item: "Mleczko kokosowe", ratio: 1 }, { item: "Śmietanka kokosowa", ratio: 1 }],
+            "Mleczko kokosowe": [{ item: "Mleko kokosowe", ratio: 1 }, { item: "Krem kokosowy", ratio: 1 }],
+            "Mleczko kokosowe light": [{ item: "Mleko kokosowe", ratio: 1 }, { item: "Mleko owsiane", ratio: 1 }],
+            "Krem kokosowy": [{ item: "Mleczko kokosowe", ratio: 1 }, { item: "Śmietanka kokosowa", ratio: 1 }],
+            "Maślanka": [{ item: "Kefir", ratio: 1 }, { item: "Jogurt naturalny", ratio: 1 }],
+            "Kefir": [{ item: "Maślanka", ratio: 1 }, { item: "Jogurt naturalny", ratio: 1 }],
+
+            // ===================== NABIAŁ - JOGURTY =====================
+            "Jogurt naturalny": [{ item: "Jogurt grecki", ratio: 1 }, { item: "Skyr naturalny", ratio: 1 }],
+            "Jogurt naturalny 2%": [{ item: "Jogurt naturalny", ratio: 1 }, { item: "Jogurt grecki", ratio: 1 }],
+            "Jogurt grecki": [{ item: "Skyr naturalny", ratio: 1 }, { item: "Jogurt naturalny", ratio: 1 }],
+            "Skyr naturalny": [{ item: "Jogurt grecki", ratio: 1 }, { item: "Twaróg", ratio: 1 }],
+            "Skyr": [{ item: "Skyr naturalny", ratio: 1 }, { item: "Jogurt grecki", ratio: 1 }],
+            "Jogurt skyr": [{ item: "Skyr naturalny", ratio: 1 }, { item: "Jogurt grecki", ratio: 1 }],
+            "Jogurt Skyr": [{ item: "Skyr naturalny", ratio: 1 }, { item: "Jogurt grecki", ratio: 1 }],
+            "Jogurt Skyr naturalny": [{ item: "Skyr naturalny", ratio: 1 }, { item: "Jogurt grecki", ratio: 1 }],
+            "Jogurt sojowy": [{ item: "Jogurt naturalny", ratio: 1 }, { item: "Jogurt grecki", ratio: 1 }],
+            "Labneh": [{ item: "Jogurt grecki", ratio: 1 }, { item: "Serek śmietankowy", ratio: 1 }],
+
+            // ===================== NABIAŁ - ŚMIETANA =====================
+            "Śmietana": [{ item: "Śmietana 18%", ratio: 1 }, { item: "Śmietanka 18%", ratio: 1 }],
+            "Śmietana 18%": [{ item: "Śmietanka kokosowa", ratio: 1 }, { item: "Jogurt grecki", ratio: 1 }],
+            "Śmietana 12%": [{ item: "Jogurt naturalny", ratio: 1 }, { item: "Śmietanka 12%", ratio: 1 }],
+            "Śmietanka 12%": [{ item: "Śmietana 12%", ratio: 1 }, { item: "Jogurt naturalny", ratio: 1 }],
+            "Śmietanka 18%": [{ item: "Śmietana 18%", ratio: 1 }, { item: "Śmietanka 30%", ratio: 0.7 }],
+            "Śmietanka 30%": [{ item: "Śmietanka 18%", ratio: 1.3 }, { item: "Krem kokosowy", ratio: 1 }],
+            "Śmietanka kokosowa": [{ item: "Krem kokosowy", ratio: 1 }, { item: "Mleczko kokosowe", ratio: 1 }],
+            "Bita śmietana": [{ item: "Śmietanka 30%", ratio: 1 }, { item: "Krem kokosowy", ratio: 1 }],
+
+            // ===================== NABIAŁ - SERY ŻÓŁTE =====================
+            "Ser żółty (gouda)": [{ item: "Ser cheddar", ratio: 1 }, { item: "Ser mozzarella", ratio: 1 }],
+            "Ser żółty": [{ item: "Ser cheddar", ratio: 1 }, { item: "Ser mozzarella", ratio: 1 }],
+            "Ser żółty light": [{ item: "Ser żółty", ratio: 1 }, { item: "Ser mozzarella light", ratio: 1 }],
+            "Ser żółty tarty": [{ item: "Ser żółty", ratio: 1 }, { item: "Parmezan tarty", ratio: 1 }],
+            "Ser gouda": [{ item: "Ser żółty (gouda)", ratio: 1 }, { item: "Ser edamski", ratio: 1 }],
+            "Ser edamski": [{ item: "Ser gouda", ratio: 1 }, { item: "Ser tylżycki", ratio: 1 }],
+            "Ser Edamski": [{ item: "Ser gouda", ratio: 1 }, { item: "Ser tylżycki", ratio: 1 }],
+            "Ser tylżycki": [{ item: "Ser edamski", ratio: 1 }, { item: "Ser gouda", ratio: 1 }],
+            "Ser Tylżycki": [{ item: "Ser edamski", ratio: 1 }, { item: "Ser gouda", ratio: 1 }],
+            "Ser cheddar": [{ item: "Ser żółty", ratio: 1 }, { item: "Ser gouda", ratio: 1 }],
+            "Ser amerykański": [{ item: "Ser cheddar", ratio: 1 }, { item: "Ser żółty", ratio: 1 }],
+
+            // ===================== NABIAŁ - MOZZARELLA =====================
+            "Ser mozzarella": [{ item: "Ser żółty (gouda)", ratio: 1 }, { item: "Ser feta", ratio: 1 }],
+            "Mozzarella": [{ item: "Ser żółty (gouda)", ratio: 1 }, { item: "Ser feta", ratio: 1 }],
+            "Ser mozzarella kulka": [{ item: "Mozzarella", ratio: 1 }, { item: "Mozzarella di bufala", ratio: 1 }],
+            "Ser mozzarella light": [{ item: "Ser mozzarella", ratio: 1 }, { item: "Mozzarella", ratio: 1 }],
+            "Mozzarella di bufala": [{ item: "Mozzarella", ratio: 1 }, { item: "Burrata", ratio: 1 }],
+            "Burrata": [{ item: "Mozzarella di bufala", ratio: 1 }, { item: "Mozzarella", ratio: 1 }],
+
+            // ===================== NABIAŁ - FETA I KOZIE =====================
+            "Ser feta": [{ item: "Ser kozi", ratio: 1 }, { item: "Twaróg", ratio: 1 }],
+            "Feta": [{ item: "Ser kozi", ratio: 1 }, { item: "Twaróg", ratio: 1 }],
+            "Ser feta light": [{ item: "Ser feta", ratio: 1 }, { item: "Feta", ratio: 1 }],
+            "Ser typu Feta": [{ item: "Ser feta", ratio: 1 }, { item: "Feta", ratio: 1 }],
+            "Ser sałatkowy": [{ item: "Ser feta", ratio: 1 }, { item: "Twaróg", ratio: 1 }],
+            "Ser kozi": [{ item: "Ser feta", ratio: 1 }, { item: "Ser pleśniowy", ratio: 1 }],
+
+            // ===================== NABIAŁ - SERY PLEŚNIOWE =====================
+            "Ser brie": [{ item: "Ser camembert", ratio: 1 }, { item: "Ser kozi", ratio: 1 }],
+            "Ser camembert": [{ item: "Ser brie", ratio: 1 }, { item: "Ser kozi", ratio: 1 }],
+            "Ser pleśniowy": [{ item: "Ser gorgonzola", ratio: 1 }, { item: "Ser roquefort", ratio: 1 }],
+            "Ser gorgonzola": [{ item: "Ser pleśniowy", ratio: 1 }, { item: "Ser roquefort", ratio: 1 }],
+            "Ser roquefort": [{ item: "Ser gorgonzola", ratio: 1 }, { item: "Ser pleśniowy", ratio: 1 }],
+
+            // ===================== NABIAŁ - PARMEZAN =====================
+            "Parmezan": [{ item: "Grana Padano", ratio: 1 }, { item: "Pecorino", ratio: 1 }],
+            "Parmezan tarty": [{ item: "Parmezan", ratio: 1 }, { item: "Grana Padano", ratio: 1 }],
+            "Grana Padano": [{ item: "Parmezan", ratio: 1 }, { item: "Pecorino", ratio: 1 }],
+            "Ser Grana Padano": [{ item: "Parmezan", ratio: 1 }, { item: "Grana Padano", ratio: 1 }],
+            "Pecorino": [{ item: "Parmezan", ratio: 1 }, { item: "Pecorino Romano", ratio: 1 }],
+            "Pecorino Romano": [{ item: "Pecorino", ratio: 1 }, { item: "Parmezan", ratio: 1 }],
+
+            // ===================== NABIAŁ - INNE SERY =====================
+            "Halloumi": [{ item: "Ser mozzarella", ratio: 1 }, { item: "Oscypek", ratio: 1 }],
+            "Oscypek": [{ item: "Halloumi", ratio: 1 }, { item: "Ser żółty", ratio: 1 }],
+
+            // ===================== NABIAŁ - MASCARPONE I RICOTTA =====================
+            "Mascarpone": [{ item: "Serek mascarpone", ratio: 1 }, { item: "Serek śmietankowy", ratio: 1 }],
+            "Serek mascarpone": [{ item: "Mascarpone", ratio: 1 }, { item: "Serek śmietankowy", ratio: 1 }],
+            "Ricotta": [{ item: "Serek ricotta", ratio: 1 }, { item: "Twaróg", ratio: 1 }],
+            "Serek ricotta": [{ item: "Ricotta", ratio: 1 }, { item: "Twaróg", ratio: 1 }],
+
+            // ===================== NABIAŁ - SERKI ŚMIETANKOWE =====================
+            "Serek śmietankowy": [{ item: "Serek śmietankowy light", ratio: 1 }, { item: "Mascarpone", ratio: 1 }],
+            "Serek śmietankowy light": [{ item: "Serek śmietankowy", ratio: 1 }, { item: "Serek wiejski", ratio: 1 }],
+            "Serek kremowy": [{ item: "Serek śmietankowy", ratio: 1 }, { item: "Mascarpone", ratio: 1 }],
+
+            // ===================== NABIAŁ - SEREK WIEJSKI I TWARÓG =====================
+            "Serek wiejski": [{ item: "Twaróg", ratio: 1 }, { item: "Ricotta", ratio: 1 }],
+            "Serek wiejski naturalny": [{ item: "Serek wiejski", ratio: 1 }, { item: "Twaróg", ratio: 1 }],
+            "Serek wiejski wysokobiałkowy": [{ item: "Serek wiejski", ratio: 1 }, { item: "Twaróg", ratio: 1 }],
+            "Serek high protein": [{ item: "Serek wiejski", ratio: 1 }, { item: "Jogurt grecki", ratio: 1 }],
+            "Twaróg": [{ item: "Serek wiejski", ratio: 1 }, { item: "Ricotta", ratio: 1 }],
+            "Twaróg chudy": [{ item: "Twaróg", ratio: 1 }, { item: "Twaróg półtłusty", ratio: 1 }],
+            "Twaróg półtłusty": [{ item: "Twaróg", ratio: 1 }, { item: "Twaróg chudy", ratio: 1 }],
+            "Twaróg kremowy": [{ item: "Twaróg", ratio: 1 }, { item: "Serek śmietankowy", ratio: 1 }],
+            "Twaróg wędzony": [{ item: "Twaróg", ratio: 1 }, { item: "Oscypek", ratio: 1 }],
+            "Twarożek": [{ item: "Twaróg", ratio: 1 }, { item: "Serek wiejski", ratio: 1 }],
+            "Ser twarogowy półtłusty": [{ item: "Twaróg półtłusty", ratio: 1 }, { item: "Serek wiejski", ratio: 1 }],
+
+            // ===================== MIĘSO - DRÓB =====================
+            "Pierś z kurczaka": [{ item: "Pierś z indyka", ratio: 1 }, { item: "Tofu twarde", ratio: 1.3 }],
+            "Filet z kurczaka": [{ item: "Filet z indyka", ratio: 1 }, { item: "Tofu twarde", ratio: 1.3 }],
+            "Pierś z indyka": [{ item: "Pierś z kurczaka", ratio: 1 }, { item: "Tofu twarde", ratio: 1.3 }],
+            "Filet z indyka": [{ item: "Filet z kurczaka", ratio: 1 }, { item: "Pierś z indyka", ratio: 1 }],
+            "Kurczak": [{ item: "Pierś z indyka", ratio: 1 }, { item: "Tofu twarde", ratio: 1.3 }],
+            "Udka z kurczaka": [{ item: "Podudzia z kurczaka", ratio: 1 }, { item: "Pałki z kurczaka", ratio: 1 }],
+            "Udko z kurczaka": [{ item: "Udka z kurczaka", ratio: 1 }, { item: "Podudzia z kurczaka", ratio: 1 }],
+            "Podudzia z kurczaka": [{ item: "Udka z kurczaka", ratio: 1 }, { item: "Pałki z kurczaka", ratio: 1 }],
+            "Pałki z kurczaka": [{ item: "Udka z kurczaka", ratio: 1 }, { item: "Podudzia z kurczaka", ratio: 1 }],
+            "Skrzydełka z kurczaka": [{ item: "Pałki z kurczaka", ratio: 1.2 }],
+
+            // ===================== MIĘSO - WIEPRZOWINA =====================
+            "Wieprzowina": [{ item: "Pierś z kurczaka", ratio: 1 }, { item: "Schab wieprzowy", ratio: 1 }],
+            "Karkówka": [{ item: "Schab wieprzowy", ratio: 1 }, { item: "Łopatka wieprzowa", ratio: 1 }],
+            "Karkówka wieprzowa": [{ item: "Schab wieprzowy", ratio: 1 }, { item: "Łopatka wieprzowa", ratio: 1 }],
+            "Schab": [{ item: "Polędwica wieprzowa", ratio: 1 }, { item: "Pierś z kurczaka", ratio: 1 }],
+            "Schab wieprzowy": [{ item: "Polędwica wieprzowa", ratio: 1 }, { item: "Pierś z kurczaka", ratio: 1 }],
+            "Polędwica wieprzowa": [{ item: "Schab wieprzowy", ratio: 1 }, { item: "Filet z indyka", ratio: 1 }],
+            "Żeberka wieprzowe": [{ item: "Karkówka wieprzowa", ratio: 1 }],
+            "Boczek": [{ item: "Bekon", ratio: 1 }, { item: "Pancetta", ratio: 1 }],
+            "Boczek surowy": [{ item: "Boczek wędzony", ratio: 1 }, { item: "Pancetta", ratio: 1 }],
+            "Boczek wędzony": [{ item: "Bekon", ratio: 1 }, { item: "Pancetta", ratio: 1 }],
+            "Wieprzowina mielona": [{ item: "Mięso mielone z indyka", ratio: 1 }, { item: "Mięso mielone wołowe", ratio: 1 }],
+
+            // ===================== MIĘSO - WOŁOWINA =====================
+            "Wołowina mielona": [{ item: "Mięso mielone z indyka", ratio: 1 }, { item: "Mięso mielone z kurczaka", ratio: 1 }],
+            "Mięso mielone": [{ item: "Mięso mielone z indyka", ratio: 1 }, { item: "Tofu twarde", ratio: 1.2 }],
+            "Mięso mielone mieszane": [{ item: "Mięso mielone z indyka", ratio: 1 }, { item: "Mięso mielone wołowe", ratio: 1 }],
+            "Mięso mielone wołowe": [{ item: "Mięso mielone z indyka", ratio: 1 }, { item: "Mięso mielone wieprzowe", ratio: 1 }],
+            "Mięso mielone wołowo-wieprzowe": [{ item: "Mięso mielone wołowe", ratio: 1 }, { item: "Mięso mielone z indyka", ratio: 1 }],
+            "Mięso mielone z indyka": [{ item: "Mięso mielone z kurczaka", ratio: 1 }, { item: "Mięso mielone wołowe", ratio: 1 }],
+            "Mięso mielone z kurczaka": [{ item: "Mięso mielone z indyka", ratio: 1 }, { item: "Tofu twarde", ratio: 1.2 }],
+            "Antrykot wołowy": [{ item: "Rostbef wołowy", ratio: 1 }, { item: "Polędwica wołowa", ratio: 1 }],
+            "Rostbef wołowy": [{ item: "Antrykot wołowy", ratio: 1 }, { item: "Polędwica wołowa", ratio: 1 }],
+            "Polędwica wołowa": [{ item: "Rostbef wołowy", ratio: 1 }, { item: "Filet z indyka", ratio: 1 }],
+            "Wołowina gulaszowa": [{ item: "Karkówka wieprzowa", ratio: 1 }, { item: "Łopatka wieprzowa", ratio: 1 }],
+
+            // ===================== WĘDLINY =====================
+            "Szynka z indyka": [{ item: "Szynka z kurczaka", ratio: 1 }, { item: "Polędwica drobiowa", ratio: 1 }],
+            "Szynka z kurczaka": [{ item: "Szynka z indyka", ratio: 1 }, { item: "Polędwica drobiowa", ratio: 1 }],
+            "Szynka": [{ item: "Szynka z indyka", ratio: 1 }, { item: "Polędwica", ratio: 1 }],
+            "Szynka wędzona": [{ item: "Szynka", ratio: 1 }, { item: "Szynka z indyka", ratio: 1 }],
+            "Szynka konserwowa": [{ item: "Szynka", ratio: 1 }, { item: "Szynka z indyka", ratio: 1 }],
+            "Szynka parmeńska": [{ item: "Prosciutto", ratio: 1 }, { item: "Szynka serrano", ratio: 1 }],
+            "Prosciutto": [{ item: "Szynka parmeńska", ratio: 1 }, { item: "Szynka serrano", ratio: 1 }],
+            "Szynka serrano": [{ item: "Szynka parmeńska", ratio: 1 }, { item: "Prosciutto", ratio: 1 }],
+            "Bekon": [{ item: "Boczek wędzony", ratio: 1 }, { item: "Pancetta", ratio: 1 }],
+            "Pancetta": [{ item: "Boczek wędzony", ratio: 1 }, { item: "Bekon", ratio: 1 }],
+            "Polędwica drobiowa": [{ item: "Szynka z indyka", ratio: 1 }, { item: "Szynka z kurczaka", ratio: 1 }],
+            "Polędwica sopocka": [{ item: "Polędwica drobiowa", ratio: 1 }, { item: "Szynka", ratio: 1 }],
+            "Polędwica z indyka": [{ item: "Polędwica drobiowa", ratio: 1 }, { item: "Szynka z indyka", ratio: 1 }],
+            "Chorizo": [{ item: "Kiełbasa krakowska", ratio: 1 }, { item: "Salami pikantne", ratio: 1 }],
+            "Salami": [{ item: "Salami pikantne", ratio: 1 }, { item: "Pepperoni", ratio: 1 }],
+            "Salami pikantne": [{ item: "Chorizo", ratio: 1 }, { item: "Pepperoni", ratio: 1 }],
+            "Pepperoni": [{ item: "Salami pikantne", ratio: 1 }, { item: "Chorizo", ratio: 1 }],
+            "Kiełbasa krakowska": [{ item: "Kiełbasa śląska", ratio: 1 }, { item: "Chorizo", ratio: 1 }],
+            "Kiełbasa śląska": [{ item: "Kiełbasa krakowska", ratio: 1 }, { item: "Kiełbasa biała", ratio: 1 }],
+            "Kiełbasa biała": [{ item: "Kiełbasa śląska", ratio: 1 }, { item: "Kiełbaski śniadaniowe", ratio: 1 }],
+            "Kiełbasa drobiowa": [{ item: "Kiełbaski z kurczaka", ratio: 1 }, { item: "Parówki drobiowe", ratio: 1 }],
+            "Kiełbaski z kurczaka": [{ item: "Kiełbasa drobiowa", ratio: 1 }, { item: "Parówki drobiowe", ratio: 1 }],
+            "Parówki drobiowe": [{ item: "Kiełbaski z kurczaka", ratio: 1 }, { item: "Parówki wieprzowe", ratio: 1 }],
+
+            // ===================== TOFU I ROŚLINNE =====================
+            "Tofu": [{ item: "Tofu twarde", ratio: 1 }, { item: "Tofu jedwabiste", ratio: 1 }],
+            "Tofu twarde": [{ item: "Tofu extra firm", ratio: 1 }, { item: "Tofu wędzone", ratio: 1 }],
+            "Tofu extra firm": [{ item: "Tofu twarde", ratio: 1 }, { item: "Tofu wędzone", ratio: 1 }],
+            "Tofu jedwabiste": [{ item: "Jogurt grecki", ratio: 1 }, { item: "Serek wiejski", ratio: 1 }],
+            "Tofu wędzone": [{ item: "Tofu twarde", ratio: 1 }, { item: "Tofu extra firm", ratio: 1 }],
+            "Granulat sojowy": [{ item: "Mięso mielone z indyka", ratio: 0.3 }, { item: "Tofu twarde", ratio: 1 }],
+            "Kiełbaski roślinne": [{ item: "Kiełbaski z kurczaka", ratio: 1 }, { item: "Tofu wędzone", ratio: 1 }],
+            "Parówki wegetariańskie": [{ item: "Parówki drobiowe", ratio: 1 }, { item: "Kiełbaski roślinne", ratio: 1 }],
+
+            // ===================== RYBY =====================
+            "Łosoś": [{ item: "Pstrąg", ratio: 1 }, { item: "Makrela", ratio: 1 }],
+            "Łosoś świeży": [{ item: "Pstrąg", ratio: 1 }, { item: "Filet z łososia", ratio: 1 }],
+            "Łosoś wędzony": [{ item: "Pstrąg wędzony", ratio: 1 }, { item: "Makrela wędzona", ratio: 1 }],
+            "Filet z łososia": [{ item: "Filet z pstrąga", ratio: 1 }, { item: "Makrela", ratio: 1 }],
+            "Pstrąg": [{ item: "Łosoś", ratio: 1 }, { item: "Filet z pstrąga", ratio: 1 }],
+            "Filet z pstrąga": [{ item: "Filet z łososia", ratio: 1 }, { item: "Łosoś", ratio: 1 }],
+            "Pstrąg wędzony": [{ item: "Łosoś wędzony", ratio: 1 }, { item: "Makrela wędzona", ratio: 1 }],
+            "Makrela wędzona": [{ item: "Łosoś wędzony", ratio: 1 }, { item: "Pstrąg wędzony", ratio: 1 }],
+            "Tuńczyk": [{ item: "Łosoś", ratio: 1 }, { item: "Makrela", ratio: 1 }],
+            "Tuńczyk świeży": [{ item: "Łosoś świeży", ratio: 1 }, { item: "Filet z tuńczyka", ratio: 1 }],
+            "Tuńczyk w wodzie": [{ item: "Tuńczyk w oliwie", ratio: 1 }, { item: "Łosoś z puszki", ratio: 1 }],
+            "Tuńczyk w oliwie": [{ item: "Tuńczyk w wodzie", ratio: 1 }, { item: "Makrela wędzona", ratio: 1 }],
+            "Dorsz": [{ item: "Mintaj", ratio: 1 }, { item: "Tilapia", ratio: 1 }],
+            "Filet z dorsza": [{ item: "Filet z mintaja", ratio: 1 }, { item: "Filet z morszczuka", ratio: 1 }],
+            "Filet z mintaja": [{ item: "Filet z dorsza", ratio: 1 }, { item: "Tilapia", ratio: 1 }],
+            "Filet z morszczuka": [{ item: "Filet z dorsza", ratio: 1 }, { item: "Filet z mintaja", ratio: 1 }],
+            "Filet z sandacza": [{ item: "Filet z dorsza", ratio: 1 }, { item: "Filet z mintaja", ratio: 1 }],
+            "Krewetki": [{ item: "Kalmary", ratio: 1 }, { item: "Tofu twarde", ratio: 1.5 }],
+            "Krewetki tygrysie": [{ item: "Krewetki", ratio: 1 }, { item: "Kalmary", ratio: 1 }],
+            "Krewetki gotowane": [{ item: "Krewetki obrane", ratio: 1 }, { item: "Krewetki tygrysie", ratio: 1 }],
+            "Małże": [{ item: "Krewetki", ratio: 1 }, { item: "Kalmary", ratio: 1 }],
+
+            // ===================== PIECZYWO =====================
+            "Chleb": [{ item: "Chleb pszenny", ratio: 1 }, { item: "Chleb razowy", ratio: 1 }],
+            "Chleb pszenny": [{ item: "Chleb", ratio: 1 }, { item: "Chleb tostowy", ratio: 1 }],
+            "Chleb razowy": [{ item: "Chleb żytni razowy", ratio: 1 }, { item: "Chleb pełnoziarnisty", ratio: 1 }],
+            "Chleb żytni razowy": [{ item: "Chleb tostowy pełnoziarnisty", ratio: 1 }, { item: "Chleb graham", ratio: 1 }],
+            "Chleb żytni": [{ item: "Chleb razowy", ratio: 1 }, { item: "Chleb żytni razowy", ratio: 1 }],
+            "Chleb pełnoziarnisty": [{ item: "Chleb razowy", ratio: 1 }, { item: "Chleb graham", ratio: 1 }],
+            "Chleb graham": [{ item: "Chleb pełnoziarnisty", ratio: 1 }, { item: "Chleb żytni", ratio: 1 }],
+            "Chleb tostowy": [{ item: "Chleb tostowy pełnoziarnisty", ratio: 1 }, { item: "Chleb pszenny", ratio: 1 }],
+            "Chleb tostowy pełnoziarnisty": [{ item: "Chleb żytni razowy", ratio: 1 }, { item: "Bułka grahamka", ratio: 0.5 }],
+            "Chleb orkiszowy": [{ item: "Chleb pełnoziarnisty", ratio: 1 }, { item: "Chleb graham", ratio: 1 }],
+            "Chleb bezglutenowy": [{ item: "Chleb", ratio: 1 }, { item: "Chleb pszenny", ratio: 1 }],
+            "Chleb na zakwasie": [{ item: "Chleb żytni", ratio: 1 }, { item: "Chleb razowy", ratio: 1 }],
+            "Chleb turecki": [{ item: "Pita", ratio: 1 }, { item: "Lavash", ratio: 1 }],
+            "Chleb naan": [{ item: "Pita", ratio: 1 }, { item: "Chleb turecki", ratio: 1 }],
+            "Chleb pita": [{ item: "Pita", ratio: 1 }, { item: "Tortilla pszenna", ratio: 1 }],
+            "Pita": [{ item: "Chleb pita", ratio: 1 }, { item: "Lavash", ratio: 1 }],
+            "Lavash": [{ item: "Lawasz", ratio: 1 }, { item: "Tortilla pszenna", ratio: 1 }],
+            "Lawasz": [{ item: "Lavash", ratio: 1 }, { item: "Pita", ratio: 1 }],
+
+            // ===================== BUŁKI =====================
+            "Bułka": [{ item: "Bułka grahamka", ratio: 1 }, { item: "Chleb", ratio: 1 }],
+            "Bułka grahamka": [{ item: "Bułka pełnoziarnista", ratio: 1 }, { item: "Bułka graham", ratio: 1 }],
+            "Bułka graham": [{ item: "Bułka grahamka", ratio: 1 }, { item: "Bułka pełnoziarnista", ratio: 1 }],
+            "Bułka pełnoziarnista": [{ item: "Bułka grahamka", ratio: 1 }, { item: "Bułka graham", ratio: 1 }],
+            "Bułka owsiana": [{ item: "Bułka grahamka", ratio: 1 }, { item: "Bułka pełnoziarnista", ratio: 1 }],
+            "Bułka kajzerka": [{ item: "Bułka", ratio: 1 }, { item: "Kajzerki", ratio: 1 }],
+            "Bułki kajzerki": [{ item: "Kajzerki", ratio: 1 }, { item: "Bułka kajzerka", ratio: 1 }],
+            "Kajzerki": [{ item: "Bułki kajzerki", ratio: 1 }, { item: "Bułka", ratio: 1 }],
+            "Bułka brioche": [{ item: "Bułki brioche", ratio: 1 }, { item: "Bułka", ratio: 1 }],
+            "Bułki brioche": [{ item: "Bułka brioche", ratio: 1 }, { item: "Bułka", ratio: 1 }],
+            "Bułka burgerowa": [{ item: "Bułki burgerowe", ratio: 1 }, { item: "Bułka do burgera zwykła", ratio: 1 }],
+            "Bułki burgerowe": [{ item: "Bułka burgerowa", ratio: 1 }, { item: "Bułka", ratio: 1 }],
+            "Bułka do burgera pełnoziarnista": [{ item: "Bułka burgerowa", ratio: 1 }, { item: "Bułka grahamka", ratio: 1 }],
+            "Bułka do burgera zwykła": [{ item: "Bułka burgerowa", ratio: 1 }, { item: "Bułka", ratio: 1 }],
+            "Bułka do hotdoga": [{ item: "Bułki hot-dog", ratio: 1 }, { item: "Bułka", ratio: 1 }],
+            "Bułki hot-dog": [{ item: "Bułka do hotdoga", ratio: 1 }, { item: "Bułka", ratio: 1 }],
+            "Bagietka": [{ item: "Ciabatta", ratio: 1 }, { item: "Bułka", ratio: 1 }],
+            "Bagietka pełnoziarnista": [{ item: "Bagietka", ratio: 1 }, { item: "Ciabatta", ratio: 1 }],
+            "Ciabatta": [{ item: "Bagietka", ratio: 1 }, { item: "Bułka", ratio: 1 }],
+
+            // ===================== TORTILLE I WRAPY =====================
+            "Tortilla": [{ item: "Tortilla pszenna", ratio: 1 }, { item: "Tortilla kukurydziana", ratio: 1 }],
+            "Tortilla pszenna": [{ item: "Tortilla kukurydziana", ratio: 1 }, { item: "Wrap pełnoziarnisty", ratio: 1 }],
+            "Tortilla kukurydziana": [{ item: "Tortilla pszenna", ratio: 1 }, { item: "Wrap pełnoziarnisty", ratio: 1 }],
+            "Tortilla pełnoziarnista": [{ item: "Tortilla pszenna", ratio: 1 }, { item: "Wrap pełnoziarnisty", ratio: 1 }],
+            "Tortilla pszenna duża": [{ item: "Tortilla pszenna", ratio: 1 }, { item: "Wrap pszenny", ratio: 1 }],
+            "Wrap pszenny": [{ item: "Tortilla pszenna", ratio: 1 }, { item: "Lavash", ratio: 1 }],
+            "Wrap pełnoziarnisty": [{ item: "Tortilla pełnoziarnista", ratio: 1 }, { item: "Tortilla pszenna", ratio: 1 }],
+
+            // ===================== INNE PIECZYWO =====================
+            "Tosty": [{ item: "Chleb tostowy", ratio: 1 }, { item: "Tosty pszenne", ratio: 1 }],
+            "Tosty pszenne": [{ item: "Tosty", ratio: 1 }, { item: "Chleb tostowy", ratio: 1 }],
+            "Grzanki": [{ item: "Chleb", ratio: 1 }, { item: "Tosty", ratio: 1 }],
+            "Grzanki pełnoziarniste": [{ item: "Grzanki", ratio: 1 }, { item: "Chleb pełnoziarnisty", ratio: 1 }],
+            "Grzanki czosnkowe": [{ item: "Grzanki", ratio: 1 }, { item: "Chleb", ratio: 1 }],
+            "Pieczywo chrupkie": [{ item: "Wafle ryżowe", ratio: 1 }, { item: "Wafle kukurydziane", ratio: 1 }],
+            "Bułka tarta": [{ item: "Panko", ratio: 1 }, { item: "Płatki kukurydziane kruszone", ratio: 1 }],
+            "Panko": [{ item: "Bułka tarta", ratio: 1 }, { item: "Płatki kukurydziane kruszone", ratio: 1 }],
+
+            // ===================== RYŻE I KASZE =====================
+            "Ryż": [{ item: "Ryż biały", ratio: 1 }, { item: "Ryż jaśminowy", ratio: 1 }],
+            "Ryż biały": [{ item: "Ryż brązowy", ratio: 1 }, { item: "Kasza bulgur", ratio: 1 }],
+            "Ryż brązowy": [{ item: "Komosa ryżowa (quinoa)", ratio: 1 }, { item: "Kasza gryczana", ratio: 1 }],
+            "Ryż basmati": [{ item: "Ryż jaśminowy", ratio: 1 }, { item: "Ryż biały", ratio: 1 }],
+            "Ryż jaśminowy": [{ item: "Ryż basmati", ratio: 1 }, { item: "Ryż biały", ratio: 1 }],
+            "Ryż do sushi": [{ item: "Ryż kleisty", ratio: 1 }, { item: "Ryż jaśminowy", ratio: 1 }],
+            "Ryż kleisty": [{ item: "Ryż do sushi", ratio: 1 }, { item: "Ryż jaśminowy", ratio: 1 }],
+            "Komosa ryżowa (quinoa)": [{ item: "Quinoa", ratio: 1 }, { item: "Kasza bulgur", ratio: 1 }],
+            "Quinoa": [{ item: "Komosa ryżowa (quinoa)", ratio: 1 }, { item: "Kasza bulgur", ratio: 1 }],
+            "Kasza gryczana": [{ item: "Komosa ryżowa (quinoa)", ratio: 1 }, { item: "Kasza jaglana", ratio: 1 }],
+            "Kasza jaglana": [{ item: "Kasza gryczana", ratio: 1 }, { item: "Kasza kuskus", ratio: 1 }],
+            "Kasza bulgur": [{ item: "Kasza kuskus", ratio: 1 }, { item: "Komosa ryżowa (quinoa)", ratio: 1 }],
+            "Kasza kuskus": [{ item: "Kasza bulgur", ratio: 1 }, { item: "Kasza jaglana", ratio: 1 }],
+            "Kasza pęczak": [{ item: "Kasza gryczana", ratio: 1 }, { item: "Kasza jaglana", ratio: 1 }],
+            "Kasza manna": [{ item: "Kasza kuskus", ratio: 1 }, { item: "Mąka pszenna", ratio: 1 }],
+
+            // ===================== MAKARON =====================
+            "Makaron": [{ item: "Makaron pełnoziarnisty", ratio: 1 }, { item: "Makaron ryżowy", ratio: 1 }],
+            "Makaron pełnoziarnisty": [{ item: "Makaron", ratio: 1 }, { item: "Kasza bulgur", ratio: 0.8 }],
+            "Makaron penne": [{ item: "Penne", ratio: 1 }, { item: "Makaron rigatoni", ratio: 1 }],
+            "Penne": [{ item: "Makaron penne", ratio: 1 }, { item: "Rigatoni", ratio: 1 }],
+            "Makaron rigatoni": [{ item: "Rigatoni", ratio: 1 }, { item: "Penne", ratio: 1 }],
+            "Rigatoni": [{ item: "Makaron rigatoni", ratio: 1 }, { item: "Penne", ratio: 1 }],
+            "Makaron fusilli": [{ item: "Fusilli", ratio: 1 }, { item: "Makaron penne", ratio: 1 }],
+            "Fusilli": [{ item: "Makaron fusilli", ratio: 1 }, { item: "Penne", ratio: 1 }],
+            "Farfalle": [{ item: "Fusilli", ratio: 1 }, { item: "Penne", ratio: 1 }],
+            "Makaron spaghetti": [{ item: "Spaghetti", ratio: 1 }, { item: "Linguine", ratio: 1 }],
+            "Spaghetti": [{ item: "Makaron spaghetti", ratio: 1 }, { item: "Linguine", ratio: 1 }],
+            "Linguine": [{ item: "Spaghetti", ratio: 1 }, { item: "Tagliatelle", ratio: 1 }],
+            "Tagliatelle": [{ item: "Linguine", ratio: 1 }, { item: "Fettuccine", ratio: 1 }],
+            "Fettuccine": [{ item: "Tagliatelle", ratio: 1 }, { item: "Pappardelle", ratio: 1 }],
+            "Pappardelle": [{ item: "Tagliatelle", ratio: 1 }, { item: "Fettuccine", ratio: 1 }],
+            "Makaron jajeczny": [{ item: "Makaron", ratio: 1 }, { item: "Tagliatelle", ratio: 1 }],
+            "Makaron ryżowy": [{ item: "Makaron soba", ratio: 1 }, { item: "Makaron udon", ratio: 1 }],
+            "Makaron soba": [{ item: "Makaron gryczany", ratio: 1 }, { item: "Makaron ryżowy", ratio: 1 }],
+            "Makaron udon": [{ item: "Makaron ramen", ratio: 1 }, { item: "Makaron ryżowy", ratio: 1 }],
+            "Makaron ramen": [{ item: "Makaron udon", ratio: 1 }, { item: "Makaron jajeczny", ratio: 1 }],
+            "Makaron bezglutenowy": [{ item: "Makaron ryżowy", ratio: 1 }, { item: "Makaron", ratio: 1 }],
+
+            // ===================== ZIEMNIAKI =====================
+            "Ziemniaki": [{ item: "Bataty", ratio: 1 }, { item: "Kasza gryczana", ratio: 0.7 }],
+            "Bataty": [{ item: "Ziemniaki", ratio: 1 }, { item: "Dynia", ratio: 1.2 }],
+            "Batat": [{ item: "Bataty", ratio: 1 }, { item: "Ziemniaki", ratio: 1 }],
+            "Młode ziemniaki": [{ item: "Ziemniaki młode", ratio: 1 }, { item: "Ziemniaki", ratio: 1 }],
+            "Ziemniaki młode": [{ item: "Młode ziemniaki", ratio: 1 }, { item: "Ziemniaki", ratio: 1 }],
+            "Frytki mrożone": [{ item: "Ziemniaki", ratio: 1 }, { item: "Frytki z batatów", ratio: 1 }],
+            "Frytki z batatów": [{ item: "Frytki mrożone", ratio: 1 }, { item: "Bataty", ratio: 1 }],
+            "Puree ziemniaczane": [{ item: "Ziemniaki", ratio: 1 }, { item: "Puree ziemniaczane instant", ratio: 1 }],
+            "Puree ziemniaczane instant": [{ item: "Puree ziemniaczane", ratio: 1 }, { item: "Ziemniaki", ratio: 1 }],
+            "Kopytka": [{ item: "Kluski śląskie", ratio: 1 }, { item: "Ziemniaki", ratio: 1 }],
+            "Kluski śląskie": [{ item: "Kopytka", ratio: 1 }, { item: "Ziemniaki", ratio: 1 }],
+
+            // ===================== PŁATKI =====================
+            "Płatki owsiane": [{ item: "Płatki gryczane", ratio: 1 }, { item: "Płatki jaglane", ratio: 1 }],
+            "Płatki owsiane błyskawiczne": [{ item: "Płatki owsiane", ratio: 1 }, { item: "Płatki owsiane górskie", ratio: 1 }],
+            "Płatki owsiane górskie": [{ item: "Płatki owsiane", ratio: 1 }, { item: "Płatki owsiane błyskawiczne", ratio: 1 }],
+            "Płatki gryczane": [{ item: "Płatki owsiane", ratio: 1 }, { item: "Płatki ryżowe", ratio: 1 }],
+            "Płatki jaglane": [{ item: "Płatki owsiane", ratio: 1 }, { item: "Kasza jaglana", ratio: 1 }],
+            "Płatki orkiszowe": [{ item: "Płatki owsiane", ratio: 1 }, { item: "Płatki jaglane", ratio: 1 }],
+            "Płatki kukurydziane": [{ item: "Płatki kukurydziane kruszone", ratio: 1 }, { item: "Płatki ryżowe", ratio: 1 }],
+            "Płatki kukurydziane kruszone": [{ item: "Płatki kukurydziane", ratio: 1 }, { item: "Bułka tarta", ratio: 1 }],
+            "Granola": [{ item: "Musli crunchy", ratio: 1 }, { item: "Płatki owsiane", ratio: 1 }],
+            "Musli crunchy": [{ item: "Granola", ratio: 1 }, { item: "Płatki owsiane", ratio: 1 }],
+            "Wafle ryżowe": [{ item: "Wafle kukurydziane", ratio: 1 }, { item: "Pieczywo chrupkie", ratio: 1 }],
+            "Wafle kukurydziane": [{ item: "Wafle ryżowe", ratio: 1 }, { item: "Pieczywo chrupkie", ratio: 1 }],
+
+            // ===================== TŁUSZCZE =====================
+            "Masło": [{ item: "Oliwa z oliwek", ratio: 0.8 }, { item: "Masło klarowane", ratio: 1 }],
+            "Masło klarowane": [{ item: "Masło", ratio: 1 }, { item: "Olej kokosowy", ratio: 1 }],
+            "Masło light": [{ item: "Masło", ratio: 1 }, { item: "Oliwa z oliwek", ratio: 0.8 }],
+            "Oliwa z oliwek": [{ item: "Olej rzepakowy", ratio: 1 }, { item: "Olej kokosowy", ratio: 1 }],
+            "Oliwa": [{ item: "Oliwa z oliwek", ratio: 1 }, { item: "Oliwa extra virgin", ratio: 1 }],
+            "Oliwa extra virgin": [{ item: "Oliwa z oliwek", ratio: 1 }, { item: "Oliwa", ratio: 1 }],
+            "Olej rzepakowy": [{ item: "Oliwa z oliwek", ratio: 1 }, { item: "Olej słonecznikowy", ratio: 1 }],
+            "Olej": [{ item: "Olej rzepakowy", ratio: 1 }, { item: "Oliwa z oliwek", ratio: 1 }],
+            "Olej do smażenia": [{ item: "Olej rzepakowy", ratio: 1 }, { item: "Olej", ratio: 1 }],
+            "Olej słonecznikowy": [{ item: "Olej rzepakowy", ratio: 1 }, { item: "Olej", ratio: 1 }],
+            "Olej kokosowy": [{ item: "Masło klarowane", ratio: 1 }, { item: "Olej", ratio: 1 }],
+            "Olej sezamowy": [{ item: "Olej arachidowy", ratio: 1 }, { item: "Olej rzepakowy", ratio: 1 }],
+            "Olej arachidowy": [{ item: "Olej sezamowy", ratio: 1 }, { item: "Olej rzepakowy", ratio: 1 }],
+            "Olej lniany": [{ item: "Oliwa z oliwek", ratio: 1 }, { item: "Olej rzepakowy", ratio: 1 }],
+            "Smalec": [{ item: "Masło klarowane", ratio: 1 }, { item: "Olej", ratio: 1 }],
+
+            // ===================== WARZYWA - POMIDORY =====================
+            "Pomidor": [{ item: "Papryka czerwona", ratio: 1 }, { item: "Pomidorki koktajlowe", ratio: 2 }],
+            "Pomidory": [{ item: "Pomidor", ratio: 1 }, { item: "Pomidory świeże", ratio: 1 }],
+            "Pomidor malinowy": [{ item: "Pomidor", ratio: 1 }, { item: "Pomidorki cherry", ratio: 2 }],
+            "Pomidorki cherry": [{ item: "Pomidorki koktajlowe", ratio: 1 }, { item: "Pomidor", ratio: 0.5 }],
+            "Pomidorki koktajlowe": [{ item: "Pomidorki cherry", ratio: 1 }, { item: "Pomidor", ratio: 0.5 }],
+            "Pomidory z puszki": [{ item: "Pomidory (puszka)", ratio: 1 }, { item: "Passata pomidorowa", ratio: 1 }],
+            "Pomidory (puszka)": [{ item: "Pomidory z puszki", ratio: 1 }, { item: "Pomidory krojone (puszka)", ratio: 1 }],
+            "Pomidory krojone (puszka)": [{ item: "Pomidory (puszka)", ratio: 1 }, { item: "Pomidory pelati (puszka)", ratio: 1 }],
+            "Passata pomidorowa": [{ item: "Pomidory z puszki", ratio: 1 }, { item: "Koncentrat pomidorowy", ratio: 0.3 }],
+            "Pomidory suszone": [{ item: "Pomidory suszone w oleju", ratio: 1 }, { item: "Suszone pomidory", ratio: 1 }],
+            "Pomidory suszone w oleju": [{ item: "Pomidory suszone", ratio: 1 }, { item: "Suszone pomidory", ratio: 1 }],
+
+            // ===================== WARZYWA - CEBULA =====================
+            "Cebula": [{ item: "Cebula biała", ratio: 1 }, { item: "Cebula czerwona", ratio: 1 }],
+            "Cebula biała": [{ item: "Cebula", ratio: 1 }, { item: "Cebula czerwona", ratio: 1 }],
+            "Cebula czerwona": [{ item: "Cebula", ratio: 1 }, { item: "Cebula biała", ratio: 1 }],
+            "Cebula dymka": [{ item: "Dymka", ratio: 1 }, { item: "Zielona cebulka", ratio: 1 }],
+            "Dymka": [{ item: "Cebula dymka", ratio: 1 }, { item: "Zielona cebulka", ratio: 1 }],
+            "Zielona cebulka": [{ item: "Dymka", ratio: 1 }, { item: "Szczypiorek", ratio: 1 }],
+            "Szalotka": [{ item: "Cebula szalotka", ratio: 1 }, { item: "Cebula", ratio: 0.5 }],
+            "Cebula szalotka": [{ item: "Szalotka", ratio: 1 }, { item: "Cebula", ratio: 1 }],
+            "Czosnek": [{ item: "Czosnek świeży", ratio: 1 }, { item: "Czosnek granulowany", ratio: 0.3 }],
+            "Czosnek świeży": [{ item: "Czosnek", ratio: 1 }, { item: "Czosnek granulowany", ratio: 0.3 }],
+            "Czosnek granulowany": [{ item: "Czosnek", ratio: 3 }, { item: "Czosnek świeży", ratio: 3 }],
+
+            // ===================== WARZYWA - PAPRYKA =====================
+            "Papryka": [{ item: "Papryka czerwona", ratio: 1 }, { item: "Pomidor", ratio: 1 }],
+            "Papryka czerwona": [{ item: "Papryka", ratio: 1 }, { item: "Papryka żółta", ratio: 1 }],
+            "Papryka żółta": [{ item: "Papryka czerwona", ratio: 1 }, { item: "Papryka pomarańczowa", ratio: 1 }],
+            "Papryka pomarańczowa": [{ item: "Papryka żółta", ratio: 1 }, { item: "Papryka czerwona", ratio: 1 }],
+            "Papryka zielona": [{ item: "Papryka", ratio: 1 }, { item: "Papryka czerwona", ratio: 1 }],
+            "Papryczka chilli": [{ item: "Chili świeże", ratio: 1 }, { item: "Jalapeno", ratio: 2 }],
+            "Chili świeże": [{ item: "Papryczka chilli", ratio: 1 }, { item: "Jalapeno", ratio: 2 }],
+            "Jalapeno": [{ item: "Jalapeno marynowane", ratio: 1 }, { item: "Papryczka chilli", ratio: 0.5 }],
+            "Jalapeno marynowane": [{ item: "Jalapeno", ratio: 1 }, { item: "Peperoni marynowane", ratio: 1 }],
+
+            // ===================== WARZYWA - OGÓRKI =====================
+            "Ogórek": [{ item: "Ogórek kiszony", ratio: 1 }, { item: "Cukinia", ratio: 1 }],
+            "Ogórek świeży": [{ item: "Ogórek", ratio: 1 }, { item: "Ogórek gruntowy", ratio: 1 }],
+            "Ogórek gruntowy": [{ item: "Ogórek", ratio: 1 }, { item: "Ogórek świeży", ratio: 1 }],
+            "Ogórek kiszony": [{ item: "Ogórki kiszone", ratio: 1 }, { item: "Korniszony", ratio: 1 }],
+            "Ogórki kiszone": [{ item: "Ogórek kiszony", ratio: 1 }, { item: "Korniszony", ratio: 1 }],
+            "Korniszony": [{ item: "Ogórek korniszon", ratio: 1 }, { item: "Ogórki kiszone", ratio: 1 }],
+            "Ogórek korniszon": [{ item: "Korniszony", ratio: 1 }, { item: "Ogórki konserwowe", ratio: 1 }],
+            "Ogórki konserwowe": [{ item: "Ogórek konserwowy", ratio: 1 }, { item: "Korniszony", ratio: 1 }],
+
+            // ===================== WARZYWA - LIŚCIASTE =====================
+            "Szpinak": [{ item: "Jarmuż", ratio: 1 }, { item: "Rukola", ratio: 1 }],
+            "Szpinak świeży": [{ item: "Szpinak", ratio: 1 }, { item: "Szpinak mrożony", ratio: 0.3 }],
+            "Szpinak mrożony": [{ item: "Szpinak świeży", ratio: 3 }, { item: "Szpinak", ratio: 1 }],
+            "Rukola": [{ item: "Szpinak", ratio: 1 }, { item: "Sałata", ratio: 1.5 }],
+            "Roszponka": [{ item: "Rukola", ratio: 1 }, { item: "Szpinak", ratio: 1 }],
+            "Jarmuż": [{ item: "Szpinak", ratio: 1 }, { item: "Botwina", ratio: 1 }],
+            "Botwina": [{ item: "Szpinak", ratio: 1 }, { item: "Jarmuż", ratio: 1 }],
+            "Sałata": [{ item: "Sałata lodowa", ratio: 1 }, { item: "Sałata rzymska", ratio: 1 }],
+            "Sałata lodowa": [{ item: "Sałata", ratio: 1 }, { item: "Sałata rzymska", ratio: 1 }],
+            "Sałata rzymska": [{ item: "Sałata lodowa", ratio: 1 }, { item: "Sałata", ratio: 1 }],
+            "Miks sałat": [{ item: "Mix sałat", ratio: 1 }, { item: "Sałata", ratio: 1 }],
+            "Mix sałat": [{ item: "Miks sałat", ratio: 1 }, { item: "Rukola", ratio: 1 }],
+            "Pak choi": [{ item: "Kapusta pekińska", ratio: 1 }, { item: "Botwina", ratio: 1 }],
+            "Kapusta pekińska": [{ item: "Pak choi", ratio: 1 }, { item: "Kapusta biała", ratio: 1 }],
+            "Kapusta biała": [{ item: "Kapusta", ratio: 1 }, { item: "Kapusta młoda", ratio: 1 }],
+            "Kapusta": [{ item: "Kapusta biała", ratio: 1 }, { item: "Kapusta czerwona", ratio: 1 }],
+            "Kapusta czerwona": [{ item: "Kapusta biała", ratio: 1 }, { item: "Kapusta", ratio: 1 }],
+            "Kapusta kiszona": [{ item: "Kapusta", ratio: 1 }, { item: "Kimchi", ratio: 1 }],
+
+            // ===================== WARZYWA - POZOSTAŁE =====================
+            "Cukinia": [{ item: "Bakłażan", ratio: 1 }, { item: "Ogórek", ratio: 1 }],
+            "Kabaczek": [{ item: "Cukinia", ratio: 1 }, { item: "Bakłażan", ratio: 1 }],
+            "Bakłażan": [{ item: "Cukinia", ratio: 1 }, { item: "Kabaczek", ratio: 1 }],
+            "Brokuły": [{ item: "Kalafior", ratio: 1 }, { item: "Brukselka", ratio: 1 }],
+            "Brokuł": [{ item: "Brokuły", ratio: 1 }, { item: "Kalafior", ratio: 1 }],
+            "Kalafior": [{ item: "Brokuły", ratio: 1 }, { item: "Kapusta", ratio: 1 }],
+            "Brukselka": [{ item: "Brokuły", ratio: 1 }, { item: "Kalafior", ratio: 1 }],
+            "Dynia": [{ item: "Dynia hokkaido", ratio: 1 }, { item: "Dynia piżmowa", ratio: 1 }],
+            "Dynia hokkaido": [{ item: "Dynia", ratio: 1 }, { item: "Dynia piżmowa", ratio: 1 }],
+            "Marchew": [{ item: "Marchewka", ratio: 1 }, { item: "Marchewka baby", ratio: 1 }],
+            "Marchewka": [{ item: "Marchew", ratio: 1 }, { item: "Marchewka baby", ratio: 1 }],
+            "Por": [{ item: "Cebula", ratio: 1 }, { item: "Seler naciowy", ratio: 1 }],
+            "Seler naciowy": [{ item: "Por", ratio: 1 }, { item: "Cebula", ratio: 1 }],
+            "Seler korzeniowy": [{ item: "Seler (korzeń)", ratio: 1 }, { item: "Pietruszka korzeń", ratio: 1 }],
+            "Pietruszka korzeń": [{ item: "Pietruszka (korzeń)", ratio: 1 }, { item: "Pasternak", ratio: 1 }],
+            "Pasternak": [{ item: "Pietruszka korzeń", ratio: 1 }, { item: "Seler korzeniowy", ratio: 1 }],
+            "Szparagi": [{ item: "Fasolka szparagowa", ratio: 1 }, { item: "Brokuły", ratio: 1 }],
+            "Fasolka szparagowa": [{ item: "Groszek zielony", ratio: 1 }, { item: "Brokuły", ratio: 1 }],
+
+            // ===================== WARZYWA - GRZYBY =====================
+            "Pieczarki": [{ item: "Pieczarki brązowe", ratio: 1 }, { item: "Boczniaki", ratio: 1 }],
+            "Pieczarki brązowe": [{ item: "Pieczarki", ratio: 1 }, { item: "Grzyby portobello", ratio: 1 }],
+            "Grzyby portobello": [{ item: "Pieczarki brązowe", ratio: 1 }, { item: "Pieczarki", ratio: 1 }],
+            "Boczniaki": [{ item: "Boczniak", ratio: 1 }, { item: "Pieczarki", ratio: 1 }],
+            "Boczniak": [{ item: "Boczniaki", ratio: 1 }, { item: "Pieczarki", ratio: 1 }],
+            "Grzyby shiitake": [{ item: "Grzyby enoki", ratio: 1 }, { item: "Shimeji", ratio: 1 }],
+            "Grzyby leśne": [{ item: "Borowiki", ratio: 1 }, { item: "Pieczarki", ratio: 1 }],
+            "Borowiki": [{ item: "Grzyby leśne", ratio: 1 }, { item: "Pieczarki brązowe", ratio: 1 }],
+
+            // ===================== WARZYWA - STRĄCZKOWE =====================
+            "Ciecierzyca (puszka)": [{ item: "Ciecierzyca konserwowa", ratio: 1 }, { item: "Fasola biała (puszka)", ratio: 1 }],
+            "Ciecierzyca konserwowa": [{ item: "Ciecierzyca (puszka)", ratio: 1 }, { item: "Fasola biała (puszka)", ratio: 1 }],
+            "Fasola czerwona": [{ item: "Fasola czerwona (puszka)", ratio: 1 }, { item: "Fasola czarna (puszka)", ratio: 1 }],
+            "Fasola czerwona (puszka)": [{ item: "Fasola czerwona konserwowa", ratio: 1 }, { item: "Fasola czarna (puszka)", ratio: 1 }],
+            "Fasola czarna (puszka)": [{ item: "Fasola czarna konserwowa", ratio: 1 }, { item: "Fasola czerwona (puszka)", ratio: 1 }],
+            "Fasola biała (puszka)": [{ item: "Fasola (puszka)", ratio: 1 }, { item: "Ciecierzyca (puszka)", ratio: 1 }],
+            "Soczewica czerwona": [{ item: "Soczewica (puszka)", ratio: 1 }, { item: "Ciecierzyca (puszka)", ratio: 1 }],
+            "Edamame": [{ item: "Groszek zielony", ratio: 1 }, { item: "Fasola szparagowa", ratio: 1 }],
+            "Groszek": [{ item: "Groszek zielony", ratio: 1 }, { item: "Groszek mrożony", ratio: 1 }],
+            "Groszek zielony": [{ item: "Groszek", ratio: 1 }, { item: "Groszek mrożony", ratio: 1 }],
+            "Groszek mrożony": [{ item: "Groszek zielony", ratio: 1 }, { item: "Groszek konserwowy", ratio: 1 }],
+            "Kukurydza": [{ item: "Kukurydza (puszka)", ratio: 1 }, { item: "Kukurydza konserwowa", ratio: 1 }],
+            "Kukurydza (puszka)": [{ item: "Kukurydza konserwowa", ratio: 1 }, { item: "Kukurydza", ratio: 1 }],
+            "Kukurydza konserwowa": [{ item: "Kukurydza (puszka)", ratio: 1 }, { item: "Kukurydza", ratio: 1 }],
+
+            // ===================== OWOCE =====================
+            "Banan": [{ item: "Jabłko", ratio: 1.5 }, { item: "Mango", ratio: 1 }],
+            "Jabłko": [{ item: "Gruszka", ratio: 1 }, { item: "Brzoskwinia", ratio: 1 }],
+            "Jabłka": [{ item: "Jabłko", ratio: 1 }, { item: "Gruszki", ratio: 1 }],
+            "Gruszka": [{ item: "Jabłko", ratio: 1 }, { item: "Brzoskwinia", ratio: 1 }],
+            "Gruszki": [{ item: "Gruszka", ratio: 1 }, { item: "Jabłka", ratio: 1 }],
+            "Brzoskwinia": [{ item: "Nektarynka", ratio: 1 }, { item: "Jabłko", ratio: 1 }],
+            "Brzoskwinie": [{ item: "Brzoskwinia", ratio: 1 }, { item: "Nektarynka", ratio: 1 }],
+            "Nektarynka": [{ item: "Brzoskwinia", ratio: 1 }, { item: "Brzoskwinie", ratio: 1 }],
+            "Truskawki": [{ item: "Maliny", ratio: 1 }, { item: "Jagody", ratio: 1 }],
+            "Truskawki mrożone": [{ item: "Truskawki", ratio: 1 }, { item: "Maliny mrożone", ratio: 1 }],
+            "Maliny": [{ item: "Truskawki", ratio: 1 }, { item: "Jeżyny", ratio: 1 }],
+            "Maliny mrożone": [{ item: "Maliny", ratio: 1 }, { item: "Mrożone maliny", ratio: 1 }],
+            "Jagody": [{ item: "Borówki", ratio: 1 }, { item: "Maliny", ratio: 1 }],
+            "Jagody mrożone": [{ item: "Jagody", ratio: 1 }, { item: "Borówki mrożone", ratio: 1 }],
+            "Borówki": [{ item: "Jagody", ratio: 1 }, { item: "Borówki amerykańskie", ratio: 1 }],
+            "Borówki amerykańskie": [{ item: "Borówki", ratio: 1 }, { item: "Jagody", ratio: 1 }],
+            "Borówki mrożone": [{ item: "Borówki", ratio: 1 }, { item: "Jagody mrożone", ratio: 1 }],
+            "Mango": [{ item: "Ananas", ratio: 1 }, { item: "Kiwi", ratio: 1 }],
+            "Mango mrożone": [{ item: "Mango", ratio: 1 }, { item: "Ananas mrożony", ratio: 1 }],
+            "Ananas": [{ item: "Ananas świeży", ratio: 1 }, { item: "Ananas (puszka)", ratio: 1 }],
+            "Ananas świeży": [{ item: "Ananas", ratio: 1 }, { item: "Mango", ratio: 1 }],
+            "Ananas (puszka)": [{ item: "Ananas z puszki", ratio: 1 }, { item: "Ananas", ratio: 1 }],
+            "Ananas z puszki": [{ item: "Ananas (puszka)", ratio: 1 }, { item: "Ananas", ratio: 1 }],
+            "Kiwi": [{ item: "Mango", ratio: 1 }, { item: "Ananas", ratio: 1 }],
+            "Melon": [{ item: "Arbuz", ratio: 1 }, { item: "Ananas", ratio: 1 }],
+            "Arbuz": [{ item: "Melon", ratio: 1 }, { item: "Ananas", ratio: 1 }],
+            "Awokado": [{ item: "Hummus", ratio: 1.5 }, { item: "Guacamole", ratio: 1 }],
+            "Cytryna": [{ item: "Limonka", ratio: 1 }, { item: "Pomarańcza", ratio: 1 }],
+            "Limonka": [{ item: "Cytryna", ratio: 1 }, { item: "Sok z limonki", ratio: 1 }],
+            "Pomarańcza": [{ item: "Mandarynki", ratio: 1 }, { item: "Grejpfrut", ratio: 1.5 }],
+            "Mandarynki": [{ item: "Pomarańcza", ratio: 1.5 }, { item: "Cytryna", ratio: 1 }],
+            "Grejpfrut": [{ item: "Pomarańcza", ratio: 1 }, { item: "Cytryna", ratio: 1 }],
+
+            // ===================== OWOCE SUSZONE =====================
+            "Daktyle": [{ item: "Daktyle suszone", ratio: 1 }, { item: "Daktyle pokrojone", ratio: 1 }],
+            "Daktyle suszone": [{ item: "Daktyle", ratio: 1 }, { item: "Morele suszone", ratio: 1 }],
+            "Morele suszone": [{ item: "Daktyle suszone", ratio: 1 }, { item: "Rodzynki", ratio: 1 }],
+            "Rodzynki": [{ item: "Żurawina suszona", ratio: 1 }, { item: "Daktyle pokrojone", ratio: 1 }],
+            "Żurawina suszona": [{ item: "Rodzynki", ratio: 1 }, { item: "Żurawina do mięs", ratio: 1 }],
+            "Figi suszone": [{ item: "Daktyle suszone", ratio: 1 }, { item: "Morele suszone", ratio: 1 }],
+
+            // ===================== ORZECHY I NASIONA =====================
+            "Orzechy włoskie": [{ item: "Migdały", ratio: 1 }, { item: "Orzechy laskowe", ratio: 1 }],
+            "Migdały": [{ item: "Orzechy nerkowca", ratio: 1 }, { item: "Orzechy włoskie", ratio: 1 }],
+            "Orzechy nerkowca": [{ item: "Migdały", ratio: 1 }, { item: "Orzeszki ziemne", ratio: 1 }],
+            "Nerkowce": [{ item: "Orzechy nerkowca", ratio: 1 }, { item: "Migdały", ratio: 1 }],
+            "Orzechy laskowe": [{ item: "Orzechy włoskie", ratio: 1 }, { item: "Migdały", ratio: 1 }],
+            "Orzechy pekan": [{ item: "Orzechy włoskie", ratio: 1 }, { item: "Orzechy laskowe", ratio: 1 }],
+            "Orzechy macadamia": [{ item: "Orzechy makadamia", ratio: 1 }, { item: "Orzechy nerkowca", ratio: 1 }],
+            "Orzechy piniowe": [{ item: "Orzeszki piniowe", ratio: 1 }, { item: "Migdały", ratio: 1 }],
+            "Orzeszki piniowe": [{ item: "Orzechy piniowe", ratio: 1 }, { item: "Migdały płatki", ratio: 1 }],
+            "Orzeszki ziemne": [{ item: "Orzechy arachidowe", ratio: 1 }, { item: "Orzechy nerkowca", ratio: 1 }],
+            "Orzechy arachidowe": [{ item: "Orzeszki ziemne", ratio: 1 }, { item: "Masło orzechowe", ratio: 1 }],
+            "Migdały płatki": [{ item: "Płatki migdałowe", ratio: 1 }, { item: "Migdały krojone", ratio: 1 }],
+            "Płatki migdałowe": [{ item: "Migdały płatki", ratio: 1 }, { item: "Migdały", ratio: 1 }],
+            "Masło orzechowe": [{ item: "Masło migdałowe", ratio: 1 }, { item: "Tahini", ratio: 1 }],
+            "Masło migdałowe": [{ item: "Masło orzechowe", ratio: 1 }, { item: "Masło z nerkowców", ratio: 1 }],
+            "Masło z nerkowców": [{ item: "Masło migdałowe", ratio: 1 }, { item: "Masło orzechowe", ratio: 1 }],
+            "Tahini": [{ item: "Masło orzechowe", ratio: 1 }, { item: "Masło migdałowe", ratio: 1 }],
+            "Nasiona chia": [{ item: "Siemię lniane mielone", ratio: 1 }, { item: "Nasiona konopi", ratio: 1 }],
+            "Siemię lniane mielone": [{ item: "Nasiona chia", ratio: 1 }, { item: "Nasiona konopi", ratio: 1 }],
+            "Nasiona słonecznika": [{ item: "Pestki słonecznika", ratio: 1 }, { item: "Pestki dyni", ratio: 1 }],
+            "Pestki słonecznika": [{ item: "Nasiona słonecznika", ratio: 1 }, { item: "Pestki dyni", ratio: 1 }],
+            "Pestki dyni": [{ item: "Pestki słonecznika", ratio: 1 }, { item: "Nasiona słonecznika", ratio: 1 }],
+            "Sezam": [{ item: "Sezam czarny", ratio: 1 }, { item: "Nasiona chia", ratio: 1 }],
+            "Sezam czarny": [{ item: "Sezam", ratio: 1 }, { item: "Nasiona chia", ratio: 1 }],
+            "Wiórki kokosowe": [{ item: "Mąka kokosowa", ratio: 1 }],
+
+            // ===================== MĄKI =====================
+            "Mąka pszenna": [{ item: "Mąka pszenna pełnoziarnista", ratio: 1 }, { item: "Mąka orkiszowa", ratio: 1 }],
+            "Mąka pszenna pełnoziarnista": [{ item: "Mąka pełnoziarnista", ratio: 1 }, { item: "Mąka orkiszowa", ratio: 1 }],
+            "Mąka orkiszowa": [{ item: "Mąka pszenna", ratio: 1 }, { item: "Mąka pełnoziarnista", ratio: 1 }],
+            "Mąka żytnia": [{ item: "Mąka pszenna", ratio: 1 }, { item: "Mąka orkiszowa", ratio: 1 }],
+            "Mąka bezglutenowa": [{ item: "Mąka ryżowa", ratio: 1 }, { item: "Mąka kukurydziana", ratio: 1 }],
+            "Mąka ryżowa": [{ item: "Mąka bezglutenowa", ratio: 1 }, { item: "Mąka kukurydziana", ratio: 1 }],
+            "Mąka kukurydziana": [{ item: "Mąka ryżowa", ratio: 1 }, { item: "Skrobia kukurydziana", ratio: 1 }],
+            "Mąka jaglana": [{ item: "Mąka owsiana", ratio: 1 }, { item: "Mąka ryżowa", ratio: 1 }],
+            "Mąka owsiana": [{ item: "Płatki owsiane", ratio: 1 }, { item: "Mąka jaglana", ratio: 1 }],
+            "Mąka migdałowa": [{ item: "Migdały", ratio: 1 }, { item: "Mąka kokosowa", ratio: 1.5 }],
+            "Mąka ziemniaczana": [{ item: "Skrobia ziemniaczana", ratio: 1 }, { item: "Skrobia kukurydziana", ratio: 1 }],
+            "Skrobia ziemniaczana": [{ item: "Mąka ziemniaczana", ratio: 1 }, { item: "Skrobia kukurydziana", ratio: 1 }],
+            "Skrobia kukurydziana": [{ item: "Mąka ziemniaczana", ratio: 1 }, { item: "Skrobia ziemniaczana", ratio: 1 }],
+
+            // ===================== SŁODZIKI =====================
+            "Miód": [{ item: "Syrop klonowy", ratio: 1 }, { item: "Syrop z agawy", ratio: 1 }],
+            "Syrop klonowy": [{ item: "Syrop z agawy", ratio: 1 }, { item: "Miód", ratio: 1 }],
+            "Syrop z agawy": [{ item: "Syrop klonowy", ratio: 1 }, { item: "Miód", ratio: 1 }],
+            "Syrop daktylowy": [{ item: "Syrop klonowy", ratio: 1 }, { item: "Miód", ratio: 1 }],
+            "Cukier": [{ item: "Erytrytol", ratio: 1.3 }, { item: "Miód", ratio: 0.7 }],
+            "Cukier brązowy": [{ item: "Cukier trzcinowy", ratio: 1 }, { item: "Cukier", ratio: 1 }],
+            "Cukier trzcinowy": [{ item: "Cukier brązowy", ratio: 1 }, { item: "Cukier", ratio: 1 }],
+            "Cukier palmowy": [{ item: "Cukier brązowy", ratio: 1 }, { item: "Cukier palmowy/brązowy", ratio: 1 }],
+            "Cukier puder": [{ item: "Ksylitol puder", ratio: 1 }, { item: "Cukier", ratio: 1 }],
+            "Ksylitol": [{ item: "Erytrytol", ratio: 1 }, { item: "Cukier", ratio: 1.3 }],
+
+            // ===================== ZIOŁA I PRZYPRAWY =====================
+            "Bazylia": [{ item: "Bazylia świeża", ratio: 1 }, { item: "Bazylia suszona", ratio: 0.3 }],
+            "Bazylia świeża": [{ item: "Bazylia", ratio: 1 }, { item: "Bazylia tajska", ratio: 1 }],
+            "Bazylia suszona": [{ item: "Bazylia świeża", ratio: 3 }, { item: "Oregano suszone", ratio: 1 }],
+            "Kolendra": [{ item: "Kolendra świeża", ratio: 1 }, { item: "Kolendra suszona", ratio: 0.3 }],
+            "Kolendra świeża": [{ item: "Kolendra", ratio: 1 }, { item: "Natka pietruszki", ratio: 1 }],
+            "Natka pietruszki": [{ item: "Koperek", ratio: 1 }, { item: "Kolendra świeża", ratio: 1 }],
+            "Koper": [{ item: "Koperek", ratio: 1 }, { item: "Koper posiekany", ratio: 1 }],
+            "Koperek": [{ item: "Koper", ratio: 1 }, { item: "Natka pietruszki", ratio: 1 }],
+            "Szczypiorek": [{ item: "Szczypiorek siekany", ratio: 1 }, { item: "Zielona cebulka", ratio: 1 }],
+            "Rozmaryn": [{ item: "Rozmaryn świeży", ratio: 1 }, { item: "Rozmaryn suszony", ratio: 0.3 }],
+            "Rozmaryn świeży": [{ item: "Rozmaryn", ratio: 1 }, { item: "Tymianek świeży", ratio: 1 }],
+            "Tymianek": [{ item: "Tymianek świeży", ratio: 1 }, { item: "Tymianek suszony", ratio: 0.3 }],
+            "Tymianek świeży": [{ item: "Tymianek", ratio: 1 }, { item: "Rozmaryn świeży", ratio: 1 }],
+            "Oregano": [{ item: "Oregano świeże", ratio: 1 }, { item: "Oregano suszone", ratio: 0.3 }],
+            "Oregano suszone": [{ item: "Oregano świeże", ratio: 3 }, { item: "Bazylia suszona", ratio: 1 }],
+            "Kumin": [{ item: "Kminek", ratio: 1 }, { item: "Kolendra mielona", ratio: 1 }],
+            "Kminek": [{ item: "Kumin", ratio: 1 }, { item: "Koper", ratio: 1 }],
+            "Garam masala": [{ item: "Curry", ratio: 1 }, { item: "Kumin", ratio: 1 }],
+            "Curry": [{ item: "Curry przyprawa", ratio: 1 }, { item: "Garam masala", ratio: 1 }],
+            "Curry przyprawa": [{ item: "Curry", ratio: 1 }, { item: "Garam masala", ratio: 1 }],
+            "Papryka słodka": [{ item: "Papryka słodka mielona", ratio: 1 }, { item: "Papryka", ratio: 1 }],
+            "Papryka słodka mielona": [{ item: "Papryka słodka", ratio: 1 }, { item: "Papryka wędzona", ratio: 1 }],
+            "Papryka wędzona": [{ item: "Papryka słodka", ratio: 1 }, { item: "Chipotle w proszku", ratio: 1 }],
+            "Chili w proszku": [{ item: "Cayenne", ratio: 1 }, { item: "Papryka ostra", ratio: 1 }],
+            "Cayenne": [{ item: "Chili w proszku", ratio: 1 }, { item: "Płatki chilli", ratio: 1 }],
+            "Płatki chilli": [{ item: "Suszone chili", ratio: 1 }, { item: "Cayenne", ratio: 1 }],
+            "Zioła prowansalskie": [{ item: "Zioła włoskie", ratio: 1 }, { item: "Przyprawy włoskie", ratio: 1 }],
+            "Zioła włoskie": [{ item: "Przyprawy włoskie", ratio: 1 }, { item: "Zioła prowansalskie", ratio: 1 }],
+            "Przyprawa gyros": [{ item: "Przyprawa kebab", ratio: 1 }, { item: "Przyprawa kebab-gyros", ratio: 1 }],
+            "Przyprawa kebab": [{ item: "Przyprawa gyros", ratio: 1 }, { item: "Przyprawa shawarma", ratio: 1 }],
+            "Przyprawa fajita": [{ item: "Przyprawa taco", ratio: 1 }, { item: "Przyprawa meksykańska", ratio: 1 }],
+            "Przyprawa taco": [{ item: "Przyprawa fajita", ratio: 1 }, { item: "Przyprawy meksykańskie", ratio: 1 }],
+
+            // ===================== PASTY I SOSY =====================
+            "Pasta curry czerwona": [{ item: "Pasta curry zielona", ratio: 1 }, { item: "Pasta curry żółta", ratio: 1 }],
+            "Pasta curry zielona": [{ item: "Pasta curry czerwona", ratio: 1 }, { item: "Pasta curry żółta", ratio: 1 }],
+            "Pasta curry żółta": [{ item: "Pasta curry czerwona", ratio: 1 }, { item: "Curry", ratio: 1 }],
+            "Harissa": [{ item: "Pasta harissa", ratio: 1 }, { item: "Sambal oelek", ratio: 1 }],
+            "Pasta harissa": [{ item: "Harissa", ratio: 1 }, { item: "Sriracha", ratio: 1 }],
+            "Gochujang (pasta)": [{ item: "Sriracha", ratio: 1 }, { item: "Pasta harissa", ratio: 1 }],
+            "Miso pasta": [{ item: "Pasta shiro miso", ratio: 1 }, { item: "Sos sojowy", ratio: 1 }],
+            "Sos sojowy": [{ item: "Sos sojowy jasny", ratio: 1 }, { item: "Sos tamari", ratio: 1 }],
+            "Sos sojowy jasny": [{ item: "Sos sojowy", ratio: 1 }, { item: "Sos tamari", ratio: 1 }],
+            "Sos sojowy ciemny": [{ item: "Sos sojowy", ratio: 1 }, { item: "Tamari", ratio: 1 }],
+            "Sos tamari": [{ item: "Tamari", ratio: 1 }, { item: "Sos sojowy", ratio: 1 }],
+            "Tamari": [{ item: "Sos tamari", ratio: 1 }, { item: "Sos sojowy", ratio: 1 }],
+            "Sos teriyaki": [{ item: "Sos sojowy", ratio: 1 }, { item: "Sos hoisin", ratio: 1 }],
+            "Sos hoisin": [{ item: "Sos teriyaki", ratio: 1 }, { item: "Sos sojowy", ratio: 1 }],
+            "Sos rybny": [{ item: "Sos sojowy", ratio: 1 }, { item: "Sos Worcester", ratio: 1 }],
+            "Sos Worcester": [{ item: "Sos Worcestershire", ratio: 1 }, { item: "Sos sojowy", ratio: 1 }],
+            "Sos Worcestershire": [{ item: "Sos Worcester", ratio: 1 }, { item: "Sos sojowy", ratio: 1 }],
+            "Sriracha": [{ item: "Sos sriracha", ratio: 1 }, { item: "Sos Sriracha", ratio: 1 }],
+            "Sos sriracha": [{ item: "Sriracha", ratio: 1 }, { item: "Sos ostry chilli", ratio: 1 }],
+            "Sos tabasco": [{ item: "Sos ostry chilli", ratio: 1 }, { item: "Sriracha", ratio: 1 }],
+            "Sambal oelek": [{ item: "Sriracha", ratio: 1 }, { item: "Pasta harissa", ratio: 1 }],
+            "Sos BBQ": [{ item: "Sos barbecue", ratio: 1 }, { item: "Ketchup", ratio: 1 }],
+            "Sos barbecue": [{ item: "Sos BBQ", ratio: 1 }, { item: "Ketchup", ratio: 1 }],
+            "Ketchup": [{ item: "Sos pomidorowy", ratio: 1 }, { item: "Passata pomidorowa", ratio: 1 }],
+            "Sos pomidorowy": [{ item: "Passata pomidorowa", ratio: 1 }, { item: "Ketchup", ratio: 1 }],
+            "Salsa": [{ item: "Salsa pomidorowa", ratio: 1 }, { item: "Pico de gallo", ratio: 1 }],
+            "Salsa pomidorowa": [{ item: "Salsa", ratio: 1 }, { item: "Sos pomidorowy", ratio: 1 }],
+            "Majonez": [{ item: "Majonez light", ratio: 1 }, { item: "Jogurt grecki", ratio: 1 }],
+            "Majonez light": [{ item: "Majonez", ratio: 1 }, { item: "Jogurt grecki", ratio: 1 }],
+            "Musztarda": [{ item: "Musztarda dijon", ratio: 1 }, { item: "Musztarda sarepska", ratio: 1 }],
+            "Musztarda dijon": [{ item: "Musztarda Dijon", ratio: 1 }, { item: "Musztarda francuska", ratio: 1 }],
+            "Musztarda Dijon": [{ item: "Musztarda dijon", ratio: 1 }, { item: "Musztarda francuska", ratio: 1 }],
+            "Musztarda francuska": [{ item: "Musztarda dijon", ratio: 1 }, { item: "Musztarda", ratio: 1 }],
+            "Musztarda miodowa": [{ item: "Musztarda", ratio: 1 }, { item: "Musztarda amerykańska", ratio: 1 }],
+            "Sos czosnkowy": [{ item: "Sos czosnkowy light", ratio: 1 }, { item: "Majonez", ratio: 1 }],
+            "Sos jogurtowy": [{ item: "Sos tzatziki", ratio: 1 }, { item: "Jogurt grecki", ratio: 1 }],
+            "Sos tzatziki": [{ item: "Sos jogurtowy", ratio: 1 }, { item: "Jogurt grecki", ratio: 1 }],
+
+            // ===================== PESTO I HUMMUS =====================
+            "Pesto bazyliowe": [{ item: "Pesto zielone", ratio: 1 }, { item: "Pesto z rukoli", ratio: 1 }],
+            "Pesto zielone": [{ item: "Pesto bazyliowe", ratio: 1 }, { item: "Pesto z rukoli", ratio: 1 }],
+            "Pesto czerwone": [{ item: "Pesto rosso", ratio: 1 }, { item: "Pomidory suszone", ratio: 1 }],
+            "Pesto rosso": [{ item: "Pesto czerwone", ratio: 1 }, { item: "Pesto bazyliowe", ratio: 1 }],
+            "Hummus": [{ item: "Pasta z awokado", ratio: 1 }, { item: "Baba ghanoush", ratio: 1 }],
+            "Baba ghanoush": [{ item: "Hummus", ratio: 1 }, { item: "Pasta z awokado", ratio: 1 }],
+            "Pasta z awokado": [{ item: "Guacamole", ratio: 1 }, { item: "Hummus", ratio: 1 }],
+            "Guacamole": [{ item: "Pasta z awokado", ratio: 1 }, { item: "Awokado", ratio: 1 }],
+            "Guacamole gotowe": [{ item: "Guacamole", ratio: 1 }, { item: "Pasta z awokado", ratio: 1 }],
+
+            // ===================== OCTY =====================
+            "Ocet balsamiczny": [{ item: "Ocet winny", ratio: 1 }, { item: "Ocet jabłkowy", ratio: 1 }],
+            "Ocet winny": [{ item: "Ocet winny biały", ratio: 1 }, { item: "Ocet balsamiczny", ratio: 1 }],
+            "Ocet winny biały": [{ item: "Ocet winny", ratio: 1 }, { item: "Ocet jabłkowy", ratio: 1 }],
+            "Ocet jabłkowy": [{ item: "Ocet winny", ratio: 1 }, { item: "Sok z cytryny", ratio: 1 }],
+            "Ocet ryżowy": [{ item: "Ocet winny biały", ratio: 1 }, { item: "Mirin/wino ryżowe", ratio: 1 }],
+
+            // ===================== BULIONY =====================
+            "Bulion drobiowy": [{ item: "Bulion warzywny", ratio: 1 }, { item: "Bulion wołowy", ratio: 1 }],
+            "Bulion warzywny": [{ item: "Bulion drobiowy", ratio: 1 }, { item: "Woda", ratio: 1 }],
+            "Bulion wołowy": [{ item: "Bulion drobiowy", ratio: 1 }, { item: "Bulion warzywny", ratio: 1 }],
+
+            // ===================== BIAŁKA W PROSZKU =====================
+            "Odżywka białkowa": [{ item: "Odżywka białkowa (whey)", ratio: 1 }, { item: "Odżywka białkowa waniliowa", ratio: 1 }],
+            "Odżywka białkowa (whey)": [{ item: "Odżywka białkowa", ratio: 1 }, { item: "Odżywka białkowa waniliowa", ratio: 1 }],
+            "Odżywka białkowa waniliowa": [{ item: "Odżywka białkowa", ratio: 1 }, { item: "Odżywka białkowa czekoladowa", ratio: 1 }],
+            "Odżywka białkowa czekoladowa": [{ item: "Odżywka białkowa waniliowa", ratio: 1 }, { item: "Kazeina czekoladowa", ratio: 1 }],
+            "Kazeina": [{ item: "Kazeina waniliowa", ratio: 1 }, { item: "Kazeina czekoladowa", ratio: 1 }],
+            "Kazeina waniliowa": [{ item: "Kazeina", ratio: 1 }, { item: "Odżywka białkowa waniliowa", ratio: 1 }],
+            "Kazeina czekoladowa": [{ item: "Kazeina", ratio: 1 }, { item: "Odżywka białkowa czekoladowa", ratio: 1 }]
+        };
+
+        // Funkcja pobierająca zamienniki z centralnej bazy lub z przepisu
+        function getIngredientSubstitutes(ingredient) {
+            // Najpierw sprawdź czy przepis ma własne zamienniki
+            if (ingredient.substitutes && ingredient.substitutes.length > 0) {
+                return ingredient.substitutes;
+            }
+            // Potem sprawdź centralną bazę
+            const centralSubs = ingredientSubstitutes[ingredient.item];
+            if (centralSubs) {
+                return centralSubs.map(sub => ({
+                    item: sub.item,
+                    amount: ingredient.amount * sub.ratio,
+                    unit: ingredient.unit
+                }));
+            }
+            return [];
+        }
 
         // ===========================================
         // BAZA PRZEPISÓW
@@ -11840,16 +12659,16 @@
                 const macrosHtml = !nutrition.missing
                     ? `<span class="ingredient-macros">${Math.round(nutrition.kcal)} | ${Math.round(nutrition.protein)}B | ${Math.round(nutrition.fat)}T | ${Math.round(nutrition.carbs)}W</span>`
                     : '';
-                const hasSubstitutes = i.substitutes && i.substitutes.length > 0;
-                const substituteBtn = hasSubstitutes
-                    ? `<button class="substitute-btn" onclick="toggleSubstitutePopup(${index}, event)" title="Zamienniki">↔</button>`
-                    : '';
+                const substitutes = getIngredientSubstitutes(i);
+                const hasSubstitutes = substitutes.length > 0;
+                const substituteBtn = `<button class="substitute-btn ${!hasSubstitutes ? 'no-substitutes' : ''}" onclick="toggleSubstitutePopup(${index}, event)" title="${hasSubstitutes ? 'Pokaż zamienniki' : 'Brak zamienników'}">↔</button>`;
                 return `<li class="ingredient-item">
-                    <span class="ingredient-text">${i.item} - <strong>${amount} ${i.unit}</strong></span>
-                    ${macrosHtml}
-                    ${infoBtn}
-                    ${substituteBtn}
-                    <div class="substitute-popup" id="substitute-popup-${index}" style="display:none;"></div>
+                    <div class="ingredient-main-row">
+                        <span class="ingredient-text">${i.item} - <strong>${amount} ${i.unit}</strong></span>
+                        ${infoBtn}
+                        ${substituteBtn}
+                    </div>
+                    ${macrosHtml ? `<div class="ingredient-macros-row">${macrosHtml}</div>` : ''}
                 </li>`;
             }).join('');
 
@@ -11861,7 +12680,7 @@
                 <div class="modal-macro"><div class="modal-macro-value">${displayMacros.carbs}g</div><div class="modal-macro-label">Wegle</div></div>`;
 
             // Sekcja dopasowania do celów makro - tylko dla pojedynczej osoby
-            const optimizationSection = document.getElementById('modal-optimization') || createOptimizationSection();
+            const optimizationSection = document.getElementById('modal-optimization');
             if (modalSelectedPersons.length === 1 && modalSplitMode === 'normal') {
                 const person = persons.find(p => p.id === modalSelectedPersons[0]);
                 if (person && currentModalMealType) {
@@ -12035,17 +12854,6 @@
             }
         }
 
-        // Tworzenie sekcji optymalizacji w modalu
-        function createOptimizationSection() {
-            const macrosSection = document.getElementById('modal-macros').parentElement;
-            const section = document.createElement('div');
-            section.className = 'optimization-section';
-            section.id = 'modal-optimization';
-            section.style.display = 'none';
-            macrosSection.after(section);
-            return section;
-        }
-
         // Zastosuj optymalizację składników
         function applyOptimization() {
             const r = currentModalRecipe;
@@ -12146,10 +12954,17 @@
                     ? `<span class="ingredient-macros">${Math.round(nutrition.kcal)} | ${Math.round(nutrition.protein)}B | ${Math.round(nutrition.fat)}T | ${Math.round(nutrition.carbs)}W</span>`
                     : '';
 
+                const substitutes = getIngredientSubstitutes(ing);
+                const hasSubstitutes = substitutes.length > 0;
+                const substituteBtn = `<button class="substitute-btn ${!hasSubstitutes ? 'no-substitutes' : ''}" onclick="toggleSubstitutePopup(${index}, event)" title="${hasSubstitutes ? 'Pokaż zamienniki' : 'Brak zamienników'}">↔</button>`;
+
                 return `<li class="ingredient-item ${changedClass}">
-                    <span class="ingredient-text">${ing.item} - <strong>${amount} ${ing.unit}</strong> ${changeIndicator}</span>
-                    ${macrosHtml}
-                    ${infoBtn}
+                    <div class="ingredient-main-row">
+                        <span class="ingredient-text">${ing.item} - <strong>${amount} ${ing.unit}</strong> ${changeIndicator}</span>
+                        ${infoBtn}
+                        ${substituteBtn}
+                    </div>
+                    ${macrosHtml ? `<div class="ingredient-macros-row">${macrosHtml}</div>` : ''}
                 </li>`;
             }).join('');
 
@@ -12229,51 +13044,27 @@
 
         function toggleSubstitutePopup(ingredientIndex, event) {
             event.stopPropagation();
-
-            const popup = document.getElementById(`substitute-popup-${ingredientIndex}`);
-            if (!popup) return;
-
-            // Zamknij inny otwarty popup
-            if (currentOpenSubstitutePopup !== null && currentOpenSubstitutePopup !== ingredientIndex) {
-                closeSubstitutePopup(currentOpenSubstitutePopup);
-            }
-
-            if (popup.style.display === 'none' || popup.style.display === '') {
-                renderSubstitutePopup(ingredientIndex);
-                popup.style.display = 'block';
-                currentOpenSubstitutePopup = ingredientIndex;
-            } else {
-                closeSubstitutePopup(ingredientIndex);
-            }
+            openSubstituteModal(ingredientIndex);
         }
 
-        function closeSubstitutePopup(ingredientIndex) {
-            const popup = document.getElementById(`substitute-popup-${ingredientIndex}`);
-            if (popup) {
-                popup.style.display = 'none';
-            }
-            if (currentOpenSubstitutePopup === ingredientIndex) {
-                currentOpenSubstitutePopup = null;
-            }
-        }
-
-        function closeAllSubstitutePopups() {
-            if (currentOpenSubstitutePopup !== null) {
-                closeSubstitutePopup(currentOpenSubstitutePopup);
-            }
-        }
-
-        function renderSubstitutePopup(ingredientIndex) {
+        function openSubstituteModal(ingredientIndex) {
             const r = currentModalRecipe;
-            if (!r || !r.ingredients[ingredientIndex]) return;
+            if (!r) {
+                console.error('Brak currentModalRecipe');
+                return;
+            }
 
-            const ingredient = r.ingredients[ingredientIndex];
-            if (!ingredient.substitutes || ingredient.substitutes.length === 0) return;
+            // Użyj zoptymalizowanych składników jeśli dostępne, w przeciwnym razie oryginalne
+            // modalOptimizedIngredients to obiekt { ingredients: [...], nutrition: {...} }
+            const ingredients = modalOptimizedIngredients ? modalOptimizedIngredients.ingredients : r.ingredients;
+            if (!ingredients || !ingredients[ingredientIndex]) {
+                console.error('Brak składnika o indeksie:', ingredientIndex, 'ingredients:', ingredients);
+                return;
+            }
 
-            const popup = document.getElementById(`substitute-popup-${ingredientIndex}`);
-            if (!popup) return;
+            const ingredient = ingredients[ingredientIndex];
 
-            // Oblicz ten sam multiplier co dla głównych składników
+            // Oblicz multiplier dla składników
             const p1 = persons[0];
             const p2 = persons[1];
             let multiplier = 0;
@@ -12290,33 +13081,84 @@
             }
             multiplier *= modalPortions;
 
-            const substituteItems = ingredient.substitutes.map(sub => {
-                const scaledAmount = Math.round(sub.amount * multiplier * 10) / 10;
-                return `
-                    <li class="substitute-item">
-                        <span class="substitute-name">${sub.item}</span>
-                        <span class="substitute-amount">${scaledAmount} ${sub.unit}</span>
-                    </li>
-                `;
-            }).join('');
+            // Oblicz aktualną ilość składnika (po optymalizacji lub z multiplierem)
+            const currentAmount = modalOptimizedIngredients
+                ? ingredient.amount  // Zoptymalizowane już mają prawidłową ilość
+                : ingredient.amount * multiplier;  // Oryginalne trzeba przemnożyć
 
-            popup.innerHTML = `
+            // Pobierz zamienniki na podstawie nazwy składnika
+            const centralSubs = ingredientSubstitutes[ingredient.item];
+
+            const overlay = document.getElementById('substitute-modal-overlay');
+            const content = document.getElementById('substitute-modal-content');
+            if (!overlay || !content) {
+                console.error('Brak elementów modalu zamienników');
+                return;
+            }
+
+            let bodyHtml = '';
+
+            // Jeśli brak zamienników - pokaż komunikat
+            if (!centralSubs || centralSubs.length === 0) {
+                bodyHtml = `
+                    <div class="no-substitutes-message">
+                        Brak zdefiniowanych zamienników dla tego składnika.
+                    </div>
+                `;
+            } else {
+                // Oblicz zamienniki na podstawie aktualnej ilości składnika
+                const substituteItems = centralSubs.map(sub => {
+                    const scaledAmount = Math.round(currentAmount * sub.ratio * 10) / 10;
+                    return `
+                        <li class="substitute-item">
+                            <span class="substitute-icon">↔</span>
+                            <span class="substitute-name">${sub.item}</span>
+                            <span class="substitute-amount">${scaledAmount} ${ingredient.unit}</span>
+                        </li>
+                    `;
+                }).join('');
+
+                bodyHtml = `
+                    <ul class="substitute-list">
+                        ${substituteItems}
+                    </ul>
+                `;
+            }
+
+            content.innerHTML = `
                 <div class="substitute-header">
-                    <span>Zamienniki dla: ${ingredient.item}</span>
-                    <button class="substitute-close" onclick="closeSubstitutePopup(${ingredientIndex})">×</button>
+                    <div>
+                        <div class="substitute-header-title">Zamienniki</div>
+                        <div class="substitute-header-ingredient">${ingredient.item} (${Math.round(currentAmount * 10) / 10} ${ingredient.unit})</div>
+                    </div>
+                    <button class="substitute-close" onclick="closeSubstituteModal()">×</button>
                 </div>
-                <ul class="substitute-list">
-                    ${substituteItems}
-                </ul>
+                <div class="substitute-body">
+                    ${bodyHtml}
+                </div>
             `;
+
+            overlay.classList.add('active');
         }
 
-        // Zamknij popup zamienników przy kliknięciu poza nim
-        document.addEventListener('click', function(event) {
-            if (!event.target.closest('.substitute-btn') && !event.target.closest('.substitute-popup')) {
-                closeAllSubstitutePopups();
+        function closeSubstituteModal(event) {
+            // Jeśli kliknięto na content - nie zamykaj
+            if (event && event.target.id !== 'substitute-modal-overlay') {
+                return;
             }
-        });
+            const overlay = document.getElementById('substitute-modal-overlay');
+            if (overlay) {
+                overlay.classList.remove('active');
+            }
+        }
+
+        function closeSubstitutePopup() {
+            closeSubstituteModal();
+        }
+
+        function closeAllSubstitutePopups() {
+            closeSubstituteModal();
+        }
 
         // FILTRY LISTY ZAKUPÓW
         let shoppingListSelection = {
