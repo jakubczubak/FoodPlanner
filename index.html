@@ -11088,9 +11088,22 @@
 
                 if (!grouped[r.category]) grouped[r.category] = [];
 
-                // Oblicz score dopasowania do celów makro
-                const matchScore = calculateRecipeMatchScore(r, targetMacros, portion);
-                grouped[r.category].push({ ...r, matchScore });
+                // Oblicz optymalizację i score dopasowania do celów makro
+                const optimized = optimizeIngredients(r, targetMacros, portion);
+                const opt = optimized.nutrition;
+
+                // Oblicz score z zoptymalizowanych wartości
+                let matchScore = 0;
+                if (targetMacros) {
+                    const kcalDiff = targetMacros.kcal > 0 ? Math.abs(opt.kcal - targetMacros.kcal) / targetMacros.kcal : 0;
+                    const proteinDiff = targetMacros.protein > 0 ? Math.abs(opt.protein - targetMacros.protein) / targetMacros.protein : 0;
+                    const fatDiff = targetMacros.fat > 0 ? Math.abs(opt.fat - targetMacros.fat) / targetMacros.fat : 0;
+                    const carbsDiff = targetMacros.carbs > 0 ? Math.abs(opt.carbs - targetMacros.carbs) / targetMacros.carbs : 0;
+                    const avgDiff = (kcalDiff + proteinDiff + fatDiff + carbsDiff) / 4;
+                    matchScore = Math.max(0, Math.round(100 - (avgDiff * 100)));
+                }
+
+                grouped[r.category].push({ ...r, matchScore, optimizedNutrition: opt });
             });
 
             // Sortuj kategorie i przepisy
@@ -11110,14 +11123,16 @@
                     const scoreBadge = r.matchScore >= 80 ? '🎯 ' : r.matchScore >= 60 ? '✓ ' : '';
                     const scoreClass = r.matchScore >= 80 ? 'high' : r.matchScore >= 60 ? 'medium' : 'low';
 
+                    // Użyj zoptymalizowanych wartości
+                    const optNutr = r.optimizedNutrition;
                     html += `
                         <div class="meal-picker-option ${isSelected ? 'selected' : ''}"
                              onclick="selectMealOption('${r.id}')">
                             <span class="recipe-name">${scoreBadge}${isFav ? '❤️ ' : ''}${r.name}</span>
                             <span class="recipe-macros">
                                 <span class="match-score ${scoreClass}">${r.matchScore}%</span>
-                                <span class="macro-kcal">${r.kcal}</span>
-                                <span class="macro-detail">B${r.protein} T${r.fat} W${r.carbs}</span>
+                                <span class="macro-kcal">${optNutr.kcal}</span>
+                                <span class="macro-detail">B${optNutr.protein} T${optNutr.fat} W${optNutr.carbs}</span>
                             </span>
                         </div>
                     `;
