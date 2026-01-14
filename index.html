@@ -1882,96 +1882,6 @@
             margin-bottom: 15px;
         }
 
-        /* TRYB 50/50 */
-        .modal-person-btn.active.split { color: #059669; }
-        .modal-5050-dropdown {
-            position: relative;
-            display: inline-block;
-        }
-        .modal-5050-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            z-index: 100;
-            min-width: 160px;
-            overflow: hidden;
-        }
-        .modal-5050-menu.show { display: block; }
-        .modal-5050-menu button {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            width: 100%;
-            padding: 10px 15px;
-            border: none;
-            background: white;
-            cursor: pointer;
-            font-size: 12px;
-            text-align: left;
-        }
-        .modal-5050-menu button:hover { background: #f3f4f6; }
-
-        /* INFO O PODZIALE 50/50 */
-        .split-info {
-            background: #ecfdf5;
-            border: 1px solid #10b981;
-            border-radius: 8px;
-            padding: 10px;
-            font-size: 12px;
-            color: #047857;
-        }
-        .split-warning {
-            color: #dc2626;
-            font-size: 11px;
-        }
-
-        /* TABELA PODZIAŁU NA TALERZE */
-        .portion-split-table {
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-top: 10px;
-        }
-        .portion-split-header {
-            display: grid;
-            grid-template-columns: 1fr 80px 80px;
-            background: #f9fafb;
-            padding: 10px 12px;
-            font-weight: 600;
-            font-size: 12px;
-            color: #6b7280;
-            border-bottom: 1px solid #e5e7eb;
-        }
-        .portion-split-row {
-            display: grid;
-            grid-template-columns: 1fr 80px 80px;
-            padding: 10px 12px;
-            font-size: 13px;
-            border-bottom: 1px solid #f3f4f6;
-            align-items: center;
-        }
-        .portion-split-row:last-child { border-bottom: none; }
-        .portion-split-row:hover { background: #f9fafb; }
-        .portion-split-item { color: #374151; }
-        .portion-split-amount { font-weight: 600; text-align: center; }
-        .portion-split-amount.person1 { color: #3b82f6; }
-        .portion-split-amount.person2 { color: #ec4899; }
-        .portion-split-person {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            justify-content: center;
-        }
-        .portion-split-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-        }
-
         /* PRZYCISK PODGLĄDU PRZEPISU */
         .preview-btn {
             background: none;
@@ -12429,7 +12339,6 @@
         let currentModalRecipe = null;
         let currentModalMealType = null; // Typ posiłku (breakfast/lunch/dinner)
         let modalSelectedPersons = [1]; // Domyślnie tylko "Ja"
-        let modalSplitMode = 'normal'; // 'normal', '5050-person1', '5050-person2'
         let modalPortions = 1; // Liczba porcji wybrana przez użytkownika
         let modalOptimizedIngredients = null; // Wynik optymalizacji składników
         let mealOptimizations = {}; // Zapisane optymalizacje: { 'dzień_typ_osoba_przepis': result }
@@ -12439,7 +12348,6 @@
             currentModalRecipe = r;
             currentModalMealType = mt; // Zapisz typ posiłku
             modalSelectedPersons = [1]; // Reset do "tylko ja"
-            modalSplitMode = 'normal'; // Reset trybu
             modalPortions = 1; // Reset porcji do 1
             modalOptimizedIngredients = null; // Reset optymalizacji
 
@@ -12472,84 +12380,41 @@
 
             // Przyciski dla każdej osoby
             persons.forEach(p => {
-                const isActive = modalSplitMode === 'normal' &&
-                                modalSelectedPersons.length === 1 &&
+                const isActive = modalSelectedPersons.length === 1 &&
                                 modalSelectedPersons[0] === p.id;
                 html += `
                     <button class="modal-person-btn ${isActive ? 'active' : ''}"
                         style="border-color: ${p.color}; ${isActive ? `background: ${p.color}20` : ''}"
-                        onclick="setModalPersons([${p.id}], 'normal')">
+                        onclick="setModalPersons([${p.id}])">
                         <span class="modal-person-dot" style="background: ${p.color}"></span>
                         ${p.name}
                     </button>
                 `;
             });
 
-            // Przycisk "Razem" (dla wszystkich osób) - tylko gdy więcej niż 1 osoba
+            // Przycisk "Razem" - tylko gdy więcej niż 1 osoba
             if (persons.length > 1) {
                 const allIds = persons.map(p => p.id);
-                const isRazemActive = modalSplitMode === 'normal' &&
-                                     modalSelectedPersons.length === persons.length;
+                const isRazemActive = modalSelectedPersons.length === persons.length;
                 html += `
                     <button class="modal-person-btn both ${isRazemActive ? 'active' : ''}"
-                        onclick="setModalPersons([${allIds.join(',')}], 'normal')">
+                        onclick="setModalPersons([${allIds.join(',')}])">
                         ${persons.map(p => `<span class="modal-person-dot" style="background: ${p.color}"></span>`).join('')}
                         Razem
                     </button>
                 `;
             }
 
-            // Menu 50/50 (tylko dla dokładnie 2 osób)
-            if (persons.length === 2) {
-                const p1 = persons[0];
-                const p2 = persons[1];
-                html += `
-                    <div class="modal-5050-dropdown">
-                        <button class="modal-person-btn split ${modalSplitMode.startsWith('5050') ? 'active' : ''}"
-                            onclick="toggle5050Menu(event)">
-                            50/50 ▼
-                        </button>
-                        <div class="modal-5050-menu" id="modal-5050-menu">
-                            <button onclick="setModalPersons([${p1.id}, ${p2.id}], '5050-person1')">
-                                <span class="modal-person-dot" style="background: ${p1.color}"></span>
-                                wg ${p1.name} (${p1.portion}x)
-                            </button>
-                            <button onclick="setModalPersons([${p1.id}, ${p2.id}], '5050-person2')">
-                                <span class="modal-person-dot" style="background: ${p2.color}"></span>
-                                wg ${p2.name} (${p2.portion}x)
-                            </button>
-                        </div>
-                    </div>
-                `;
-            }
-
             toggle.innerHTML = html;
         }
 
-        function toggle5050Menu(event) {
-            event.stopPropagation();
-            const menu = document.getElementById('modal-5050-menu');
-            menu.classList.toggle('show');
-        }
-
-        // Zamknij menu 50/50 po kliknięciu gdziekolwiek
-        document.addEventListener('click', function(e) {
-            const menu = document.getElementById('modal-5050-menu');
-            if (menu && !e.target.closest('.modal-5050-dropdown')) {
-                menu.classList.remove('show');
-            }
-        });
-
-        function setModalPersons(personIds, mode = 'normal') {
+        function setModalPersons(personIds) {
             modalSelectedPersons = personIds;
-            modalSplitMode = mode;
-            // Zamknij menu 50/50
-            const menu = document.getElementById('modal-5050-menu');
-            if (menu) menu.classList.remove('show');
+            modalOptimizedIngredients = null; // Reset optymalizacji przy zmianie osób
             renderModalPersonsToggle();
             updateModalContent();
 
-            // Re-optymalizuj przy zmianie osób/trybu (jeśli z planera)
+            // Re-optymalizuj przy zmianie osób (jeśli z planera)
             if (currentPlanDay) {
                 applyOptimization();
             }
@@ -12557,7 +12422,8 @@
 
         function changePortions(delta) {
             modalPortions = Math.max(1, modalPortions + delta);
-            updateModalContent();
+            // Automatycznie uruchom optymalizację po zmianie porcji
+            applyOptimization();
         }
 
         function updateModalContent() {
@@ -12574,132 +12440,288 @@
                 </div>
             `;
 
-            let multiplier = 0;
-            let splitInfo = '';
-            let portionPerPerson = 0; // Porcja na osobę przy 50/50
-
-            // Oblicz mnożnik w zależności od trybu
-            if (modalSplitMode.startsWith('5050') && persons.length === 2) {
-                // Tryb 50/50 - tylko dla 2 osób
-                const p1 = persons[0];
-                const p2 = persons[1];
-                if (modalSplitMode === '5050-person1') {
-                    multiplier = p1.portion * 2;
-                    portionPerPerson = p1.portion;
-                    const diff = Math.round(r.kcal * p1.portion - r.kcal * p2.portion);
-                    splitInfo = `<div class="split-info">
-                        <strong>Tryb 50/50</strong> (wg ${p1.name})<br>
-                        Łącznie: ${multiplier.toFixed(2)}x → dzielisz na pół<br>
-                        <span class="split-warning">⚠️ ${p2.name}: +${diff} kcal nadwyżki</span>
-                    </div>`;
-                } else {
-                    multiplier = p2.portion * 2;
-                    portionPerPerson = p2.portion;
-                    const diff = Math.round(r.kcal * p1.portion - r.kcal * p2.portion);
-                    splitInfo = `<div class="split-info">
-                        <strong>Tryb 50/50</strong> (wg ${p2.name})<br>
-                        Łącznie: ${multiplier.toFixed(2)}x → dzielisz na pół<br>
-                        <span class="split-warning">⚠️ ${p1.name}: -${diff} kcal niedobór</span>
-                    </div>`;
-                }
-            } else if (modalSelectedPersons.length > 1) {
-                // Tryb "Razem" - sumuj porcje wybranych osób
-                multiplier = modalSelectedPersons.reduce((sum, id) => {
-                    const person = persons.find(p => p.id === id);
-                    return sum + (person ? person.portion : 0);
-                }, 0);
-            } else {
-                // Pojedyncza osoba
-                const person = persons.find(p => p.id === modalSelectedPersons[0]);
-                if (person) multiplier = person.portion;
-            }
-
-            // Mnożenie przez liczbę porcji wybranych przez użytkownika
-            const baseMultiplier = multiplier; // Zapamiętaj przed mnożeniem przez porcje
-            multiplier *= modalPortions;
-
-            // Pokaż info o mnożniku
             const multiplierEl = document.getElementById('modal-multiplier');
-            const portionsInfo = modalPortions > 1 ? ` × ${modalPortions} porcji` : '';
-            if (modalSplitMode.startsWith('5050')) {
-                multiplierEl.innerHTML = splitInfo + (modalPortions > 1 ? `<div style="margin-top:8px">📦 <strong>${modalPortions} porcji</strong> = łącznie ${multiplier.toFixed(2)}x</div>` : '');
-            } else if (modalSelectedPersons.length > 1) {
-                const personsStr = modalSelectedPersons.map(id => {
-                    const p = persons.find(x => x.id === id);
-                    return p ? `${p.portion}x` : '';
-                }).join(' + ');
-                const personsLabel = modalSelectedPersons.length === persons.length ? 'wszystkich' : 'wybranych osób';
-                multiplierEl.innerHTML = `Składniki dla ${personsLabel} (${personsStr} = ${baseMultiplier.toFixed(2)}x)${portionsInfo}` + (modalPortions > 1 ? ` = <strong>${multiplier.toFixed(2)}x</strong>` : '');
-            } else {
-                const person = persons.find(p => p.id === modalSelectedPersons[0]);
-                multiplierEl.innerHTML = `Składniki dla: <strong>${person?.name || 'Nieznany'}</strong> (${person?.portion || 1}x)${portionsInfo}` + (modalPortions > 1 ? ` = <strong>${multiplier.toFixed(2)}x</strong>` : '');
-            }
-
-            // Oblicz makra przeskalowane
-            const displayMacros = {
-                kcal: Math.round(r.kcal * multiplier),
-                protein: Math.round(r.protein * multiplier),
-                fat: Math.round(r.fat * multiplier),
-                carbs: Math.round(r.carbs * multiplier)
-            };
-
-            // Lista składników z wartościami odżywczymi
-            const ingredientsHtml = r.ingredients.map((i, index) => {
-                const amount = Math.round(i.amount * multiplier * 10) / 10;
-                // Oblicz wartości odżywcze dla składnika
-                const nutrition = calculateIngredientNutrition(i.item, i.amount * multiplier, i.unit);
-                const ingredient = ingredientsDatabase[i.item];
-                const infoBtn = ingredient
-                    ? `<button class="info-btn" onclick="toggleNutritionInfo(${index}, event)" title="Wartości na 100g">ℹ️</button>
-                       <div class="nutrition-info-popup" id="nutrition-info-${index}" style="display:none;">
-                           <strong>Na 100g:</strong><br>
-                           ${ingredient.kcal} kcal | ${ingredient.protein}B | ${ingredient.fat}T | ${ingredient.carbs}W
-                       </div>`
-                    : '';
-                const macrosHtml = !nutrition.missing
-                    ? `<span class="ingredient-macros">${Math.round(nutrition.kcal)} | ${Math.round(nutrition.protein)}B | ${Math.round(nutrition.fat)}T | ${Math.round(nutrition.carbs)}W</span>`
-                    : '';
-                const substitutes = getIngredientSubstitutes(i);
-                const hasSubstitutes = substitutes.length > 0;
-                const substituteBtn = `<button class="substitute-btn ${!hasSubstitutes ? 'no-substitutes' : ''}" onclick="toggleSubstitutePopup(${index}, event)" title="${hasSubstitutes ? 'Pokaż zamienniki' : 'Brak zamienników'}">↔</button>`;
-                return `<li class="ingredient-item">
-                    <div class="ingredient-main-row">
-                        <span class="ingredient-text">${i.item} - <strong>${amount} ${i.unit}</strong></span>
-                        ${infoBtn}
-                        ${substituteBtn}
-                    </div>
-                    ${macrosHtml ? `<div class="ingredient-macros-row">${macrosHtml}</div>` : ''}
-                </li>`;
-            }).join('');
-
-            // Pokaż makra
-            document.getElementById('modal-macros').innerHTML = `
-                <div class="modal-macro"><div class="modal-macro-value">${displayMacros.kcal}</div><div class="modal-macro-label">Kalorie</div></div>
-                <div class="modal-macro"><div class="modal-macro-value">${displayMacros.protein}g</div><div class="modal-macro-label">Bialko</div></div>
-                <div class="modal-macro"><div class="modal-macro-value">${displayMacros.fat}g</div><div class="modal-macro-label">Tluszcze</div></div>
-                <div class="modal-macro"><div class="modal-macro-value">${displayMacros.carbs}g</div><div class="modal-macro-label">Wegle</div></div>`;
-
-            // Sekcja dopasowania do celów makro - tylko dla pojedynczej osoby
             const optimizationSection = document.getElementById('modal-optimization');
-            if (modalSelectedPersons.length === 1 && modalSplitMode === 'normal') {
+            let displayMacros, ingredientsHtml;
+
+            // Tryb "Razem" - automatycznie optymalizuj dla każdej osoby i sumuj
+            if (modalSelectedPersons.length > 1 && currentModalMealType) {
+                // Dla każdej osoby optymalizuj osobno i sumuj składniki
+                let combinedIngredients = {};
+                let combinedNutrition = { kcal: 0, protein: 0, fat: 0, carbs: 0 };
+                let combinedTarget = { kcal: 0, protein: 0, fat: 0, carbs: 0 };
+                const personsInfo = [];
+
+                // Sprawdź czy użytkownik chce oryginalne (nie zoptymalizowane)
+                const showOriginal = modalOptimizedIngredients === false; // false = użytkownik kliknął "Przywróć oryginalne"
+
+                if (showOriginal) {
+                    // Pokaż oryginalne składniki (suma mnożników)
+                    let totalMultiplier = 0;
+                    for (const personId of modalSelectedPersons) {
+                        const person = persons.find(p => p.id === personId);
+                        if (!person) continue;
+                        const mealTarget = calculateMealTargets(person, currentModalMealType);
+                        if (!mealTarget) continue;
+
+                        totalMultiplier += person.portion * modalPortions;
+                        combinedTarget.kcal += mealTarget.kcal * modalPortions;
+                        combinedTarget.protein += mealTarget.protein * modalPortions;
+                        combinedTarget.fat += mealTarget.fat * modalPortions;
+                        combinedTarget.carbs += mealTarget.carbs * modalPortions;
+                        personsInfo.push(`${person.name} (${person.portion}x)`);
+                    }
+
+                    // Oryginalne składniki
+                    for (const ing of r.ingredients) {
+                        combinedIngredients[ing.item] = {
+                            item: ing.item,
+                            amount: Math.round(ing.amount * totalMultiplier * 10) / 10,
+                            unit: ing.unit
+                        };
+                    }
+                    combinedNutrition = {
+                        kcal: r.kcal * totalMultiplier,
+                        protein: r.protein * totalMultiplier,
+                        fat: r.fat * totalMultiplier,
+                        carbs: r.carbs * totalMultiplier
+                    };
+                } else {
+                    // Optymalizuj dla każdej osoby osobno (dla 1 porcji) i sumuj
+                    for (const personId of modalSelectedPersons) {
+                        const person = persons.find(p => p.id === personId);
+                        if (!person) continue;
+
+                        const mealTarget = calculateMealTargets(person, currentModalMealType);
+                        if (!mealTarget) continue;
+
+                        // Optymalizuj dla tej osoby (dla 1 porcji)
+                        const result = optimizeIngredients(r, mealTarget, person.portion);
+
+                        // Sumuj cele (mnożone przez liczbę porcji)
+                        combinedTarget.kcal += mealTarget.kcal * modalPortions;
+                        combinedTarget.protein += mealTarget.protein * modalPortions;
+                        combinedTarget.fat += mealTarget.fat * modalPortions;
+                        combinedTarget.carbs += mealTarget.carbs * modalPortions;
+
+                        // Sumuj składniki (mnożone przez liczbę porcji)
+                        for (const ing of result.ingredients) {
+                            if (!combinedIngredients[ing.item]) {
+                                combinedIngredients[ing.item] = { ...ing, amount: 0, unit: ing.unit };
+                            }
+                            combinedIngredients[ing.item].amount += ing.amount * modalPortions;
+                        }
+
+                        // Sumuj makra (mnożone przez liczbę porcji)
+                        combinedNutrition.kcal += result.nutrition.kcal * modalPortions;
+                        combinedNutrition.protein += result.nutrition.protein * modalPortions;
+                        combinedNutrition.fat += result.nutrition.fat * modalPortions;
+                        combinedNutrition.carbs += result.nutrition.carbs * modalPortions;
+
+                        personsInfo.push(`${person.name} (${person.portion}x)`);
+                    }
+                }
+
+                // Zaokrąglij składniki
+                const ingredientsList = Object.values(combinedIngredients).map(ing => ({
+                    ...ing,
+                    amount: Math.round(ing.amount * 10) / 10
+                }));
+
+                displayMacros = {
+                    kcal: Math.round(combinedNutrition.kcal),
+                    protein: Math.round(combinedNutrition.protein),
+                    fat: Math.round(combinedNutrition.fat),
+                    carbs: Math.round(combinedNutrition.carbs)
+                };
+
+                // Info o trybie "Razem"
+                const optimizedLabel = showOriginal ? '' : ' <span style="color: #7c3aed; font-weight: 600;">(zoptymalizowane)</span>';
+                multiplierEl.innerHTML = `<strong>🍳 Razem dla:</strong> ${personsInfo.join(' + ')}${optimizedLabel}`;
+
+                // Lista składników
+                ingredientsHtml = ingredientsList.map((i, index) => {
+                    const nutrition = calculateIngredientNutrition(i.item, i.amount, i.unit);
+                    const ingredient = ingredientsDatabase[i.item];
+                    const infoBtn = ingredient
+                        ? `<button class="info-btn" onclick="toggleNutritionInfo(${index}, event)" title="Wartości na 100g">ℹ️</button>
+                           <div class="nutrition-info-popup" id="nutrition-info-${index}" style="display:none;">
+                               <strong>Na 100g:</strong><br>
+                               ${ingredient.kcal} kcal | ${ingredient.protein}B | ${ingredient.fat}T | ${ingredient.carbs}W
+                           </div>`
+                        : '';
+                    const macrosHtml = !nutrition.missing
+                        ? `<span class="ingredient-macros">${Math.round(nutrition.kcal)} | ${Math.round(nutrition.protein)}B | ${Math.round(nutrition.fat)}T | ${Math.round(nutrition.carbs)}W</span>`
+                        : '';
+                    return `<li class="ingredient-item">
+                        <div class="ingredient-main-row">
+                            <span class="ingredient-text">${i.item} - <strong>${i.amount} ${i.unit}</strong></span>
+                            ${infoBtn}
+                        </div>
+                        ${macrosHtml ? `<div class="ingredient-macros-row">${macrosHtml}</div>` : ''}
+                    </li>`;
+                }).join('');
+
+                // Sekcja dopasowania - pokaż sumę celów vs obecne
+                const diff = {
+                    kcal: displayMacros.kcal - combinedTarget.kcal,
+                    protein: displayMacros.protein - combinedTarget.protein,
+                    fat: displayMacros.fat - combinedTarget.fat,
+                    carbs: displayMacros.carbs - combinedTarget.carbs
+                };
+
+                const formatDiff = (val) => val >= 0 ? `+${val}` : `${val}`;
+                const getDiffColor = (val, threshold) => {
+                    const pct = Math.abs(val) / threshold * 100;
+                    if (pct <= 8) return '#22c55e';
+                    if (pct <= 15) return '#f59e0b';
+                    return '#ef4444';
+                };
+
+                const mealNamePl = { breakfast: 'Śniadanie', lunch: 'Obiad', dinner: 'Kolacja' };
+
+                optimizationSection.innerHTML = `
+                    <div class="optimization-header">
+                        <span>🎯 Suma celów dla wszystkich (${mealNamePl[currentModalMealType]})</span>
+                    </div>
+                    <div class="optimization-grid">
+                        <div class="opt-row opt-header-row">
+                            <span></span>
+                            <span>kcal</span>
+                            <span>Białko</span>
+                            <span>Tłuszcz</span>
+                            <span>Węgle</span>
+                        </div>
+                        <div class="opt-row">
+                            <span class="opt-label">Cel razem:</span>
+                            <span>${Math.round(combinedTarget.kcal)}</span>
+                            <span>${Math.round(combinedTarget.protein)}g</span>
+                            <span>${Math.round(combinedTarget.fat)}g</span>
+                            <span>${Math.round(combinedTarget.carbs)}g</span>
+                        </div>
+                        <div class="opt-row">
+                            <span class="opt-label">Osiągnięte:</span>
+                            <span>${displayMacros.kcal}</span>
+                            <span>${displayMacros.protein}g</span>
+                            <span>${displayMacros.fat}g</span>
+                            <span>${displayMacros.carbs}g</span>
+                        </div>
+                        <div class="opt-row opt-diff-row">
+                            <span class="opt-label">Różnica:</span>
+                            <span style="color: ${getDiffColor(diff.kcal, combinedTarget.kcal)}">${formatDiff(diff.kcal)}</span>
+                            <span style="color: ${getDiffColor(diff.protein, combinedTarget.protein)}">${formatDiff(diff.protein)}</span>
+                            <span style="color: ${getDiffColor(diff.fat, combinedTarget.fat)}">${formatDiff(diff.fat)}</span>
+                            <span style="color: ${getDiffColor(diff.carbs, combinedTarget.carbs)}">${formatDiff(diff.carbs)}</span>
+                        </div>
+                    </div>
+                    ${showOriginal ? `
+                        <button class="optimize-btn" onclick="showOptimizedRazem()">
+                            🔧 Pokaż zoptymalizowane
+                        </button>
+                    ` : `
+                        <button class="reset-optimization-btn" onclick="showOriginalRazem()">
+                            ↩️ Przywróć oryginalne
+                        </button>
+                    `}
+                `;
+                optimizationSection.style.display = 'block';
+
+            } else {
+                // Tryb pojedynczej osoby
                 const person = persons.find(p => p.id === modalSelectedPersons[0]);
+                const baseMultiplier = person ? person.portion : 1;
+
+                // Sprawdź czy mamy zoptymalizowane składniki
+                const isOptimized = modalOptimizedIngredients !== null && modalOptimizedIngredients !== false;
+
+                let ingredientsList;
+                let baseMacros;
+
+                if (isOptimized) {
+                    // Użyj zoptymalizowanych (już zawierają baseMultiplier)
+                    ingredientsList = modalOptimizedIngredients.ingredients;
+                    baseMacros = modalOptimizedIngredients.nutrition;
+                } else {
+                    // Użyj oryginalnych z przepisu (przemnożonych przez portion osoby)
+                    ingredientsList = r.ingredients.map(ing => ({
+                        item: ing.item,
+                        amount: ing.amount * baseMultiplier,
+                        unit: ing.unit
+                    }));
+                    baseMacros = {
+                        kcal: r.kcal * baseMultiplier,
+                        protein: r.protein * baseMultiplier,
+                        fat: r.fat * baseMultiplier,
+                        carbs: r.carbs * baseMultiplier
+                    };
+                }
+
+                const portionsInfo = modalPortions > 1 ? ` × ${modalPortions} porcji` : '';
+                const totalMultiplier = baseMultiplier * modalPortions;
+                const optimizedLabel = isOptimized ? ' <span style="color: #7c3aed; font-weight: 600;">(zoptymalizowane)</span>' : '';
+                multiplierEl.innerHTML = `Składniki dla: <strong>${person?.name || 'Nieznany'}</strong> (${person?.portion || 1}x)${portionsInfo}${optimizedLabel}` + (modalPortions > 1 ? ` = <strong>${totalMultiplier.toFixed(2)}x</strong>` : '');
+
+                // Mnóż przez modalPortions
+                displayMacros = {
+                    kcal: Math.round(baseMacros.kcal * modalPortions),
+                    protein: Math.round(baseMacros.protein * modalPortions),
+                    fat: Math.round(baseMacros.fat * modalPortions),
+                    carbs: Math.round(baseMacros.carbs * modalPortions)
+                };
+
+                ingredientsHtml = ingredientsList.map((i, index) => {
+                    const amount = Math.round(i.amount * modalPortions * 10) / 10;
+                    const nutrition = calculateIngredientNutrition(i.item, i.amount * modalPortions, i.unit);
+                    const ingredient = ingredientsDatabase[i.item];
+                    const infoBtn = ingredient
+                        ? `<button class="info-btn" onclick="toggleNutritionInfo(${index}, event)" title="Wartości na 100g">ℹ️</button>
+                           <div class="nutrition-info-popup" id="nutrition-info-${index}" style="display:none;">
+                               <strong>Na 100g:</strong><br>
+                               ${ingredient.kcal} kcal | ${ingredient.protein}B | ${ingredient.fat}T | ${ingredient.carbs}W
+                           </div>`
+                        : '';
+                    const macrosHtml = !nutrition.missing
+                        ? `<span class="ingredient-macros">${Math.round(nutrition.kcal)} | ${Math.round(nutrition.protein)}B | ${Math.round(nutrition.fat)}T | ${Math.round(nutrition.carbs)}W</span>`
+                        : '';
+                    const substitutes = getIngredientSubstitutes(i);
+                    const hasSubstitutes = substitutes.length > 0;
+                    const substituteBtn = `<button class="substitute-btn ${!hasSubstitutes ? 'no-substitutes' : ''}" onclick="toggleSubstitutePopup(${index}, event)" title="${hasSubstitutes ? 'Pokaż zamienniki' : 'Brak zamienników'}">↔</button>`;
+                    return `<li class="ingredient-item">
+                        <div class="ingredient-main-row">
+                            <span class="ingredient-text">${i.item} - <strong>${amount} ${i.unit}</strong></span>
+                            ${infoBtn}
+                            ${substituteBtn}
+                        </div>
+                        ${macrosHtml ? `<div class="ingredient-macros-row">${macrosHtml}</div>` : ''}
+                    </li>`;
+                }).join('');
+
+                // Sekcja dopasowania do celów makro - dla pojedynczej osoby
                 if (person && currentModalMealType) {
                     const mealTarget = calculateMealTargets(person, currentModalMealType);
                     const allocationPct = Math.round((person.mealAllocation?.[currentModalMealType] || 0.33) * 100);
 
+                    // Skaluj cele przez liczbę porcji
+                    const scaledTarget = {
+                        kcal: Math.round(mealTarget.kcal * modalPortions),
+                        protein: Math.round(mealTarget.protein * modalPortions),
+                        fat: Math.round(mealTarget.fat * modalPortions),
+                        carbs: Math.round(mealTarget.carbs * modalPortions)
+                    };
+
                     const diff = {
-                        kcal: displayMacros.kcal - mealTarget.kcal,
-                        protein: displayMacros.protein - mealTarget.protein,
-                        fat: displayMacros.fat - mealTarget.fat,
-                        carbs: displayMacros.carbs - mealTarget.carbs
+                        kcal: displayMacros.kcal - scaledTarget.kcal,
+                        protein: displayMacros.protein - scaledTarget.protein,
+                        fat: displayMacros.fat - scaledTarget.fat,
+                        carbs: displayMacros.carbs - scaledTarget.carbs
                     };
 
                     const formatDiff = (val) => val >= 0 ? `+${val}` : `${val}`;
                     const getDiffColor = (val, threshold) => {
                         const pct = Math.abs(val) / threshold * 100;
-                        if (pct <= 8) return '#22c55e'; // Zielony - ok
-                        if (pct <= 15) return '#f59e0b'; // Żółty - mały błąd
-                        return '#ef4444'; // Czerwony - duży błąd
+                        if (pct <= 8) return '#22c55e';
+                        if (pct <= 15) return '#f59e0b';
+                        return '#ef4444';
                     };
 
                     const mealNamePl = { breakfast: 'Śniadanie', lunch: 'Obiad', dinner: 'Kolacja' };
@@ -12718,10 +12740,10 @@
                             </div>
                             <div class="opt-row">
                                 <span class="opt-label">Cel:</span>
-                                <span>${mealTarget.kcal}</span>
-                                <span>${mealTarget.protein}g</span>
-                                <span>${mealTarget.fat}g</span>
-                                <span>${mealTarget.carbs}g</span>
+                                <span>${scaledTarget.kcal}</span>
+                                <span>${scaledTarget.protein}g</span>
+                                <span>${scaledTarget.fat}g</span>
+                                <span>${scaledTarget.carbs}g</span>
                             </div>
                             <div class="opt-row">
                                 <span class="opt-label">Obecne:</span>
@@ -12732,10 +12754,10 @@
                             </div>
                             <div class="opt-row opt-diff-row">
                                 <span class="opt-label">Różnica:</span>
-                                <span style="color: ${getDiffColor(diff.kcal, mealTarget.kcal)}">${formatDiff(diff.kcal)}</span>
-                                <span style="color: ${getDiffColor(diff.protein, mealTarget.protein)}">${formatDiff(diff.protein)}</span>
-                                <span style="color: ${getDiffColor(diff.fat, mealTarget.fat)}">${formatDiff(diff.fat)}</span>
-                                <span style="color: ${getDiffColor(diff.carbs, mealTarget.carbs)}">${formatDiff(diff.carbs)}</span>
+                                <span style="color: ${getDiffColor(diff.kcal, scaledTarget.kcal)}">${formatDiff(diff.kcal)}</span>
+                                <span style="color: ${getDiffColor(diff.protein, scaledTarget.protein)}">${formatDiff(diff.protein)}</span>
+                                <span style="color: ${getDiffColor(diff.fat, scaledTarget.fat)}">${formatDiff(diff.fat)}</span>
+                                <span style="color: ${getDiffColor(diff.carbs, scaledTarget.carbs)}">${formatDiff(diff.carbs)}</span>
                             </div>
                         </div>
                         <button class="optimize-btn" onclick="applyOptimization()">
@@ -12751,71 +12773,19 @@
                 } else {
                     optimizationSection.style.display = 'none';
                 }
-            } else {
-                optimizationSection.style.display = 'none';
             }
+
+            // Pokaż makra
+            document.getElementById('modal-macros').innerHTML = `
+                <div class="modal-macro"><div class="modal-macro-value">${displayMacros.kcal}</div><div class="modal-macro-label">Kalorie</div></div>
+                <div class="modal-macro"><div class="modal-macro-value">${displayMacros.protein}g</div><div class="modal-macro-label">Bialko</div></div>
+                <div class="modal-macro"><div class="modal-macro-value">${displayMacros.fat}g</div><div class="modal-macro-label">Tluszcze</div></div>
+                <div class="modal-macro"><div class="modal-macro-value">${displayMacros.carbs}g</div><div class="modal-macro-label">Wegle</div></div>`;
 
             // Pokaż składniki
             document.getElementById('modal-ingredients').innerHTML = ingredientsHtml;
             closeAllSubstitutePopups();
 
-            // Sekcja podziału na talerze
-            let portionSplitSection = document.getElementById('modal-portion-split');
-            if (!portionSplitSection) {
-                // Utwórz sekcję jeśli nie istnieje
-                const ingredientsSection = document.getElementById('modal-ingredients').parentElement;
-                portionSplitSection = document.createElement('div');
-                portionSplitSection.className = 'modal-section';
-                portionSplitSection.id = 'modal-portion-split';
-                ingredientsSection.after(portionSplitSection);
-            }
-
-            // Pokaż tabelę podziału tylko dla "Razem" lub "50/50"
-            if (modalSelectedPersons.length === 2 || modalSplitMode.startsWith('5050')) {
-                let amount1, amount2;
-
-                if (modalSplitMode.startsWith('5050')) {
-                    // 50/50 - równy podział
-                    amount1 = portionPerPerson;
-                    amount2 = portionPerPerson;
-                } else {
-                    // Razem - proporcjonalny podział
-                    amount1 = p1.portion;
-                    amount2 = p2.portion;
-                }
-
-                let tableHTML = `
-                    <h3>📋 Podział na talerze</h3>
-                    <div class="portion-split-table">
-                        <div class="portion-split-header">
-                            <span>Składnik</span>
-                            <span class="portion-split-person">
-                                <span class="portion-split-dot" style="background: ${p1.color}"></span>
-                                ${p1.name}
-                            </span>
-                            <span class="portion-split-person">
-                                <span class="portion-split-dot" style="background: ${p2.color}"></span>
-                                ${p2.name}
-                            </span>
-                        </div>`;
-
-                tableHTML += r.ingredients.map(i => {
-                    const a1 = Math.round(i.amount * amount1 * 10) / 10;
-                    const a2 = Math.round(i.amount * amount2 * 10) / 10;
-                    return `
-                        <div class="portion-split-row">
-                            <span class="portion-split-item">${i.item}</span>
-                            <span class="portion-split-amount person1">${a1} ${i.unit}</span>
-                            <span class="portion-split-amount person2">${a2} ${i.unit}</span>
-                        </div>`;
-                }).join('');
-
-                tableHTML += '</div>';
-                portionSplitSection.innerHTML = tableHTML;
-                portionSplitSection.style.display = 'block';
-            } else {
-                portionSplitSection.style.display = 'none';
-            }
         }
 
         function closeModal(e) {
@@ -12871,15 +12841,12 @@
                 const mealTarget = calculateMealTargets(person, currentModalMealType);
                 if (!mealTarget) continue;
 
-                // Dla 50/50 - każda osoba ma połowę porcji
-                const portionFactor = modalSplitMode === '5050' ? 0.5 : 1;
+                combinedTarget.kcal += mealTarget.kcal * modalPortions;
+                combinedTarget.protein += mealTarget.protein * modalPortions;
+                combinedTarget.fat += mealTarget.fat * modalPortions;
+                combinedTarget.carbs += mealTarget.carbs * modalPortions;
 
-                combinedTarget.kcal += mealTarget.kcal * portionFactor;
-                combinedTarget.protein += mealTarget.protein * portionFactor;
-                combinedTarget.fat += mealTarget.fat * portionFactor;
-                combinedTarget.carbs += mealTarget.carbs * portionFactor;
-
-                totalMultiplier += person.portion * portionFactor;
+                totalMultiplier += person.portion * modalPortions;
             }
 
             // Zaokrąglij cele
@@ -12888,32 +12855,24 @@
             combinedTarget.fat = Math.round(combinedTarget.fat);
             combinedTarget.carbs = Math.round(combinedTarget.carbs);
 
-            // Uwzględnij liczbę porcji
-            totalMultiplier *= modalPortions;
-
             // Uruchom optymalizację
             const result = optimizeIngredients(r, combinedTarget, totalMultiplier);
             modalOptimizedIngredients = result;
 
-            // Zapisz optymalizację dla każdej osoby (jeśli z planera)
+            // Zapisz optymalizację dla wybranej osoby (jeśli z planera)
             if (currentPlanDay) {
-                for (const personId of modalSelectedPersons) {
-                    const key = getOptimizationKey(currentPlanDay, currentModalMealType, personId, r.id);
-                    // Dla wielu osób - podziel wynik proporcjonalnie
-                    const portionFactor = modalSplitMode === '5050'
-                        ? 0.5
-                        : 1 / modalSelectedPersons.length;
+                const personId = modalSelectedPersons[0];
+                const key = getOptimizationKey(currentPlanDay, currentModalMealType, personId, r.id);
 
-                    mealOptimizations[key] = {
-                        ...result,
-                        nutrition: {
-                            kcal: Math.round(result.nutrition.kcal * portionFactor),
-                            protein: Math.round(result.nutrition.protein * portionFactor),
-                            fat: Math.round(result.nutrition.fat * portionFactor),
-                            carbs: Math.round(result.nutrition.carbs * portionFactor)
-                        }
-                    };
-                }
+                mealOptimizations[key] = {
+                    ...result,
+                    nutrition: {
+                        kcal: Math.round(result.nutrition.kcal),
+                        protein: Math.round(result.nutrition.protein),
+                        fat: Math.round(result.nutrition.fat),
+                        carbs: Math.round(result.nutrition.carbs)
+                    }
+                };
                 saveMealOptimizations();
 
                 // Odśwież widok planera
@@ -12922,7 +12881,13 @@
             }
 
             // Aktualizuj widok składników z zoptymalizowanymi ilościami
-            updateModalWithOptimizedIngredients(result);
+            if (modalSelectedPersons.length > 1) {
+                // Dla trybu "Razem" - użyj updateModalContent() która obsługuje zoptymalizowane składniki
+                updateModalContent();
+            } else {
+                // Dla pojedynczej osoby - użyj dedykowanej funkcji z oznaczeniami zmian
+                updateModalWithOptimizedIngredients(result);
+            }
         }
 
         // Aktualizuj modal z zoptymalizowanymi składnikami
@@ -12982,6 +12947,21 @@
             const mealTarget = calculateMealTargets(person, currentModalMealType);
             const allocationPct = Math.round((person.mealAllocation?.[currentModalMealType] || 0.33) * 100);
 
+            // Skaluj cele przez liczbę porcji
+            const scaledTarget = {
+                kcal: Math.round(mealTarget.kcal * modalPortions),
+                protein: Math.round(mealTarget.protein * modalPortions),
+                fat: Math.round(mealTarget.fat * modalPortions),
+                carbs: Math.round(mealTarget.carbs * modalPortions)
+            };
+
+            const diff = {
+                kcal: result.nutrition.kcal - scaledTarget.kcal,
+                protein: result.nutrition.protein - scaledTarget.protein,
+                fat: result.nutrition.fat - scaledTarget.fat,
+                carbs: result.nutrition.carbs - scaledTarget.carbs
+            };
+
             const formatDiff = (val) => val >= 0 ? `+${val}` : `${val}`;
             const getDiffColor = (val, threshold) => {
                 const pct = Math.abs(val) / threshold * 100;
@@ -13009,10 +12989,10 @@
                         </div>
                         <div class="opt-row">
                             <span class="opt-label">Cel:</span>
-                            <span>${mealTarget.kcal}</span>
-                            <span>${mealTarget.protein}g</span>
-                            <span>${mealTarget.fat}g</span>
-                            <span>${mealTarget.carbs}g</span>
+                            <span>${scaledTarget.kcal}</span>
+                            <span>${scaledTarget.protein}g</span>
+                            <span>${scaledTarget.fat}g</span>
+                            <span>${scaledTarget.carbs}g</span>
                         </div>
                         <div class="opt-row">
                             <span class="opt-label">Obecne:</span>
@@ -13023,10 +13003,10 @@
                         </div>
                         <div class="opt-row opt-diff-row">
                             <span class="opt-label">Różnica:</span>
-                            <span style="color: ${getDiffColor(result.diff.kcal, mealTarget.kcal)}">${formatDiff(result.diff.kcal)}</span>
-                            <span style="color: ${getDiffColor(result.diff.protein, mealTarget.protein)}">${formatDiff(result.diff.protein)}</span>
-                            <span style="color: ${getDiffColor(result.diff.fat, mealTarget.fat)}">${formatDiff(result.diff.fat)}</span>
-                            <span style="color: ${getDiffColor(result.diff.carbs, mealTarget.carbs)}">${formatDiff(result.diff.carbs)}</span>
+                            <span style="color: ${getDiffColor(diff.kcal, scaledTarget.kcal)}">${formatDiff(diff.kcal)}</span>
+                            <span style="color: ${getDiffColor(diff.protein, scaledTarget.protein)}">${formatDiff(diff.protein)}</span>
+                            <span style="color: ${getDiffColor(diff.fat, scaledTarget.fat)}">${formatDiff(diff.fat)}</span>
+                            <span style="color: ${getDiffColor(diff.carbs, scaledTarget.carbs)}">${formatDiff(diff.carbs)}</span>
                         </div>
                     </div>
                     <button class="reset-optimization-btn" onclick="resetOptimization()">
@@ -13039,6 +13019,18 @@
         // Przywróć oryginalne ilości składników
         function resetOptimization() {
             modalOptimizedIngredients = null;
+            updateModalContent();
+        }
+
+        // Pokaż oryginalne składniki w trybie "Razem"
+        function showOriginalRazem() {
+            modalOptimizedIngredients = false; // false = pokaż oryginalne
+            updateModalContent();
+        }
+
+        // Pokaż zoptymalizowane składniki w trybie "Razem"
+        function showOptimizedRazem() {
+            modalOptimizedIngredients = null; // null = domyślnie zoptymalizowane w trybie Razem
             updateModalContent();
         }
 
@@ -13065,20 +13057,9 @@
             const ingredient = ingredients[ingredientIndex];
 
             // Oblicz multiplier dla składników
-            const p1 = persons[0];
-            const p2 = persons[1];
             let multiplier = 0;
-
-            if (modalSplitMode === '5050-person1') {
-                multiplier = p1.portion * 2;
-            } else if (modalSplitMode === '5050-person2') {
-                multiplier = p2.portion * 2;
-            } else if (modalSelectedPersons.length === 2) {
-                multiplier = p1.portion + p2.portion;
-            } else {
-                const person = persons.find(p => p.id === modalSelectedPersons[0]);
-                if (person) multiplier = person.portion;
-            }
+            const person = persons.find(p => p.id === modalSelectedPersons[0]);
+            if (person) multiplier = person.portion;
             multiplier *= modalPortions;
 
             // Oblicz aktualną ilość składnika (po optymalizacji lub z multiplierem)
