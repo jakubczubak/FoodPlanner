@@ -12428,6 +12428,17 @@
 
         function changePortions(delta) {
             modalPortions = Math.max(1, modalPortions + delta);
+
+            // Aktualizuj wyświetlanie kontrolki porcji
+            document.getElementById('modal-portions-control').innerHTML = `
+                <div class="portions-selector">
+                    <span class="portions-label">🍽️ Porcji:</span>
+                    <button class="portions-btn" onclick="changePortions(-1)" ${modalPortions <= 1 ? 'disabled' : ''}>−</button>
+                    <span class="portions-value">${modalPortions}</span>
+                    <button class="portions-btn" onclick="changePortions(1)">+</button>
+                </div>
+            `;
+
             // Automatycznie uruchom optymalizację po zmianie porcji
             applyOptimization();
         }
