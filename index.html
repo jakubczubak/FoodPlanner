@@ -10642,11 +10642,15 @@
         let plan = initPlanStructure();
 
         const categories = [
-            { name: "🥚 BIAŁKO", keywords: ["jajka", "pierś", "mielone", "łosoś", "szynka", "kurczak"] },
-            { name: "🧀 NABIAŁ", keywords: ["serek", "jogurt", "ser żółty", "masło", "parmezan", "majonez", "śmietankowy", "skyr"] },
-            { name: "🍞 PIECZYWO", keywords: ["chleb", "bułki", "tortilla", "tostowy"] },
-            { name: "🥦 WARZYWA/OWOCE", keywords: ["pomidor", "ogórek", "brokuł", "cukinia", "kapusta", "banan", "cebula", "sałata", "czosnek"] },
-            { name: "🍚 INNE", keywords: ["ryż", "makaron", "frytki", "oliwa", "orzechy", "miód", "płatki", "passata", "szczypiorek"] }
+            { name: "🥚 BIAŁKO", keywords: ["jajka", "jajko", "żółtko", "pierś", "mielone", "mielona", "łosoś", "szynka", "kurczak", "indyk", "wołowin", "wieprzow", "boczek", "kiełbas", "parówk", "schab", "udka", "skrzydełka", "polędwic", "karkówka", "dorsz", "pstrąg", "tuńczyk", "krewetki", "anchois", "chorizo", "pepperoni", "salami", "stek"] },
+            { name: "🧀 NABIAŁ", keywords: ["serek", "jogurt", "ser ", "masło", "parmezan", "majonez", "śmietankow", "skyr", "mleko", "śmietana", "śmietanka", "mozzarella", "burrata", "ricotta", "camembert", "gorgonzola", "bita śmietana", "twarog"] },
+            { name: "🍞 PIECZYWO/MĄKA", keywords: ["chleb", "bułk", "tortilla", "tostow", "bagietka", "pita", "kajzerk", "pieczywo", "mąka", "bułka", "piadina", "pinsa", "biszkopty", "grzank", "płaty lasagne", "drożdże"] },
+            { name: "🥦 WARZYWA/OWOCE", keywords: ["pomidor", "ogórek", "brokuł", "cukinia", "kapusta", "banan", "cebula", "sałata", "czosnek", "marchew", "marchewka", "ziemniak", "pieczark", "szparag", "bakłażan", "dynia", "por ", "seler", "papryka", "fasolka szparagowa", "groszek", "kukurydza", "szalotka", "jabłk", "gruszka", "truskawk", "maliny", "jagody", "borówk", "kiwi", "ananas", "mango", "cytryn", "limonka", "mix sałat", "edamame", "kalafior", "kimchi", "oliwki", "szczypiorek", "zielona cebulka"] },
+            { name: "🥫 PUSZKI/SUCHE", keywords: ["puszka", "konserwow", "passata", "ciecierzyca", "fasola", "bulion", "koncentrat"] },
+            { name: "🍚 KASZE/MAKARONY/RYŻE", keywords: ["ryż", "makaron", "kasza", "quinoa", "płatki", "spaghetti", "penne", "fusilli", "tagliatelle", "tortelloni", "ramen", "frytki"] },
+            { name: "🫒 OLEJE/SOSY", keywords: ["oliwa", "olej", "sos ", "ocet", "ketchup", "musztarda", "pesto", "salsa", "hummus", "gochujang", "hoisin", "pasta curry", "pasta tom", "dżem", "syrop", "miód"] },
+            { name: "🥜 ORZECHY/NASIONA", keywords: ["orzechy", "orzeszki", "migdał", "pestki", "nasiona", "sezam", "wiórki kokos", "rodzynki", "daktyle", "żurawina", "kakao", "czekolad"] },
+            { name: "🧂 PRZYPRAWY", keywords: ["sól", "pieprz", "curry", "oregano", "bazylia", "tymianek", "rozmaryn", "cynamon", "kurkuma", "imbir", "kolendra", "koper", "kminek", "majeranek", "chili", "papryka ostra", "papryka wędzona", "zioła", "przyprawa", "przyprawy", "gałka", "kardamon", "anyż", "wanilia", "nori"] }
         ];
 
         // Status zjedzonych posiłków: { day: { mealType: { personId: boolean } } }
@@ -12062,6 +12066,7 @@
             // Automatyczna optymalizacja wszystkich posiłków
             optimizeAllMealsInPlan();
 
+            clearCheckedItems();
             renderPlannerTable();
             savePlan();
         }
@@ -12115,6 +12120,7 @@
             // Automatyczna optymalizacja wszystkich posiłków
             optimizeAllMealsInPlan();
 
+            clearCheckedItems();
             renderPlannerTable();
             savePlan();
         }
@@ -12125,6 +12131,7 @@
                     plan[day][mt] = { 1: null, 2: null };
                 });
             });
+            clearCheckedItems();
             renderPlannerTable();
             savePlan();
         }
@@ -13366,10 +13373,14 @@
                 return;
             }
 
+            const categorizedItems = new Set();
+
             categories.forEach(cat => {
                 const items = Object.entries(list).filter(([item]) =>
                     cat.keywords.some(kw => item.toLowerCase().includes(kw)));
                 if (items.length === 0) return;
+
+                items.forEach(([item]) => categorizedItems.add(item));
 
                 const div = document.createElement('div');
                 div.className = 'category';
@@ -13387,6 +13398,26 @@
                 });
                 container.appendChild(div);
             });
+
+            // Catch-all: składniki które nie trafiły do żadnej kategorii
+            const uncategorized = Object.entries(list).filter(([item]) => !categorizedItems.has(item));
+            if (uncategorized.length > 0) {
+                const div = document.createElement('div');
+                div.className = 'category';
+                div.innerHTML = `<h3>📦 POZOSTAŁE</h3>`;
+                uncategorized.forEach(([item, amt]) => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'item';
+                    const isChecked = checkedShoppingItems.has(item);
+                    const escapedItem = item.replace(/'/g, "\\'");
+                    itemDiv.innerHTML = `
+                        <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleShoppingItem('${escapedItem}', this.checked); this.nextElementSibling.classList.toggle('checked', this.checked)">
+                        <span class="item-name ${isChecked ? 'checked' : ''}">${item}</span>
+                        <span class="item-amount">${amt}</span>`;
+                    div.appendChild(itemDiv);
+                });
+                container.appendChild(div);
+            }
         }
 
         function copyShoppingList() {
@@ -13424,15 +13455,26 @@
             const multiplierText = shoppingListMultiplier > 1 ? ` [×${shoppingListMultiplier}]` : '';
             let txt = `🛒 LISTA ZAKUPÓW${multiplierText}\nDla: ${personsInfo}\n\n`;
             let hasItems = false;
+            const copyCategorized = new Set();
             categories.forEach(cat => {
                 const items = Object.entries(list).filter(([item]) =>
                     cat.keywords.some(kw => item.toLowerCase().includes(kw)) && !checkedShoppingItems.has(item));
+                Object.entries(list).filter(([item]) =>
+                    cat.keywords.some(kw => item.toLowerCase().includes(kw))).forEach(([item]) => copyCategorized.add(item));
                 if (items.length === 0) return;
                 hasItems = true;
                 txt += cat.name + "\n";
                 items.forEach(([item, amt]) => txt += `☐ ${item}: ${amt}\n`);
                 txt += "\n";
             });
+
+            const copyUncategorized = Object.entries(list).filter(([item]) => !copyCategorized.has(item) && !checkedShoppingItems.has(item));
+            if (copyUncategorized.length > 0) {
+                hasItems = true;
+                txt += "📦 POZOSTAŁE\n";
+                copyUncategorized.forEach(([item, amt]) => txt += `☐ ${item}: ${amt}\n`);
+                txt += "\n";
+            }
 
             if (!hasItems) {
                 alert('Wszystkie produkty zostały odhaczone! Nie ma nic do skopiowania.');
@@ -13477,15 +13519,26 @@
             const multiplierText = shoppingListMultiplier > 1 ? ` [×${shoppingListMultiplier}]` : '';
             let txt = `🛒 LISTA ZAKUPÓW${multiplierText}\nDla: ${personsInfo}\n\n`;
             let hasItems = false;
+            const shareCategorized = new Set();
             categories.forEach(cat => {
                 const items = Object.entries(list).filter(([item]) =>
                     cat.keywords.some(kw => item.toLowerCase().includes(kw)) && !checkedShoppingItems.has(item));
+                Object.entries(list).filter(([item]) =>
+                    cat.keywords.some(kw => item.toLowerCase().includes(kw))).forEach(([item]) => shareCategorized.add(item));
                 if (items.length === 0) return;
                 hasItems = true;
                 txt += cat.name + "\n";
                 items.forEach(([item, amt]) => txt += `☐ ${item}: ${amt}\n`);
                 txt += "\n";
             });
+
+            const shareUncategorized = Object.entries(list).filter(([item]) => !shareCategorized.has(item) && !checkedShoppingItems.has(item));
+            if (shareUncategorized.length > 0) {
+                hasItems = true;
+                txt += "📦 POZOSTAŁE\n";
+                shareUncategorized.forEach(([item, amt]) => txt += `☐ ${item}: ${amt}\n`);
+                txt += "\n";
+            }
 
             if (!hasItems) {
                 alert('Wszystkie produkty zostały odhaczone! Nie ma nic do wysłania.');
