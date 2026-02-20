@@ -1098,6 +1098,46 @@
             font-size: 13px;
         }
 
+        .shopping-recipe-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 2px 6px;
+            border-radius: 6px;
+            position: relative;
+            transition: background 0.2s;
+        }
+        .shopping-recipe-btn:hover {
+            background: #e0f2fe;
+        }
+        .shopping-recipe-popup {
+            position: absolute;
+            bottom: 100%;
+            right: 0;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            z-index: 1000;
+            min-width: 200px;
+            max-width: 300px;
+            overflow: hidden;
+        }
+        .shopping-recipe-popup-item {
+            padding: 10px 14px;
+            font-size: 13px;
+            color: #1f2937;
+            cursor: pointer;
+            border-bottom: 1px solid #f3f4f6;
+            transition: background 0.15s;
+        }
+        .shopping-recipe-popup-item:last-child { border-bottom: none; }
+        .shopping-recipe-popup-item:hover {
+            background: #eff6ff;
+            color: #2563eb;
+        }
+
         /* MNOŻNIK LISTY ZAKUPÓW */
         .shopping-multiplier {
             display: flex;
@@ -1777,22 +1817,31 @@
         }
         .substitute-item {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 14px 16px;
+            flex-direction: column;
+            padding: 12px 14px;
             background: #f9fafb;
             border-radius: 10px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             font-size: 14px;
             border: 1px solid #e5e7eb;
+        }
+        .substitute-clickable {
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .substitute-clickable:hover {
+            background: #ede9fe;
+            border-color: #8b5cf6;
+            transform: translateX(3px);
         }
         .substitute-item:last-child {
             margin-bottom: 0;
         }
-        .substitute-icon {
-            color: #8b5cf6;
-            margin-right: 12px;
-            font-size: 16px;
+        .sub-main {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
         }
         .substitute-name {
             flex: 1;
@@ -1803,11 +1852,57 @@
             font-weight: 700;
             color: #1f2937;
             background: white;
-            padding: 6px 12px;
+            padding: 4px 10px;
             border-radius: 6px;
             font-size: 13px;
-            margin-left: 12px;
             border: 1px solid #e5e7eb;
+        }
+        .substitute-score {
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            min-width: 40px;
+            text-align: center;
+        }
+        .score-good { background: #dcfce7; color: #166534; }
+        .score-medium { background: #fef9c3; color: #854d0e; }
+        .score-bad { background: #fee2e2; color: #991b1b; }
+        .sub-macros {
+            display: flex;
+            gap: 6px;
+            margin-top: 6px;
+            flex-wrap: wrap;
+        }
+        .macro-diff {
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        .diff-small { background: #f0fdf4; color: #166534; }
+        .diff-medium { background: #fefce8; color: #854d0e; }
+        .diff-large { background: #fef2f2; color: #991b1b; }
+        .substitute-hint {
+            text-align: center;
+            font-size: 12px;
+            color: #9ca3af;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        .substitute-revert-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.4);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            margin-top: 6px;
+            transition: background 0.2s;
+        }
+        .substitute-revert-btn:hover {
+            background: rgba(255,255,255,0.3);
         }
         .no-substitutes-message {
             text-align: center;
@@ -3549,6 +3644,126 @@
             "Szczypiorek siekany": { kcal: 30, protein: 3.3, fat: 0.7, carbs: 4.4 },
             "Łosoś świeży (sashimi)": { kcal: 208, protein: 20, fat: 14, carbs: 0 },
 
+            // BRAKUJĄCE SKŁADNIKI Z PRZEPISÓW
+            // -- Pieczywo i makarony --
+            "Chleb razowy": { kcal: 220, protein: 7, fat: 1.3, carbs: 46, unitWeight: { kromka: 40, kromki: 40 } },
+            "Chleb turecki": { kcal: 290, protein: 8.5, fat: 3.5, carbs: 54, unitWeight: { szt: 100 } },
+            "Fettuccine": { kcal: 353, protein: 12.5, fat: 1.5, carbs: 71 },
+            "Fusilli": { kcal: 353, protein: 12, fat: 1.5, carbs: 72 },
+            "Rigatoni": { kcal: 353, protein: 12, fat: 1.5, carbs: 72 },
+            "Makaron gryczany": { kcal: 336, protein: 13, fat: 3, carbs: 65 },
+            "Makaron jajeczny": { kcal: 368, protein: 13, fat: 4, carbs: 68 },
+            "Kluski śląskie": { kcal: 200, protein: 4, fat: 1, carbs: 44, unitWeight: { szt: 15 } },
+            "Kopytka": { kcal: 195, protein: 4.5, fat: 1.5, carbs: 42 },
+            "Komosa ryżowa (quinoa)": { kcal: 368, protein: 14, fat: 6, carbs: 64 },
+            "Ryż kleisty": { kcal: 350, protein: 7, fat: 0.5, carbs: 79 },
+            "Płatki gryczane": { kcal: 343, protein: 12, fat: 3, carbs: 68 },
+            "Płatki jaglane": { kcal: 350, protein: 11, fat: 4, carbs: 67 },
+            "Płatki kukurydziane kruszone": { kcal: 357, protein: 7, fat: 0.9, carbs: 84 },
+            "Płatki chilli": { kcal: 282, protein: 12, fat: 14, carbs: 30 },
+            "Mąka bezglutenowa": { kcal: 355, protein: 5, fat: 1, carbs: 78 },
+            "Mąka pełnoziarnista": { kcal: 340, protein: 13, fat: 2.5, carbs: 65 },
+            "Puree ziemniaczane": { kcal: 83, protein: 2, fat: 0.5, carbs: 18 },
+            "Puree ziemniaczane instant": { kcal: 340, protein: 8, fat: 1, carbs: 75 },
+            "Frytki z batatów": { kcal: 150, protein: 1.5, fat: 5, carbs: 24 },
+            "Lawasz": { kcal: 275, protein: 9, fat: 2.5, carbs: 53, unitWeight: { szt: 80 } },
+            "Lavash": { kcal: 275, protein: 9, fat: 2.5, carbs: 53, unitWeight: { szt: 80 } },
+            "Wrap pełnoziarnisty": { kcal: 290, protein: 9, fat: 5, carbs: 50, unitWeight: { szt: 65 } },
+            "Musli crunchy": { kcal: 450, protein: 8, fat: 15, carbs: 68 },
+
+            // -- Warzywa i strączkowe --
+            "Kabaczek": { kcal: 17, protein: 1.2, fat: 0.3, carbs: 3.1 },
+            "Kapusta młoda": { kcal: 25, protein: 1.3, fat: 0.1, carbs: 5.8 },
+            "Pak choi": { kcal: 13, protein: 1.5, fat: 0.2, carbs: 2.2 },
+            "Pasternak": { kcal: 75, protein: 1.2, fat: 0.3, carbs: 18, unitWeight: { szt: 130 } },
+            "Marchewka baby": { kcal: 35, protein: 0.6, fat: 0.1, carbs: 8 },
+            "Ogórek gruntowy": { kcal: 15, protein: 0.7, fat: 0.1, carbs: 3.6, unitWeight: { szt: 200 } },
+            "Ogórek korniszon": { kcal: 14, protein: 0.4, fat: 0.2, carbs: 2.3 },
+            "Ogórki kiszone": { kcal: 12, protein: 0.4, fat: 0.2, carbs: 2.3, unitWeight: { szt: 80 } },
+            "Pomidory świeże": { kcal: 18, protein: 0.9, fat: 0.2, carbs: 3.9, unitWeight: { szt: 150 } },
+            "Ciecierzyca konserwowa": { kcal: 120, protein: 7, fat: 2.5, carbs: 18 },
+            "Fasola biała (puszka)": { kcal: 91, protein: 6.7, fat: 0.5, carbs: 15 },
+            "Fasola czerwona konserwowa": { kcal: 99, protein: 6.7, fat: 0.5, carbs: 17 },
+            "Groszek konserwowy": { kcal: 58, protein: 3.5, fat: 0.3, carbs: 10 },
+            "Soczewica (puszka)": { kcal: 93, protein: 7.5, fat: 0.4, carbs: 15 },
+
+            // -- Grzyby --
+            "Grzyby enoki": { kcal: 37, protein: 2.7, fat: 0.3, carbs: 7.8 },
+            "Grzyby portobello": { kcal: 22, protein: 2.1, fat: 0.4, carbs: 3.9, unitWeight: { szt: 80 } },
+            "Shimeji": { kcal: 33, protein: 2.5, fat: 0.4, carbs: 6 },
+
+            // -- Ryby i owoce morza --
+            "Filet z mintaja": { kcal: 82, protein: 17.5, fat: 0.9, carbs: 0 },
+            "Filet z morszczuka": { kcal: 85, protein: 18, fat: 1.2, carbs: 0 },
+            "Filet z pstrąga": { kcal: 141, protein: 20, fat: 6.6, carbs: 0 },
+            "Filet z tuńczyka": { kcal: 130, protein: 29, fat: 1, carbs: 0 },
+            "Łosoś z puszki": { kcal: 167, protein: 21, fat: 9, carbs: 0 },
+
+            // -- Mięso i wędliny --
+            "Kiełbasa drobiowa": { kcal: 195, protein: 16, fat: 14, carbs: 2, unitWeight: { szt: 100 } },
+            "Kiełbaski śniadaniowe": { kcal: 250, protein: 14, fat: 20, carbs: 3, unitWeight: { szt: 40 } },
+            "Kiełbaski z kurczaka": { kcal: 170, protein: 18, fat: 10, carbs: 2, unitWeight: { szt: 50 } },
+            "Pałki z kurczaka": { kcal: 172, protein: 18, fat: 11, carbs: 0, unitWeight: { szt: 120 } },
+            "Podudzia z kurczaka": { kcal: 172, protein: 18, fat: 11, carbs: 0, unitWeight: { szt: 150 } },
+            "Łopatka wieprzowa": { kcal: 236, protein: 17, fat: 18, carbs: 0 },
+            "Rostbef wołowy": { kcal: 175, protein: 27, fat: 7, carbs: 0 },
+            "Prosciutto": { kcal: 240, protein: 26, fat: 14, carbs: 0.5 },
+            "Salami pikantne": { kcal: 450, protein: 22, fat: 38, carbs: 3 },
+
+            // -- Sery i nabiał --
+            "Mozzarella di bufala": { kcal: 280, protein: 17, fat: 22, carbs: 1, unitWeight: { szt: 125 } },
+            "Oscypek": { kcal: 370, protein: 26, fat: 28, carbs: 2 },
+            "Serek ricotta": { kcal: 174, protein: 11, fat: 13, carbs: 3 },
+            "Ser roquefort": { kcal: 369, protein: 22, fat: 31, carbs: 2 },
+            "Mleko bezlaktozowe": { kcal: 47, protein: 3.4, fat: 1.5, carbs: 4.9 },
+
+            // -- Owoce --
+            "Gruszki": { kcal: 57, protein: 0.4, fat: 0.1, carbs: 15, unitWeight: { szt: 180 } },
+            "Mandarynki": { kcal: 53, protein: 0.8, fat: 0.3, carbs: 13, unitWeight: { szt: 80 } },
+            "Daktyle pokrojone": { kcal: 282, protein: 2.5, fat: 0.4, carbs: 75 },
+            "Morele suszone": { kcal: 241, protein: 3.4, fat: 0.5, carbs: 63 },
+            "Jagody mrożone": { kcal: 57, protein: 0.7, fat: 0.3, carbs: 14 },
+            "Mrożone maliny": { kcal: 46, protein: 1, fat: 0.3, carbs: 11 },
+
+            // -- Orzechy i nasiona --
+            "Orzechy piniowe": { kcal: 673, protein: 14, fat: 68, carbs: 13 },
+            "Migdały krojone": { kcal: 579, protein: 21, fat: 50, carbs: 22 },
+            "Nasiona konopi": { kcal: 553, protein: 32, fat: 49, carbs: 5 },
+            "Siemię lniane mielone": { kcal: 534, protein: 18, fat: 42, carbs: 29 },
+            "Sezam czarny": { kcal: 573, protein: 18, fat: 50, carbs: 23 },
+
+            // -- Sosy i pasty --
+            "Harissa": { kcal: 75, protein: 2.5, fat: 1, carbs: 15 },
+            "Pasta harissa": { kcal: 75, protein: 2.5, fat: 1, carbs: 15 },
+            "Musztarda amerykańska": { kcal: 60, protein: 3.7, fat: 3, carbs: 5 },
+            "Pasta shiro miso": { kcal: 199, protein: 12, fat: 6, carbs: 26 },
+            "Pasta z awokado": { kcal: 160, protein: 2, fat: 15, carbs: 9 },
+            "Pesto czerwone": { kcal: 350, protein: 4, fat: 32, carbs: 10 },
+            "Pesto z rukoli": { kcal: 380, protein: 6, fat: 35, carbs: 8 },
+            "Pico de gallo": { kcal: 20, protein: 1, fat: 0.2, carbs: 4 },
+            "Salsa pomidorowa": { kcal: 36, protein: 1, fat: 0.2, carbs: 8 },
+            "Sambal oelek": { kcal: 90, protein: 1.5, fat: 0.5, carbs: 18 },
+            "Sos ostry chilli": { kcal: 93, protein: 1.8, fat: 1, carbs: 19 },
+            "Sos tamari": { kcal: 60, protein: 10, fat: 0.1, carbs: 6 },
+            "Sos Worcestershire": { kcal: 78, protein: 0, fat: 0, carbs: 19 },
+            "Ocet winny biały": { kcal: 19, protein: 0, fat: 0, carbs: 0.6 },
+            "Olej arachidowy": { kcal: 884, protein: 0, fat: 100, carbs: 0 },
+            "Krem kokosowy": { kcal: 330, protein: 3, fat: 34, carbs: 4 },
+            "Peperoni marynowane": { kcal: 28, protein: 0.9, fat: 0.4, carbs: 5.5 },
+
+            // -- Przyprawy --
+            "Kolendra suszona": { kcal: 298, protein: 12, fat: 18, carbs: 55 },
+            "Oregano świeże": { kcal: 44, protein: 1.5, fat: 0.5, carbs: 10, unitWeight: { pęczek: 15 } },
+            "Przyprawa kebab": { kcal: 300, protein: 10, fat: 8, carbs: 45 },
+            "Przyprawa shawarma": { kcal: 300, protein: 10, fat: 8, carbs: 45 },
+
+            // -- Suplementy i specjalne --
+            "Kazeina": { kcal: 370, protein: 80, fat: 1.5, carbs: 5 },
+            "Kazeina czekoladowa": { kcal: 370, protein: 77, fat: 2, carbs: 7 },
+            "Kazeina waniliowa": { kcal: 370, protein: 77, fat: 1.5, carbs: 7 },
+            "Ksylitol puder": { kcal: 240, protein: 0, fat: 0, carbs: 100 },
+            "Tofu twarde": { kcal: 144, protein: 15, fat: 8.7, carbs: 2.3 },
+
             // DOMYŚLNE PRZELICZNIKI UNIWERSALNE
             "_defaultUnits": {
                 "łyżka": 15,
@@ -3573,8 +3788,8 @@
         // ===========================================
         const ingredientSubstitutes = {
             // ===================== JAJKA =====================
-            "Jajka": [{ item: "Tofu jedwabiste", ratio: 2.5 }, { item: "Jogurt grecki", ratio: 1 }],
-            "Jajko": [{ item: "Tofu jedwabiste", ratio: 2.5 }, { item: "Jogurt grecki", ratio: 1 }],
+            "Jajka": [{ item: "Jajko gotowane", ratio: 1 }],
+            "Jajko": [{ item: "Jajko gotowane", ratio: 1 }],
 
             // ===================== NABIAŁ - MLEKO =====================
             "Mleko": [{ item: "Mleko migdałowe", ratio: 1 }, { item: "Mleko owsiane", ratio: 1 }],
@@ -4242,16 +4457,113 @@
             "Kazeina czekoladowa": [{ item: "Kazeina", ratio: 1 }, { item: "Odżywka białkowa czekoladowa", ratio: 1 }]
         };
 
+        // ===========================================
+        // SYSTEM ZAMIENNIKÓW — LOGIKA OBLICZENIOWA
+        // ===========================================
+
+        // Oblicz ratio zamiany na podstawie wartości odżywczych (dominujące makro)
+        function calculateSubstituteRatio(originalItemName, substituteItemName) {
+            const origDb = ingredientsDatabase[originalItemName];
+            const subDb = ingredientsDatabase[substituteItemName];
+            if (!origDb || !subDb) return 1; // fallback
+
+            const origKcal = origDb.kcal || 1;
+            const subKcal = subDb.kcal || 1;
+
+            // Określ dominujące makro oryginału (% kcal)
+            const proteinPct = (origDb.protein * 4) / origKcal;
+            const fatPct = (origDb.fat * 9) / origKcal;
+            const carbsPct = (origDb.carbs * 4) / origKcal;
+
+            let ratio;
+            if (proteinPct >= 0.3 && proteinPct >= fatPct && proteinPct >= carbsPct) {
+                // Wysokobiałkowy — dopasuj po białku
+                ratio = (subDb.protein > 0) ? origDb.protein / subDb.protein : 1;
+            } else if (fatPct >= 0.5 && fatPct >= proteinPct && fatPct >= carbsPct) {
+                // Tłuszczowy — dopasuj po tłuszczu
+                ratio = (subDb.fat > 0) ? origDb.fat / subDb.fat : 1;
+            } else if (carbsPct >= 0.5 && carbsPct >= proteinPct && carbsPct >= fatPct) {
+                // Węglowodanowy — dopasuj po węglach
+                ratio = (subDb.carbs > 0) ? origDb.carbs / subDb.carbs : 1;
+            } else {
+                // Mieszany — dopasuj po kcal
+                ratio = origKcal / subKcal;
+            }
+
+            // Ogranicz ratio do rozsądnego zakresu
+            ratio = Math.max(0.3, Math.min(3.0, ratio));
+            return Math.round(ratio * 10) / 10;
+        }
+
+        // Oblicz scoring jakości zamiany (0-100%)
+        function scoreSubstitution(originalItemName, substituteItemName, ratio) {
+            const origDb = ingredientsDatabase[originalItemName];
+            const subDb = ingredientsDatabase[substituteItemName];
+            if (!origDb || !subDb) return { score: 50, diffs: { protein: 0, fat: 0, carbs: 0, kcal: 0 } };
+
+            // Wartości per 100g oryginału vs ratio * 100g zamiennika
+            const origProtein = origDb.protein;
+            const origFat = origDb.fat;
+            const origCarbs = origDb.carbs;
+            const origKcal = origDb.kcal;
+
+            const subProtein = subDb.protein * ratio;
+            const subFat = subDb.fat * ratio;
+            const subCarbs = subDb.carbs * ratio;
+            const subKcal = subDb.kcal * ratio;
+
+            const diffs = {
+                protein: Math.round((subProtein - origProtein) * 10) / 10,
+                fat: Math.round((subFat - origFat) * 10) / 10,
+                carbs: Math.round((subCarbs - origCarbs) * 10) / 10,
+                kcal: Math.round(subKcal - origKcal)
+            };
+
+            // Score: średnia bezwzględnych różnic makro vs oryginał
+            const maxVal = Math.max(origProtein + origFat + origCarbs, 1);
+            const totalDiff = Math.abs(diffs.protein) + Math.abs(diffs.fat) + Math.abs(diffs.carbs);
+            const score = Math.max(0, Math.min(100, Math.round((1 - totalDiff / maxVal) * 100)));
+
+            return { score, diffs };
+        }
+
+        // Filtruj i sortuj zamienniki wg jakości
+        function getFilteredSubstitutes(ingredientName) {
+            const centralSubs = ingredientSubstitutes[ingredientName];
+            if (!centralSubs || centralSubs.length === 0) return [];
+
+            const results = [];
+            for (const sub of centralSubs) {
+                // Oblicz dynamiczne ratio na podstawie bazy
+                const dynamicRatio = calculateSubstituteRatio(ingredientName, sub.item);
+                const { score, diffs } = scoreSubstitution(ingredientName, sub.item, dynamicRatio);
+
+                // Odrzuć zamienniki ze score < 40%
+                if (score < 40) continue;
+
+                results.push({
+                    item: sub.item,
+                    ratio: dynamicRatio,
+                    score,
+                    diffs
+                });
+            }
+
+            // Sortuj od najlepszego
+            results.sort((a, b) => b.score - a.score);
+            return results;
+        }
+
         // Funkcja pobierająca zamienniki z centralnej bazy lub z przepisu
         function getIngredientSubstitutes(ingredient) {
             // Najpierw sprawdź czy przepis ma własne zamienniki
             if (ingredient.substitutes && ingredient.substitutes.length > 0) {
                 return ingredient.substitutes;
             }
-            // Potem sprawdź centralną bazę
-            const centralSubs = ingredientSubstitutes[ingredient.item];
-            if (centralSubs) {
-                return centralSubs.map(sub => ({
+            // Potem sprawdź centralną bazę z filtrowaniem
+            const filtered = getFilteredSubstitutes(ingredient.item);
+            if (filtered.length > 0) {
+                return filtered.map(sub => ({
                     item: sub.item,
                     amount: ingredient.amount * sub.ratio,
                     unit: ingredient.unit
@@ -10712,8 +11024,18 @@
             return em;
         }
 
+        function safeSetItem(key, value) {
+            try {
+                localStorage.setItem(key, value);
+            } catch(e) {
+                if (e.name === 'QuotaExceededError' || e.code === 22) {
+                    alert('Brak miejsca w pamięci przeglądarki! Dane mogły nie zostać zapisane. Spróbuj wyczyścić stare dane.');
+                }
+            }
+        }
+
         function saveEatenMeals() {
-            localStorage.setItem('mealEatenStatus', JSON.stringify(eatenMeals));
+            safeSetItem('mealEatenStatus', JSON.stringify(eatenMeals));
         }
 
         function loadEatenMeals() {
@@ -10731,7 +11053,10 @@
 
         function toggleEaten(day, mealType, personId) {
             if (!eatenMeals[day]) eatenMeals[day] = {};
-            if (!eatenMeals[day][mealType]) eatenMeals[day][mealType] = { 1: false, 2: false };
+            if (!eatenMeals[day][mealType]) {
+                eatenMeals[day][mealType] = {};
+                persons.forEach(p => { eatenMeals[day][mealType][p.id] = false; });
+            }
 
             eatenMeals[day][mealType][personId] = !eatenMeals[day][mealType][personId];
             saveEatenMeals();
@@ -10751,7 +11076,7 @@
         // ===========================================
 
         function saveFavorites() {
-            localStorage.setItem('recipeFavorites', JSON.stringify([...favoriteRecipes]));
+            safeSetItem('recipeFavorites', JSON.stringify([...favoriteRecipes]));
         }
 
         function loadFavorites() {
@@ -10774,7 +11099,7 @@
         }
 
         function saveMealOptimizations() {
-            localStorage.setItem('mealOptimizations', JSON.stringify(mealOptimizations));
+            safeSetItem('mealOptimizations', JSON.stringify(mealOptimizations));
         }
 
         function loadMealOptimizations() {
@@ -10868,9 +11193,8 @@
             panel.innerHTML = `
                 <div class="settings-grid">
                     ${persons.map(p => {
-                        const colorClass = p.id === 1 ? 'blue' : 'pink';
                         return `
-                        <div class="person-settings ${colorClass}">
+                        <div class="person-settings" style="border-color: ${p.color}">
                             <h4>
                                 <span class="person-dot" style="background: ${p.color}"></span>
                                 <input type="text" class="person-name" value="${p.name}"
@@ -11171,7 +11495,7 @@
             });
 
             summary.innerHTML = personStats.map(stat => {
-                const colorClass = stat.person.id === 1 ? 'blue' : 'pink';
+                const personColor = stat.person.color || '#3b82f6';
                 let percentClass = 'good';
                 if (stat.percent > 105) percentClass = 'over';
                 else if (stat.percent < 90 && stat.percent > 0) percentClass = 'under';
@@ -11185,9 +11509,9 @@
                 const carbsPercent = stat.person.targetCarbs > 0 ? Math.round((stat.avgCarbs / stat.person.targetCarbs) * 100) : 0;
 
                 return `
-                <div class="person-summary ${colorClass}">
+                <div class="person-summary" style="border-color: ${personColor}">
                     <div class="person-summary-header">
-                        <span class="person-summary-name ${colorClass}">${stat.person.name}</span>
+                        <span class="person-summary-name" style="color: ${personColor}">${stat.person.name}</span>
                         ${stat.avgKcal > 0 ? `<span class="person-summary-percent ${percentClass}">${stat.percent}%</span>` : ''}
                     </div>
                     <div class="person-summary-values">
@@ -11197,8 +11521,8 @@
                     </div>
                     ${stat.avgKcal > 0 ? `
                     <div class="progress-bar">
-                        <div class="progress-fill ${percentClass === 'over' ? 'over' : colorClass}"
-                             style="width: ${progressWidth}%"></div>
+                        <div class="progress-fill ${percentClass === 'over' ? 'over' : ''}"
+                             style="width: ${progressWidth}%; ${percentClass !== 'over' ? 'background: ' + personColor : ''}"></div>
                     </div>
                     <div class="eaten-summary">
                         <div style="font-size: 12px; color: #6b7280; margin-bottom: 4px;">
@@ -11306,11 +11630,18 @@
                 // Ogranicz minimum węglowodanów do 20%
                 if (person.macroRatios.carbs < 20) {
                     person.macroRatios.carbs = 20;
-                    // Skoryguj białko/tłuszcz
+                    // Skoryguj białko/tłuszcz aby suma = 100%
                     if (macro === 'protein') {
-                        person.macroRatios.protein = 100 - person.macroRatios.fat - 20;
+                        person.macroRatios.protein = Math.max(15, 100 - person.macroRatios.fat - 20);
+                        // Jeśli nadal suma != 100, skoryguj fat
+                        if (person.macroRatios.protein + person.macroRatios.fat + 20 !== 100) {
+                            person.macroRatios.fat = 100 - person.macroRatios.protein - 20;
+                        }
                     } else {
-                        person.macroRatios.fat = 100 - person.macroRatios.protein - 20;
+                        person.macroRatios.fat = Math.max(15, 100 - person.macroRatios.protein - 20);
+                        if (person.macroRatios.protein + person.macroRatios.fat + 20 !== 100) {
+                            person.macroRatios.protein = 100 - person.macroRatios.fat - 20;
+                        }
                     }
                 }
             }
@@ -11400,7 +11731,7 @@
 
         // Oblicz cele makro dla konkretnego posiłku na podstawie alokacji
         function calculateMealTargets(person, mealType) {
-            if (!person) return null;
+            if (!person || !person.targetKcal) return null;
 
             // Domyślna alokacja jeśli brak
             const allocation = person.mealAllocation || { breakfast: 0.25, lunch: 0.40, dinner: 0.35 };
@@ -11429,22 +11760,26 @@
             const fatKcal = ingredient.fat * 9;
             const totalKcal = proteinKcal + carbsKcal + fatKcal;
 
-            if (totalKcal === 0) return 'low';
+            if (totalKcal === 0) {
+                console.warn(`Składnik "${itemName}" ma zerowe makro w bazie danych`);
+                return 'low';
+            }
 
             const proteinPct = proteinKcal / totalKcal * 100;
             const carbsPct = carbsKcal / totalKcal * 100;
             const fatPct = fatKcal / totalKcal * 100;
 
             // Kategoryzacja na podstawie dominującego makro
-            if (proteinPct >= 40) return 'protein';  // Mięso, ryby, jajka, nabiał
-            if (carbsPct >= 50) return 'carbs';      // Ryż, makaron, chleb, ziemniaki
-            if (fatPct >= 60) return 'fat';          // Oleje, masło, orzechy
+            // Wybierz kategorię z najwyższym dominującym procentem
+            if (proteinPct >= fatPct && proteinPct >= carbsPct && proteinPct >= 40) return 'protein';
+            if (carbsPct >= proteinPct && carbsPct >= fatPct && carbsPct >= 50) return 'carbs';
+            if (fatPct >= proteinPct && fatPct >= carbsPct && fatPct >= 60) return 'fat';
 
             return 'mixed';
         }
 
         // Oblicz wartości odżywcze przepisu z podanymi ilościami składników
-        function calculateOptimizedNutrition(ingredients) {
+        function calculateOptimizedNutrition(ingredients, round = true) {
             let totals = { kcal: 0, protein: 0, fat: 0, carbs: 0 };
 
             for (const ing of ingredients) {
@@ -11457,56 +11792,140 @@
                 }
             }
 
+            if (round) {
+                totals.kcal = Math.round(totals.kcal);
+                totals.protein = Math.round(totals.protein);
+                totals.fat = Math.round(totals.fat);
+                totals.carbs = Math.round(totals.carbs);
+            }
+
+            return totals;
+        }
+
+        // Oblicz gęstość makro składnika (g makra na 1g składnika)
+        function getIngredientMacroDensity(ing) {
+            const ingredient = ingredientsDatabase[ing.item];
+            if (!ingredient) return { protein: 0, fat: 0, carbs: 0, kcal: 0 };
+            const grams = convertToGrams(ing.item, 1, ing.unit);
+            const factor = grams / 100;
             return {
-                kcal: Math.round(totals.kcal),
-                protein: Math.round(totals.protein),
-                fat: Math.round(totals.fat),
-                carbs: Math.round(totals.carbs)
+                protein: ingredient.protein * factor,
+                fat: ingredient.fat * factor,
+                carbs: ingredient.carbs * factor,
+                kcal: ingredient.kcal * factor
             };
         }
 
         // Główny algorytm optymalizacji składników
         function optimizeIngredients(recipe, targetMacros, multiplier = 1) {
-            const LIMITS = {
-                min: 0.5,   // Minimalnie 50% oryginalnej ilości
-                max: 2.0    // Maksymalnie 200% oryginalnej ilości
-            };
-            const MAX_ITERATIONS = 10;
-            const TOLERANCE = 0.08; // 8% tolerancja
+            const DEFAULT_LIMITS = { min: 0.3, max: 3.0 };
+            const MAX_ITERATIONS = 20;
+            const TOLERANCE = 0.05; // 5% tolerancja (ściślejsza)
 
             // Kopia składników z uwzględnieniem mnożnika porcji
-            let optimizedIngredients = recipe.ingredients.map(ing => ({
-                ...ing,
-                amount: ing.amount * multiplier,
-                originalAmount: ing.amount * multiplier,
-                category: getIngredientCategory(ing.item)
-            }));
+            let optimizedIngredients = recipe.ingredients.map(ing => {
+                const category = getIngredientCategory(ing.item);
+                const ingredient = ingredientsDatabase[ing.item];
+                const baseAmount = ing.amount * multiplier;
 
-            // Grupuj składniki wg kategorii
+                // E+F) Ochrona składników — przyprawy/oleje/drobne ilości/warzywa/owoce
+                const vegFruitKeywords = ["pomidor", "ogórek", "brokuł", "cukinia", "kapusta", "banan", "cebula", "sałata", "czosnek", "marchew", "marchewka", "ziemniak", "pieczark", "szparag", "bakłażan", "dynia", "por ", "seler", "papryka", "fasolka szparagowa", "groszek", "kukurydza", "szalotka", "jabłk", "gruszka", "truskawk", "maliny", "jagody", "borówk", "kiwi", "ananas", "mango", "cytryn", "limonka", "mix sałat", "edamame", "kalafior", "kimchi", "oliwki", "szczypiorek", "zielona cebulka", "szpinak", "botwina", "buraki", "arbuz", "brzoskwinia", "nektarynka", "pomarańcza", "mandarynka", "wiśnie", "czereśnie", "melon", "bataty"];
+                const isVegFruit = vegFruitKeywords.some(kw => ing.item.toLowerCase().includes(kw));
+
+                let locked = false;
+                let limits = { ...DEFAULT_LIMITS };
+                if (category === 'low') {
+                    locked = true; // Przyprawy, zioła — nie skaluj
+                } else if (ingredient && ingredient.kcal < 15) {
+                    locked = true; // Bardzo niskokaloryczne
+                } else if (baseAmount <= 5 && (ing.unit === 'g' || ing.unit === 'ml')) {
+                    locked = true; // Drobne ilości (np. 3g soli)
+                } else if (category === 'fat' && baseAmount <= 15) {
+                    limits = { min: 0.5, max: 1.5 }; // Olej do gotowania — ograniczone skalowanie
+                } else if (isVegFruit && ingredient && ingredient.kcal < 90) {
+                    limits = { min: 0.5, max: 1.5 }; // Warzywa/owoce — ograniczone skalowanie
+                }
+
+                return {
+                    ...ing,
+                    amount: baseAmount,
+                    originalAmount: baseAmount,
+                    category,
+                    locked,
+                    limits,
+                    density: getIngredientMacroDensity(ing)
+                };
+            });
+
+            // Składniki do optymalizacji (bez zablokowanych)
+            const adjustable = optimizedIngredients.filter(i => !i.locked);
+
+            // Grupuj składniki wg kategorii (tylko adjustable)
             const byCategory = {
-                protein: optimizedIngredients.filter(i => i.category === 'protein'),
-                carbs: optimizedIngredients.filter(i => i.category === 'carbs'),
-                fat: optimizedIngredients.filter(i => i.category === 'fat'),
-                mixed: optimizedIngredients.filter(i => i.category === 'mixed'),
-                low: optimizedIngredients.filter(i => i.category === 'low')
+                protein: adjustable.filter(i => i.category === 'protein'),
+                carbs: adjustable.filter(i => i.category === 'carbs'),
+                fat: adjustable.filter(i => i.category === 'fat'),
+                mixed: adjustable.filter(i => i.category === 'mixed')
             };
 
-            for (let iteration = 0; iteration < MAX_ITERATIONS; iteration++) {
-                const current = calculateOptimizedNutrition(optimizedIngredients);
+            // D) Feasibility check — oblicz min/max osiągalne makra
+            let feasibility = { protein: { min: 0, max: 0 }, fat: { min: 0, max: 0 }, carbs: { min: 0, max: 0 } };
+            for (const ing of optimizedIngredients) {
+                const d = ing.density;
+                if (ing.locked) {
+                    // Zablokowane — stały wkład
+                    feasibility.protein.min += d.protein * ing.amount;
+                    feasibility.protein.max += d.protein * ing.amount;
+                    feasibility.fat.min += d.fat * ing.amount;
+                    feasibility.fat.max += d.fat * ing.amount;
+                    feasibility.carbs.min += d.carbs * ing.amount;
+                    feasibility.carbs.max += d.carbs * ing.amount;
+                } else {
+                    feasibility.protein.min += d.protein * ing.originalAmount * ing.limits.min;
+                    feasibility.protein.max += d.protein * ing.originalAmount * ing.limits.max;
+                    feasibility.fat.min += d.fat * ing.originalAmount * ing.limits.min;
+                    feasibility.fat.max += d.fat * ing.originalAmount * ing.limits.max;
+                    feasibility.carbs.min += d.carbs * ing.originalAmount * ing.limits.min;
+                    feasibility.carbs.max += d.carbs * ing.originalAmount * ing.limits.max;
+                }
+            }
 
-                // Oblicz różnice względne
+            let feasibilityWarnings = [];
+            ['protein', 'fat', 'carbs'].forEach(macro => {
+                const target = targetMacros[macro];
+                if (target > 0) {
+                    if (target < feasibility[macro].min) {
+                        feasibilityWarnings.push(`${macro === 'protein' ? 'Białko' : macro === 'fat' ? 'Tłuszcz' : 'Węglowodany'}: cel (${Math.round(target)}g) poniżej minimum (${Math.round(feasibility[macro].min)}g)`);
+                    }
+                    if (target > feasibility[macro].max) {
+                        feasibilityWarnings.push(`${macro === 'protein' ? 'Białko' : macro === 'fat' ? 'Tłuszcz' : 'Węglowodany'}: cel (${Math.round(target)}g) powyżej maximum (${Math.round(feasibility[macro].max)}g)`);
+                    }
+                }
+            });
+
+            // Główna pętla optymalizacji
+            let converged = false;
+            let iterationsUsed = 0;
+
+            for (let iteration = 0; iteration < MAX_ITERATIONS; iteration++) {
+                iterationsUsed = iteration + 1;
+                const current = calculateOptimizedNutrition(optimizedIngredients, false);
+
                 const diff = {
                     protein: targetMacros.protein > 0 ? (targetMacros.protein - current.protein) / targetMacros.protein : 0,
                     fat: targetMacros.fat > 0 ? (targetMacros.fat - current.fat) / targetMacros.fat : 0,
                     carbs: targetMacros.carbs > 0 ? (targetMacros.carbs - current.carbs) / targetMacros.carbs : 0
                 };
 
-                // Sprawdź czy w tolerancji
                 if (Math.abs(diff.protein) <= TOLERANCE &&
                     Math.abs(diff.fat) <= TOLERANCE &&
                     Math.abs(diff.carbs) <= TOLERANCE) {
-                    break; // Wystarczająco blisko celu
+                    converged = true;
+                    break;
                 }
+
+                // B) Adaptive damping — silniejsze na początku, delikatniejsze pod koniec
+                const dampingFactor = 0.7 - (iteration / MAX_ITERATIONS) * 0.4; // 0.7 → 0.3
 
                 // Priorytetyzuj korektę największej różnicy
                 const corrections = [
@@ -11519,29 +11938,43 @@
                     if (Math.abs(correction.diff) <= TOLERANCE) continue;
                     if (correction.sources.length === 0) continue;
 
-                    // Współczynnik korekty (ostrożny - tylko 50% różnicy na iterację)
-                    const factor = 1 + correction.diff * 0.5;
+                    // A) Smart selection — rankuj składniki po gęstości makra
+                    const macroKey = correction.macro;
+                    const ranked = [...correction.sources].sort((a, b) => {
+                        // Gęstość makra = ile g danego makra na 1 jednostkę składnika
+                        // Im wyższa, tym efektywniejszy składnik
+                        return b.density[macroKey] - a.density[macroKey];
+                    });
 
-                    for (const ing of correction.sources) {
+                    // Skaluj top składnik mocniej, resztę słabiej
+                    ranked.forEach((ing, rank) => {
+                        // Top-1 dostaje pełny factor, kolejne coraz mniej
+                        const rankDamping = 1 / (rank + 1); // 1.0, 0.5, 0.33, 0.25...
+                        const factor = 1 + correction.diff * dampingFactor * rankDamping;
+
                         const newAmount = ing.amount * factor;
-                        // Ogranicz do limitów
                         ing.amount = Math.max(
-                            ing.originalAmount * LIMITS.min,
-                            Math.min(ing.originalAmount * LIMITS.max, newAmount)
+                            ing.originalAmount * ing.limits.min,
+                            Math.min(ing.originalAmount * ing.limits.max, newAmount)
                         );
-                    }
+                    });
                 }
 
-                // Jeśli brak źródeł dla danego makro, użyj mixed
+                // Fallback do mixed jeśli któregoś makra brakuje w dedykowanej kategorii
                 if (byCategory.mixed.length > 0) {
                     const kcalDiff = targetMacros.kcal > 0 ? (targetMacros.kcal - current.kcal) / targetMacros.kcal : 0;
-                    if (Math.abs(kcalDiff) > TOLERANCE) {
-                        const factor = 1 + kcalDiff * 0.3;
+                    // Sprawdź też czy któreś makro nie ma źródeł w swojej kategorii
+                    const unservedMacros = corrections.filter(c => Math.abs(c.diff) > TOLERANCE && c.sources.length === 0);
+
+                    if (Math.abs(kcalDiff) > TOLERANCE || unservedMacros.length > 0) {
+                        const mixedDiff = Math.abs(kcalDiff) > TOLERANCE ? kcalDiff :
+                            (unservedMacros[0]?.diff || 0);
+                        const factor = 1 + mixedDiff * dampingFactor * 0.6;
                         for (const ing of byCategory.mixed) {
                             const newAmount = ing.amount * factor;
                             ing.amount = Math.max(
-                                ing.originalAmount * LIMITS.min,
-                                Math.min(ing.originalAmount * LIMITS.max, newAmount)
+                                ing.originalAmount * ing.limits.min,
+                                Math.min(ing.originalAmount * ing.limits.max, newAmount)
                             );
                         }
                     }
@@ -11555,13 +11988,29 @@
 
             const finalNutrition = calculateOptimizedNutrition(optimizedIngredients);
 
+            // Sprawdź czy jakieś składniki nie mają danych w bazie
+            const missingIngredients = optimizedIngredients
+                .filter(ing => !ingredientsDatabase[ing.item])
+                .map(ing => ing.item);
+
+            // C) Confidence score — ocena jakości dopasowania
+            const calcConfidence = (macro) => {
+                if (targetMacros[macro] <= 0) return 1;
+                return Math.max(0, 1 - Math.abs((finalNutrition[macro] - targetMacros[macro]) / targetMacros[macro]));
+            };
+            const proteinConf = calcConfidence('protein');
+            const fatConf = calcConfidence('fat');
+            const carbsConf = calcConfidence('carbs');
+            const overallConf = (proteinConf + fatConf + carbsConf) / 3;
+
             return {
                 ingredients: optimizedIngredients.map(ing => ({
                     item: ing.item,
                     amount: ing.amount,
                     unit: ing.unit,
                     originalAmount: ing.originalAmount,
-                    changed: Math.abs(ing.amount - ing.originalAmount) > 0.1
+                    changed: Math.abs(ing.amount - ing.originalAmount) > 0.1,
+                    locked: ing.locked
                 })),
                 nutrition: finalNutrition,
                 target: targetMacros,
@@ -11570,7 +12019,17 @@
                     protein: finalNutrition.protein - targetMacros.protein,
                     fat: finalNutrition.fat - targetMacros.fat,
                     carbs: finalNutrition.carbs - targetMacros.carbs
-                }
+                },
+                missingIngredients: missingIngredients,
+                confidence: {
+                    protein: Math.round(proteinConf * 100),
+                    fat: Math.round(fatConf * 100),
+                    carbs: Math.round(carbsConf * 100),
+                    overall: Math.round(overallConf * 100),
+                    converged: converged,
+                    iterations: iterationsUsed
+                },
+                feasibilityWarnings: feasibilityWarnings
             };
         }
 
@@ -12034,14 +12493,18 @@
             mealTypes.forEach(mt => {
                 const allowedCategories = variant.categories[mt];
                 // Znajdź wszystkie przepisy z dozwolonych kategorii
-                const matchingRecipes = recipes[mt].filter(r =>
-                    allowedCategories.some(cat => r.category.includes(cat))
+                const matchingRecipes = (recipes[mt] || []).filter(r =>
+                    allowedCategories.some(cat => r.category?.includes(cat))
                 );
+                if (matchingRecipes.length === 0) {
+                    selectedRecipes[mt] = [null, null];
+                    return;
+                }
                 // Wylosuj 2 różne przepisy (shuffle i weź pierwsze 2)
                 const shuffled = [...matchingRecipes].sort(() => Math.random() - 0.5);
                 selectedRecipes[mt] = [
-                    shuffled[0]?.id || null,
-                    shuffled[1]?.id || shuffled[0]?.id || null
+                    shuffled[0].id,
+                    (shuffled[1] || shuffled[0]).id
                 ];
             });
 
@@ -12088,14 +12551,18 @@
             mealTypes.forEach(mt => {
                 const allowedCategories = categoryConfig[mt];
                 // Znajdź wszystkie przepisy z dozwolonych kategorii
-                const matchingRecipes = recipes[mt].filter(r =>
-                    allowedCategories.some(cat => r.category.includes(cat))
+                const matchingRecipes = (recipes[mt] || []).filter(r =>
+                    allowedCategories.some(cat => r.category?.includes(cat))
                 );
+                if (matchingRecipes.length === 0) {
+                    selectedRecipes[mt] = [null, null];
+                    return;
+                }
                 // Wylosuj 2 różne przepisy (shuffle i weź pierwsze 2)
                 const shuffled = [...matchingRecipes].sort(() => Math.random() - 0.5);
                 selectedRecipes[mt] = [
-                    shuffled[0]?.id || null,
-                    shuffled[1]?.id || shuffled[0]?.id || null
+                    shuffled[0].id,
+                    (shuffled[1] || shuffled[0]).id
                 ];
             });
 
@@ -12128,7 +12595,8 @@
         function resetPlan() {
             days.forEach(day => {
                 mealTypes.forEach(mt => {
-                    plan[day][mt] = { 1: null, 2: null };
+                    plan[day][mt] = {};
+                    persons.forEach(p => { plan[day][mt][p.id] = null; });
                 });
             });
             clearCheckedItems();
@@ -12344,7 +12812,7 @@
         // Aktualnie wyświetlany przepis i wybrane osoby
         let currentModalRecipe = null;
         let currentModalMealType = null; // Typ posiłku (breakfast/lunch/dinner)
-        let modalSelectedPersons = [1]; // Domyślnie tylko "Ja"
+        let modalSelectedPersons = [persons[0] ? persons[0].id : 1]; // Domyślnie pierwsza osoba
         let modalPortions = 1; // Liczba porcji wybrana przez użytkownika
         let modalOptimizedIngredients = null; // Wynik optymalizacji składników
         let mealOptimizations = {}; // Zapisane optymalizacje: { 'dzień_typ_osoba_przepis': result }
@@ -12353,9 +12821,11 @@
         function openRecipeModal(mt, r) {
             currentModalRecipe = r;
             currentModalMealType = mt; // Zapisz typ posiłku
-            modalSelectedPersons = [1]; // Reset do "tylko ja"
+            modalSelectedPersons = [persons[0] ? persons[0].id : 1]; // Reset do pierwszej osoby
             modalPortions = 1; // Reset porcji do 1
             modalOptimizedIngredients = null; // Reset optymalizacji
+            modalSubstitutions = {}; // Reset zamian składników
+            currentPlanDay = null; // Reset dnia (previewRecipe ustawi jeśli z planera)
 
             document.getElementById('modal-overlay').classList.add('active');
             document.getElementById('modal-header').className = 'modal-header ' + mt;
@@ -12415,7 +12885,9 @@
         }
 
         function setModalPersons(personIds) {
-            modalSelectedPersons = personIds;
+            // Waliduj czy wszystkie ID osób istnieją
+            modalSelectedPersons = personIds.filter(id => persons.some(p => p.id === id));
+            if (modalSelectedPersons.length === 0) modalSelectedPersons = [persons[0]?.id || 1];
             modalOptimizedIngredients = null; // Reset optymalizacji przy zmianie osób
             renderModalPersonsToggle();
             updateModalContent();
@@ -12427,7 +12899,7 @@
         }
 
         function changePortions(delta) {
-            modalPortions = Math.max(1, modalPortions + delta);
+            modalPortions = Math.max(1, Math.min(20, modalPortions + delta));
 
             // Aktualizuj wyświetlanie kontrolki porcji
             document.getElementById('modal-portions-control').innerHTML = `
@@ -12589,6 +13061,7 @@
 
                 const formatDiff = (val) => val >= 0 ? `+${val}` : `${val}`;
                 const getDiffColor = (val, threshold) => {
+                    if (!threshold) return '#ef4444';
                     const pct = Math.abs(val) / threshold * 100;
                     if (pct <= 8) return '#22c55e';
                     if (pct <= 15) return '#f59e0b';
@@ -12640,6 +13113,29 @@
                             ↩️ Przywróć oryginalne
                         </button>
                     `}
+                    ${modalOptimizedIngredients?.confidence ? (() => {
+                        const c = modalOptimizedIngredients.confidence;
+                        const getConfColor = (v) => v >= 95 ? '#22c55e' : v >= 85 ? '#f59e0b' : '#ef4444';
+                        const getConfLabel = (v) => v >= 95 ? 'Doskonałe' : v >= 85 ? 'Dobre' : 'Słabe';
+                        return `
+                            <div style="margin-top: 8px; padding: 10px 12px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                    <span style="font-size: 12px; font-weight: 600; color: #475569;">Dopasowanie:</span>
+                                    <span style="font-size: 14px; font-weight: 700; color: ${getConfColor(c.overall)};">${c.overall}% — ${getConfLabel(c.overall)}</span>
+                                </div>
+                                <div style="display: flex; gap: 12px; font-size: 11px; color: #64748b;">
+                                    <span>B: <strong style="color: ${getConfColor(c.protein)}">${c.protein}%</strong></span>
+                                    <span>T: <strong style="color: ${getConfColor(c.fat)}">${c.fat}%</strong></span>
+                                    <span>W: <strong style="color: ${getConfColor(c.carbs)}">${c.carbs}%</strong></span>
+                                </div>
+                            </div>
+                        `;
+                    })() : ''}
+                    ${modalOptimizedIngredients?.feasibilityWarnings?.length > 0 ? `
+                        <div style="margin-top: 8px; padding: 8px 12px; background: #fef2f2; border-radius: 8px; font-size: 12px; color: #991b1b;">
+                            ⚠️ ${modalOptimizedIngredients.feasibilityWarnings.join('<br>⚠️ ')}
+                        </div>
+                    ` : ''}
                 `;
                 optimizationSection.style.display = 'block';
 
@@ -12716,6 +13212,9 @@
                 // Sekcja dopasowania do celów makro - dla pojedynczej osoby
                 if (person && currentModalMealType) {
                     const mealTarget = calculateMealTargets(person, currentModalMealType);
+                    if (!mealTarget) {
+                        optimizationSection.innerHTML = '<p style="color: #ef4444; text-align: center; padding: 10px;">Błąd: Nie można obliczyć celów. Sprawdź ustawienia osoby.</p>';
+                    } else {
                     const allocationPct = Math.round((person.mealAllocation?.[currentModalMealType] || 0.33) * 100);
 
                     // Skaluj cele przez liczbę porcji
@@ -12785,8 +13284,38 @@
                                 ↩️ Przywróć oryginalne
                             </button>
                         ` : ''}
+                        ${modalOptimizedIngredients?.confidence ? (() => {
+                            const c = modalOptimizedIngredients.confidence;
+                            const getConfColor = (v) => v >= 95 ? '#22c55e' : v >= 85 ? '#f59e0b' : '#ef4444';
+                            const getConfLabel = (v) => v >= 95 ? 'Doskonałe' : v >= 85 ? 'Dobre' : 'Słabe';
+                            return `
+                                <div class="confidence-score" style="margin-top: 8px; padding: 10px 12px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
+                                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                        <span style="font-size: 12px; font-weight: 600; color: #475569;">Dopasowanie:</span>
+                                        <span style="font-size: 14px; font-weight: 700; color: ${getConfColor(c.overall)};">${c.overall}% — ${getConfLabel(c.overall)}</span>
+                                        ${c.converged ? '' : '<span style="font-size: 11px; color: #ef4444;">(nie zbiegło)</span>'}
+                                    </div>
+                                    <div style="display: flex; gap: 12px; font-size: 11px; color: #64748b;">
+                                        <span>B: <strong style="color: ${getConfColor(c.protein)}">${c.protein}%</strong></span>
+                                        <span>T: <strong style="color: ${getConfColor(c.fat)}">${c.fat}%</strong></span>
+                                        <span>W: <strong style="color: ${getConfColor(c.carbs)}">${c.carbs}%</strong></span>
+                                    </div>
+                                </div>
+                            `;
+                        })() : ''}
+                        ${modalOptimizedIngredients?.feasibilityWarnings?.length > 0 ? `
+                            <div style="margin-top: 8px; padding: 8px 12px; background: #fef2f2; border-radius: 8px; font-size: 12px; color: #991b1b;">
+                                ⚠️ ${modalOptimizedIngredients.feasibilityWarnings.join('<br>⚠️ ')}
+                            </div>
+                        ` : ''}
+                        ${modalOptimizedIngredients?.missingIngredients?.length > 0 ? `
+                            <div style="margin-top: 8px; padding: 8px 12px; background: #fef3c7; border-radius: 8px; font-size: 12px; color: #92400e;">
+                                ⚠️ Brak danych odżywczych dla: <strong>${modalOptimizedIngredients.missingIngredients.join(', ')}</strong> — wynik może być niedokładny
+                            </div>
+                        ` : ''}
                     `;
                     optimizationSection.style.display = 'block';
+                    } // zamknięcie else od mealTarget null check
                 } else {
                     optimizationSection.style.display = 'none';
                 }
@@ -12876,20 +13405,36 @@
             const result = optimizeIngredients(r, combinedTarget, totalMultiplier);
             modalOptimizedIngredients = result;
 
-            // Zapisz optymalizację dla wybranej osoby (jeśli z planera)
+            // Zapisz optymalizację dla każdej wybranej osoby (jeśli z planera)
             if (currentPlanDay) {
-                const personId = modalSelectedPersons[0];
-                const key = getOptimizationKey(currentPlanDay, currentModalMealType, personId, r.id);
+                for (const personId of modalSelectedPersons) {
+                    const person = persons.find(p => p.id === personId);
+                    if (!person) continue;
 
-                mealOptimizations[key] = {
-                    ...result,
-                    nutrition: {
-                        kcal: Math.round(result.nutrition.kcal),
-                        protein: Math.round(result.nutrition.protein),
-                        fat: Math.round(result.nutrition.fat),
-                        carbs: Math.round(result.nutrition.carbs)
-                    }
-                };
+                    // Oblicz proporcjonalny udział tej osoby w łącznej optymalizacji
+                    const personMealTarget = calculateMealTargets(person, currentModalMealType);
+                    if (!personMealTarget) continue;
+
+                    const personMultiplier = person.portion * modalPortions;
+                    // Skaluj składniki proporcjonalnie do udziału osoby
+                    const personIngredients = result.ingredients.map(ing => ({
+                        ...ing,
+                        amount: totalMultiplier > 0 ? ing.amount * (personMultiplier / totalMultiplier) : ing.amount
+                    }));
+                    const personNutrition = {
+                        kcal: Math.round(result.nutrition.kcal * (personMultiplier / totalMultiplier)),
+                        protein: Math.round(result.nutrition.protein * (personMultiplier / totalMultiplier)),
+                        fat: Math.round(result.nutrition.fat * (personMultiplier / totalMultiplier)),
+                        carbs: Math.round(result.nutrition.carbs * (personMultiplier / totalMultiplier))
+                    };
+
+                    const key = getOptimizationKey(currentPlanDay, currentModalMealType, personId, r.id);
+                    mealOptimizations[key] = {
+                        ...result,
+                        ingredients: personIngredients,
+                        nutrition: personNutrition
+                    };
+                }
                 saveMealOptimizations();
 
                 // Odśwież widok planera
@@ -12922,7 +13467,7 @@
                 const changedClass = ing.changed ? 'ingredient-changed' : '';
                 const changeIndicator = ing.changed
                     ? `<span class="change-indicator" title="Zmieniono z ${originalAmount} ${ing.unit}">${ing.amount > ing.originalAmount ? '↑' : '↓'}</span>`
-                    : '';
+                    : (ing.locked ? '<span title="Składnik chroniony — nie skalowany" style="opacity: 0.5; font-size: 12px;">🔒</span>' : '');
 
                 const infoBtn = ingredient
                     ? `<button class="info-btn" onclick="toggleNutritionInfo(${index}, event)" title="Wartości na 100g">ℹ️</button>
@@ -12962,6 +13507,7 @@
             // Aktualizuj sekcję optymalizacji z nowymi wartościami
             const person = persons.find(p => p.id === modalSelectedPersons[0]);
             const mealTarget = calculateMealTargets(person, currentModalMealType);
+            if (!mealTarget) return; // Brak celów — nie wyświetlaj sekcji optymalizacji
             const allocationPct = Math.round((person.mealAllocation?.[currentModalMealType] || 0.33) * 100);
 
             // Skaluj cele przez liczbę porcji
@@ -13029,6 +13575,35 @@
                     <button class="reset-optimization-btn" onclick="resetOptimization()">
                         ↩️ Przywróć oryginalne ilości
                     </button>
+                    ${result.confidence ? (() => {
+                        const c = result.confidence;
+                        const getConfColor = (v) => v >= 95 ? '#22c55e' : v >= 85 ? '#f59e0b' : '#ef4444';
+                        const getConfLabel = (v) => v >= 95 ? 'Doskonałe' : v >= 85 ? 'Dobre' : 'Słabe';
+                        return `
+                            <div style="margin-top: 8px; padding: 10px 12px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                    <span style="font-size: 12px; font-weight: 600; color: #475569;">Dopasowanie:</span>
+                                    <span style="font-size: 14px; font-weight: 700; color: ${getConfColor(c.overall)};">${c.overall}% — ${getConfLabel(c.overall)}</span>
+                                    ${c.converged ? '' : '<span style="font-size: 11px; color: #ef4444;">(nie zbiegło)</span>'}
+                                </div>
+                                <div style="display: flex; gap: 12px; font-size: 11px; color: #64748b;">
+                                    <span>B: <strong style="color: ${getConfColor(c.protein)}">${c.protein}%</strong></span>
+                                    <span>T: <strong style="color: ${getConfColor(c.fat)}">${c.fat}%</strong></span>
+                                    <span>W: <strong style="color: ${getConfColor(c.carbs)}">${c.carbs}%</strong></span>
+                                </div>
+                            </div>
+                        `;
+                    })() : ''}
+                    ${result.feasibilityWarnings?.length > 0 ? `
+                        <div style="margin-top: 8px; padding: 8px 12px; background: #fef2f2; border-radius: 8px; font-size: 12px; color: #991b1b;">
+                            ⚠️ ${result.feasibilityWarnings.join('<br>⚠️ ')}
+                        </div>
+                    ` : ''}
+                    ${result.missingIngredients?.length > 0 ? `
+                        <div style="margin-top: 8px; padding: 8px 12px; background: #fef3c7; border-radius: 8px; font-size: 12px; color: #92400e;">
+                            ⚠️ Brak danych odżywczych dla: <strong>${result.missingIngredients.join(', ')}</strong>
+                        </div>
+                    ` : ''}
                 `;
             }
         }
@@ -13056,62 +13631,69 @@
             openSubstituteModal(ingredientIndex);
         }
 
+        // Tymczasowe zamiany składników w bieżącym podglądzie
+        let modalSubstitutions = {}; // { ingredientIndex: { originalItem, originalAmount, newItem, newAmount } }
+
         function openSubstituteModal(ingredientIndex) {
             const r = currentModalRecipe;
-            if (!r) {
-                console.error('Brak currentModalRecipe');
-                return;
-            }
+            if (!r) return;
 
-            // Użyj zoptymalizowanych składników jeśli dostępne, w przeciwnym razie oryginalne
-            // modalOptimizedIngredients to obiekt { ingredients: [...], nutrition: {...} }
             const ingredients = modalOptimizedIngredients ? modalOptimizedIngredients.ingredients : r.ingredients;
-            if (!ingredients || !ingredients[ingredientIndex]) {
-                console.error('Brak składnika o indeksie:', ingredientIndex, 'ingredients:', ingredients);
-                return;
-            }
+            if (!ingredients || !ingredients[ingredientIndex]) return;
 
             const ingredient = ingredients[ingredientIndex];
 
-            // Oblicz multiplier dla składników
-            let multiplier = 0;
+            // Oblicz multiplier
+            let multiplier = 1;
             const person = persons.find(p => p.id === modalSelectedPersons[0]);
             if (person) multiplier = person.portion;
             multiplier *= modalPortions;
 
-            // Oblicz aktualną ilość składnika (po optymalizacji lub z multiplierem)
             const currentAmount = modalOptimizedIngredients
-                ? ingredient.amount  // Zoptymalizowane już mają prawidłową ilość
-                : ingredient.amount * multiplier;  // Oryginalne trzeba przemnożyć
+                ? ingredient.amount
+                : ingredient.amount * multiplier;
 
-            // Pobierz zamienniki na podstawie nazwy składnika
-            const centralSubs = ingredientSubstitutes[ingredient.item];
+            // Pobierz zamienniki z filtrowaniem i scoringiem
+            const filteredSubs = getFilteredSubstitutes(ingredient.item);
 
             const overlay = document.getElementById('substitute-modal-overlay');
             const content = document.getElementById('substitute-modal-content');
-            if (!overlay || !content) {
-                console.error('Brak elementów modalu zamienników');
-                return;
-            }
+            if (!overlay || !content) return;
 
             let bodyHtml = '';
 
-            // Jeśli brak zamienników - pokaż komunikat
-            if (!centralSubs || centralSubs.length === 0) {
+            if (filteredSubs.length === 0) {
                 bodyHtml = `
                     <div class="no-substitutes-message">
-                        Brak zdefiniowanych zamienników dla tego składnika.
+                        Brak odpowiednich zamienników dla tego składnika.
                     </div>
                 `;
             } else {
-                // Oblicz zamienniki na podstawie aktualnej ilości składnika
-                const substituteItems = centralSubs.map(sub => {
+                const substituteItems = filteredSubs.map((sub, subIdx) => {
                     const scaledAmount = Math.round(currentAmount * sub.ratio * 10) / 10;
+
+                    // Klasa koloru score
+                    const scoreClass = sub.score >= 80 ? 'score-good' : sub.score >= 60 ? 'score-medium' : 'score-bad';
+
+                    // Formatuj różnice makro
+                    const formatDiff = (val, label) => {
+                        const sign = val > 0 ? '+' : '';
+                        const diffClass = Math.abs(val) <= 2 ? 'diff-small' : Math.abs(val) <= 5 ? 'diff-medium' : 'diff-large';
+                        return `<span class="macro-diff ${diffClass}">${label}: ${sign}${val}g</span>`;
+                    };
+
                     return `
-                        <li class="substitute-item">
-                            <span class="substitute-icon">↔</span>
-                            <span class="substitute-name">${sub.item}</span>
-                            <span class="substitute-amount">${scaledAmount} ${ingredient.unit}</span>
+                        <li class="substitute-item substitute-clickable" data-ing-idx="${ingredientIndex}" data-sub-idx="${subIdx}" data-sub-item="${sub.item}" data-sub-amount="${scaledAmount}">
+                            <div class="sub-main">
+                                <span class="substitute-name">${sub.item}</span>
+                                <span class="substitute-amount">${scaledAmount} ${ingredient.unit}</span>
+                                <span class="substitute-score ${scoreClass}">${sub.score}%</span>
+                            </div>
+                            <div class="sub-macros">
+                                ${formatDiff(sub.diffs.protein, 'B')}
+                                ${formatDiff(sub.diffs.fat, 'T')}
+                                ${formatDiff(sub.diffs.carbs, 'W')}
+                            </div>
                         </li>
                     `;
                 }).join('');
@@ -13120,14 +13702,21 @@
                     <ul class="substitute-list">
                         ${substituteItems}
                     </ul>
+                    <div class="substitute-hint">Kliknij zamiennik aby zastosować</div>
                 `;
             }
+
+            // Sprawdź czy jest już aktywna zamiana
+            const activeSubHtml = modalSubstitutions[ingredientIndex]
+                ? `<button class="substitute-revert-btn" onclick="revertSubstitution(${ingredientIndex})">↩ Przywróć oryginał</button>`
+                : '';
 
             content.innerHTML = `
                 <div class="substitute-header">
                     <div>
                         <div class="substitute-header-title">Zamienniki</div>
                         <div class="substitute-header-ingredient">${ingredient.item} (${Math.round(currentAmount * 10) / 10} ${ingredient.unit})</div>
+                        ${activeSubHtml}
                     </div>
                     <button class="substitute-close" onclick="closeSubstituteModal()">×</button>
                 </div>
@@ -13136,7 +13725,81 @@
                 </div>
             `;
 
+            // Dodaj event listenery do klikalnych zamienników
+            content.querySelectorAll('.substitute-clickable').forEach(li => {
+                li.addEventListener('click', () => {
+                    const ingIdx = parseInt(li.dataset.ingIdx);
+                    const subItem = li.dataset.subItem;
+                    const subAmount = parseFloat(li.dataset.subAmount);
+                    applySubstitution(ingIdx, subItem, subAmount);
+                });
+            });
+
             overlay.classList.add('active');
+        }
+
+        // Zastosuj zamiennik — tymczasowa zamiana w podglądzie
+        function applySubstitution(ingredientIndex, newItem, newAmount) {
+            const r = currentModalRecipe;
+            if (!r) return;
+
+            const ingredients = modalOptimizedIngredients ? modalOptimizedIngredients.ingredients : r.ingredients;
+            if (!ingredients || !ingredients[ingredientIndex]) return;
+
+            const ingredient = ingredients[ingredientIndex];
+
+            // Zapisz oryginał (jeśli jeszcze nie zapisany)
+            if (!modalSubstitutions[ingredientIndex]) {
+                modalSubstitutions[ingredientIndex] = {
+                    originalItem: ingredient.item,
+                    originalAmount: ingredient.amount
+                };
+            }
+
+            // Oblicz multiplier
+            let multiplier = 1;
+            const person = persons.find(p => p.id === modalSelectedPersons[0]);
+            if (person) multiplier = person.portion;
+            multiplier *= modalPortions;
+
+            // Zastosuj zamianę
+            ingredient.item = newItem;
+            ingredient.amount = modalOptimizedIngredients
+                ? newAmount
+                : newAmount / multiplier; // Przechowuj bazową ilość
+
+            // Zapisz zmiany do mealOptimizations jeśli otwarte z planera
+            if (currentPlanDay && modalOptimizedIngredients) {
+                const personId = modalSelectedPersons[0];
+                const key = getOptimizationKey(currentPlanDay, currentModalMealType, personId, r.id);
+                if (mealOptimizations[key]) {
+                    mealOptimizations[key].ingredients = modalOptimizedIngredients.ingredients;
+                    saveMealOptimizations();
+                }
+            }
+
+            // Zamknij modal zamienników i odśwież podgląd
+            closeSubstituteModal();
+            updateModalContent();
+        }
+
+        // Przywróć oryginalny składnik
+        function revertSubstitution(ingredientIndex) {
+            const r = currentModalRecipe;
+            if (!r) return;
+
+            const ingredients = modalOptimizedIngredients ? modalOptimizedIngredients.ingredients : r.ingredients;
+            if (!ingredients || !ingredients[ingredientIndex]) return;
+
+            const sub = modalSubstitutions[ingredientIndex];
+            if (!sub) return;
+
+            ingredients[ingredientIndex].item = sub.originalItem;
+            ingredients[ingredientIndex].amount = sub.originalAmount;
+            delete modalSubstitutions[ingredientIndex];
+
+            closeSubstituteModal();
+            updateModalContent();
         }
 
         function closeSubstituteModal(event) {
@@ -13176,7 +13839,7 @@
         }
 
         function saveShoppingSelection() {
-            localStorage.setItem('shoppingListSelection', JSON.stringify(shoppingListSelection));
+            safeSetItem('shoppingListSelection', JSON.stringify(shoppingListSelection));
         }
 
         // ODHACZONE PRODUKTY NA LIŚCIE ZAKUPÓW
@@ -13192,7 +13855,7 @@
         }
 
         function saveCheckedItems() {
-            localStorage.setItem('checkedShoppingItems', JSON.stringify([...checkedShoppingItems]));
+            safeSetItem('checkedShoppingItems', JSON.stringify([...checkedShoppingItems]));
         }
 
         function toggleShoppingItem(item, checked) {
@@ -13359,7 +14022,11 @@
                                     const amount = optimization
                                         ? ing.amount * shoppingListMultiplier
                                         : ing.amount * person.portion * shoppingListMultiplier;
-                                    list[k] = (list[k] || 0) + amount;
+                                    if (!list[k]) list[k] = { amount: 0, recipes: [] };
+                                    list[k].amount += amount;
+                                    if (!list[k].recipes.some(x => x.recipeId === r.id && x.day === day)) {
+                                        list[k].recipes.push({ mealType: mt, recipeId: r.id, recipeName: r.name, day: day });
+                                    }
                                 });
                             }
                         }
@@ -13367,7 +14034,7 @@
                 });
             });
 
-            Object.keys(list).forEach(k => list[k] = Math.ceil(list[k] * 10) / 10);
+            Object.keys(list).forEach(k => list[k].amount = Math.ceil(list[k].amount * 10) / 10);
 
             // Pokaż info o osobach i mnożniku
             const personsInfo = persons.map(p => `${p.name} (${p.portion}x)`).join(' + ');
@@ -13386,6 +14053,45 @@
 
             const categorizedItems = new Set();
 
+            function createShoppingItemDiv(item, data) {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'item';
+                const isChecked = checkedShoppingItems.has(item);
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.checked = isChecked;
+                checkbox.addEventListener('change', function() {
+                    toggleShoppingItem(item, this.checked);
+                    this.nextElementSibling.classList.toggle('checked', this.checked);
+                });
+                const nameSpan = document.createElement('span');
+                nameSpan.className = `item-name ${isChecked ? 'checked' : ''}`;
+                nameSpan.textContent = item;
+                const amtSpan = document.createElement('span');
+                amtSpan.className = 'item-amount';
+                amtSpan.textContent = data.amount;
+
+                const recipeBtn = document.createElement('button');
+                recipeBtn.className = 'shopping-recipe-btn';
+                recipeBtn.textContent = '📖';
+                recipeBtn.title = data.recipes.map(r => r.recipeName).join(', ');
+                recipeBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (data.recipes.length === 1) {
+                        const rec = data.recipes[0];
+                        previewRecipe(rec.mealType, rec.recipeId, rec.day);
+                    } else {
+                        showRecipePopupForIngredient(this, data.recipes);
+                    }
+                });
+
+                itemDiv.appendChild(checkbox);
+                itemDiv.appendChild(nameSpan);
+                itemDiv.appendChild(amtSpan);
+                itemDiv.appendChild(recipeBtn);
+                return itemDiv;
+            }
+
             categories.forEach(cat => {
                 const items = Object.entries(list).filter(([item]) =>
                     cat.keywords.some(kw => item.toLowerCase().includes(kw)));
@@ -13396,16 +14102,8 @@
                 const div = document.createElement('div');
                 div.className = 'category';
                 div.innerHTML = `<h3>${cat.name}</h3>`;
-                items.forEach(([item, amt]) => {
-                    const itemDiv = document.createElement('div');
-                    itemDiv.className = 'item';
-                    const isChecked = checkedShoppingItems.has(item);
-                    const escapedItem = item.replace(/'/g, "\\'");
-                    itemDiv.innerHTML = `
-                        <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleShoppingItem('${escapedItem}', this.checked); this.nextElementSibling.classList.toggle('checked', this.checked)">
-                        <span class="item-name ${isChecked ? 'checked' : ''}">${item}</span>
-                        <span class="item-amount">${amt}</span>`;
-                    div.appendChild(itemDiv);
+                items.forEach(([item, data]) => {
+                    div.appendChild(createShoppingItemDiv(item, data));
                 });
                 container.appendChild(div);
             });
@@ -13416,25 +14114,49 @@
                 const div = document.createElement('div');
                 div.className = 'category';
                 div.innerHTML = `<h3>📦 POZOSTAŁE</h3>`;
-                uncategorized.forEach(([item, amt]) => {
-                    const itemDiv = document.createElement('div');
-                    itemDiv.className = 'item';
-                    const isChecked = checkedShoppingItems.has(item);
-                    const escapedItem = item.replace(/'/g, "\\'");
-                    itemDiv.innerHTML = `
-                        <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleShoppingItem('${escapedItem}', this.checked); this.nextElementSibling.classList.toggle('checked', this.checked)">
-                        <span class="item-name ${isChecked ? 'checked' : ''}">${item}</span>
-                        <span class="item-amount">${amt}</span>`;
-                    div.appendChild(itemDiv);
+                uncategorized.forEach(([item, data]) => {
+                    div.appendChild(createShoppingItemDiv(item, data));
                 });
                 container.appendChild(div);
             }
         }
 
+        function showRecipePopupForIngredient(btn, recipesList) {
+            // Zamknij istniejący popup
+            const existing = document.querySelector('.shopping-recipe-popup');
+            if (existing) existing.remove();
+
+            const popup = document.createElement('div');
+            popup.className = 'shopping-recipe-popup';
+            recipesList.forEach(rec => {
+                const link = document.createElement('div');
+                link.className = 'shopping-recipe-popup-item';
+                link.textContent = `${rec.recipeName} (${rec.day})`;
+                link.addEventListener('click', () => {
+                    popup.remove();
+                    previewRecipe(rec.mealType, rec.recipeId, rec.day);
+                });
+                popup.appendChild(link);
+            });
+
+            btn.style.position = 'relative';
+            btn.appendChild(popup);
+
+            // Zamknij popup po kliknięciu gdziekolwiek
+            setTimeout(() => {
+                document.addEventListener('click', function closePopup(e) {
+                    if (!popup.contains(e.target)) {
+                        popup.remove();
+                        document.removeEventListener('click', closePopup);
+                    }
+                });
+            }, 0);
+        }
+
         function copyShoppingList() {
             const list = {};
-            days.forEach(day => {
-                mealTypes.forEach(mt => {
+            shoppingListSelection.days.forEach(day => {
+                shoppingListSelection.mealTypes.forEach(mt => {
                     const meal = plan[day][mt];
                     // Osobne receptury dla każdej osoby
                     persons.forEach(person => {
@@ -13492,14 +14214,14 @@
                 return;
             }
 
-            navigator.clipboard.writeText(txt).then(() => alert('Lista skopiowana do schowka!\n\n(Odhaczone produkty zostały pominięte)'));
+            navigator.clipboard.writeText(txt).then(() => alert('Lista skopiowana do schowka!\n\n(Odhaczone produkty zostały pominięte)')).catch(() => alert('Nie udało się skopiować listy. Spróbuj ponownie.'));
         }
 
         // Udostępnianie listy zakupów (natywne iOS/Android)
         function shareShoppingList() {
             const list = {};
-            days.forEach(day => {
-                mealTypes.forEach(mt => {
+            shoppingListSelection.days.forEach(day => {
+                shoppingListSelection.mealTypes.forEach(mt => {
                     const meal = plan[day][mt];
                     persons.forEach(person => {
                         const recipeId = meal[person.id];
@@ -13564,22 +14286,22 @@
                     // Użytkownik anulował - kopiuj do schowka
                     navigator.clipboard.writeText(txt).then(() => {
                         alert('Lista skopiowana do schowka!\nWyślij przez SMS lub komunikator.');
-                    });
+                    }).catch(() => alert('Nie udało się skopiować listy.'));
                 });
             } else {
                 navigator.clipboard.writeText(txt).then(() => {
                     alert('Lista skopiowana do schowka!\nWyślij przez SMS lub komunikator.');
-                });
+                }).catch(() => alert('Nie udało się skopiować listy.'));
             }
         }
 
         // ZAPIS/ODCZYT
         function savePlan() {
-            localStorage.setItem('mealPlanV5', JSON.stringify(plan));
+            safeSetItem('mealPlanV5', JSON.stringify(plan));
         }
 
         function savePersons() {
-            localStorage.setItem('mealPersons', JSON.stringify(persons));
+            safeSetItem('mealPersons', JSON.stringify(persons));
         }
 
         function loadPersons() {
@@ -13660,6 +14382,9 @@
             if (!confirm(`Czy na pewno usunąć osobę "${personToRemove.name}"? Przepisy przypisane do tej osoby zostaną usunięte.`)) {
                 return;
             }
+
+            // Zamknij modal przepisu jeśli jest otwarty (może odwoływać się do usuwanej osoby)
+            if (currentModalRecipe) closeModal();
 
             persons = persons.filter(p => p.id !== personId);
 
