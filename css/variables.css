@@ -1,0 +1,113 @@
+/* =============================================
+   CSS Variables - Planer Posiłków
+   ============================================= */
+
+:root {
+    /* === KOLORY GŁÓWNE === */
+    --color-primary: #667eea;
+    --color-primary-dark: #764ba2;
+    --color-gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+    /* === TŁO === */
+    --color-bg-dark: #1a1a2e;
+    --color-bg-darker: #16213e;
+    --color-gradient-bg: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+
+    /* === TYPY POSIŁKÓW === */
+    --color-breakfast: #f97316;
+    --color-breakfast-dark: #ea580c;
+    --color-breakfast-light: #fff7ed;
+    --color-breakfast-bg: #ffedd5;
+
+    --color-lunch: #3b82f6;
+    --color-lunch-dark: #2563eb;
+    --color-lunch-light: #eff6ff;
+    --color-lunch-bg: #dbeafe;
+
+    --color-dinner: #8b5cf6;
+    --color-dinner-dark: #7c3aed;
+    --color-dinner-light: #faf5ff;
+    --color-dinner-bg: #f3e8ff;
+
+    /* === OSOBY === */
+    --color-person-blue: #3b82f6;
+    --color-person-pink: #ec4899;
+
+    /* === STANY === */
+    --color-success: #22c55e;
+    --color-success-dark: #16a34a;
+    --color-success-light: #dcfce7;
+    --color-success-bg: #f0fdf4;
+
+    --color-warning: #f59e0b;
+    --color-warning-dark: #d97706;
+    --color-warning-light: #fef3c7;
+    --color-warning-bg: #fef9c3;
+
+    --color-error: #dc2626;
+    --color-error-dark: #b91c1c;
+    --color-error-light: #fee2e2;
+
+    /* === NEUTRALNE === */
+    --color-white: white;
+    --color-gray-50: #f9fafb;
+    --color-gray-100: #f3f4f6;
+    --color-gray-200: #e5e7eb;
+    --color-gray-300: #d1d5db;
+    --color-gray-400: #9ca3af;
+    --color-gray-500: #6b7280;
+    --color-gray-600: #4b5563;
+    --color-gray-700: #374151;
+    --color-gray-800: #1f2937;
+    --color-gray-900: #111827;
+
+    /* === MAKROSKŁADNIKI === */
+    --color-macro-protein: #ef4444;
+    --color-macro-fat: #f59e0b;
+    --color-macro-carbs: #22c55e;
+
+    /* === TYPOGRAPHY === */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-size-xs: 10px;
+    --font-size-sm: 12px;
+    --font-size-base: 14px;
+    --font-size-lg: 16px;
+    --font-size-xl: 18px;
+    --font-size-2xl: 24px;
+    --font-size-3xl: 28px;
+
+    /* === SPACING === */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 12px;
+    --spacing-lg: 16px;
+    --spacing-xl: 20px;
+    --spacing-2xl: 25px;
+
+    /* === BORDER RADIUS === */
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-2xl: 20px;
+    --radius-full: 50%;
+
+    /* === SHADOWS === */
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 20px rgba(0,0,0,0.15);
+    --shadow-lg: 0 10px 40px rgba(0,0,0,0.2);
+    --shadow-xl: 0 20px 60px rgba(0,0,0,0.3);
+    --shadow-nav: 0 2px 20px rgba(0,0,0,0.3);
+
+    /* === TRANSITIONS === */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.2s ease;
+    --transition-slow: 0.3s ease;
+
+    /* === Z-INDEX === */
+    --z-dropdown: 50;
+    --z-sticky: 100;
+    --z-modal-overlay: 200;
+    --z-meal-picker: 1000;
+    --z-substitute-modal: 10001;
+}

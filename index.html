@@ -12841,11 +12841,9 @@
             document.getElementById('modal-steps').innerHTML = r.steps.map(s => `<li>${s}</li>`).join('');
             document.body.style.overflow = 'hidden';
 
-            // Automatyczna optymalizacja jeśli otwieramy z planera (mamy dzień)
+            // Automatyczna optymalizacja przy otwarciu przepisu (zawsze)
             setTimeout(() => {
-                if (currentPlanDay) {
-                    applyOptimization();
-                }
+                applyOptimization();
             }, 150);
         }
 
@@ -12892,10 +12890,8 @@
             renderModalPersonsToggle();
             updateModalContent();
 
-            // Re-optymalizuj przy zmianie osób (jeśli z planera)
-            if (currentPlanDay) {
-                applyOptimization();
-            }
+            // Re-optymalizuj przy zmianie osób (zawsze)
+            applyOptimization();
         }
 
         function changePortions(delta) {
@@ -13042,10 +13038,17 @@
                     const macrosHtml = !nutrition.missing
                         ? `<span class="ingredient-macros">${Math.round(nutrition.kcal)} | ${Math.round(nutrition.protein)}B | ${Math.round(nutrition.fat)}T | ${Math.round(nutrition.carbs)}W</span>`
                         : '';
+                    const origIndex = r.ingredients.findIndex(orig => orig.item === i.item);
+                    const substitutes = getIngredientSubstitutes(i);
+                    const hasSubstitutes = substitutes.length > 0;
+                    const substituteBtn = origIndex >= 0
+                        ? `<button class="substitute-btn ${!hasSubstitutes ? 'no-substitutes' : ''}" onclick="toggleSubstitutePopup(${origIndex}, event)" title="${hasSubstitutes ? 'Pokaż zamienniki' : 'Brak zamienników'}">↔</button>`
+                        : '';
                     return `<li class="ingredient-item">
                         <div class="ingredient-main-row">
                             <span class="ingredient-text">${i.item} - <strong>${i.amount} ${i.unit}</strong></span>
                             ${infoBtn}
+                            ${substituteBtn}
                         </div>
                         ${macrosHtml ? `<div class="ingredient-macros-row">${macrosHtml}</div>` : ''}
                     </li>`;
@@ -13610,6 +13613,16 @@
 
         // Przywróć oryginalne ilości składników
         function resetOptimization() {
+            // Usuń zapisaną optymalizację z mealOptimizations (wpływa na listę zakupów)
+            if (currentPlanDay && currentModalRecipe) {
+                for (const personId of modalSelectedPersons) {
+                    const key = getOptimizationKey(currentPlanDay, currentModalMealType, personId, currentModalRecipe.id);
+                    delete mealOptimizations[key];
+                }
+                saveMealOptimizations();
+                renderPlannerTable();
+                renderKcalSummary();
+            }
             modalOptimizedIngredients = null;
             updateModalContent();
         }
@@ -13780,7 +13793,11 @@
 
             // Zamknij modal zamienników i odśwież podgląd
             closeSubstituteModal();
-            updateModalContent();
+            if (modalOptimizedIngredients && modalSelectedPersons.length === 1) {
+                updateModalWithOptimizedIngredients(modalOptimizedIngredients);
+            } else {
+                updateModalContent();
+            }
         }
 
         // Przywróć oryginalny składnik
@@ -13799,7 +13816,11 @@
             delete modalSubstitutions[ingredientIndex];
 
             closeSubstituteModal();
-            updateModalContent();
+            if (modalOptimizedIngredients && modalSelectedPersons.length === 1) {
+                updateModalWithOptimizedIngredients(modalOptimizedIngredients);
+            } else {
+                updateModalContent();
+            }
         }
 
         function closeSubstituteModal(event) {

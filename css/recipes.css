@@ -1,0 +1,260 @@
+/* =============================================
+   Recipes - Style sekcji przepisów
+   ============================================= */
+
+/* === SELEKTOR OSOBY === */
+.recipes-person-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    background: #f8fafc;
+    border-radius: var(--radius-lg);
+}
+.recipes-person-selector label {
+    font-size: 13px;
+    color: var(--color-gray-500);
+    font-weight: 500;
+}
+.recipes-person-btn {
+    padding: 8px 16px;
+    border: 2px solid var(--color-gray-200);
+    border-radius: 20px;
+    background: white;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+.recipes-person-btn:hover {
+    border-color: var(--color-gray-400);
+}
+.recipes-person-btn.active {
+    background: var(--person-color, var(--color-lunch));
+    border-color: var(--person-color, var(--color-lunch));
+    color: white;
+}
+.recipes-person-info {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--color-gray-500);
+}
+.recipes-person-info strong {
+    color: var(--color-gray-800);
+}
+
+/* === GRID PRZEPISÓW === */
+.recipes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+}
+
+/* === KARTA PRZEPISU === */
+.recipe-card {
+    background: white;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    cursor: pointer;
+}
+.recipe-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+}
+.recipe-header {
+    padding: 16px;
+    color: white;
+    position: relative;
+}
+.recipe-header.breakfast { background: linear-gradient(135deg, var(--color-breakfast) 0%, var(--color-breakfast-dark) 100%); }
+.recipe-header.lunch { background: linear-gradient(135deg, var(--color-lunch) 0%, var(--color-lunch-dark) 100%); }
+.recipe-header.dinner { background: linear-gradient(135deg, var(--color-dinner) 0%, var(--color-dinner-dark) 100%); }
+
+.recipe-type {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+    margin-bottom: 4px;
+}
+.recipe-name {
+    font-size: 17px;
+    font-weight: 700;
+}
+.recipe-body {
+    padding: 16px;
+}
+.recipe-macros {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+.macro {
+    background: var(--color-gray-100);
+    padding: 6px 10px;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+}
+.macro strong { color: var(--color-gray-800); }
+.recipe-macros-optimized {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.macro-optimized {
+    background: linear-gradient(135deg, var(--color-success-light) 0%, #bbf7d0 100%);
+    padding: 6px 10px;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    border: 1px solid #86efac;
+}
+.macro-optimized strong { color: #166534; }
+.recipe-target-info {
+    font-size: 10px;
+    color: var(--color-gray-500);
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.recipe-target-info .target-badge {
+    background: var(--color-warning-light);
+    color: #92400e;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+.recipe-preview {
+    color: var(--color-gray-500);
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+/* === FILTRY === */
+.filter-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+.filter-tab {
+    padding: 8px 16px;
+    border: 2px solid var(--color-gray-200);
+    border-radius: var(--radius-md);
+    background: white;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    transition: all var(--transition-normal);
+}
+.filter-tab:hover { border-color: var(--color-gray-300); }
+.filter-tab.active { border-color: var(--color-dinner); background: var(--color-dinner-light); color: var(--color-dinner-dark); }
+.filter-tab.favorites {
+    background: #fef2f2;
+    border-color: #fecaca;
+    color: var(--color-error);
+}
+.filter-tab.favorites:hover {
+    background: var(--color-error-light);
+}
+.filter-tab.favorites.active {
+    background: var(--color-error-light);
+    border-color: var(--color-error);
+    color: var(--color-error);
+}
+
+/* === WYSZUKIWARKA === */
+.search-container {
+    position: relative;
+    margin-bottom: 20px;
+    max-width: 400px;
+}
+.recipe-search-input {
+    width: 100%;
+    padding: 12px 40px 12px 16px;
+    border: 2px solid var(--color-gray-200);
+    border-radius: var(--radius-md);
+    font-size: 16px;
+    transition: border-color var(--transition-normal);
+    box-sizing: border-box;
+}
+.recipe-search-input:focus {
+    outline: none;
+    border-color: var(--color-lunch);
+}
+.search-clear-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--color-gray-400);
+    cursor: pointer;
+    font-size: 18px;
+    display: none;
+}
+.search-clear-btn.visible { display: block; }
+.no-results {
+    text-align: center;
+    padding: 40px;
+    color: var(--color-gray-500);
+    grid-column: 1 / -1;
+}
+.no-results button {
+    margin-top: 15px;
+    padding: 8px 16px;
+    background: var(--color-lunch);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+}
+
+/* === ULUBIONE === */
+.favorite-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255,255,255,0.9);
+    border: none;
+    border-radius: var(--radius-full);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-normal);
+    box-shadow: var(--shadow-sm);
+    z-index: 10;
+}
+.favorite-btn:hover {
+    transform: scale(1.15);
+    box-shadow: var(--shadow-md);
+}
+.favorite-btn.active {
+    background: #fef2f2;
+}
+.no-favorites {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    color: var(--color-gray-400);
+}
+.no-favorites-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+.no-favorites-text {
+    font-size: 16px;
+}
+.no-favorites-hint {
+    font-size: 14px;
+    margin-top: 8px;
+}

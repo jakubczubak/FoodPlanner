@@ -1,0 +1,324 @@
+/* =============================================
+   Responsive - Media queries dla wszystkich breakpointów
+   ============================================= */
+
+/* === TABLET (max-width: 1024px) === */
+@media (max-width: 1024px) {
+    .container { max-width: 100%; padding: 15px; }
+    .plan-table { min-width: 800px; }
+}
+
+/* === MOBILE (max-width: 500px) === */
+@media (max-width: 500px) {
+    /* Nawigacja */
+    .nav { padding: 8px; gap: 4px; }
+    .nav-btn { padding: 8px 10px; font-size: 11px; }
+
+    /* Kontener i karty */
+    .container { padding: 10px; }
+    .card { padding: 12px; overflow-x: auto; }
+    h1 { font-size: 20px; }
+    .subtitle { font-size: 12px; }
+
+    /* Przyciski wariantów */
+    .quick-buttons { gap: 5px; }
+    .quick-buttons .btn {
+        padding: 8px 10px;
+        font-size: 11px;
+        flex: 1 1 calc(33% - 5px);
+        min-width: 90px;
+    }
+
+    /* Tabela planera - scroll poziomy */
+    .plan-table { min-width: 600px; font-size: 10px; }
+    .plan-table th { padding: 6px 4px; font-size: 10px; }
+    .plan-table td { padding: 5px 3px; }
+    .day-name { font-size: 11px; }
+
+    /* Dropdowny posiłków */
+    .meal-select-compact {
+        padding: 4px 6px;
+        font-size: 9px;
+        padding-right: 18px;
+        background-position: right 4px center;
+    }
+    .person-indicator { width: 8px; height: 8px; }
+    .person-meal-row { gap: 3px; }
+    .preview-btn { font-size: 12px; padding: 2px 4px; }
+
+    /* Kolumny kalorii */
+    .kcal-person { font-size: 11px !important; padding: 4px 2px !important; }
+
+    /* Panel osób/ustawień */
+    .persons-panel {
+        flex-direction: column;
+        gap: 12px;
+        padding: 10px;
+    }
+    .person-config {
+        min-width: 100%;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    .person-name { width: 70px; font-size: 12px; padding: 5px 8px; }
+    .portion-slider { width: 60px; }
+    .portion-value { font-size: 11px; }
+
+    /* Panel ustawień TDEE */
+    .settings-panel { padding: 12px; }
+    .settings-panel .input-group { flex-direction: column; gap: 8px; }
+    .settings-panel input, .settings-panel select {
+        width: 100%;
+        font-size: 14px;
+        padding: 10px;
+    }
+    .settings-toggle { font-size: 12px; padding: 8px 12px; }
+
+    /* Podsumowanie kalorii */
+    .kcal-summary {
+        flex-direction: column;
+        gap: 8px;
+        padding: 12px;
+    }
+    .kcal-summary-item {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    /* Przepisy */
+    .recipes-grid { grid-template-columns: 1fr; gap: 12px; }
+    .recipe-card { padding: 12px; }
+    .recipe-name { font-size: 14px; }
+    .recipe-macros { gap: 8px; }
+    .macro { padding: 4px 8px; font-size: 11px; }
+
+    /* Modal przepisu */
+    .modal {
+        width: 95%;
+        max-height: 90vh;
+        margin: 5vh auto;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+    .modal-header { padding: 15px; }
+    .modal-name { font-size: 18px; }
+    .modal-body {
+        padding: 15px;
+        max-height: calc(90vh - 120px);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    .modal-overlay.active {
+        -webkit-overflow-scrolling: touch;
+    }
+    .modal-macros { gap: 8px; }
+    .modal-macro { padding: 8px 10px; }
+    .modal-macro-value { font-size: 16px; }
+    .modal-persons-toggle { flex-direction: column; gap: 6px; }
+    .modal-person-btn { padding: 10px; font-size: 12px; }
+
+    /* Sekcja optymalizacji - mobile */
+    .optimization-section {
+        margin: 12px 0;
+        padding: 10px;
+    }
+    .optimization-header {
+        font-size: 12px;
+        flex-wrap: wrap;
+    }
+    .optimization-grid {
+        padding: 6px;
+        overflow-x: auto;
+    }
+    .opt-row {
+        grid-template-columns: 50px repeat(4, 1fr);
+        gap: 3px;
+        font-size: 10px;
+        padding: 4px 0;
+    }
+    .opt-label { font-size: 9px; }
+    .opt-header-row { font-size: 9px; }
+    .optimize-btn { padding: 8px 10px; font-size: 11px; }
+    .reset-optimization-btn { padding: 6px 10px; font-size: 10px; }
+
+    /* Składniki - mobile */
+    .ingredient-main-row { flex-wrap: nowrap; }
+    .ingredient-text { min-width: 100px; font-size: 13px; }
+    .ingredient-macros-row { margin-left: 22px; }
+    .ingredient-macros { font-size: 10px; padding: 2px 6px; }
+    .substitute-btn { padding: 3px 8px; font-size: 12px; }
+    .info-btn { font-size: 12px; padding: 2px; }
+
+    /* Lista zakupów */
+    .shopping-list { padding: 12px; }
+    .shopping-category h3 { font-size: 14px; }
+    .shopping-item { font-size: 13px; padding: 8px 0; }
+
+    /* Filtry zakupów - mobilne */
+    .shopping-filters { padding: 15px; }
+    .shopping-days-grid { grid-template-columns: repeat(4, 1fr); }
+    .shopping-day-name { font-size: 10px; }
+    .shopping-day-checkbox { padding: 8px 2px; }
+    .shopping-meals-grid { flex-direction: column; gap: 8px; }
+    .shopping-meal-checkbox { justify-content: center; }
+    .shopping-quick-btns { justify-content: center; }
+    .shopping-quick-btns button { padding: 5px 10px; font-size: 11px; }
+    .shopping-summary { font-size: 12px; padding: 10px; }
+
+    /* Przyciski akcji */
+    .btn-green { padding: 12px; font-size: 14px; }
+    .btn-share { padding: 10px 15px; font-size: 12px; }
+
+    /* Alert */
+    .loaded-alert {
+        flex-direction: column;
+        gap: 10px;
+        padding: 12px;
+        font-size: 13px;
+    }
+}
+
+/* === BARDZO MAŁE EKRANY (max-width: 380px) === */
+@media (max-width: 380px) {
+    .nav-btn { padding: 6px 8px; font-size: 10px; }
+    h1 { font-size: 18px; }
+    .quick-buttons .btn {
+        flex: 1 1 calc(50% - 5px);
+        font-size: 10px;
+        padding: 6px 8px;
+    }
+    .plan-table { min-width: 550px; }
+    .meal-select-compact { font-size: 8px; }
+}
+
+/* === MOBILE PORTRAIT - UKŁAD DWULINIOWY === */
+@media (max-width: 500px) and (orientation: portrait) {
+    /* Ukryj kolumny kcal w portrait */
+    .kcal-person,
+    th.kcal-header,
+    .plan-table th:nth-child(n+5),
+    .plan-table td:nth-child(n+5) {
+        display: none !important;
+    }
+
+    /* Tabela na pełną szerokość bez przewijania */
+    .plan-table {
+        min-width: unset !important;
+        width: 100% !important;
+        table-layout: fixed;
+    }
+
+    /* Układ dwuliniowy dla każdego wiersza posiłku */
+    .person-meal-row {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        padding: 3px;
+        border-radius: var(--radius-sm);
+        margin-bottom: 4px;
+        background: var(--color-gray-50);
+    }
+
+    .person-meal-row.eaten {
+        background: var(--color-success-bg);
+    }
+
+    /* Linia 1: kontrolki (kropka, checkbox, oczko) */
+    .meal-row-controls {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .person-indicator {
+        width: 10px;
+        height: 10px;
+        min-width: 10px;
+    }
+
+    .eaten-checkbox {
+        width: 16px;
+        height: 16px;
+    }
+
+    .preview-btn {
+        margin-left: auto;
+        padding: 2px 6px;
+        font-size: 14px;
+        display: inline-flex !important;
+    }
+
+    /* Linia 2: dropdown na pełną szerokość */
+    .combobox-trigger {
+        width: 100%;
+        padding: 4px 6px;
+        font-size: 10px;
+    }
+
+    .combobox-text {
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .combobox-arrow { font-size: 8px; }
+
+    /* Nagłówki */
+    .plan-table th { padding: 4px 2px; font-size: 9px; }
+    .plan-table td { padding: 3px 2px; }
+    .day-name { font-size: 9px; min-width: 28px; }
+
+    /* Kolumna z dniem */
+    .plan-table th:first-child,
+    .plan-table td:first-child {
+        width: 32px !important;
+        max-width: 32px !important;
+    }
+
+    /* Równe kolumny posiłków */
+    .plan-table th:nth-child(2),
+    .plan-table th:nth-child(3),
+    .plan-table th:nth-child(4),
+    .plan-table td:nth-child(2),
+    .plan-table td:nth-child(3),
+    .plan-table td:nth-child(4) {
+        width: calc((100% - 32px) / 3) !important;
+    }
+
+    /* Komórka posiłku */
+    .meal-cell-dual { padding: 2px !important; }
+}
+
+/* === MOBILE LANDSCAPE - UKŁAD JEDNOLINIOWY === */
+@media (max-width: 850px) and (orientation: landscape) {
+    .kcal-person { display: table-cell !important; }
+    .preview-btn { display: inline-flex !important; }
+    /* Kontrolki w jednej linii */
+    .meal-row-controls { display: contents; }
+    .person-meal-row { flex-direction: row; }
+}
+
+/* === IPHONE POZIOMO (max-height: 500px) === */
+@media (max-height: 500px) and (orientation: landscape) {
+    .nav { padding: 5px; }
+    .nav-btn { padding: 6px 10px; }
+    h1 { font-size: 18px; margin-bottom: 5px; }
+    .subtitle { display: none; }
+    .container { padding: 8px; }
+    .card { padding: 10px; }
+    .quick-buttons { margin-bottom: 10px; }
+    .quick-buttons .btn { padding: 6px 10px; font-size: 10px; }
+    .plan-table { min-width: 700px; }
+    .settings-panel { max-height: 200px; overflow-y: auto; }
+
+    /* Modal w poziomie */
+    .modal {
+        max-height: 95vh;
+        margin: 2vh auto;
+    }
+    .modal-body {
+        max-height: 60vh;
+        overflow-y: auto;
+    }
+}

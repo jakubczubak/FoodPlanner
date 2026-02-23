@@ -1,0 +1,176 @@
+/* =============================================
+   Komponenty - Planer Posiłków
+   Style współdzielone (reset, body, nav, btn, card, modal)
+   ============================================= */
+
+/* === RESET === */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* === BODY === */
+body {
+    font-family: var(--font-family);
+    background: var(--color-gradient-bg);
+    min-height: 100vh;
+    color: #333;
+}
+
+/* === ACCESSIBILITY === */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-primary);
+    color: white;
+    padding: 8px;
+    z-index: 10000;
+}
+.skip-link:focus {
+    top: 0;
+}
+
+/* === NAWIGACJA === */
+.nav {
+    background: rgba(255,255,255,0.95);
+    padding: 12px 15px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: var(--shadow-nav);
+    position: sticky;
+    top: 0;
+    z-index: var(--z-sticky);
+    flex-wrap: wrap;
+}
+.nav-btn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: var(--radius-lg);
+    font-weight: 600;
+    cursor: pointer;
+    font-size: var(--font-size-base);
+    transition: all var(--transition-normal);
+    background: var(--color-gray-100);
+    color: var(--color-gray-600);
+}
+.nav-btn:hover { background: var(--color-gray-200); }
+.nav-btn.active { background: var(--color-gradient-primary); color: white; }
+
+/* === KONTENER === */
+.container { max-width: 1500px; margin: 0 auto; padding: 20px; }
+
+/* === NAGŁÓWKI === */
+h1 {
+    color: white;
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: var(--font-size-3xl);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+.header-logo {
+    height: 40px;
+    width: 40px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+.subtitle {
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: var(--font-size-base);
+}
+
+/* === KARTA === */
+.card {
+    background: white;
+    border-radius: var(--radius-xl);
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow-lg);
+    overflow-x: auto;
+}
+
+/* === SEKCJE === */
+.section { display: none; }
+.section.active { display: block; }
+
+/* === PRZYCISKI === */
+.quick-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+.btn {
+    padding: 10px 16px;
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all var(--transition-fast);
+}
+.btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.btn-orange { background: var(--color-breakfast-bg); color: #c2410c; }
+.btn-blue { background: var(--color-lunch-bg); color: #1d4ed8; }
+.btn-purple { background: var(--color-dinner-bg); color: var(--color-dinner-dark); }
+.btn-gray { background: var(--color-gray-100); color: var(--color-gray-700); }
+.btn-budget { background: var(--color-success-light); color: #166534; }
+.btn-green {
+    background: linear-gradient(135deg, var(--color-success) 0%, var(--color-success-dark) 100%);
+    color: white;
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+.btn-green:disabled {
+    background: var(--color-gray-300);
+    color: var(--color-gray-400);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+.btn-share {
+    background: linear-gradient(135deg, var(--color-dinner) 0%, var(--color-dinner-dark) 100%);
+    color: white;
+}
+.variant-separator {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0 5px 0;
+    font-size: 12px;
+    color: #166534;
+    font-weight: 600;
+    margin-top: 5px;
+}
+.variant-separator.action-separator { color: #1e40af; }
+
+/* === ALERT === */
+.loaded-alert {
+    background: linear-gradient(135deg, var(--color-success) 0%, var(--color-success-dark) 100%);
+    color: white;
+    padding: 15px 20px;
+    border-radius: var(--radius-lg);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.loaded-alert span { flex: 1; }
+.loaded-alert .btn { background: white; color: var(--color-success-dark); }
+
+/* === HIDDEN === */
+.hidden { display: none; }

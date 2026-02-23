@@ -1,0 +1,244 @@
+/* =============================================
+   Shopping - Style sekcji zakupów
+   ============================================= */
+
+/* === NAGŁÓWEK LISTY === */
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.list-header h2 {
+    color: var(--color-success);
+    font-size: 22px;
+}
+
+/* === KATEGORIA === */
+.category {
+    background: var(--color-gray-50);
+    border-radius: var(--radius-lg);
+    padding: 16px;
+    margin-bottom: 12px;
+}
+.category h3 {
+    font-size: 16px;
+    color: var(--color-gray-700);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--color-gray-200);
+}
+
+/* === ELEMENT LISTY === */
+.item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--color-gray-200);
+}
+.item:last-child {
+    border-bottom: none;
+}
+.item input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    accent-color: var(--color-success);
+}
+.item-name {
+    flex: 1;
+    color: var(--color-gray-700);
+    font-size: 14px;
+}
+.item-name.checked {
+    text-decoration: line-through;
+    color: var(--color-gray-400);
+}
+.item-amount {
+    background: var(--color-success-light);
+    color: var(--color-success);
+    padding: 5px 12px;
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    font-size: 13px;
+}
+
+/* === MNOŻNIK LISTY ZAKUPÓW === */
+.shopping-multiplier {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, var(--color-warning-light) 0%, #fde68a 100%);
+    border-radius: var(--radius-lg);
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+.multiplier-label {
+    font-weight: 600;
+    font-size: 14px;
+    color: #92400e;
+}
+.multiplier-buttons {
+    display: flex;
+    gap: 6px;
+}
+.multiplier-btn {
+    padding: 6px 14px;
+    border: 2px solid var(--color-warning);
+    border-radius: var(--radius-sm);
+    background: white;
+    color: #92400e;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+.multiplier-btn:hover {
+    background: var(--color-warning-light);
+}
+.multiplier-btn.active {
+    background: var(--color-warning);
+    color: white;
+    border-color: var(--color-warning-dark);
+}
+.multiplier-info {
+    font-size: 12px;
+    color: #78350f;
+    font-style: italic;
+}
+
+/* === PANEL FILTRÓW ZAKUPÓW === */
+.shopping-filters {
+    background: var(--color-gray-50);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.shopping-filter-section {
+    margin-bottom: 15px;
+}
+.shopping-filter-section:last-child {
+    margin-bottom: 0;
+}
+.shopping-filter-section h4 {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    color: var(--color-gray-700);
+}
+
+/* === GRID DNI === */
+.shopping-days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    margin-bottom: 10px;
+}
+.shopping-day-checkbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 4px;
+    background: white;
+    border: 2px solid var(--color-gray-200);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    user-select: none;
+}
+.shopping-day-checkbox:hover {
+    border-color: var(--color-lunch);
+}
+.shopping-day-checkbox.selected {
+    background: var(--color-lunch);
+    border-color: var(--color-lunch);
+    color: white;
+}
+.shopping-day-checkbox input {
+    display: none;
+}
+.shopping-day-name {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* === SZYBKIE PRZYCISKI === */
+.shopping-quick-btns {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.shopping-quick-btns button {
+    padding: 6px 12px;
+    font-size: 12px;
+    background: white;
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+.shopping-quick-btns button:hover {
+    background: var(--color-gray-100);
+    border-color: var(--color-lunch);
+}
+
+/* === GRID POSIŁKÓW === */
+.shopping-meals-grid {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.shopping-meal-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: white;
+    border: 2px solid var(--color-gray-200);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    user-select: none;
+}
+.shopping-meal-checkbox:hover {
+    border-color: var(--color-success);
+}
+.shopping-meal-checkbox:has(input:checked) {
+    border-color: var(--color-success);
+    background: var(--color-success-bg);
+}
+.shopping-meal-checkbox input {
+    display: none;
+}
+.shopping-meal-checkbox .meal-label {
+    font-weight: 500;
+}
+.shopping-meal-checkbox .meal-label.breakfast { color: var(--color-breakfast); }
+.shopping-meal-checkbox .meal-label.lunch { color: var(--color-lunch); }
+.shopping-meal-checkbox .meal-label.dinner { color: var(--color-dinner); }
+
+/* === PODSUMOWANIE === */
+.shopping-summary {
+    text-align: center;
+    padding: 12px;
+    background: #e0f2fe;
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    color: #0369a1;
+    margin-top: 15px;
+}
+
+/* === LISTA ZAKUPÓW (rozszerzone style) === */
+.shopping-list {
+    padding: 16px;
+}
+.shopping-category h3 {
+    font-size: 16px;
+}
+.shopping-item {
+    font-size: 14px;
+    padding: 10px 0;
+}
