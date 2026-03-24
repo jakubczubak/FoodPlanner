@@ -25,12 +25,12 @@ function lastIndexInRange(str, search, start, end) {
 
 // Wyekstrahuj ingredientsDatabase - szukaj markera konca przed recipes
 const ingredientStart = jsCode.indexOf('const ingredientsDatabase = {');
-const recipesMarker = jsCode.indexOf('// BAZA PRZEPISÓW', ingredientStart);
-const ingredientEnd = lastIndexInRange(jsCode, '};', ingredientStart, recipesMarker) + 2;
+const substitutesMarker = jsCode.indexOf('const ingredientSubstitutes', ingredientStart);
+const ingredientEnd = lastIndexInRange(jsCode, '};', ingredientStart, substitutesMarker) + 2;
 const ingredientCode = jsCode.substring(ingredientStart, ingredientEnd);
 
 console.log('Ingredient DB start:', ingredientStart);
-console.log('Recipes marker:', recipesMarker);
+console.log('Substitutes marker:', substitutesMarker);
 console.log('Ingredient DB end:', ingredientEnd);
 console.log('Ingredient code length:', ingredientCode.length);
 

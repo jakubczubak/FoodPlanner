@@ -11,16 +11,16 @@
         "id": "b1",
         "name": "Jajecznica z szynką + kanapki",
         "declared": {
-          "kcal": 738,
-          "protein": 53,
+          "kcal": 714,
+          "protein": 51,
           "fat": 35,
-          "carbs": 49
+          "carbs": 46
         },
         "calculated": {
-          "kcal": 738,
-          "protein": 53,
+          "kcal": 714,
+          "protein": 51,
           "fat": 35,
-          "carbs": 49
+          "carbs": 46
         },
         "ingredients": [
           {
@@ -45,10 +45,10 @@
             "missing": false,
             "item": "Chleb żytni razowy",
             "grams": 80,
-            "kcal": 200,
-            "protein": 6.4,
+            "kcal": 176,
+            "protein": 4.800000000000001,
             "fat": 1.2000000000000002,
-            "carbs": 38.400000000000006
+            "carbs": 35.2
           },
           {
             "missing": false,
@@ -75,7 +75,7 @@
             "kcal": 78.4,
             "protein": 8.8,
             "fat": 3.44,
-            "carbs": 2.72
+            "carbs": 2.4000000000000004
           }
         ],
         "missingIngredients": [],
@@ -92,26 +92,26 @@
         "id": "b2",
         "name": "Tosty z jajkiem i serem",
         "declared": {
-          "kcal": 582,
-          "protein": 44,
-          "fat": 34,
-          "carbs": 26
+          "kcal": 607,
+          "protein": 42,
+          "fat": 33,
+          "carbs": 33
         },
         "calculated": {
-          "kcal": 582,
-          "protein": 44,
-          "fat": 34,
-          "carbs": 26
+          "kcal": 607,
+          "protein": 42,
+          "fat": 33,
+          "carbs": 33
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Chleb tostowy pełnoziarnisty",
-            "grams": 50,
-            "kcal": 123.5,
-            "protein": 6.5,
-            "fat": 2.1,
-            "carbs": 20.5
+            "grams": 60,
+            "kcal": 148.2,
+            "protein": 4.8,
+            "fat": 1.7999999999999998,
+            "carbs": 27.599999999999998
           },
           {
             "missing": false,
@@ -156,7 +156,7 @@
             "kcal": 15,
             "protein": 0.7,
             "fat": 0.1,
-            "carbs": 3.6
+            "carbs": 3.1
           }
         ],
         "missingIngredients": [],
@@ -173,15 +173,15 @@
         "id": "b3",
         "name": "Kanapki z łososiem",
         "declared": {
-          "kcal": 823,
-          "protein": 52,
-          "fat": 30,
+          "kcal": 825,
+          "protein": 46,
+          "fat": 31,
           "carbs": 82
         },
         "calculated": {
-          "kcal": 823,
-          "protein": 52,
-          "fat": 30,
+          "kcal": 825,
+          "protein": 46,
+          "fat": 31,
           "carbs": 82
         },
         "ingredients": [
@@ -191,16 +191,16 @@
             "grams": 160,
             "kcal": 412.8,
             "protein": 14.4,
-            "fat": 4.4799999999999995,
+            "fat": 3.2,
             "carbs": 76.80000000000001
           },
           {
             "missing": false,
             "item": "Łosoś wędzony",
             "grams": 80,
-            "kcal": 141.6,
-            "protein": 20,
-            "fat": 6.4,
+            "kcal": 144,
+            "protein": 14.4,
+            "fat": 8.8,
             "carbs": 0
           },
           {
@@ -245,16 +245,16 @@
         "id": "b4",
         "name": "Skyr z orzechami i bananem",
         "declared": {
-          "kcal": 442,
+          "kcal": 449,
           "protein": 40,
           "fat": 15,
-          "carbs": 42
+          "carbs": 39
         },
         "calculated": {
-          "kcal": 442,
+          "kcal": 448,
           "protein": 40,
           "fat": 15,
-          "carbs": 42
+          "carbs": 40
         },
         "ingredients": [
           {
@@ -279,10 +279,10 @@
             "missing": false,
             "item": "Mieszanka orzechów",
             "grams": 25,
-            "kcal": 151.75,
+            "kcal": 158.5,
             "protein": 5,
-            "fat": 13.5,
-            "carbs": 5.25
+            "fat": 13.75,
+            "carbs": 2.75
           },
           {
             "missing": false,
@@ -296,10 +296,10 @@
         ],
         "missingIngredients": [],
         "discrepancies": {
-          "kcal": 0,
+          "kcal": -0.22271714922048996,
           "protein": 0,
           "fat": 0,
-          "carbs": 0
+          "carbs": 2.564102564102564
         },
         "withinTolerance": true,
         "hasMissingIngredients": false
@@ -308,26 +308,26 @@
         "id": "b5",
         "name": "Tost z mozzarellą i szynką",
         "declared": {
-          "kcal": 519,
-          "protein": 41,
+          "kcal": 495,
+          "protein": 39,
           "fat": 19,
-          "carbs": 44
+          "carbs": 41
         },
         "calculated": {
-          "kcal": 519,
-          "protein": 41,
+          "kcal": 495,
+          "protein": 39,
           "fat": 19,
-          "carbs": 44
+          "carbs": 41
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Chleb żytni razowy",
             "grams": 80,
-            "kcal": 200,
-            "protein": 6.4,
+            "kcal": 176,
+            "protein": 4.800000000000001,
             "fat": 1.2000000000000002,
-            "carbs": 38.400000000000006
+            "carbs": 35.2
           },
           {
             "missing": false,
@@ -383,7 +383,7 @@
           "kcal": 578,
           "protein": 49,
           "fat": 23,
-          "carbs": 43
+          "carbs": 42
         },
         "calculated": {
           "kcal": 578,
@@ -435,7 +435,7 @@
             "kcal": 15,
             "protein": 0.7,
             "fat": 0.1,
-            "carbs": 3.6
+            "carbs": 3.1
           },
           {
             "missing": false,
@@ -470,7 +470,7 @@
           "kcal": 0,
           "protein": 0,
           "fat": 0,
-          "carbs": 0
+          "carbs": 2.380952380952381
         },
         "withinTolerance": true,
         "hasMissingIngredients": false
@@ -659,26 +659,26 @@
         "id": "b9",
         "name": "Chrupiące tosty z jajkiem i szpinakiem",
         "declared": {
-          "kcal": 575,
-          "protein": 43,
+          "kcal": 551,
+          "protein": 41,
           "fat": 22,
-          "carbs": 49
+          "carbs": 46
         },
         "calculated": {
-          "kcal": 575,
-          "protein": 43,
+          "kcal": 551,
+          "protein": 41,
           "fat": 22,
-          "carbs": 49
+          "carbs": 46
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Chleb żytni razowy",
             "grams": 80,
-            "kcal": 200,
-            "protein": 6.4,
+            "kcal": 176,
+            "protein": 4.800000000000001,
             "fat": 1.2000000000000002,
-            "carbs": 38.400000000000006
+            "carbs": 35.2
           },
           {
             "missing": false,
@@ -795,7 +795,7 @@
             "kcal": 15,
             "protein": 0.7,
             "fat": 0.1,
-            "carbs": 3.6
+            "carbs": 3.1
           },
           {
             "missing": false,
@@ -956,16 +956,16 @@
         "id": "b12",
         "name": "Sałatka z melonem i fetą",
         "declared": {
-          "kcal": 769,
-          "protein": 47,
+          "kcal": 745,
+          "protein": 45,
           "fat": 35,
-          "carbs": 69
+          "carbs": 66
         },
         "calculated": {
-          "kcal": 769,
-          "protein": 47,
+          "kcal": 745,
+          "protein": 45,
           "fat": 35,
-          "carbs": 69
+          "carbs": 65
         },
         "ingredients": [
           {
@@ -1017,10 +1017,10 @@
             "missing": false,
             "item": "Chleb żytni razowy",
             "grams": 80,
-            "kcal": 200,
-            "protein": 6.4,
+            "kcal": 176,
+            "protein": 4.800000000000001,
             "fat": 1.2000000000000002,
-            "carbs": 38.400000000000006
+            "carbs": 35.2
           },
           {
             "missing": false,
@@ -1064,7 +1064,7 @@
           "kcal": 0,
           "protein": 0,
           "fat": 0,
-          "carbs": 0
+          "carbs": -1.5151515151515151
         },
         "withinTolerance": true,
         "hasMissingIngredients": false
@@ -1163,16 +1163,16 @@
         "id": "b14",
         "name": "Pieczywo z serkiem wiejskim i warzywami",
         "declared": {
-          "kcal": 635,
-          "protein": 42,
+          "kcal": 611,
+          "protein": 40,
           "fat": 23,
-          "carbs": 63
+          "carbs": 59
         },
         "calculated": {
-          "kcal": 635,
-          "protein": 42,
+          "kcal": 611,
+          "protein": 40,
           "fat": 23,
-          "carbs": 63
+          "carbs": 59
         },
         "ingredients": [
           {
@@ -1200,7 +1200,7 @@
             "kcal": 15,
             "protein": 0.7,
             "fat": 0.1,
-            "carbs": 3.6
+            "carbs": 3.1
           },
           {
             "missing": false,
@@ -1224,10 +1224,10 @@
             "missing": false,
             "item": "Chleb żytni razowy",
             "grams": 80,
-            "kcal": 200,
-            "protein": 6.4,
+            "kcal": 176,
+            "protein": 4.800000000000001,
             "fat": 1.2000000000000002,
-            "carbs": 38.400000000000006
+            "carbs": 35.2
           },
           {
             "missing": false,
@@ -1262,16 +1262,16 @@
         "id": "b15",
         "name": "Jogurt skyr z waflami ryżowymi",
         "declared": {
-          "kcal": 553,
+          "kcal": 560,
           "protein": 46,
           "fat": 16,
-          "carbs": 62
+          "carbs": 59
         },
         "calculated": {
-          "kcal": 553,
+          "kcal": 560,
           "protein": 46,
           "fat": 16,
-          "carbs": 62
+          "carbs": 59
         },
         "ingredients": [
           {
@@ -1296,10 +1296,10 @@
             "missing": false,
             "item": "Mieszanka orzechów",
             "grams": 25,
-            "kcal": 151.75,
+            "kcal": 158.5,
             "protein": 5,
-            "fat": 13.5,
-            "carbs": 5.25
+            "fat": 13.75,
+            "carbs": 2.75
           },
           {
             "missing": false,
@@ -1334,16 +1334,16 @@
         "id": "b16",
         "name": "Sałatka z serem i kukurydzą",
         "declared": {
-          "kcal": 684,
-          "protein": 44,
+          "kcal": 660,
+          "protein": 42,
           "fat": 30,
-          "carbs": 58
+          "carbs": 55
         },
         "calculated": {
-          "kcal": 684,
-          "protein": 44,
+          "kcal": 660,
+          "protein": 42,
           "fat": 30,
-          "carbs": 58
+          "carbs": 54
         },
         "ingredients": [
           {
@@ -1404,10 +1404,10 @@
             "missing": false,
             "item": "Chleb żytni razowy",
             "grams": 80,
-            "kcal": 200,
-            "protein": 6.4,
+            "kcal": 176,
+            "protein": 4.800000000000001,
             "fat": 1.2000000000000002,
-            "carbs": 38.400000000000006
+            "carbs": 35.2
           },
           {
             "missing": false,
@@ -1424,7 +1424,7 @@
           "kcal": 0,
           "protein": 0,
           "fat": 0,
-          "carbs": 0
+          "carbs": -1.8181818181818181
         },
         "withinTolerance": true,
         "hasMissingIngredients": false
@@ -1433,26 +1433,26 @@
         "id": "b17",
         "name": "Tost z szynką, serem i warzywami",
         "declared": {
-          "kcal": 669,
-          "protein": 41,
+          "kcal": 645,
+          "protein": 39,
           "fat": 30,
-          "carbs": 58
+          "carbs": 55
         },
         "calculated": {
-          "kcal": 669,
-          "protein": 41,
+          "kcal": 645,
+          "protein": 39,
           "fat": 30,
-          "carbs": 58
+          "carbs": 55
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Chleb żytni razowy",
             "grams": 80,
-            "kcal": 200,
-            "protein": 6.4,
+            "kcal": 176,
+            "protein": 4.800000000000001,
             "fat": 1.2000000000000002,
-            "carbs": 38.400000000000006
+            "carbs": 35.2
           },
           {
             "missing": false,
@@ -1532,26 +1532,26 @@
         "id": "b18",
         "name": "Tost z mozzarellą i szynką z kurczaka",
         "declared": {
-          "kcal": 528,
-          "protein": 36,
+          "kcal": 504,
+          "protein": 34,
           "fat": 21,
-          "carbs": 44
+          "carbs": 41
         },
         "calculated": {
-          "kcal": 528,
-          "protein": 36,
+          "kcal": 504,
+          "protein": 35,
           "fat": 21,
-          "carbs": 44
+          "carbs": 41
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Chleb żytni razowy",
             "grams": 80,
-            "kcal": 200,
-            "protein": 6.4,
+            "kcal": 176,
+            "protein": 4.800000000000001,
             "fat": 1.2000000000000002,
-            "carbs": 38.400000000000006
+            "carbs": 35.2
           },
           {
             "missing": false,
@@ -1593,7 +1593,7 @@
         "missingIngredients": [],
         "discrepancies": {
           "kcal": 0,
-          "protein": 0,
+          "protein": 2.941176470588235,
           "fat": 0,
           "carbs": 0
         },
@@ -1604,26 +1604,26 @@
         "id": "b19",
         "name": "Kanapki z kiszonym kalafiorem",
         "declared": {
-          "kcal": 652,
-          "protein": 39,
+          "kcal": 628,
+          "protein": 37,
           "fat": 31,
-          "carbs": 54
+          "carbs": 51
         },
         "calculated": {
-          "kcal": 652,
-          "protein": 39,
+          "kcal": 628,
+          "protein": 37,
           "fat": 31,
-          "carbs": 54
+          "carbs": 51
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Chleb żytni razowy",
             "grams": 80,
-            "kcal": 200,
-            "protein": 6.4,
+            "kcal": 176,
+            "protein": 4.800000000000001,
             "fat": 1.2000000000000002,
-            "carbs": 38.400000000000006
+            "carbs": 35.2
           },
           {
             "missing": false,
@@ -1712,16 +1712,16 @@
         "id": "b20",
         "name": "Kanapka z jajkiem, awokado i serem cheddar",
         "declared": {
-          "kcal": 674,
-          "protein": 43,
+          "kcal": 650,
+          "protein": 41,
           "fat": 34,
-          "carbs": 48
+          "carbs": 45
         },
         "calculated": {
-          "kcal": 674,
-          "protein": 43,
+          "kcal": 650,
+          "protein": 41,
           "fat": 34,
-          "carbs": 48
+          "carbs": 44
         },
         "ingredients": [
           {
@@ -1755,10 +1755,10 @@
             "missing": false,
             "item": "Chleb żytni razowy",
             "grams": 80,
-            "kcal": 200,
-            "protein": 6.4,
+            "kcal": 176,
+            "protein": 4.800000000000001,
             "fat": 1.2000000000000002,
-            "carbs": 38.400000000000006
+            "carbs": 35.2
           },
           {
             "missing": false,
@@ -1784,7 +1784,7 @@
           "kcal": 0,
           "protein": 0,
           "fat": 0,
-          "carbs": 0
+          "carbs": -2.2222222222222223
         },
         "withinTolerance": true,
         "hasMissingIngredients": false
@@ -1793,16 +1793,16 @@
         "id": "b21",
         "name": "Serek proteinowy z owocami",
         "declared": {
-          "kcal": 730,
+          "kcal": 740,
           "protein": 56,
           "fat": 23,
-          "carbs": 81
+          "carbs": 77
         },
         "calculated": {
-          "kcal": 730,
+          "kcal": 739,
           "protein": 56,
-          "fat": 23,
-          "carbs": 81
+          "fat": 24,
+          "carbs": 77
         },
         "ingredients": [
           {
@@ -1845,10 +1845,10 @@
             "missing": false,
             "item": "Mieszanka orzechów",
             "grams": 35,
-            "kcal": 212.45,
+            "kcal": 221.89999999999998,
             "protein": 7,
-            "fat": 18.9,
-            "carbs": 7.35
+            "fat": 19.25,
+            "carbs": 3.8499999999999996
           },
           {
             "missing": false,
@@ -1862,9 +1862,9 @@
         ],
         "missingIngredients": [],
         "discrepancies": {
-          "kcal": 0,
+          "kcal": -0.13513513513513514,
           "protein": 0,
-          "fat": 0,
+          "fat": 4.3478260869565215,
           "carbs": 0
         },
         "withinTolerance": true,
@@ -1874,16 +1874,16 @@
         "id": "b22",
         "name": "Omlet z serem gouda i szynką",
         "declared": {
-          "kcal": 745,
-          "protein": 52,
+          "kcal": 721,
+          "protein": 50,
           "fat": 36,
-          "carbs": 51
+          "carbs": 48
         },
         "calculated": {
-          "kcal": 745,
-          "protein": 52,
+          "kcal": 721,
+          "protein": 50,
           "fat": 36,
-          "carbs": 51
+          "carbs": 48
         },
         "ingredients": [
           {
@@ -1962,10 +1962,10 @@
             "missing": false,
             "item": "Chleb żytni razowy",
             "grams": 80,
-            "kcal": 200,
-            "protein": 6.4,
+            "kcal": 176,
+            "protein": 4.800000000000001,
             "fat": 1.2000000000000002,
-            "carbs": 38.400000000000006
+            "carbs": 35.2
           }
         ],
         "missingIngredients": [],
@@ -1982,16 +1982,16 @@
         "id": "b23",
         "name": "Jajecznica z kiełbaską roślinną",
         "declared": {
-          "kcal": 699,
-          "protein": 49,
+          "kcal": 675,
+          "protein": 47,
           "fat": 33,
-          "carbs": 47
+          "carbs": 44
         },
         "calculated": {
-          "kcal": 699,
-          "protein": 49,
+          "kcal": 675,
+          "protein": 47,
           "fat": 33,
-          "carbs": 47
+          "carbs": 44
         },
         "ingredients": [
           {
@@ -2025,10 +2025,10 @@
             "missing": false,
             "item": "Chleb żytni razowy",
             "grams": 80,
-            "kcal": 200,
-            "protein": 6.4,
+            "kcal": 176,
+            "protein": 4.800000000000001,
             "fat": 1.2000000000000002,
-            "carbs": 38.400000000000006
+            "carbs": 35.2
           },
           {
             "missing": false,
@@ -2037,7 +2037,7 @@
             "kcal": 15,
             "protein": 0.7,
             "fat": 0.1,
-            "carbs": 3.6
+            "carbs": 3.1
           },
           {
             "missing": false,
@@ -2063,26 +2063,26 @@
         "id": "b24",
         "name": "Tosty a la pizza",
         "declared": {
-          "kcal": 442,
-          "protein": 47,
+          "kcal": 467,
+          "protein": 45,
           "fat": 15,
-          "carbs": 34
+          "carbs": 41
         },
         "calculated": {
-          "kcal": 442,
-          "protein": 47,
+          "kcal": 467,
+          "protein": 45,
           "fat": 15,
-          "carbs": 34
+          "carbs": 41
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Chleb tostowy pełnoziarnisty",
-            "grams": 50,
-            "kcal": 123.5,
-            "protein": 6.5,
-            "fat": 2.1,
-            "carbs": 20.5
+            "grams": 60,
+            "kcal": 148.2,
+            "protein": 4.8,
+            "fat": 1.7999999999999998,
+            "carbs": 27.599999999999998
           },
           {
             "missing": false,
@@ -2162,26 +2162,26 @@
         "id": "b25",
         "name": "Chrupiące tosty z serkiem, szpinakiem i pomidorem",
         "declared": {
-          "kcal": 570,
-          "protein": 40,
+          "kcal": 595,
+          "protein": 39,
           "fat": 32,
-          "carbs": 31
+          "carbs": 38
         },
         "calculated": {
-          "kcal": 570,
-          "protein": 40,
+          "kcal": 595,
+          "protein": 39,
           "fat": 32,
-          "carbs": 31
+          "carbs": 38
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Chleb tostowy pełnoziarnisty",
-            "grams": 50,
-            "kcal": 123.5,
-            "protein": 6.5,
-            "fat": 2.1,
-            "carbs": 20.5
+            "grams": 60,
+            "kcal": 148.2,
+            "protein": 4.8,
+            "fat": 1.7999999999999998,
+            "carbs": 27.599999999999998
           },
           {
             "missing": false,
@@ -2254,7 +2254,7 @@
         "declared": {
           "kcal": 630,
           "protein": 44,
-          "fat": 31,
+          "fat": 30,
           "carbs": 41
         },
         "calculated": {
@@ -2279,7 +2279,7 @@
             "grams": 80,
             "kcal": 206.4,
             "protein": 7.2,
-            "fat": 2.2399999999999998,
+            "fat": 1.6,
             "carbs": 38.400000000000006
           },
           {
@@ -2332,7 +2332,7 @@
         "discrepancies": {
           "kcal": 0,
           "protein": 0,
-          "fat": 0,
+          "fat": 3.3333333333333335,
           "carbs": 0
         },
         "withinTolerance": true,
@@ -2342,26 +2342,26 @@
         "id": "b27",
         "name": "Tosty z serem pleśniowym i szynką",
         "declared": {
-          "kcal": 707,
-          "protein": 64,
-          "fat": 37,
-          "carbs": 31
+          "kcal": 732,
+          "protein": 63,
+          "fat": 36,
+          "carbs": 38
         },
         "calculated": {
-          "kcal": 707,
-          "protein": 64,
-          "fat": 37,
-          "carbs": 31
+          "kcal": 732,
+          "protein": 63,
+          "fat": 36,
+          "carbs": 38
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Chleb tostowy pełnoziarnisty",
-            "grams": 50,
-            "kcal": 123.5,
-            "protein": 6.5,
-            "fat": 2.1,
-            "carbs": 20.5
+            "grams": 60,
+            "kcal": 148.2,
+            "protein": 4.8,
+            "fat": 1.7999999999999998,
+            "carbs": 27.599999999999998
           },
           {
             "missing": false,
@@ -2540,26 +2540,26 @@
         "id": "b29",
         "name": "Tosty z kurczakiem i awokado",
         "declared": {
-          "kcal": 638,
-          "protein": 52,
+          "kcal": 663,
+          "protein": 51,
           "fat": 33,
-          "carbs": 36
+          "carbs": 43
         },
         "calculated": {
-          "kcal": 638,
-          "protein": 52,
+          "kcal": 663,
+          "protein": 51,
           "fat": 33,
-          "carbs": 36
+          "carbs": 43
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Chleb tostowy pełnoziarnisty",
-            "grams": 50,
-            "kcal": 123.5,
-            "protein": 6.5,
-            "fat": 2.1,
-            "carbs": 20.5
+            "grams": 60,
+            "kcal": 148.2,
+            "protein": 4.8,
+            "fat": 1.7999999999999998,
+            "carbs": 27.599999999999998
           },
           {
             "missing": false,
@@ -2630,16 +2630,16 @@
         "id": "b30",
         "name": "Bajgiel z domowym twarożkiem",
         "declared": {
-          "kcal": 621,
-          "protein": 52,
-          "fat": 16,
-          "carbs": 68
+          "kcal": 623,
+          "protein": 48,
+          "fat": 18,
+          "carbs": 67
         },
         "calculated": {
-          "kcal": 621,
-          "protein": 52,
-          "fat": 16,
-          "carbs": 68
+          "kcal": 623,
+          "protein": 48,
+          "fat": 18,
+          "carbs": 67
         },
         "ingredients": [
           {
@@ -2682,9 +2682,9 @@
             "missing": false,
             "item": "Łosoś wędzony",
             "grams": 50,
-            "kcal": 88.5,
-            "protein": 12.5,
-            "fat": 4,
+            "kcal": 90,
+            "protein": 9,
+            "fat": 5.5,
             "carbs": 0
           },
           {
@@ -2703,7 +2703,7 @@
             "kcal": 15,
             "protein": 0.7,
             "fat": 0.1,
-            "carbs": 3.6
+            "carbs": 3.1
           }
         ],
         "missingIngredients": [],
@@ -2726,10 +2726,10 @@
           "carbs": 62
         },
         "calculated": {
-          "kcal": 689,
-          "protein": 51,
+          "kcal": 704,
+          "protein": 52,
           "fat": 25,
-          "carbs": 62
+          "carbs": 64
         },
         "ingredients": [
           {
@@ -2788,6 +2788,15 @@
           },
           {
             "missing": false,
+            "item": "Mleko 2%",
+            "grams": 30,
+            "kcal": 15,
+            "protein": 1.02,
+            "fat": 0.6,
+            "carbs": 1.47
+          },
+          {
+            "missing": false,
             "item": "Oliwa",
             "grams": 10,
             "kcal": 88.4,
@@ -2816,10 +2825,10 @@
         ],
         "missingIngredients": [],
         "discrepancies": {
-          "kcal": 0,
-          "protein": 0,
+          "kcal": 2.1770682148040637,
+          "protein": 1.9607843137254901,
           "fat": 0,
-          "carbs": 0
+          "carbs": 3.225806451612903
         },
         "withinTolerance": true,
         "hasMissingIngredients": false
@@ -2909,16 +2918,16 @@
         "id": "b33",
         "name": "Jajecznica na bekonie z tostami",
         "declared": {
-          "kcal": 637,
-          "protein": 40,
+          "kcal": 661,
+          "protein": 39,
           "fat": 40,
-          "carbs": 28
+          "carbs": 35
         },
         "calculated": {
-          "kcal": 637,
-          "protein": 40,
+          "kcal": 661,
+          "protein": 39,
           "fat": 40,
-          "carbs": 28
+          "carbs": 35
         },
         "ingredients": [
           {
@@ -2942,11 +2951,11 @@
           {
             "missing": false,
             "item": "Chleb tostowy pełnoziarnisty",
-            "grams": 50,
-            "kcal": 123.5,
-            "protein": 6.5,
-            "fat": 2.1,
-            "carbs": 20.5
+            "grams": 60,
+            "kcal": 148.2,
+            "protein": 4.8,
+            "fat": 1.7999999999999998,
+            "carbs": 27.599999999999998
           },
           {
             "missing": false,
@@ -3791,16 +3800,16 @@
         "id": "b43",
         "name": "Owsianka jabłkowo-cynamonowa",
         "declared": {
-          "kcal": 1056,
+          "kcal": 1149,
           "protein": 70,
           "fat": 45,
-          "carbs": 103
+          "carbs": 128
         },
         "calculated": {
-          "kcal": 1056,
+          "kcal": 1149,
           "protein": 70,
           "fat": 45,
-          "carbs": 103
+          "carbs": 128
         },
         "ingredients": [
           {
@@ -3824,11 +3833,11 @@
           {
             "missing": false,
             "item": "Jabłko",
-            "grams": 180,
-            "kcal": 93.60000000000001,
-            "protein": 0.54,
-            "fat": 0.36000000000000004,
-            "carbs": 25.2
+            "grams": 360,
+            "kcal": 187.20000000000002,
+            "protein": 1.08,
+            "fat": 0.7200000000000001,
+            "carbs": 50.4
           },
           {
             "missing": false,
@@ -4808,26 +4817,26 @@
         "id": "b53",
         "name": "Tosty z ricottą, szpinakiem i jajkiem",
         "declared": {
-          "kcal": 586,
-          "protein": 43,
+          "kcal": 610,
+          "protein": 41,
           "fat": 33,
-          "carbs": 31
+          "carbs": 38
         },
         "calculated": {
-          "kcal": 586,
-          "protein": 43,
+          "kcal": 610,
+          "protein": 41,
           "fat": 33,
-          "carbs": 31
+          "carbs": 38
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Chleb tostowy pełnoziarnisty",
-            "grams": 50,
-            "kcal": 123.5,
-            "protein": 6.5,
-            "fat": 2.1,
-            "carbs": 20.5
+            "grams": 60,
+            "kcal": 148.2,
+            "protein": 4.8,
+            "fat": 1.7999999999999998,
+            "carbs": 27.599999999999998
           },
           {
             "missing": false,
@@ -5276,7 +5285,7 @@
           "kcal": 705,
           "protein": 56,
           "fat": 20,
-          "carbs": 75
+          "carbs": 74
         },
         "ingredients": [
           {
@@ -5322,7 +5331,7 @@
             "kcal": 30,
             "protein": 1.4,
             "fat": 0.2,
-            "carbs": 7.2
+            "carbs": 6.2
           },
           {
             "missing": false,
@@ -5348,7 +5357,7 @@
           "kcal": 0,
           "protein": 0,
           "fat": 0,
-          "carbs": 0
+          "carbs": -1.3333333333333335
         },
         "withinTolerance": true,
         "hasMissingIngredients": false
@@ -5447,16 +5456,16 @@
         "id": "b60",
         "name": "Jajecznica na boczku",
         "declared": {
-          "kcal": 666,
-          "protein": 43,
+          "kcal": 642,
+          "protein": 42,
           "fat": 34,
-          "carbs": 44
+          "carbs": 40
         },
         "calculated": {
-          "kcal": 666,
-          "protein": 43,
+          "kcal": 642,
+          "protein": 42,
           "fat": 34,
-          "carbs": 44
+          "carbs": 40
         },
         "ingredients": [
           {
@@ -5490,10 +5499,10 @@
             "missing": false,
             "item": "Chleb żytni razowy",
             "grams": 80,
-            "kcal": 200,
-            "protein": 6.4,
+            "kcal": 176,
+            "protein": 4.800000000000001,
             "fat": 1.2000000000000002,
-            "carbs": 38.400000000000006
+            "carbs": 35.2
           },
           {
             "missing": false,
@@ -5881,7 +5890,7 @@
           "kcal": 701,
           "protein": 46,
           "fat": 33,
-          "carbs": 60
+          "carbs": 59
         },
         "ingredients": [
           {
@@ -5945,7 +5954,7 @@
             "kcal": 30,
             "protein": 1.4,
             "fat": 0.2,
-            "carbs": 7.2
+            "carbs": 6.2
           },
           {
             "missing": false,
@@ -5971,7 +5980,7 @@
           "kcal": 0,
           "protein": 0,
           "fat": 0,
-          "carbs": 0
+          "carbs": -1.6666666666666667
         },
         "withinTolerance": true,
         "hasMissingIngredients": false
@@ -6314,7 +6323,7 @@
             "kcal": 15,
             "protein": 0.7,
             "fat": 0.1,
-            "carbs": 3.6
+            "carbs": 3.1
           },
           {
             "missing": false,
@@ -6358,7 +6367,7 @@
           "kcal": 813,
           "protein": 53,
           "fat": 27,
-          "carbs": 89
+          "carbs": 88
         },
         "ingredients": [
           {
@@ -6404,7 +6413,7 @@
             "kcal": 30,
             "protein": 1.4,
             "fat": 0.2,
-            "carbs": 7.2
+            "carbs": 6.2
           },
           {
             "missing": false,
@@ -6475,7 +6484,7 @@
           "kcal": 0,
           "protein": 0,
           "fat": 0,
-          "carbs": 0
+          "carbs": -1.1235955056179776
         },
         "withinTolerance": true,
         "hasMissingIngredients": false
@@ -7069,7 +7078,7 @@
           "kcal": 814,
           "protein": 50,
           "fat": 26,
-          "carbs": 94
+          "carbs": 93
         },
         "ingredients": [
           {
@@ -7097,7 +7106,7 @@
             "kcal": 30,
             "protein": 1.4,
             "fat": 0.2,
-            "carbs": 7.2
+            "carbs": 6.2
           },
           {
             "missing": false,
@@ -7168,7 +7177,7 @@
           "kcal": 0,
           "protein": 0,
           "fat": 0,
-          "carbs": 0
+          "carbs": -1.0638297872340425
         },
         "withinTolerance": true,
         "hasMissingIngredients": false
@@ -9185,7 +9194,7 @@
             "kcal": 6,
             "protein": 0.27999999999999997,
             "fat": 0.04000000000000001,
-            "carbs": 1.4400000000000002
+            "carbs": 1.2400000000000002
           },
           {
             "missing": false,
@@ -9211,15 +9220,15 @@
         "id": "l34",
         "name": "Wieprzowina po chińsku z ryżem",
         "declared": {
-          "kcal": 898,
-          "protein": 49,
-          "fat": 33,
+          "kcal": 846,
+          "protein": 54,
+          "fat": 26,
           "carbs": 103
         },
         "calculated": {
-          "kcal": 898,
-          "protein": 49,
-          "fat": 33,
+          "kcal": 846,
+          "protein": 54,
+          "fat": 26,
           "carbs": 103
         },
         "ingredients": [
@@ -9227,9 +9236,9 @@
             "missing": false,
             "item": "Schab wieprzowy",
             "grams": 180,
-            "kcal": 282.6,
-            "protein": 37.800000000000004,
-            "fat": 14.4,
+            "kcal": 230.4,
+            "protein": 43.2,
+            "fat": 7.2,
             "carbs": 0
           },
           {
@@ -9661,15 +9670,15 @@
         "id": "l38",
         "name": "Kotlet schabowy z ziemniakami i surówką",
         "declared": {
-          "kcal": 841,
-          "protein": 45,
-          "fat": 42,
+          "kcal": 803,
+          "protein": 49,
+          "fat": 37,
           "carbs": 71
         },
         "calculated": {
-          "kcal": 841,
-          "protein": 45,
-          "fat": 42,
+          "kcal": 803,
+          "protein": 49,
+          "fat": 36,
           "carbs": 71
         },
         "ingredients": [
@@ -9677,9 +9686,9 @@
             "missing": false,
             "item": "Schab wieprzowy",
             "grams": 130,
-            "kcal": 204.1,
-            "protein": 27.3,
-            "fat": 10.4,
+            "kcal": 166.4,
+            "protein": 31.200000000000003,
+            "fat": 5.2,
             "carbs": 0
           },
           {
@@ -9741,7 +9750,7 @@
         "discrepancies": {
           "kcal": 0,
           "protein": 0,
-          "fat": 0,
+          "fat": -2.7027027027027026,
           "carbs": 0
         },
         "withinTolerance": true,
@@ -10876,16 +10885,16 @@
         "id": "l50",
         "name": "Tatar azjatycki z sezamem i imbirem",
         "declared": {
-          "kcal": 875,
-          "protein": 50,
-          "fat": 22,
-          "carbs": 117
+          "kcal": 1011,
+          "protein": 51,
+          "fat": 35,
+          "carbs": 125
         },
         "calculated": {
-          "kcal": 875,
-          "protein": 50,
-          "fat": 22,
-          "carbs": 117
+          "kcal": 1011,
+          "protein": 51,
+          "fat": 35,
+          "carbs": 125
         },
         "ingredients": [
           {
@@ -10959,6 +10968,15 @@
             "protein": 9.799999999999999,
             "fat": 0.42,
             "carbs": 109.19999999999999
+          },
+          {
+            "missing": false,
+            "item": "Awokado",
+            "grams": 85,
+            "kcal": 136,
+            "protein": 1.7,
+            "fat": 12.75,
+            "carbs": 7.6499999999999995
           }
         ],
         "missingIngredients": [],
@@ -11039,7 +11057,7 @@
             "kcal": 7.5,
             "protein": 0.35,
             "fat": 0.05,
-            "carbs": 1.8
+            "carbs": 1.55
           },
           {
             "missing": false,
@@ -13306,7 +13324,7 @@
           "kcal": 903,
           "protein": 57,
           "fat": 35,
-          "carbs": 91
+          "carbs": 90
         },
         "ingredients": [
           {
@@ -13343,7 +13361,7 @@
             "kcal": 22.5,
             "protein": 1.0499999999999998,
             "fat": 0.15000000000000002,
-            "carbs": 5.4
+            "carbs": 4.65
           },
           {
             "missing": false,
@@ -13396,7 +13414,7 @@
           "kcal": 0,
           "protein": 0,
           "fat": 0,
-          "carbs": 0
+          "carbs": -1.098901098901099
         },
         "withinTolerance": true,
         "hasMissingIngredients": false
@@ -13451,7 +13469,7 @@
             "kcal": 15,
             "protein": 0.7,
             "fat": 0.1,
-            "carbs": 3.6
+            "carbs": 3.1
           },
           {
             "missing": false,
@@ -15592,7 +15610,7 @@
           "kcal": 905,
           "protein": 47,
           "fat": 49,
-          "carbs": 69
+          "carbs": 68
         },
         "ingredients": [
           {
@@ -15638,7 +15656,7 @@
             "kcal": 30,
             "protein": 1.4,
             "fat": 0.2,
-            "carbs": 7.2
+            "carbs": 6.2
           },
           {
             "missing": false,
@@ -15682,7 +15700,7 @@
           "kcal": 0,
           "protein": 0,
           "fat": 0,
-          "carbs": 0
+          "carbs": -1.4492753623188406
         },
         "withinTolerance": true,
         "hasMissingIngredients": false
@@ -16249,7 +16267,7 @@
           "kcal": 888,
           "protein": 63,
           "fat": 14,
-          "carbs": 128
+          "carbs": 127
         },
         "ingredients": [
           {
@@ -16286,7 +16304,7 @@
             "kcal": 30,
             "protein": 1.4,
             "fat": 0.2,
-            "carbs": 7.2
+            "carbs": 6.2
           },
           {
             "missing": false,
@@ -16339,7 +16357,7 @@
           "kcal": 0,
           "protein": 0,
           "fat": 0,
-          "carbs": 0
+          "carbs": -0.78125
         },
         "withinTolerance": true,
         "hasMissingIngredients": false
@@ -18492,26 +18510,26 @@
         "id": "d2",
         "name": "Kanapki z pastą jajeczną",
         "declared": {
-          "kcal": 798,
-          "protein": 49,
+          "kcal": 774,
+          "protein": 47,
           "fat": 43,
-          "carbs": 51
+          "carbs": 47
         },
         "calculated": {
-          "kcal": 798,
-          "protein": 49,
+          "kcal": 774,
+          "protein": 48,
           "fat": 43,
-          "carbs": 51
+          "carbs": 47
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Chleb żytni razowy",
             "grams": 80,
-            "kcal": 200,
-            "protein": 6.4,
+            "kcal": 176,
+            "protein": 4.800000000000001,
             "fat": 1.2000000000000002,
-            "carbs": 38.400000000000006
+            "carbs": 35.2
           },
           {
             "missing": false,
@@ -18556,7 +18574,7 @@
             "kcal": 30,
             "protein": 1.4,
             "fat": 0.2,
-            "carbs": 7.2
+            "carbs": 6.2
           },
           {
             "missing": false,
@@ -18571,7 +18589,7 @@
         "missingIngredients": [],
         "discrepancies": {
           "kcal": 0,
-          "protein": 0,
+          "protein": 2.127659574468085,
           "fat": 0,
           "carbs": 0
         },
@@ -18672,16 +18690,16 @@
         "id": "d4",
         "name": "Sałatka śródziemnomorska z indykiem",
         "declared": {
-          "kcal": 857,
-          "protein": 52,
+          "kcal": 821,
+          "protein": 49,
           "fat": 38,
-          "carbs": 76
+          "carbs": 70
         },
         "calculated": {
-          "kcal": 857,
-          "protein": 52,
+          "kcal": 821,
+          "protein": 50,
           "fat": 38,
-          "carbs": 76
+          "carbs": 70
         },
         "ingredients": [
           {
@@ -18718,7 +18736,7 @@
             "kcal": 15,
             "protein": 0.7,
             "fat": 0.1,
-            "carbs": 3.6
+            "carbs": 3.1
           },
           {
             "missing": false,
@@ -18769,16 +18787,16 @@
             "missing": false,
             "item": "Chleb żytni razowy",
             "grams": 120,
-            "kcal": 300,
-            "protein": 9.6,
+            "kcal": 264,
+            "protein": 7.199999999999999,
             "fat": 1.7999999999999998,
-            "carbs": 57.599999999999994
+            "carbs": 52.8
           }
         ],
         "missingIngredients": [],
         "discrepancies": {
           "kcal": 0,
-          "protein": 0,
+          "protein": 2.0408163265306123,
           "fat": 0,
           "carbs": 0
         },
@@ -18789,16 +18807,16 @@
         "id": "d5",
         "name": "Tortilla z łososiem i warzywami",
         "declared": {
-          "kcal": 678,
-          "protein": 51,
-          "fat": 32,
-          "carbs": 47
+          "kcal": 681,
+          "protein": 44,
+          "fat": 35,
+          "carbs": 46
         },
         "calculated": {
-          "kcal": 678,
-          "protein": 51,
-          "fat": 32,
-          "carbs": 47
+          "kcal": 681,
+          "protein": 44,
+          "fat": 35,
+          "carbs": 46
         },
         "ingredients": [
           {
@@ -18814,9 +18832,9 @@
             "missing": false,
             "item": "Łosoś wędzony",
             "grams": 100,
-            "kcal": 177,
-            "protein": 25,
-            "fat": 8,
+            "kcal": 180,
+            "protein": 18,
+            "fat": 11,
             "carbs": 0
           },
           {
@@ -18844,7 +18862,7 @@
             "kcal": 30,
             "protein": 1.4,
             "fat": 0.2,
-            "carbs": 7.2
+            "carbs": 6.2
           },
           {
             "missing": false,
@@ -19005,26 +19023,26 @@
         "id": "d7",
         "name": "Kanapki z serem gouda",
         "declared": {
-          "kcal": 697,
-          "protein": 46,
+          "kcal": 673,
+          "protein": 44,
           "fat": 33,
-          "carbs": 53
+          "carbs": 49
         },
         "calculated": {
-          "kcal": 697,
-          "protein": 46,
+          "kcal": 673,
+          "protein": 45,
           "fat": 33,
-          "carbs": 53
+          "carbs": 49
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Chleb żytni razowy",
             "grams": 80,
-            "kcal": 200,
-            "protein": 6.4,
+            "kcal": 176,
+            "protein": 4.800000000000001,
             "fat": 1.2000000000000002,
-            "carbs": 38.400000000000006
+            "carbs": 35.2
           },
           {
             "missing": false,
@@ -19078,7 +19096,7 @@
             "kcal": 15,
             "protein": 0.7,
             "fat": 0.1,
-            "carbs": 3.6
+            "carbs": 3.1
           },
           {
             "missing": false,
@@ -19093,7 +19111,7 @@
         "missingIngredients": [],
         "discrepancies": {
           "kcal": 0,
-          "protein": 0,
+          "protein": 2.272727272727273,
           "fat": 0,
           "carbs": 0
         },
@@ -19374,16 +19392,16 @@
         "id": "d11",
         "name": "Kanapki z jajkiem i awokado",
         "declared": {
-          "kcal": 601,
-          "protein": 40,
+          "kcal": 577,
+          "protein": 38,
           "fat": 22,
-          "carbs": 62
+          "carbs": 59
         },
         "calculated": {
-          "kcal": 601,
-          "protein": 40,
+          "kcal": 577,
+          "protein": 38,
           "fat": 22,
-          "carbs": 62
+          "carbs": 59
         },
         "ingredients": [
           {
@@ -19426,10 +19444,10 @@
             "missing": false,
             "item": "Chleb żytni razowy",
             "grams": 80,
-            "kcal": 200,
-            "protein": 6.4,
+            "kcal": 176,
+            "protein": 4.800000000000001,
             "fat": 1.2000000000000002,
-            "carbs": 38.400000000000006
+            "carbs": 35.2
           },
           {
             "missing": false,
@@ -19473,16 +19491,16 @@
         "id": "d12",
         "name": "Twarożek z suszonymi pomidorami",
         "declared": {
-          "kcal": 973,
-          "protein": 66,
+          "kcal": 937,
+          "protein": 63,
           "fat": 41,
-          "carbs": 86
+          "carbs": 80
         },
         "calculated": {
-          "kcal": 973,
-          "protein": 66,
+          "kcal": 937,
+          "protein": 63,
           "fat": 41,
-          "carbs": 86
+          "carbs": 80
         },
         "ingredients": [
           {
@@ -19492,7 +19510,7 @@
             "kcal": 30,
             "protein": 1.4,
             "fat": 0.2,
-            "carbs": 7.2
+            "carbs": 6.2
           },
           {
             "missing": false,
@@ -19516,10 +19534,10 @@
             "missing": false,
             "item": "Chleb żytni razowy",
             "grams": 120,
-            "kcal": 300,
-            "protein": 9.6,
+            "kcal": 264,
+            "protein": 7.199999999999999,
             "fat": 1.7999999999999998,
-            "carbs": 57.599999999999994
+            "carbs": 52.8
           },
           {
             "missing": false,
@@ -19581,26 +19599,26 @@
         "id": "d13",
         "name": "Kanapki z szynką i mozzarellą",
         "declared": {
-          "kcal": 1056,
-          "protein": 82,
+          "kcal": 1008,
+          "protein": 79,
           "fat": 41,
-          "carbs": 84
+          "carbs": 78
         },
         "calculated": {
-          "kcal": 1056,
-          "protein": 82,
+          "kcal": 1008,
+          "protein": 79,
           "fat": 41,
-          "carbs": 84
+          "carbs": 77
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Chleb żytni razowy",
             "grams": 160,
-            "kcal": 400,
-            "protein": 12.8,
+            "kcal": 352,
+            "protein": 9.600000000000001,
             "fat": 2.4000000000000004,
-            "carbs": 76.80000000000001
+            "carbs": 70.4
           },
           {
             "missing": false,
@@ -19662,7 +19680,7 @@
           "kcal": 0,
           "protein": 0,
           "fat": 0,
-          "carbs": 0
+          "carbs": -1.282051282051282
         },
         "withinTolerance": true,
         "hasMissingIngredients": false
@@ -19671,15 +19689,15 @@
         "id": "d14",
         "name": "Bułka owsiana z łososiem i warzywami",
         "declared": {
-          "kcal": 886,
-          "protein": 70,
-          "fat": 47,
+          "kcal": 891,
+          "protein": 57,
+          "fat": 52,
           "carbs": 44
         },
         "calculated": {
-          "kcal": 886,
-          "protein": 70,
-          "fat": 47,
+          "kcal": 892,
+          "protein": 58,
+          "fat": 52,
           "carbs": 44
         },
         "ingredients": [
@@ -19714,9 +19732,9 @@
             "missing": false,
             "item": "Łosoś wędzony",
             "grams": 180,
-            "kcal": 318.6,
-            "protein": 45,
-            "fat": 14.4,
+            "kcal": 324,
+            "protein": 32.4,
+            "fat": 19.8,
             "carbs": 0
           },
           {
@@ -19749,8 +19767,8 @@
         ],
         "missingIngredients": [],
         "discrepancies": {
-          "kcal": 0,
-          "protein": 0,
+          "kcal": 0.11223344556677892,
+          "protein": 1.7543859649122806,
           "fat": 0,
           "carbs": 0
         },
@@ -19761,26 +19779,26 @@
         "id": "d15",
         "name": "Kanapki z hummusem i wędliną",
         "declared": {
-          "kcal": 635,
-          "protein": 44,
+          "kcal": 611,
+          "protein": 42,
           "fat": 25,
-          "carbs": 59
+          "carbs": 55
         },
         "calculated": {
-          "kcal": 635,
-          "protein": 44,
+          "kcal": 611,
+          "protein": 42,
           "fat": 25,
-          "carbs": 59
+          "carbs": 56
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Chleb żytni razowy",
             "grams": 80,
-            "kcal": 200,
-            "protein": 6.4,
+            "kcal": 176,
+            "protein": 4.800000000000001,
             "fat": 1.2000000000000002,
-            "carbs": 38.400000000000006
+            "carbs": 35.2
           },
           {
             "missing": false,
@@ -19816,7 +19834,7 @@
             "kcal": 15,
             "protein": 0.7,
             "fat": 0.1,
-            "carbs": 3.6
+            "carbs": 3.1
           },
           {
             "missing": false,
@@ -19860,7 +19878,7 @@
           "kcal": 0,
           "protein": 0,
           "fat": 0,
-          "carbs": 0
+          "carbs": 1.8181818181818181
         },
         "withinTolerance": true,
         "hasMissingIngredients": false
@@ -19869,26 +19887,26 @@
         "id": "d16",
         "name": "Kanapka z szynką z indyka i camembertem",
         "declared": {
-          "kcal": 1059,
-          "protein": 65,
+          "kcal": 1011,
+          "protein": 62,
           "fat": 44,
-          "carbs": 97
+          "carbs": 91
         },
         "calculated": {
-          "kcal": 1059,
-          "protein": 65,
+          "kcal": 1011,
+          "protein": 62,
           "fat": 44,
-          "carbs": 97
+          "carbs": 90
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Chleb żytni razowy",
             "grams": 160,
-            "kcal": 400,
-            "protein": 12.8,
+            "kcal": 352,
+            "protein": 9.600000000000001,
             "fat": 2.4000000000000004,
-            "carbs": 76.80000000000001
+            "carbs": 70.4
           },
           {
             "missing": false,
@@ -19950,7 +19968,7 @@
           "kcal": 0,
           "protein": 0,
           "fat": 0,
-          "carbs": 0
+          "carbs": -1.098901098901099
         },
         "withinTolerance": true,
         "hasMissingIngredients": false
@@ -19959,26 +19977,26 @@
         "id": "d17",
         "name": "Kanapka z szynką z kurczaka i pastą z suszonych pomidorów",
         "declared": {
-          "kcal": 799,
-          "protein": 45,
+          "kcal": 751,
+          "protein": 42,
           "fat": 26,
-          "carbs": 99
+          "carbs": 93
         },
         "calculated": {
-          "kcal": 799,
-          "protein": 45,
+          "kcal": 751,
+          "protein": 41,
           "fat": 26,
-          "carbs": 99
+          "carbs": 92
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Chleb żytni razowy",
             "grams": 160,
-            "kcal": 400,
-            "protein": 12.8,
+            "kcal": 352,
+            "protein": 9.600000000000001,
             "fat": 2.4000000000000004,
-            "carbs": 76.80000000000001
+            "carbs": 70.4
           },
           {
             "missing": false,
@@ -20038,9 +20056,9 @@
         "missingIngredients": [],
         "discrepancies": {
           "kcal": 0,
-          "protein": 0,
+          "protein": -2.380952380952381,
           "fat": 0,
-          "carbs": 0
+          "carbs": -1.0752688172043012
         },
         "withinTolerance": true,
         "hasMissingIngredients": false
@@ -20049,16 +20067,16 @@
         "id": "d18",
         "name": "Skyr z orzechami i bananem",
         "declared": {
-          "kcal": 491,
+          "kcal": 499,
           "protein": 45,
           "fat": 18,
-          "carbs": 43
+          "carbs": 40
         },
         "calculated": {
-          "kcal": 491,
+          "kcal": 499,
           "protein": 45,
           "fat": 18,
-          "carbs": 43
+          "carbs": 40
         },
         "ingredients": [
           {
@@ -20083,10 +20101,10 @@
             "missing": false,
             "item": "Mieszanka orzechów",
             "grams": 30,
-            "kcal": 182.1,
+            "kcal": 190.2,
             "protein": 6,
-            "fat": 16.2,
-            "carbs": 6.3
+            "fat": 16.5,
+            "carbs": 3.3
           },
           {
             "missing": false,
@@ -20184,16 +20202,16 @@
         "id": "d20",
         "name": "Kanapki z jajkiem i awokado (duża porcja)",
         "declared": {
-          "kcal": 1049,
-          "protein": 53,
+          "kcal": 1001,
+          "protein": 50,
           "fat": 39,
-          "carbs": 124
+          "carbs": 118
         },
         "calculated": {
-          "kcal": 1049,
-          "protein": 53,
+          "kcal": 1001,
+          "protein": 49,
           "fat": 39,
-          "carbs": 124
+          "carbs": 117
         },
         "ingredients": [
           {
@@ -20236,10 +20254,10 @@
             "missing": false,
             "item": "Chleb żytni razowy",
             "grams": 160,
-            "kcal": 400,
-            "protein": 12.8,
+            "kcal": 352,
+            "protein": 9.600000000000001,
             "fat": 2.4000000000000004,
-            "carbs": 76.80000000000001
+            "carbs": 70.4
           },
           {
             "missing": false,
@@ -20263,9 +20281,9 @@
         "missingIngredients": [],
         "discrepancies": {
           "kcal": 0,
-          "protein": 0,
+          "protein": -2,
           "fat": 0,
-          "carbs": 0
+          "carbs": -0.847457627118644
         },
         "withinTolerance": true,
         "hasMissingIngredients": false
@@ -20274,16 +20292,16 @@
         "id": "d21",
         "name": "Sałatka grecka z serem feta",
         "declared": {
-          "kcal": 924,
-          "protein": 40,
+          "kcal": 876,
+          "protein": 37,
           "fat": 33,
-          "carbs": 117
+          "carbs": 110
         },
         "calculated": {
-          "kcal": 924,
-          "protein": 40,
+          "kcal": 876,
+          "protein": 37,
           "fat": 33,
-          "carbs": 117
+          "carbs": 109
         },
         "ingredients": [
           {
@@ -20374,16 +20392,16 @@
             "kcal": 30,
             "protein": 1.4,
             "fat": 0.2,
-            "carbs": 7.2
+            "carbs": 6.2
           },
           {
             "missing": false,
             "item": "Chleb żytni razowy",
             "grams": 160,
-            "kcal": 400,
-            "protein": 12.8,
+            "kcal": 352,
+            "protein": 9.600000000000001,
             "fat": 2.4000000000000004,
-            "carbs": 76.80000000000001
+            "carbs": 70.4
           },
           {
             "missing": false,
@@ -20400,7 +20418,7 @@
           "kcal": 0,
           "protein": 0,
           "fat": 0,
-          "carbs": 0
+          "carbs": -0.9090909090909091
         },
         "withinTolerance": true,
         "hasMissingIngredients": false
@@ -20598,26 +20616,26 @@
         "id": "d24",
         "name": "Grzanki z pstrągiem wędzonym",
         "declared": {
-          "kcal": 784,
-          "protein": 68,
-          "fat": 36,
-          "carbs": 48
+          "kcal": 834,
+          "protein": 65,
+          "fat": 35,
+          "carbs": 62
         },
         "calculated": {
-          "kcal": 784,
-          "protein": 68,
-          "fat": 36,
-          "carbs": 48
+          "kcal": 834,
+          "protein": 65,
+          "fat": 35,
+          "carbs": 62
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Chleb tostowy pełnoziarnisty",
-            "grams": 100,
-            "kcal": 247,
-            "protein": 13,
-            "fat": 4.2,
-            "carbs": 41
+            "grams": 120,
+            "kcal": 296.4,
+            "protein": 9.6,
+            "fat": 3.5999999999999996,
+            "carbs": 55.199999999999996
           },
           {
             "missing": false,
@@ -20697,26 +20715,26 @@
         "id": "d25",
         "name": "Kanapki z pastą z awokado i mozzarellą",
         "declared": {
-          "kcal": 1239,
-          "protein": 72,
+          "kcal": 1191,
+          "protein": 69,
           "fat": 62,
-          "carbs": 103
+          "carbs": 97
         },
         "calculated": {
-          "kcal": 1239,
-          "protein": 72,
+          "kcal": 1191,
+          "protein": 69,
           "fat": 62,
-          "carbs": 103
+          "carbs": 97
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Chleb żytni razowy",
             "grams": 160,
-            "kcal": 400,
-            "protein": 12.8,
+            "kcal": 352,
+            "protein": 9.600000000000001,
             "fat": 2.4000000000000004,
-            "carbs": 76.80000000000001
+            "carbs": 70.4
           },
           {
             "missing": false,
@@ -21165,26 +21183,26 @@
         "id": "d30",
         "name": "Tosty z ricottą, szpinakiem i jajkiem",
         "declared": {
-          "kcal": 928,
-          "protein": 69,
-          "fat": 49,
-          "carbs": 56
+          "kcal": 978,
+          "protein": 66,
+          "fat": 48,
+          "carbs": 70
         },
         "calculated": {
-          "kcal": 928,
-          "protein": 69,
-          "fat": 49,
-          "carbs": 56
+          "kcal": 978,
+          "protein": 66,
+          "fat": 48,
+          "carbs": 70
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Chleb tostowy pełnoziarnisty",
-            "grams": 100,
-            "kcal": 247,
-            "protein": 13,
-            "fat": 4.2,
-            "carbs": 41
+            "grams": 120,
+            "kcal": 296.4,
+            "protein": 9.6,
+            "fat": 3.5999999999999996,
+            "carbs": 55.199999999999996
           },
           {
             "missing": false,
@@ -21267,13 +21285,13 @@
           "kcal": 677,
           "protein": 52,
           "fat": 31,
-          "carbs": 47
+          "carbs": 46
         },
         "calculated": {
           "kcal": 677,
           "protein": 52,
           "fat": 31,
-          "carbs": 47
+          "carbs": 46
         },
         "ingredients": [
           {
@@ -21319,7 +21337,7 @@
             "kcal": 30,
             "protein": 1.4,
             "fat": 0.2,
-            "carbs": 7.2
+            "carbs": 6.2
           },
           {
             "missing": false,
@@ -21372,7 +21390,7 @@
           "kcal": 595,
           "protein": 39,
           "fat": 19,
-          "carbs": 68
+          "carbs": 67
         },
         "ingredients": [
           {
@@ -21418,7 +21436,7 @@
             "kcal": 30,
             "protein": 1.4,
             "fat": 0.2,
-            "carbs": 7.2
+            "carbs": 6.2
           },
           {
             "missing": false,
@@ -21444,7 +21462,7 @@
           "kcal": 0,
           "protein": 0,
           "fat": 0,
-          "carbs": 0
+          "carbs": -1.4705882352941175
         },
         "withinTolerance": true,
         "hasMissingIngredients": false
@@ -21459,10 +21477,10 @@
           "carbs": 51
         },
         "calculated": {
-          "kcal": 705,
-          "protein": 49,
-          "fat": 34,
-          "carbs": 51
+          "kcal": 720,
+          "protein": 50,
+          "fat": 35,
+          "carbs": 52
         },
         "ingredients": [
           {
@@ -21473,6 +21491,15 @@
             "protein": 22.68,
             "fat": 17.1,
             "carbs": 1.26
+          },
+          {
+            "missing": false,
+            "item": "Mleko 2%",
+            "grams": 30,
+            "kcal": 15,
+            "protein": 1.02,
+            "fat": 0.6,
+            "carbs": 1.47
           },
           {
             "missing": false,
@@ -21540,10 +21567,10 @@
         ],
         "missingIngredients": [],
         "discrepancies": {
-          "kcal": 0,
-          "protein": 0,
-          "fat": 0,
-          "carbs": 0
+          "kcal": 2.127659574468085,
+          "protein": 2.0408163265306123,
+          "fat": 2.941176470588235,
+          "carbs": 1.9607843137254901
         },
         "withinTolerance": true,
         "hasMissingIngredients": false
@@ -21552,15 +21579,15 @@
         "id": "d34",
         "name": "Kanapki z awokado i łososiem wędzonym",
         "declared": {
-          "kcal": 635,
-          "protein": 39,
-          "fat": 34,
+          "kcal": 637,
+          "protein": 35,
+          "fat": 36,
           "carbs": 44
         },
         "calculated": {
-          "kcal": 635,
-          "protein": 39,
-          "fat": 34,
+          "kcal": 637,
+          "protein": 35,
+          "fat": 36,
           "carbs": 44
         },
         "ingredients": [
@@ -21586,9 +21613,9 @@
             "missing": false,
             "item": "Łosoś wędzony",
             "grams": 50,
-            "kcal": 88.5,
-            "protein": 12.5,
-            "fat": 4,
+            "kcal": 90,
+            "protein": 9,
+            "fat": 5.5,
             "carbs": 0
           },
           {
@@ -22462,15 +22489,15 @@
         "name": "Tatar na tostach z jajkiem na miękko",
         "declared": {
           "kcal": 810,
-          "protein": 65,
-          "fat": 32,
-          "carbs": 67
+          "protein": 57,
+          "fat": 30,
+          "carbs": 75
         },
         "calculated": {
           "kcal": 810,
-          "protein": 65,
-          "fat": 32,
-          "carbs": 67
+          "protein": 57,
+          "fat": 30,
+          "carbs": 75
         },
         "ingredients": [
           {
@@ -22496,9 +22523,9 @@
             "item": "Chleb tostowy pełnoziarnisty",
             "grams": 150,
             "kcal": 370.5,
-            "protein": 19.5,
-            "fat": 6.300000000000001,
-            "carbs": 61.5
+            "protein": 12,
+            "fat": 4.5,
+            "carbs": 69
           },
           {
             "missing": false,

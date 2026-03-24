@@ -9,43 +9,52 @@
     <link rel="icon" type="image/x-icon" href="1486505264-food-fork-kitchen-knife-meanns-restaurant_81404.ico">
     <link rel="apple-touch-icon" href="1486505264-food-fork-kitchen-knife-meanns-restaurant_81404.png">
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#667eea">
+    <meta name="theme-color" content="#059669">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
+        *:focus-visible { outline: 2px solid #10b981; outline-offset: 2px; }
+        body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background: linear-gradient(160deg, #0a0f1a 0%, #0f1628 40%, #111827 100%);
             min-height: 100vh;
-            color: #333;
+            color: #1f2937;
         }
         
         /* NAWIGACJA */
         .nav {
-            background: rgba(255,255,255,0.95);
-            padding: 12px 15px;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            padding: 10px 16px;
             display: flex;
             justify-content: center;
-            gap: 8px;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+            gap: 6px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
             position: sticky;
             top: 0;
             z-index: 100;
             flex-wrap: wrap;
         }
         .nav-btn {
-            padding: 10px 18px;
+            padding: 10px 20px;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             font-weight: 600;
             cursor: pointer;
             font-size: 14px;
-            transition: all 0.2s;
-            background: #f3f4f6;
-            color: #4b5563;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            background: transparent;
+            color: #6b7280;
+            position: relative;
         }
-        .nav-btn:hover { background: #e5e7eb; }
-        .nav-btn.active { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .nav-btn:hover { background: rgba(16,185,129,0.08); color: #059669; }
+        .nav-btn.active {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            color: white;
+            box-shadow: 0 2px 8px rgba(16,185,129,0.3), 0 1px 2px rgba(0,0,0,0.06);
+        }
         
         .container { max-width: 1500px; margin: 0 auto; padding: 20px; }
         
@@ -54,7 +63,9 @@
             text-align: center;
             margin-bottom: 8px;
             font-size: 28px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 20px rgba(16,185,129,0.25);
         }
         .header-logo {
             height: 40px;
@@ -70,16 +81,24 @@
         }
         
         .card {
-            background: white;
-            border-radius: 16px;
-            padding: 20px;
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 20px;
+            padding: 24px;
             margin-bottom: 16px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            box-shadow:
+                0 0 0 1px rgba(0,0,0,0.03),
+                0 1px 2px rgba(0,0,0,0.04),
+                0 4px 8px rgba(0,0,0,0.04),
+                0 12px 36px rgba(0,0,0,0.06);
+            border: 1px solid rgba(255,255,255,0.6);
             overflow-x: auto;
         }
         
-        .section { display: none; }
+        .section { display: none; opacity: 0; transition: opacity 0.2s ease; }
         .section.active { display: block; }
+        .section.active.visible { opacity: 1; }
         
         /* PRZYCISKI */
         .quick-buttons {
@@ -91,21 +110,24 @@
         .btn {
             padding: 10px 16px;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-weight: 600;
             cursor: pointer;
             font-size: 13px;
-            transition: all 0.15s;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: -0.01em;
         }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-        .btn-orange { background: #ffedd5; color: #c2410c; }
-        .btn-blue { background: #dbeafe; color: #1d4ed8; }
-        .btn-purple { background: #f3e8ff; color: #7c3aed; }
-        .btn-gray { background: #f3f4f6; color: #374151; }
-        .btn-budget { background: #dcfce7; color: #166534; }
-        .btn-green { background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); color: white; width: 100%; padding: 16px; font-size: 16px; margin-top: 10px; }
+        .btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .btn:active { transform: translateY(0); }
+        .btn-orange { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+        .btn-blue { background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
+        .btn-purple { background: #f0fdf4; color: #065f46; border: 1px solid #bbf7d0; }
+        .btn-gray { background: #f9fafb; color: #374151; border: 1px solid #e5e7eb; }
+        .btn-budget { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+        .btn-green { background: linear-gradient(135deg, #059669 0%, #10b981 100%); color: white; width: 100%; padding: 16px; font-size: 16px; margin-top: 10px; box-shadow: 0 2px 8px rgba(16,185,129,0.3); }
         .btn-green:disabled { background: #d1d5db; color: #9ca3af; cursor: not-allowed; transform: none; box-shadow: none; }
-        .btn-share { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; }
+        .btn-share { background: linear-gradient(135deg, #059669 0%, #10b981 100%); color: white; box-shadow: 0 2px 6px rgba(16,185,129,0.25); }
+        .btn-copy-plan { background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%); color: white; box-shadow: 0 2px 6px rgba(6,182,212,0.25); }
         .variant-separator { width: 100%; text-align: center; padding: 10px 0 5px 0; font-size: 12px; color: #166534; font-weight: 600; margin-top: 5px; }
         .variant-separator.action-separator { color: #1e40af; }
 
@@ -124,7 +146,117 @@
             vertical-align: middle;
         }
         .day-name { font-weight: 700; color: #1f2937; font-size: 14px; }
-        
+        .weekend-row { background: #fefce8; }
+        .weekend-row .day-name { color: #92400e; }
+        /* MOBILE DAY VIEW */
+        .mobile-day-view { display: none; }
+        .mobile-day-strip {
+            display: flex;
+            gap: 4px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding: 4px 0 12px;
+        }
+        .mobile-day-strip::-webkit-scrollbar { display: none; }
+        .mobile-day-btn {
+            flex-shrink: 0;
+            padding: 8px 14px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            background: white;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.15s;
+            text-align: center;
+            min-width: 44px;
+        }
+        .mobile-day-btn.active {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 2px 8px rgba(16,185,129,0.3);
+        }
+        .mobile-day-btn.weekend { color: #92400e; }
+        .mobile-day-btn.active.weekend { color: white; }
+        .mobile-day-btn .day-meals-count {
+            font-size: 10px;
+            opacity: 0.6;
+            display: block;
+        }
+        .mobile-meal-card {
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 10px;
+            border-left: 4px solid #e5e7eb;
+        }
+        .mobile-meal-card.breakfast { border-left-color: #d97706; }
+        .mobile-meal-card.lunch { border-left-color: #0891b2; }
+        .mobile-meal-card.dinner { border-left-color: #059669; }
+        .mobile-meal-card-header {
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #4b5563;
+        }
+        .mobile-meal-person {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .mobile-meal-person:last-child { border-bottom: none; }
+        .mobile-meal-person .person-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .mobile-meal-person-name {
+            font-size: 12px;
+            color: #6b7280;
+            min-width: 40px;
+        }
+        .mobile-meal-recipe {
+            flex: 1;
+            font-size: 13px;
+            color: #1f2937;
+            cursor: pointer;
+        }
+        .mobile-meal-recipe.empty { color: #9ca3af; font-style: italic; }
+        .mobile-change-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 4px;
+            opacity: 0.5;
+            transition: opacity 0.15s;
+            flex-shrink: 0;
+        }
+        .mobile-change-btn:hover { opacity: 1; }
+        .mobile-day-kcal {
+            margin-top: 12px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            font-size: 12px;
+            color: #6b7280;
+        }
+        .mobile-day-kcal strong { color: #1f2937; }
+
+        .planner-empty-state {
+            text-align: center;
+            padding: 32px 20px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #eff6ff 100%);
+            border-radius: 12px;
+            border: 2px dashed #bfdbfe;
+            margin-top: 16px;
+        }
+
         /* SELECT */
         .meal-select {
             width: 100%;
@@ -141,13 +273,14 @@
             background-position: right 8px center;
             padding-right: 28px;
         }
-        .meal-select:focus { outline: none; border-color: #8b5cf6; }
-        .meal-select.breakfast { border-left: 4px solid #f97316; }
-        .meal-select.lunch { border-left: 4px solid #3b82f6; }
-        .meal-select.dinner { border-left: 4px solid #8b5cf6; }
-        .meal-select.has-value.breakfast { background-color: #fff7ed; }
-        .meal-select.has-value.lunch { background-color: #eff6ff; }
-        .meal-select.has-value.dinner { background-color: #faf5ff; }
+        .meal-select:focus { border-color: #10b981; box-shadow: 0 0 0 3px rgba(16,185,129,0.1); }
+        .meal-select:focus:not(:focus-visible) { outline: none; }
+        .meal-select.breakfast { border-left: 4px solid #d97706; }
+        .meal-select.lunch { border-left: 4px solid #0891b2; }
+        .meal-select.dinner { border-left: 4px solid #059669; }
+        .meal-select.has-value.breakfast { background-color: #fffbeb; }
+        .meal-select.has-value.lunch { background-color: #ecfeff; }
+        .meal-select.has-value.dinner { background-color: #ecfdf5; }
         
         .kcal-cell { text-align: right; font-weight: 700; font-size: 15px; }
         .kcal-value { color: #22c55e; }
@@ -158,10 +291,11 @@
             display: flex;
             gap: 20px;
             padding: 15px;
-            background: #f9fafb;
+            background: rgba(249,250,251,0.8);
             border-radius: 12px;
             margin-bottom: 20px;
             flex-wrap: wrap;
+            border: 1px solid rgba(0,0,0,0.04);
         }
         .person-config {
             display: flex;
@@ -180,8 +314,8 @@
             color: #dc2626;
             border: none;
             border-radius: 50%;
-            width: 24px;
-            height: 24px;
+            width: 32px;
+            height: 32px;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
@@ -230,7 +364,8 @@
             font-size: 13px;
             font-weight: 600;
         }
-        .person-name:focus { outline: none; border-color: #8b5cf6; }
+        .person-name:focus { border-color: #10b981; }
+        .person-name:focus:not(:focus-visible) { outline: none; }
         .portion-slider {
             width: 80px;
             height: 6px;
@@ -244,9 +379,10 @@
             -webkit-appearance: none;
             width: 18px;
             height: 18px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
             border-radius: 50%;
             cursor: pointer;
+            box-shadow: 0 1px 4px rgba(16,185,129,0.3);
         }
         .portion-value {
             font-weight: 700;
@@ -291,13 +427,14 @@
             background-position: right 6px center;
             padding-right: 22px;
         }
-        .meal-select-compact:focus { outline: none; border-color: #8b5cf6; }
-        .meal-select-compact.breakfast { border-left: 3px solid #f97316; }
-        .meal-select-compact.lunch { border-left: 3px solid #3b82f6; }
-        .meal-select-compact.dinner { border-left: 3px solid #8b5cf6; }
-        .meal-select-compact.has-value.breakfast { background-color: #fff7ed; }
-        .meal-select-compact.has-value.lunch { background-color: #eff6ff; }
-        .meal-select-compact.has-value.dinner { background-color: #faf5ff; }
+        .meal-select-compact:focus { border-color: #10b981; }
+        .meal-select-compact:focus:not(:focus-visible) { outline: none; }
+        .meal-select-compact.breakfast { border-left: 3px solid #d97706; }
+        .meal-select-compact.lunch { border-left: 3px solid #0891b2; }
+        .meal-select-compact.dinner { border-left: 3px solid #059669; }
+        .meal-select-compact.has-value.breakfast { background-color: #fffbeb; }
+        .meal-select-compact.has-value.lunch { background-color: #ecfeff; }
+        .meal-select-compact.has-value.dinner { background-color: #ecfdf5; }
 
         /* Style dla optgroup w dropdownach */
         .meal-select-compact optgroup {
@@ -326,12 +463,16 @@
         .meal-picker-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
         }
 
         .meal-picker-content {
             position: relative;
-            background: white;
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             width: 100%;
             max-width: 500px;
             max-height: 70vh;
@@ -365,8 +506,10 @@
             font-size: 16px;
         }
         .meal-picker-header input:focus {
+            border-color: #10b981;
+        }
+        .meal-picker-header input:focus:not(:focus-visible) {
             outline: none;
-            border-color: #8b5cf6;
         }
 
         .meal-picker-close {
@@ -476,12 +619,12 @@
         .combobox-trigger:active {
             background: #f3f4f6;
         }
-        .combobox-trigger.breakfast { border-left: 3px solid #f97316; }
-        .combobox-trigger.lunch { border-left: 3px solid #3b82f6; }
-        .combobox-trigger.dinner { border-left: 3px solid #8b5cf6; }
-        .combobox-trigger.has-value.breakfast { background-color: #fff7ed; }
-        .combobox-trigger.has-value.lunch { background-color: #eff6ff; }
-        .combobox-trigger.has-value.dinner { background-color: #faf5ff; }
+        .combobox-trigger.breakfast { border-left: 3px solid #d97706; }
+        .combobox-trigger.lunch { border-left: 3px solid #0891b2; }
+        .combobox-trigger.dinner { border-left: 3px solid #059669; }
+        .combobox-trigger.has-value.breakfast { background-color: #fffbeb; }
+        .combobox-trigger.has-value.lunch { background-color: #ecfeff; }
+        .combobox-trigger.has-value.dinner { background-color: #ecfdf5; }
 
         .combobox-text {
             flex: 1;
@@ -536,10 +679,11 @@
         .settings-toggle.active { background: #dbeafe; color: #1d4ed8; }
         .settings-panel {
             display: none;
-            background: #f9fafb;
+            background: rgba(249,250,251,0.8);
             border-radius: 12px;
             padding: 20px;
             margin-bottom: 20px;
+            border: 1px solid rgba(0,0,0,0.04);
         }
         .settings-panel.active { display: block; }
         .settings-grid {
@@ -590,8 +734,12 @@
         }
         .settings-field input:focus,
         .settings-field select:focus {
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16,185,129,0.1);
+        }
+        .settings-field input:focus:not(:focus-visible),
+        .settings-field select:focus:not(:focus-visible) {
             outline: none;
-            border-color: #8b5cf6;
         }
         /* SUWAKI MAKROSKŁADNIKÓW */
         .macro-ratios-section {
@@ -663,7 +811,7 @@
             border-radius: 50%;
             cursor: pointer;
             margin-top: -10px;
-            background: #667eea;
+            background: #059669;
             border: 3px solid white;
             box-shadow: 0 2px 6px rgba(0,0,0,0.3);
         }
@@ -681,7 +829,7 @@
             width: 24px;
             height: 24px;
             border-radius: 50%;
-            background: #667eea;
+            background: #059669;
             border: 3px solid white;
             box-shadow: 0 2px 6px rgba(0,0,0,0.3);
             cursor: pointer;
@@ -779,8 +927,8 @@
         .breakfast-slider::-moz-range-thumb { background: #f59e0b; }
         .lunch-slider::-webkit-slider-thumb { background: #22c55e !important; }
         .lunch-slider::-moz-range-thumb { background: #22c55e; }
-        .dinner-slider::-webkit-slider-thumb { background: #8b5cf6 !important; }
-        .dinner-slider::-moz-range-thumb { background: #8b5cf6; }
+        .dinner-slider::-webkit-slider-thumb { background: #10b981 !important; }
+        .dinner-slider::-moz-range-thumb { background: #10b981; }
         .meal-value {
             width: 35px;
             text-align: right;
@@ -1036,7 +1184,7 @@
 
         /* ALERT LOADED */
         .loaded-alert {
-            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
             color: white;
             padding: 15px 20px;
             border-radius: 12px;
@@ -1045,9 +1193,10 @@
             align-items: center;
             gap: 15px;
             flex-wrap: wrap;
+            box-shadow: 0 2px 8px rgba(16,185,129,0.25);
         }
         .loaded-alert span { flex: 1; }
-        .loaded-alert .btn { background: white; color: #16a34a; }
+        .loaded-alert .btn { background: white; color: #059669; }
         
         /* LISTA ZAKUPÓW */
         .list-header {
@@ -1081,11 +1230,86 @@
             border-bottom: 1px solid #e5e7eb;
         }
         .item:last-child { border-bottom: none; }
+        .manual-add-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .manual-item-input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+        .manual-item-input:focus { border-color: #10b981; }
+        .manual-item-input:focus:not(:focus-visible) { outline: none; }
+        .manual-add-btn {
+            width: 44px;
+            height: 44px;
+            border: 2px solid #22c55e;
+            border-radius: 8px;
+            background: #dcfce7;
+            color: #16a34a;
+            font-size: 22px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+            flex-shrink: 0;
+        }
+        .manual-add-btn:hover { background: #22c55e; color: white; }
+        .manual-item-delete {
+            background: none;
+            border: none;
+            color: #dc2626;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 4px;
+            opacity: 0.5;
+            transition: opacity 0.15s;
+        }
+        .manual-item-delete:hover { opacity: 1; }
+
+        .checked-items-section {
+            margin-top: 16px;
+            border-top: 2px dashed #e5e7eb;
+            padding-top: 8px;
+        }
+        .checked-items-toggle {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 10px 16px;
+            width: 100%;
+            text-align: left;
+            font-size: 14px;
+            font-weight: 600;
+            color: #6b7280;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s;
+        }
+        .checked-items-toggle:hover { background: #f3f4f6; }
+        .toggle-arrow { transition: transform 0.2s; }
+        .checked-items-section.expanded .toggle-arrow { transform: rotate(90deg); }
+        .checked-items-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .checked-items-section.expanded .checked-items-content {
+            max-height: 2000px;
+        }
         .item input[type="checkbox"] {
-            width: 22px;
-            height: 22px;
+            width: 24px;
+            height: 24px;
             cursor: pointer;
             accent-color: #22c55e;
+            min-width: 24px;
+            min-height: 24px;
         }
         .item-name { flex: 1; color: #374151; font-size: 14px; }
         .item-name.checked { text-decoration: line-through; color: #9ca3af; }
@@ -1176,6 +1400,16 @@
             background: #d97706;
             color: white;
             border-color: #b45309;
+        }
+        .custom-multiplier-input {
+            width: 70px;
+            padding: 6px 10px;
+            border: 2px solid #d97706;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #92400e;
+            text-align: center;
         }
         .multiplier-info {
             font-size: 12px;
@@ -1284,7 +1518,7 @@
         }
         .shopping-meal-checkbox .meal-label.breakfast { color: #f97316; }
         .shopping-meal-checkbox .meal-label.lunch { color: #3b82f6; }
-        .shopping-meal-checkbox .meal-label.dinner { color: #8b5cf6; }
+        .shopping-meal-checkbox .meal-label.dinner { color: #10b981; }
         .shopping-summary {
             text-align: center;
             padding: 12px;
@@ -1345,21 +1579,23 @@
             background: white;
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06);
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s;
             cursor: pointer;
         }
         .recipe-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(5,150,105,0.12), 0 2px 8px rgba(0,0,0,0.06);
         }
         .recipe-header {
             padding: 16px;
             color: white;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.15);
         }
-        .recipe-header.breakfast { background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); }
-        .recipe-header.lunch { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); }
-        .recipe-header.dinner { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); }
+        .recipe-header.breakfast { background: linear-gradient(135deg, #d97706 0%, #b45309 100%); }
+        .recipe-header.lunch { background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%); }
+        .recipe-header.dinner { background: linear-gradient(135deg, #059669 0%, #047857 100%); }
         
         .recipe-type {
             font-size: 11px;
@@ -1371,6 +1607,26 @@
         .recipe-name {
             font-size: 17px;
             font-weight: 700;
+        }
+        .recipe-sort-select {
+            padding: 8px 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #4b5563;
+            background: white;
+            cursor: pointer;
+        }
+        .recipe-category-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 6px;
         }
         .recipe-body {
             padding: 16px;
@@ -1427,8 +1683,14 @@
             display: flex;
             gap: 8px;
             margin-bottom: 20px;
-            flex-wrap: wrap;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding-bottom: 4px;
+            mask-image: linear-gradient(to right, transparent 0, black 8px, black calc(100% - 24px), transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0, black 8px, black calc(100% - 24px), transparent 100%);
         }
+        .filter-tabs::-webkit-scrollbar { display: none; }
         .filter-tab {
             padding: 8px 16px;
             border: 2px solid #e5e7eb;
@@ -1438,9 +1700,12 @@
             font-weight: 600;
             font-size: 13px;
             transition: all 0.2s;
+            white-space: nowrap;
+            flex-shrink: 0;
+            scroll-snap-align: start;
         }
         .filter-tab:hover { border-color: #d1d5db; }
-        .filter-tab.active { border-color: #8b5cf6; background: #faf5ff; color: #7c3aed; }
+        .filter-tab.active { border-color: #059669; background: #ecfdf5; color: #047857; }
 
         /* WYSZUKIWARKA PRZEPISÓW */
         .search-container {
@@ -1458,8 +1723,11 @@
             box-sizing: border-box;
         }
         .recipe-search-input:focus {
+            border-color: #059669;
+            box-shadow: 0 0 0 3px rgba(99,102,241,0.1);
+        }
+        .recipe-search-input:focus:not(:focus-visible) {
             outline: none;
-            border-color: #3b82f6;
         }
         .search-clear-btn {
             position: absolute;
@@ -1492,32 +1760,48 @@
 
         /* MODAL PRZEPISU */
         .modal-overlay {
-            display: none;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
             z-index: 200;
             padding: 20px;
             overflow-y: auto;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
         }
-        .modal-overlay.active { display: flex; justify-content: center; align-items: flex-start; }
-        
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+
         .modal {
-            background: white;
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-radius: 20px;
             max-width: 600px;
             width: 100%;
             margin: 30px auto;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2), 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            transform: translateY(20px) scale(0.98);
+            transition: transform 0.25s ease;
+        }
+        .modal-overlay.active .modal {
+            transform: translateY(0) scale(1);
         }
         .modal-header {
             padding: 25px;
             color: white;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
         }
-        .modal-header.breakfast { background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); }
-        .modal-header.lunch { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); }
-        .modal-header.dinner { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); }
+        .modal-header.breakfast { background: linear-gradient(135deg, #d97706 0%, #b45309 100%); }
+        .modal-header.lunch { background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%); }
+        .modal-header.dinner { background: linear-gradient(135deg, #059669 0%, #047857 100%); }
         
         .modal-close {
             float: right;
@@ -1638,7 +1922,7 @@
         .modal-section li:last-child { border-bottom: none; }
         .modal-section li::before {
             content: "•";
-            color: #8b5cf6;
+            color: #10b981;
             font-weight: bold;
             font-size: 18px;
         }
@@ -1663,7 +1947,7 @@
         }
         .ingredient-main-row::before {
             content: "•";
-            color: #8b5cf6;
+            color: #10b981;
             font-weight: bold;
             font-size: 18px;
             flex-shrink: 0;
@@ -1710,18 +1994,18 @@
         }
         .substitute-btn {
             background: #f3e8ff;
-            border: 2px solid #8b5cf6;
+            border: 2px solid #10b981;
             border-radius: 6px;
             padding: 4px 10px;
             cursor: pointer;
             font-size: 14px;
             transition: all 0.2s;
-            color: #7c3aed;
+            color: #059669;
             font-weight: bold;
             flex-shrink: 0;
         }
         .substitute-btn:hover {
-            background: #8b5cf6;
+            background: #10b981;
             color: white;
             transform: scale(1.05);
         }
@@ -1776,7 +2060,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 16px 20px;
-            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: white;
         }
         .substitute-header-title {
@@ -1831,7 +2115,7 @@
         }
         .substitute-clickable:hover {
             background: #ede9fe;
-            border-color: #8b5cf6;
+            border-color: #10b981;
             transform: translateX(3px);
         }
         .substitute-item:last-child {
@@ -1920,7 +2204,7 @@
         }
         .modal-steps li::before {
             content: counter(step);
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
             color: white;
             min-width: 26px;
             height: 26px;
@@ -1964,7 +2248,7 @@
         }
         .modal-person-btn.active.blue { color: #3b82f6; }
         .modal-person-btn.active.pink { color: #ec4899; }
-        .modal-person-btn.active.both { color: #7c3aed; }
+        .modal-person-btn.active.both { color: #059669; }
         .modal-person-dot {
             width: 10px;
             height: 10px;
@@ -1982,10 +2266,15 @@
             background: none;
             border: none;
             cursor: pointer;
-            padding: 2px 6px;
-            font-size: 14px;
+            padding: 6px 8px;
+            font-size: 16px;
             opacity: 0.6;
             transition: opacity 0.2s;
+            min-width: 36px;
+            min-height: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
         .preview-btn:hover {
             opacity: 1;
@@ -1997,13 +2286,237 @@
 
         .hidden { display: none; }
 
+        /* TOAST / CONFIRM SYSTEM */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20000;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            pointer-events: none;
+            width: 90%;
+            max-width: 420px;
+        }
+        .toast {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: #fff;
+            padding: 14px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+            font-size: 14px;
+            line-height: 1.4;
+            pointer-events: auto;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.25s, transform 0.25s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .toast.success { border-left: 4px solid #22c55e; }
+        .toast.error { border-left: 4px solid #dc2626; }
+        .toast.warning { border-left: 4px solid #f59e0b; }
+        .toast.info { border-left: 4px solid #3b82f6; }
+        .toast-message { flex: 1; }
+        .toast-close {
+            background: none;
+            border: none;
+            color: #9ca3af;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 0 4px;
+            line-height: 1;
+        }
+        .toast-close:hover { color: #fff; }
+        .toast-undo {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.15s;
+        }
+        .toast-undo:hover { background: rgba(255,255,255,0.25); }
+
+        /* ONBOARDING WIZARD */
+        .onboarding-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 30000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .onboarding-overlay.show { opacity: 1; }
+        .onboarding-card {
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            max-width: 440px;
+            width: 90%;
+            padding: 32px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2), 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            text-align: center;
+            transform: scale(0.95);
+            transition: transform 0.3s;
+        }
+        .onboarding-overlay.show .onboarding-card { transform: scale(1); }
+        .onboarding-icon { font-size: 56px; margin-bottom: 16px; }
+        .onboarding-card h2 {
+            font-size: 22px;
+            color: #1f2937;
+            margin-bottom: 12px;
+        }
+        .onboarding-card p {
+            font-size: 15px;
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+        .onboarding-steps {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+        .onboarding-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            transition: background 0.2s;
+        }
+        .onboarding-dot.active { background: #059669; }
+        .onboarding-dot.done { background: #22c55e; }
+        .onboarding-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        .onboarding-actions button {
+            padding: 12px 24px;
+            border-radius: 10px;
+            border: none;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .onboarding-skip {
+            background: #f3f4f6;
+            color: #6b7280;
+        }
+        .onboarding-skip:hover { background: #e5e7eb; }
+        .onboarding-next {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            color: white;
+        }
+        .onboarding-next:hover { opacity: 0.9; }
+        .onboarding-features {
+            text-align: left;
+            margin: 16px 0;
+        }
+        .onboarding-feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            font-size: 14px;
+            color: #374151;
+        }
+        .onboarding-feature-icon { font-size: 20px; }
+
+        .confirm-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 20001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .confirm-overlay.show { opacity: 1; }
+        .confirm-dialog {
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 24px;
+            max-width: 380px;
+            width: 90%;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2), 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            transform: scale(0.95);
+            transition: transform 0.2s;
+        }
+        .confirm-overlay.show .confirm-dialog { transform: scale(1); }
+        .confirm-dialog p {
+            font-size: 15px;
+            color: #374151;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .confirm-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+        .confirm-actions button {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .confirm-cancel {
+            background: #f3f4f6;
+            color: #374151;
+        }
+        .confirm-cancel:hover { background: #e5e7eb; }
+        .confirm-ok {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            color: #fff;
+        }
+        .confirm-ok:hover { opacity: 0.9; }
+        .confirm-ok.danger {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+        }
+
         /* CHECKBOX DLA ZJEDZONYCH POSIŁKÓW */
         .eaten-checkbox {
-            width: 16px;
-            height: 16px;
+            width: 20px;
+            height: 20px;
             cursor: pointer;
             accent-color: #22c55e;
             flex-shrink: 0;
+            min-width: 20px;
+            min-height: 20px;
         }
         .eaten-checkbox:disabled {
             opacity: 0.3;
@@ -2331,6 +2844,10 @@
 
         /* ===== MOBILE PORTRAIT - UKŁAD DWULINIOWY ===== */
         @media (max-width: 500px) and (orientation: portrait) {
+            .mobile-day-view { display: block !important; }
+            .plan-table { display: none !important; }
+            .kcal-summary { display: none !important; }
+
             /* Ukryj kolumny kcal w portrait */
             .kcal-person,
             th.kcal-header,
@@ -2474,13 +2991,213 @@
                 overflow-y: auto;
             }
         }
+
+        /* DOSTĘPNOŚĆ: Redukcja ruchu */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* SMOOTH SCROLL */
+        html { scroll-behavior: smooth; }
+
+        /* SCROLL TO TOP BUTTON */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            color: white;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, transform 0.2s;
+            z-index: 90;
+        }
+        .scroll-to-top.visible { opacity: 1; visibility: visible; }
+        .scroll-to-top:hover { transform: scale(1.1); }
+        .scroll-to-top:active { transform: scale(0.95); }
+
+        /* NAV UNDERLINE ANIMATION */
+        .nav {
+            position: relative;
+        }
+        .nav-btn {
+            position: relative;
+        }
+        .nav-btn::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            border-radius: 1px;
+            transition: width 0.25s ease, left 0.25s ease;
+        }
+        .nav-btn.active::after {
+            width: 70%;
+            left: 15%;
+        }
+
+        /* TOOLTIPS */
+        [data-tooltip] {
+            position: relative;
+        }
+        [data-tooltip]::before {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: calc(100% + 6px);
+            left: 50%;
+            transform: translateX(-50%) scale(0.9);
+            background: #1f2937;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.15s, visibility 0.15s, transform 0.15s;
+            pointer-events: none;
+            z-index: 200;
+        }
+        [data-tooltip]::after {
+            content: '';
+            position: absolute;
+            bottom: calc(100% + 2px);
+            left: 50%;
+            transform: translateX(-50%);
+            border: 4px solid transparent;
+            border-top-color: #1f2937;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.15s, visibility 0.15s;
+            pointer-events: none;
+            z-index: 200;
+        }
+        [data-tooltip]:hover::before,
+        [data-tooltip]:hover::after {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) scale(1);
+        }
+
+        /* STAGGER ANIMATION FOR RECIPE CARDS */
+        @keyframes cardFadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .recipe-card {
+            animation: cardFadeIn 0.3s ease both;
+        }
+
+        /* RECIPE COUNT BADGE */
+        .recipe-count {
+            color: #9ca3af;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        /* SHOPPING LIST COUNTER */
+        .shopping-counter {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #f3f4f6;
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 12px;
+        }
+        .shopping-counter-progress {
+            width: 60px;
+            height: 6px;
+            background: #e5e7eb;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .shopping-counter-fill {
+            height: 100%;
+            background: #22c55e;
+            border-radius: 3px;
+            transition: width 0.3s;
+        }
+
+        /* EXPORT/IMPORT BUTTONS */
+        .data-management {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #e5e7eb;
+        }
+        .data-management .btn {
+            flex: 1;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        /* SAVE FEEDBACK PULSE */
+        @keyframes savePulse {
+            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+            70% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+        .save-pulse {
+            animation: savePulse 0.6s ease;
+        }
+
+        /* PRINT STYLESHEET */
+        @media print {
+            body { background: white !important; color: black !important; }
+            .nav, .toast-container, .scroll-to-top, .modal-overlay,
+            .quick-buttons, .subtitle, h1, .btn-share, .btn-gray,
+            .shopping-multiplier, .shopping-days-filter, .shopping-meals-filter,
+            .shopping-quick-btns, .manual-add-row, .onboarding-overlay,
+            #section-planner, #section-recipes, #section-settings { display: none !important; }
+            #section-shopping { display: block !important; opacity: 1 !important; }
+            #section-shopping .card { box-shadow: none !important; padding: 0 !important; }
+            .list-header h2 { font-size: 18pt; margin-bottom: 8pt; }
+            .list-header { flex-direction: column; }
+            .list-header > div { display: none; }
+            .category h3 { font-size: 12pt; border-bottom: 1px solid #ccc; padding-bottom: 4pt; margin-bottom: 4pt; }
+            .item { padding: 2pt 0; font-size: 10pt; }
+            .item input[type="checkbox"] { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .item-name.checked { text-decoration: line-through; color: #999; }
+            .shopping-recipe-btn { display: none; }
+            .checked-items-section { display: block !important; }
+            .checked-items-content { max-height: none !important; overflow: visible !important; }
+            .checked-items-toggle { display: none; }
+            .shopping-counter { background: none; padding: 0; margin-bottom: 8pt; }
+            .shopping-counter-progress { display: none; }
+        }
     </style>
 </head>
 <body>
+    <div class="toast-container" id="toast-container"></div>
+    <button class="scroll-to-top" id="scroll-to-top" onclick="window.scrollTo({top:0})" aria-label="Przewiń na górę">↑</button>
     <nav class="nav">
         <button class="nav-btn active" onclick="showSection('planner', this)">📅 Planer</button>
         <button class="nav-btn" onclick="showSection('recipes', this)">📖 Przepisy</button>
         <button class="nav-btn" onclick="showSection('shopping', this)">🛒 Zakupy</button>
+        <button class="nav-btn" onclick="showSection('settings', this)">⚙️ Ustawienia</button>
     </nav>
 
     <div class="container">
@@ -2494,21 +3211,19 @@
         </div>
         
         <!-- SEKCJA: PLANER -->
-        <div id="section-planner" class="section active">
+        <div id="section-planner" class="section active visible">
             <div class="card">
                 <!-- Przyciski wariantów generowane dynamicznie przez renderVariantButtons() -->
                 <div id="variant-buttons" class="quick-buttons"></div>
 
-                <!-- Przycisk toggle ustawień -->
-                <button class="settings-toggle" id="settings-toggle" onclick="toggleSettings()">
-                    ⚙️ Ustawienia TDEE
-                </button>
-
-                <!-- Panel ustawień TDEE -->
-                <div class="settings-panel" id="settings-panel"></div>
-
                 <!-- Podsumowanie osób (kompaktowe) -->
                 <div class="persons-panel" id="persons-panel"></div>
+
+                <!-- MOBILE DAY VIEW -->
+                <div class="mobile-day-view" id="mobile-day-view">
+                    <div class="mobile-day-strip" id="mobile-day-strip"></div>
+                    <div class="mobile-day-content" id="mobile-day-content"></div>
+                </div>
 
                 <table class="plan-table">
                     <thead>
@@ -2565,9 +3280,19 @@
                            class="recipe-search-input"
                            placeholder="Szukaj po nazwie, składniku, zamienniku lub instrukcji..."
                            oninput="searchRecipes(this.value)">
-                    <button class="search-clear-btn" onclick="clearSearch()">✕</button>
+                    <button class="search-clear-btn" onclick="clearSearch()" aria-label="Wyczyść wyszukiwanie">✕</button>
                 </div>
-                <div class="recipes-person-selector" id="recipes-person-selector"></div>
+                <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 12px;">
+                    <div class="recipes-person-selector" id="recipes-person-selector" style="flex:1; margin-bottom:0;"></div>
+                    <select id="recipe-sort" class="recipe-sort-select" onchange="sortRecipesBy(this.value)">
+                        <option value="name-asc">Nazwa A-Z</option>
+                        <option value="name-desc">Nazwa Z-A</option>
+                        <option value="kcal-asc">Kalorie rosnąco</option>
+                        <option value="kcal-desc">Kalorie malejąco</option>
+                        <option value="protein-desc">Białko malejąco</option>
+                    </select>
+                </div>
+                <div class="recipe-count" id="recipe-count"></div>
                 <div class="recipes-grid" id="recipes-grid"></div>
             </div>
         </div>
@@ -2592,6 +3317,8 @@
                         <button class="multiplier-btn active" onclick="setShoppingMultiplier(1)">x1</button>
                         <button class="multiplier-btn" onclick="setShoppingMultiplier(2)">x2</button>
                         <button class="multiplier-btn" onclick="setShoppingMultiplier(3)">x3</button>
+                        <button class="multiplier-btn" onclick="showCustomMultiplier()">Inny...</button>
+                        <input type="number" id="custom-multiplier-input" class="custom-multiplier-input" min="0.5" max="10" step="0.5" placeholder="np. 1.5" style="display:none" onchange="applyCustomMultiplier(this.value)" onkeydown="if(event.key==='Enter')applyCustomMultiplier(this.value)">
                     </div>
                     <span class="multiplier-info" id="multiplier-info"></span>
                 </div>
@@ -2628,16 +3355,34 @@
                     <div class="shopping-summary" id="shopping-summary"></div>
                 </div>
 
+                <div class="manual-add-row">
+                    <input type="text" id="manual-item-input" class="manual-item-input" placeholder="Dodaj produkt ręcznie..." onkeydown="if(event.key==='Enter')addManualItem()">
+                    <button class="manual-add-btn" onclick="addManualItem()" aria-label="Dodaj produkt">+</button>
+                </div>
+                <div class="shopping-counter" id="shopping-counter" style="display:none;"></div>
                 <div id="shopping-list"></div>
             </div>
         </div>
+        <!-- SEKCJA: USTAWIENIA -->
+        <div id="section-settings" class="section">
+            <div class="card">
+                <h2 style="margin-bottom: 16px; color: #1f2937;">⚙️ Ustawienia TDEE</h2>
+                <p style="color: #6b7280; margin-bottom: 20px; font-size: 14px;">Dostosuj dane osobowe, makroskładniki i alokację posiłków dla każdej osoby.</p>
+                <div class="settings-panel active" id="settings-panel"></div>
+                <div class="data-management">
+                    <button class="btn" onclick="exportData()">📥 Eksportuj dane</button>
+                    <button class="btn" onclick="document.getElementById('import-file').click()">📤 Importuj dane</button>
+                    <input type="file" id="import-file" accept=".json" style="display:none" onchange="importData(event)">
+                </div>
+            </div>
+        </div>
     </div>
-    
+
     <!-- MODAL: PRZEPIS -->
     <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
-        <div class="modal" onclick="event.stopPropagation()">
+        <div class="modal" role="dialog" aria-modal="true" aria-label="Szczegóły przepisu" onclick="event.stopPropagation()">
             <div class="modal-header" id="modal-header">
-                <button class="modal-close" onclick="closeModal()">&times;</button>
+                <button class="modal-close" onclick="closeModal()" aria-label="Zamknij">&times;</button>
                 <div class="modal-type" id="modal-type"></div>
                 <div class="modal-name" id="modal-name"></div>
             </div>
@@ -2655,26 +3400,31 @@
                     <h3>👨‍🍳 Przygotowanie</h3>
                     <ul class="modal-steps" id="modal-steps"></ul>
                 </div>
+                <div class="modal-section" style="text-align: center; padding-bottom: 20px;">
+                    <button class="btn btn-share" onclick="shareRecipe()" style="width: 100%; padding: 14px; font-size: 15px;">
+                        📤 Udostępnij przepis
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- MODAL ZAMIENNIKÓW -->
     <div class="substitute-modal-overlay" id="substitute-modal-overlay" onclick="closeSubstituteModal(event)">
-        <div class="substitute-modal-content" id="substitute-modal-content" onclick="event.stopPropagation()">
+        <div class="substitute-modal-content" id="substitute-modal-content" role="dialog" aria-modal="true" aria-label="Zamienniki składników" onclick="event.stopPropagation()">
             <!-- Treść generowana dynamicznie -->
         </div>
     </div>
 
     <!-- MEAL PICKER MODAL (mobile-friendly searchable dropdown) -->
-    <div id="mealPickerModal" class="meal-picker-modal hidden">
+    <div id="mealPickerModal" class="meal-picker-modal hidden" role="dialog" aria-modal="true" aria-label="Wybierz przepis">
         <div class="meal-picker-overlay" onclick="closeMealPicker()"></div>
         <div class="meal-picker-content">
             <div class="meal-picker-header">
                 <input type="text" id="mealPickerSearch"
                        placeholder="Szukaj przepisu..."
                        oninput="filterMealPickerOptions(this.value)">
-                <button class="meal-picker-close" onclick="closeMealPicker()">✕</button>
+                <button class="meal-picker-close" onclick="closeMealPicker()" aria-label="Zamknij wybór przepisu">✕</button>
             </div>
             <div class="meal-picker-options" id="mealPickerOptions">
                 <!-- Opcje generowane dynamicznie -->
@@ -4605,10 +5355,10 @@
                     id: 'b2',
                     name: "Tosty z jajkiem i serem",
                     category: "🍳 Jajka",
-                    kcal: 582,
-                    protein: 41,
+                    kcal: 607,
+                    protein: 42,
                     fat: 33,
-                    carbs: 28,
+                    carbs: 33,
                     ingredients: [
                         { item: "Chleb tostowy pełnoziarnisty", amount: 2, unit: "kromki" },
                         { item: "Jajka", amount: 2, unit: "szt" },
@@ -4711,7 +5461,7 @@
                         "Kurczaka dopraw i smaż na patelni 4 min z każdej strony.",
                         "Batata pokrój w kostkę, piecz 25 min.",
                         "Sałatę porwij, warzywa pokrój.",
-                        "Dressing: jogurt + parmezan + sól + pieprz.",
+                        "Dressing: jogurt + parmezan + oliwa z oliwek + sól + pieprz.",
                         "Ułóż sałatkę, na wierzch kurczaka i bataty, polej dressingiem."
                     ]
                 },
@@ -5133,10 +5883,10 @@
                     id: 'b24',
                     name: "Tosty a la pizza",
                     category: "🥪 Kanapki/Wrapy",
-                    kcal: 442,
-                    protein: 44,
-                    fat: 14,
-                    carbs: 37,
+                    kcal: 467,
+                    protein: 45,
+                    fat: 15,
+                    carbs: 41,
                     ingredients: [
                         { item: "Chleb tostowy pełnoziarnisty", amount: 2, unit: "kromki" },
                         { item: "Koncentrat pomidorowy", amount: 1, unit: "łyżki" },
@@ -5160,10 +5910,10 @@
                     id: 'b25',
                     name: "Chrupiące tosty z serkiem, szpinakiem i pomidorem",
                     category: "🍳 Jajka",
-                    kcal: 570,
-                    protein: 37,
-                    fat: 31,
-                    carbs: 34,
+                    kcal: 595,
+                    protein: 39,
+                    fat: 32,
+                    carbs: 38,
                     ingredients: [
                         { item: "Chleb tostowy pełnoziarnisty", amount: 2, unit: "kromki" },
                         { item: "Serek kremowy", amount: 40, unit: "g" },
@@ -5212,10 +5962,10 @@
                     id: 'b27',
                     name: "Tosty z serem pleśniowym i szynką",
                     category: "🥪 Kanapki/Wrapy",
-                    kcal: 707,
-                    protein: 61,
+                    kcal: 732,
+                    protein: 63,
                     fat: 36,
-                    carbs: 34,
+                    carbs: 38,
                     ingredients: [
                         { item: "Chleb tostowy pełnoziarnisty", amount: 2, unit: "kromki" },
                         { item: "Ser pleśniowy", amount: 40, unit: "g" },
@@ -5266,10 +6016,10 @@
                     id: 'b29',
                     name: "Tosty z kurczakiem i awokado",
                     category: "🥪 Kanapki/Wrapy",
-                    kcal: 638,
-                    protein: 49,
-                    fat: 32,
-                    carbs: 39,
+                    kcal: 663,
+                    protein: 51,
+                    fat: 33,
+                    carbs: 43,
                     ingredients: [
                         { item: "Chleb tostowy pełnoziarnisty", amount: 2, unit: "kromki" },
                         { item: "Pierś z kurczaka", amount: 120, unit: "g" },
@@ -5329,6 +6079,7 @@
                         { item: "Papryka czerwona", amount: 0.3, unit: "szt" },
                         { item: "Cebula czerwona", amount: 0.25, unit: "szt" },
                         { item: "Jajko", amount: 1, unit: "szt" },
+                        { item: "Mleko 2%", amount: 30, unit: "ml" },
                         { item: "Oliwa", amount: 10, unit: "ml" },
                         { item: "Czosnek", amount: 1, unit: "ząbek" },
                         { item: "Natka pietruszki", amount: 5, unit: "g" }
@@ -5368,10 +6119,10 @@
                     id: 'b33',
                     name: "Jajecznica na bekonie z tostami",
                     category: "🍳 Jajka",
-                    kcal: 637,
-                    protein: 37,
-                    fat: 39,
-                    carbs: 31,
+                    kcal: 661,
+                    protein: 39,
+                    fat: 40,
+                    carbs: 35,
                     ingredients: [
                         { item: "Jajka", amount: 3, unit: "szt" },
                         { item: "Bekon chrupiący", amount: 30, unit: "g" },
@@ -5582,7 +6333,7 @@
                         "Sos holenderski: masło rozpuść. Żółtka ubij z sokiem z cytryny.",
                         "Powoli wlewaj ciepłe masło do żółtek, cały czas mieszając.",
                         "Dopraw solą i pieprzem - sos ma być gładki i kremowy.",
-                        "Jajka ugotuj w koszulkach (jak w poprzednim przepisie).",
+                        "Do garnka z lekko wrzącą wodą dodaj ocet winny. Łyżką utwórz wir i wbij jajka. Gotuj 3-4 min, wyjmij łyżką cedzakową.",
                         "Bułki przekrój i opiecz na maśle.",
                         "Szynkę lekko podsmaż na patelni.",
                         "Na bułki połóż szynkę, jajka w koszulce.",
@@ -5618,14 +6369,14 @@
                     id: 'b43',
                     name: "Owsianka jabłkowo-cynamonowa",
                     category: "🥣 Owsianki",
-                    kcal: 1056,
+                    kcal: 1149,
                     protein: 70,
                     fat: 45,
-                    carbs: 103,
+                    carbs: 128,
                     ingredients: [
                         { item: "Płatki owsiane górskie", amount: 60, unit: "g" },
                         { item: "Mleko 2%", amount: 300, unit: "ml" },
-                        { item: "Jabłko", amount: 1, unit: "szt" },
+                        { item: "Jabłko", amount: 2, unit: "szt" },
                         { item: "Jogurt grecki", amount: 150, unit: "g" },
                         { item: "Odżywka białkowa waniliowa", amount: 40, unit: "g" },
                         { item: "Masło", amount: 15, unit: "g" },
@@ -5796,7 +6547,7 @@
                         { item: "Śmietana", amount: 50, unit: "g" }
                     ],
                     steps: [
-                        "Ciasto: mąkę, jajka, mleko i szczyptę soli zmiksuj na gładką masę.",
+                        "Ciasto: mąkę, jajka i mleko zmiksuj na gładką masę.",
                         "Smaż cienkie naleśniki na maśle.",
                         "Twaróg wymieszaj z cukrem i połową truskawek (pokrojonych).",
                         "Na każdy naleśnik nałóż porcję farszu.",
@@ -5853,7 +6604,7 @@
                         { item: "Masło", amount: 10, unit: "g" }
                     ],
                     steps: [
-                        "Ciasto na naleśniki: mąka, jajka, mleko, sól - zmiksuj.",
+                        "Ciasto na naleśniki: mąkę, jajka i mleko zmiksuj na gładką masę.",
                         "Usmaż 4 naleśniki.",
                         "Kurczaka pokrój, usmaż z pieczarkami i papryką.",
                         "Dodaj śmietanę, gotuj 3 min.",
@@ -5894,10 +6645,10 @@
                     id: 'b53',
                     name: "Tosty z ricottą, szpinakiem i jajkiem",
                     category: "🥪 Kanapki/Wrapy",
-                    kcal: 586,
-                    protein: 40,
-                    fat: 32,
-                    carbs: 34,
+                    kcal: 610,
+                    protein: 41,
+                    fat: 33,
+                    carbs: 38,
                     ingredients: [
                         { item: "Chleb tostowy pełnoziarnisty", amount: 2, unit: "kromki" },
                         { item: "Ricotta", amount: 80, unit: "g" },
@@ -6013,10 +6764,10 @@
                     steps: [
                         "Boczek podsmaż do chrupkości.",
                         "Parówki podsmaż na patelni.",
-                        "Bułki przekrój i posyp serem, zapiecz 2 min.",
+                        "Bułki przekrój i posyp serem, zapiecz w piekarniku w 180°C przez 2-3 min aż ser się roztopi.",
                         "Włóż parówki, boczek i jalapeno.",
                         "Polej ketchupem.",
-                        "Podawaj z jajkiem sadzonym."
+                        "Podawaj z jajkiem gotowanym na twardo."
                     ]
                 },
                 {
@@ -6075,10 +6826,10 @@
                     id: 'b60',
                     name: "Jajecznica na boczku",
                     category: "🍳 Jajka",
-                    kcal: 666,
-                    protein: 43,
+                    kcal: 642,
+                    protein: 42,
                     fat: 34,
-                    carbs: 44,
+                    carbs: 40,
                     ingredients: [
                         { item: "Jajka", amount: 3, unit: "szt" },
                         { item: "Bekon chrupiący", amount: 25, unit: "g" },
@@ -6310,9 +7061,10 @@
                         { item: "Parmezan", amount: 15, unit: "g" }
                     ],
                     steps: [
+                        "Pierś z kurczaka dopraw solą i pieprzem, usmaż na patelni 5-6 min z każdej strony, pokrój w paski.",
                         "Makaron ugotuj według instrukcji na opakowaniu.",
                         "Mozzarellę pokrój w plastry, pomidorki i ogórka też pokrój, bazylię posiekaj.",
-                        "Do miski z makaronem dodaj warzywa, szpinak, bazylię, pesto i mozzarellę.",
+                        "Do miski z makaronem dodaj kurczaka, warzywa, szpinak, bazylię, pesto i mozzarellę.",
                         "Całość dokładnie wymieszaj, dopraw solą i pieprzem.",
                         "Przełóż na talerz, posyp startym parmezanem."
                     ]
@@ -6754,8 +7506,9 @@
                         { item: "Odżywka białkowa", amount: 15, unit: "g" }
                     ],
                     steps: [
-                        "Kurczaka przygotowujemy według opakowania.",
-                        "Jogurt mieszamy z odżywką białkową. Owoce zjadamy na deser."
+                        "To jest danie gotowe - podgrzej kurczaka według instrukcji na opakowaniu.",
+                        "Jogurt wymieszaj z odżywką białkową.",
+                        "Banana podawaj jako deser."
                     ]
                 },
                 {
@@ -7489,10 +8242,10 @@
                     id: 'l50',
                     name: "Tatar azjatycki z sezamem i imbirem",
                     category: "🥩 Wołowina/Wieprzowina",
-                    kcal: 875,
-                    protein: 50,
-                    fat: 22,
-                    carbs: 117,
+                    kcal: 1011,
+                    protein: 51,
+                    fat: 35,
+                    carbs: 125,
                     ingredients: [
                         { item: "Polędwica wołowa", amount: 140, unit: "g" },
                         { item: "Żółtko jajka", amount: 1, unit: "szt" },
@@ -7501,7 +8254,8 @@
                         { item: "Imbir świeży", amount: 10, unit: "g" },
                         { item: "Sezam", amount: 10, unit: "g" },
                         { item: "Zielona cebulka", amount: 20, unit: "g" },
-                        { item: "Ryż do sushi", amount: 140, unit: "g" }
+                        { item: "Ryż do sushi", amount: 140, unit: "g" },
+                        { item: "Awokado", amount: 0.5, unit: "szt" }
                     ],
                     steps: [
                         "Ryż ugotuj według instrukcji, ostudź.",
@@ -7851,11 +8605,12 @@
                         { item: "Parmezan", amount: 20, unit: "g" }
                     ],
                     steps: [
+                        "Pierś z kurczaka dopraw solą i pieprzem, usmaż na patelni 5-6 min z każdej strony, pokrój w kostkę.",
                         "Czosnek pokrój w plasterki, chili w krążki (usuń pestki jeśli chcesz mniej pikantne).",
                         "Na oliwie podsmaż czosnek i chili 1 min (nie przypal!).",
                         "Dodaj pomidory, rozgnieć widelcem, gotuj 15 min.",
                         "Makaron ugotuj al dente.",
-                        "Wymieszaj makaron z sosem, dodaj natkę.",
+                        "Wymieszaj makaron z sosem i kurczakiem, dodaj natkę.",
                         "Podawaj z parmezanem."
                     ]
                 },
@@ -8193,10 +8948,10 @@
                     id: 'l75',
                     name: "Buddha bowl z kurczakiem",
                     category: "🥗 Sałatki",
-                    kcal: 856,
-                    protein: 59,
+                    kcal: 901,
+                    protein: 61,
                     fat: 24,
-                    carbs: 103,
+                    carbs: 113,
                     ingredients: [
                         { item: "Pierś z kurczaka", amount: 150, unit: "g" },
                         { item: "Ciecierzyca (puszka)", amount: 100, unit: "g" },
@@ -8627,7 +9382,7 @@
                         "Dodaj pokrojone ziemniaki i brokuły, zalej bulionem.",
                         "Gotuj 20 min do miękkości.",
                         "Zblenduj na krem, dodaj śmietankę.",
-                        "Kurczaka usmaż osobno na patelni.",
+                        "Kurczaka dopraw solą i pieprzem, usmaż na patelni 5-6 min z każdej strony, pokrój w paski.",
                         "Podawaj z grzankami, kurczakiem i serem pleśniowym."
                     ]
                 },
@@ -8930,11 +9685,11 @@
                         { item: "Sezam", amount: 10, unit: "g" }
                     ],
                     steps: [
-                        "Boczek piecz 2h w 150°C z sosem sojowym i miodem.",
-                        "Lub: podsmaż plastry boczku na patelni.",
+                        "Pierś z kurczaka pokrój w paski, zamarynuj w sosie sojowym i miodzie na 30 min.",
+                        "Usmaż kurczaka na patelni 5-6 min do zrumienienia.",
                         "Bułeczki bao podgrzej na parze 5 min.",
                         "Ogórek i marchew pokrój w cienkie słupki.",
-                        "Do bułeczek włóż mięso, warzywa, polej sosem hoisin.",
+                        "Do bułeczek włóż kurczaka, warzywa, polej sosem hoisin.",
                         "Posyp sezamem i szczypiorkiem."
                     ]
                 },
@@ -8987,7 +9742,7 @@
                         { item: "Chili świeże", amount: 1, unit: "szt" }
                     ],
                     steps: [
-                        "Bulion gotuj z anyżem i cynamonem 20 min, przecedź.",
+                        "Bulion gotuj z anyżem, cynamonem i sosem rybnym 20 min, przecedź.",
                         "Makaron ugotuj według instrukcji.",
                         "Wołowinę pokrój w cienkie plastry.",
                         "Do miski daj makaron, surową wołowinę.",
@@ -9128,8 +9883,8 @@
                         "Kurczaka pokrój w kostkę, usmaż na oliwie z czosnkiem.",
                         "Cukinię pokrój w kostkę, dodaj do kurczaka.",
                         "Dodaj passatę, gotuj 5 min, dopraw.",
-                        "W naczyniu żaroodpornym układaj warstwami: płaty lasagne, sos mięsny, jogurt.",
-                        "Powtórz warstwy, na wierzchu ułóż mozzarellę.",
+                        "W naczyniu żaroodpornym układaj warstwami: płat lasagne, sos mięsno-warzywny, jogurt grecki. Powtórz warstwy 3 razy.",
+                        "Na wierzchu ułóż mozzarellę.",
                         "Zapiekaj 35 min do zrumienienia."
                     ]
                 },
@@ -9562,6 +10317,7 @@
                         { item: "Sałata lodowa", amount: 50, unit: "g" }
                     ],
                     steps: [
+                        "Pierś z kurczaka dopraw solą i pieprzem, usmaż na patelni 5-6 min z każdej strony. Ostudź i pokrój w paski.",
                         "Tortillę posmaruj serkiem.",
                         "Ułóż sałatę, kurczaka, pomidor, ser.",
                         "Zwiń ciasno w rulon.",
@@ -9618,9 +10374,10 @@
                         { item: "Koper", amount: 4, unit: "g" }
                     ],
                     steps: [
+                        "Jajka ugotuj na twardo, obierz i pokrój w plasterki.",
                         "Pokrój ogórka i rzodkiewkę w plastry.",
                         "Serek wymieszaj z posiekanym koperkiem i szczypiorkiem, dopraw solą i pieprzem.",
-                        "Tortillę posmaruj serkiem, ułóż łososia, rzodkiewkę, ogórka i rukolę.",
+                        "Tortillę posmaruj serkiem, ułóż łososia, jajka, rzodkiewkę, ogórka i rukolę.",
                         "Zwiń w rulon i podawaj."
                     ]
                 },
@@ -9644,9 +10401,8 @@
                         { item: "Jogurt Skyr naturalny", amount: 200, unit: "g" }
                     ],
                     steps: [
-                        "Do miski wsyp mąkę, płatki owsiane, drożdże, cynamon, ksylitol i mleko. Miksuj aż powstanie gładkie ciasto.",
-                        "Przykryj i odstaw w ciepłe miejsce na 30-45 min.",
-                        "Jabłko obierz, wydrąż gniazda nasienne i pokrój w kostkę. Dodaj do wyrośniętego ciasta.",
+                        "Do miski wsyp mąkę, płatki owsiane, cynamon i odżywkę białkową. Dodaj jajka i mleko. Miksuj aż powstanie gładkie ciasto.",
+                        "Jabłko obierz, wydrąż gniazda nasienne i pokrój w kostkę. Dodaj do ciasta.",
                         "Patelnię smaruj olejem i rozgrzewaj.",
                         "Układaj cienkie placuszki i smaż na wolnym ogniu z obu stron.",
                         "Podawaj z jogurtem skyr."
@@ -9671,8 +10427,9 @@
                         { item: "Rukola", amount: 40, unit: "g" }
                     ],
                     steps: [
+                        "Jajka ugotuj na twardo (8-10 min), obierz i pokrój w plasterki.",
                         "Kromki chleba posmaruj serkiem śmietankowym.",
-                        "Na kanapkach ułóż rukolę, plastry sera gouda, pomidora i ogórka.",
+                        "Na kanapkach ułóż rukolę, szynkę z indyka, plastry sera gouda, jajka, pomidora i ogórka.",
                         "Dopraw solą i pieprzem."
                     ]
                 },
@@ -9920,10 +10677,10 @@
                     id: 'd18',
                     name: "Skyr z orzechami i bananem",
                     category: "🧀 Nabiał",
-                    kcal: 491,
+                    kcal: 499,
                     protein: 45,
                     fat: 18,
-                    carbs: 43,
+                    carbs: 40,
                     ingredients: [
                         { item: "Jogurt Skyr naturalny", amount: 200, unit: "g" },
                         { item: "Banan", amount: 1, unit: "szt" },
@@ -10005,7 +10762,8 @@
                     steps: [
                         "Warzywa oraz ser typu feta kroimy.",
                         "Mieszamy oliwę, oregano, sól, pieprz oraz sok z cytryny.",
-                        "Na talerz nakładamy sałatę, pokrojone warzywa, oliwki oraz ser typu feta, polewamy sosem, dokładnie mieszamy i podajemy z chlebem razowym i szynką."
+                        "Na talerz nakładamy sałatę, pokrojone warzywa, oliwki oraz ser typu feta, polewamy sosem i dokładnie mieszamy.",
+                        "Szynkę z kurczaka układamy na kromkach chleba razowego i podajemy obok sałatki."
                     ]
                 },
                 {
@@ -10057,10 +10815,10 @@
                     id: 'd24',
                     name: "Grzanki z pstrągiem wędzonym",
                     category: "🥪 Kanapki",
-                    kcal: 784,
-                    protein: 62,
-                    fat: 34,
-                    carbs: 54,
+                    kcal: 834,
+                    protein: 65,
+                    fat: 35,
+                    carbs: 62,
                     ingredients: [
                         { item: "Chleb tostowy pełnoziarnisty", amount: 4, unit: "kromki" },
                         { item: "Pstrąg wędzony", amount: 150, unit: "g" },
@@ -10215,10 +10973,10 @@
                     id: 'd30',
                     name: "Tosty z ricottą, szpinakiem i jajkiem",
                     category: "🥪 Kanapki",
-                    kcal: 928,
-                    protein: 63,
-                    fat: 47,
-                    carbs: 62,
+                    kcal: 978,
+                    protein: 66,
+                    fat: 48,
+                    carbs: 70,
                     ingredients: [
                         { item: "Chleb tostowy pełnoziarnisty", amount: 4, unit: "kromki" },
                         { item: "Ricotta", amount: 120, unit: "g" },
@@ -10299,6 +11057,7 @@
                     carbs: 51,
                     ingredients: [
                         { item: "Jajka", amount: 3, unit: "szt" },
+                        { item: "Mleko 2%", amount: 30, unit: "ml" },
                         { item: "Szynka", amount: 60, unit: "g" },
                         { item: "Ser żółty", amount: 25, unit: "g" },
                         { item: "Pomidor", amount: 1, unit: "szt" },
@@ -10308,7 +11067,7 @@
                         { item: "Szczypiorek", amount: 10, unit: "g" }
                     ],
                     steps: [
-                        "Jajka roztrzep z odrobiną mleka, dopraw.",
+                        "Jajka roztrzep z mlekiem, dopraw solą i pieprzem.",
                         "Na patelni rozgrzej masło, wlej jajka.",
                         "Gdy omlet się zetnie, dodaj szynkę i ser.",
                         "Złóż na pół, podawaj z warzywami i tostami."
@@ -11029,7 +11788,7 @@
                 localStorage.setItem(key, value);
             } catch(e) {
                 if (e.name === 'QuotaExceededError' || e.code === 22) {
-                    alert('Brak miejsca w pamięci przeglądarki! Dane mogły nie zostać zapisane. Spróbuj wyczyścić stare dane.');
+                    showToast('Brak miejsca w pamięci przeglądarki! Dane mogły nie zostać zapisane.', 'error', 5000);
                 }
             }
         }
@@ -11064,11 +11823,17 @@
         }
 
         function resetEatenStatus() {
-            if (confirm('Czy na pewno zresetować status zjedzonych posiłków?')) {
+            showConfirm('Czy na pewno zresetować status zjedzonych posiłków?', () => {
+                const backup = JSON.parse(JSON.stringify(eatenMeals));
                 eatenMeals = initEatenMeals();
                 saveEatenMeals();
                 renderPlannerTable();
-            }
+                showToast('Status zjedzonych posiłków zresetowany', 'success', 8000, () => {
+                    eatenMeals = backup;
+                    saveEatenMeals();
+                    renderPlannerTable();
+                });
+            });
         }
 
         // ===========================================
@@ -11134,9 +11899,13 @@
         // ===========================================
         
         function showSection(name, btn) {
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.section').forEach(s => {
+                s.classList.remove('active', 'visible');
+            });
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('section-' + name).classList.add('active');
+            const section = document.getElementById('section-' + name);
+            section.classList.add('active');
+            requestAnimationFrame(() => requestAnimationFrame(() => section.classList.add('visible')));
             if (btn) btn.classList.add('active');
             else document.querySelector(`.nav-btn[onclick*="${name}"]`).classList.add('active');
             if (name === 'shopping') {
@@ -11571,6 +12340,8 @@
                 renderRecipesPersonSelector();
                 renderRecipes(currentRecipeFilter);
                 savePersons();
+                showSaveFeedback(document.querySelector(`.person-settings[style*="${person.color}"]`));
+                showToast('Zapisano', 'success', 1500);
             }
         }
 
@@ -12056,6 +12827,7 @@
 
             days.forEach((day, i) => {
                 const row = document.createElement('tr');
+                if (i >= 5) row.classList.add('weekend-row');
                 row.innerHTML = `<td class="day-name">${daysShort[i]}</td>`;
 
                 mealTypes.forEach(mealType => {
@@ -12085,8 +12857,10 @@
                                     ${isEaten ? 'checked' : ''}
                                     ${recipeId ? '' : 'disabled'}
                                     onchange="toggleEaten('${day}', '${mealType}', ${p.id})"
-                                    title="Oznacz jako zjedzone">
-                                <button class="preview-btn" onclick="previewRecipe('${mealType}', '${recipeId || ''}', '${day}')" ${recipeId ? '' : 'disabled'}>👁</button>
+                                    title="Oznacz jako zjedzone"
+                                    data-tooltip="Zjedzone"
+                                    aria-label="Oznacz jako zjedzone">
+                                <button class="preview-btn" onclick="previewRecipe('${mealType}', '${recipeId || ''}', '${day}')" ${recipeId ? '' : 'disabled'} aria-label="Podgląd przepisu" data-tooltip="Podgląd">👁</button>
                             </div>
                             <button class="combobox-trigger ${mealType} ${recipeId ? 'has-value' : ''}"
                                 onclick="openMealPicker('${day}', '${mealType}', ${p.id})">
@@ -12165,8 +12939,109 @@
             btn.textContent = `🛒 Lista zakupów (${totalMeals} posiłków)`;
             btn.disabled = totalMeals === 0;
 
+            // Empty state
+            let emptyState = document.getElementById('planner-empty-state');
+            if (totalMeals === 0) {
+                if (!emptyState) {
+                    emptyState = document.createElement('div');
+                    emptyState.id = 'planner-empty-state';
+                    emptyState.className = 'planner-empty-state';
+                    emptyState.innerHTML = `
+                        <div style="font-size: 48px; margin-bottom: 12px;">📅</div>
+                        <h3 style="color: #1f2937; margin-bottom: 8px;">Zacznij planować tydzień!</h3>
+                        <p style="color: #6b7280; font-size: 14px; line-height: 1.6; max-width: 360px; margin: 0 auto;">
+                            Kliknij na komórkę w tabeli powyżej, aby wybrać przepis,
+                            lub użyj przycisków wariantów, aby szybko wypełnić plan.
+                        </p>
+                    `;
+                    tbody.closest('.card').appendChild(emptyState);
+                }
+                emptyState.style.display = 'block';
+            } else if (emptyState) {
+                emptyState.style.display = 'none';
+            }
+
             // Aktualizuj podsumowanie
             renderKcalSummary();
+
+            // Renderuj widok mobilny
+            renderMobileDayView();
+        }
+
+        let mobileDayIndex = 0;
+
+        function renderMobileDayView() {
+            const strip = document.getElementById('mobile-day-strip');
+            const content = document.getElementById('mobile-day-content');
+            if (!strip || !content) return;
+
+            // Day strip
+            strip.innerHTML = days.map((day, i) => {
+                const mealCount = mealTypes.reduce((sum, mt) =>
+                    sum + persons.filter(p => plan[day][mt][p.id]).length, 0);
+                return `<button class="mobile-day-btn ${i === mobileDayIndex ? 'active' : ''} ${i >= 5 ? 'weekend' : ''}"
+                    onclick="selectMobileDay(${i})">
+                    ${daysShort[i]}
+                    ${mealCount > 0 ? `<span class="day-meals-count">${mealCount}</span>` : ''}
+                </button>`;
+            }).join('');
+
+            // Day content
+            const day = days[mobileDayIndex];
+            const mealNames_ = { breakfast: 'Śniadanie', lunch: 'Obiad', dinner: 'Kolacja' };
+            const mealIcons = { breakfast: '🍳', lunch: '🍽️', dinner: '🥗' };
+
+            let html = '';
+            mealTypes.forEach(mt => {
+                html += `<div class="mobile-meal-card ${mt}">
+                    <div class="mobile-meal-card-header">${mealIcons[mt]} ${mealNames_[mt]}</div>`;
+                persons.forEach(p => {
+                    const recipeId = plan[day][mt][p.id];
+                    const recipe = recipeId ? recipes[mt].find(r => r.id === recipeId) : null;
+                    const isEaten = eatenMeals[day]?.[mt]?.[p.id] || false;
+                    html += `<div class="mobile-meal-person ${isEaten ? 'eaten' : ''}">
+                        <span class="person-indicator" style="background:${p.color}"></span>
+                        <span class="mobile-meal-person-name">${p.name}</span>
+                        ${recipe ? `
+                            <span class="mobile-meal-recipe" onclick="previewRecipe('${mt}','${recipe.id}','${day}')">
+                                ${isEaten ? '✅ ' : ''}${recipe.name}
+                            </span>
+                            <button class="mobile-change-btn" onclick="event.stopPropagation(); openMealPicker('${day}','${mt}',${p.id})"
+                                aria-label="Zmień przepis" title="Zmień przepis">✏️</button>
+                            <input type="checkbox" class="eaten-checkbox" ${isEaten ? 'checked' : ''}
+                                onchange="toggleEaten('${day}','${mt}',${p.id})"
+                                aria-label="Oznacz jako zjedzone" style="margin-left:4px;">
+                        ` : `
+                            <span class="mobile-meal-recipe empty" onclick="openMealPicker('${day}','${mt}',${p.id})">
+                                -- wybierz --
+                            </span>
+                        `}
+                    </div>`;
+                });
+                html += `</div>`;
+            });
+
+            // Day kcal summary
+            let dayKcal = 0;
+            mealTypes.forEach(mt => {
+                persons.forEach(p => {
+                    const recipeId = plan[day][mt][p.id];
+                    if (recipeId) {
+                        const r = recipes[mt].find(x => x.id === recipeId);
+                        if (r) dayKcal += Math.round(r.kcal * p.portion);
+                    }
+                });
+            });
+            if (dayKcal > 0) {
+                html += `<div class="mobile-day-kcal">Razem: <strong>${dayKcal} kcal</strong></div>`;
+            }
+
+            content.innerHTML = html;
+        }
+
+        function selectMobileDay(index) {
+            mobileDayIndex = index;
+            renderMobileDayView();
         }
 
         function setMealForPerson(day, mealType, personId, recipeId) {
@@ -12450,6 +13325,7 @@
                 `<div class="variant-separator">💰 Budżetowe (tanie składniki):</div>` +
                 budgetButtons +
                 `<div class="variant-separator action-separator">⚡ Akcje:</div>` +
+                (persons.length >= 2 ? `<button class="btn btn-copy-plan" onclick="copyPlanToAllPersons()">👥 Kopiuj plan do wszystkich</button>` : '') +
                 `<button class="btn btn-gray" onclick="resetPlan()">🔄 Reset</button>` +
                 `<button class="btn btn-gray" onclick="resetEatenStatus()">✅ Reset ptaszków</button>` +
                 `<button class="btn btn-share" onclick="sharePlan()">📤 Udostępnij plan</button>`;
@@ -12604,6 +13480,98 @@
             savePlan();
         }
 
+        function copyPlanToAllPersons() {
+            if (persons.length < 2) return;
+
+            // Pokaż modal wyboru osoby źródłowej
+            const overlay = document.createElement('div');
+            overlay.className = 'confirm-overlay';
+            overlay.style.cssText = 'display:flex; opacity:0; transition: opacity 0.2s';
+            overlay.innerHTML = `
+                <div class="confirm-dialog" style="max-width:360px">
+                    <p style="font-weight:600; font-size:16px; margin-bottom:16px;">Kopiuj plan od...</p>
+                    <p style="color:#6b7280; font-size:13px; margin-bottom:16px;">Wybierz osobę, której jadłospis chcesz skopiować do pozostałych. Posiłki zostaną zoptymalizowane pod zapotrzebowanie każdej osoby.</p>
+                    <div style="display:flex; flex-direction:column; gap:8px;">
+                        ${persons.map(p => {
+                            const mealCount = days.reduce((sum, day) =>
+                                sum + mealTypes.filter(mt => plan[day][mt][p.id]).length, 0);
+                            return `<button class="copy-source-btn" data-person-id="${p.id}" style="
+                                display:flex; align-items:center; gap:12px; padding:12px 16px;
+                                border:2px solid #e5e7eb; border-radius:10px; background:white;
+                                cursor:pointer; transition: all 0.15s; font-size:14px; text-align:left;
+                            ">
+                                <span style="width:12px;height:12px;border-radius:50%;background:${p.color};flex-shrink:0;"></span>
+                                <span style="flex:1;font-weight:600;">${p.name}</span>
+                                <span style="font-size:12px;color:#9ca3af;">${mealCount} posilkow</span>
+                            </button>`;
+                        }).join('')}
+                    </div>
+                    <button onclick="this.closest('.confirm-overlay').remove()" style="
+                        margin-top:16px; width:100%; padding:10px; border:1px solid #d1d5db;
+                        border-radius:8px; background:#f9fafb; cursor:pointer; font-size:13px; color:#6b7280;
+                    ">Anuluj</button>
+                </div>
+            `;
+            document.body.appendChild(overlay);
+            requestAnimationFrame(() => overlay.style.opacity = '1');
+
+            overlay.querySelectorAll('.copy-source-btn').forEach(btn => {
+                btn.addEventListener('mouseenter', () => { btn.style.borderColor = '#10b981'; btn.style.background = '#ecfdf5'; });
+                btn.addEventListener('mouseleave', () => { btn.style.borderColor = '#e5e7eb'; btn.style.background = 'white'; });
+                btn.addEventListener('click', () => {
+                    const sourceId = parseInt(btn.dataset.personId);
+                    const source = persons.find(p => p.id === sourceId);
+                    overlay.remove();
+
+                    // Sprawdź czy źródło ma jakieś posiłki
+                    let hasMeals = false;
+                    days.forEach(day => {
+                        mealTypes.forEach(mt => {
+                            if (plan[day][mt][source.id]) hasMeals = true;
+                        });
+                    });
+
+                    if (!hasMeals) {
+                        showToast(`${source.name} nie ma żadnych zaplanowanych posiłków do skopiowania.`, 'warning');
+                        return;
+                    }
+
+                    const targetNames = persons.filter(p => p.id !== source.id).map(p => p.name).join(', ');
+
+                    showConfirm(
+                        `Skopiować plan z "${source.name}" do: ${targetNames}?`,
+                        () => {
+                            const oldPlan = JSON.parse(JSON.stringify(plan));
+                            const oldOptimizations = JSON.parse(JSON.stringify(mealOptimizations));
+
+                            days.forEach(day => {
+                                mealTypes.forEach(mt => {
+                                    const sourceRecipeId = plan[day][mt][source.id];
+                                    persons.forEach(p => {
+                                        if (p.id !== source.id) {
+                                            plan[day][mt][p.id] = sourceRecipeId;
+                                        }
+                                    });
+                                });
+                            });
+
+                            optimizeAllMealsInPlan();
+                            renderPlannerTable();
+                            savePlan();
+
+                            showToast(`Plan skopiowany z "${source.name}" do ${persons.length - 1} osob`, 'success', 8000, () => {
+                                plan = oldPlan;
+                                mealOptimizations = oldOptimizations;
+                                saveMealOptimizations();
+                                renderPlannerTable();
+                                savePlan();
+                            });
+                        }
+                    );
+                });
+            });
+        }
+
         // PRZEPISY - PRZEŁĄCZNIK OSOBY
         function renderRecipesPersonSelector() {
             const container = document.getElementById('recipes-person-selector');
@@ -12656,6 +13624,13 @@
             renderRecipes(currentRecipeFilter);
         }
 
+        let currentRecipeSort = 'name-asc';
+
+        function sortRecipesBy(value) {
+            currentRecipeSort = value;
+            renderRecipes(currentRecipeFilter);
+        }
+
         // PRZEPISY
         function renderRecipes(filter = 'all') {
             currentRecipeFilter = filter;
@@ -12687,47 +13662,52 @@
                 shakes: "Shake'i"
             };
 
-            let hasRecipes = false;
+            // Collect filtered recipes
+            let filteredRecipes = [];
 
             types.forEach(mt => {
                 recipes[mt].forEach(r => {
-                    // Jeśli filtrujemy ulubione, pomiń nie-ulubione
-                    if (filter === 'favorites' && !favoriteRecipes.has(r.id)) {
-                        return;
-                    }
-
-                    // NOWE: Filtr "z piekarnika" - szuka w steps
+                    if (filter === 'favorites' && !favoriteRecipes.has(r.id)) return;
                     if (filter === 'oven') {
-                        const hasOven = r.steps.some(step =>
-                            step.toLowerCase().includes('piekarnik')
-                        );
+                        const hasOven = r.steps.some(step => step.toLowerCase().includes('piekarnik'));
                         if (!hasOven) return;
                     }
-
-                    // Filtry po kategorii (uniwersalne)
-                    if (categoryFilters[filter] && !r.category.includes(categoryFilters[filter])) {
-                        return;
-                    }
-
-                    // Filtrowanie po wyszukiwanym tekście (nazwa, składniki, zamienniki i instrukcje)
+                    if (categoryFilters[filter] && !r.category.includes(categoryFilters[filter])) return;
                     if (currentSearchTerm) {
                         const termLower = currentSearchTerm;
                         const matchesName = r.name.toLowerCase().includes(termLower);
-                        const matchesIngredient = r.ingredients.some(ing =>
-                            ing.item.toLowerCase().includes(termLower)
-                        );
+                        const matchesIngredient = r.ingredients.some(ing => ing.item.toLowerCase().includes(termLower));
                         const matchesSubstitute = r.ingredients.some(ing =>
-                            ing.substitutes && ing.substitutes.some(sub =>
-                                sub.item.toLowerCase().includes(termLower)
-                            )
+                            ing.substitutes && ing.substitutes.some(sub => sub.item.toLowerCase().includes(termLower))
                         );
-                        const matchesSteps = r.steps.some(step =>
-                            step.toLowerCase().includes(termLower)
-                        );
+                        const matchesSteps = r.steps.some(step => step.toLowerCase().includes(termLower));
                         if (!matchesName && !matchesIngredient && !matchesSubstitute && !matchesSteps) return;
                     }
+                    filteredRecipes.push({ mt, r });
+                });
+            });
 
-                    hasRecipes = true;
+            // Sort
+            filteredRecipes.sort((a, b) => {
+                switch (currentRecipeSort) {
+                    case 'name-asc': return a.r.name.localeCompare(b.r.name, 'pl');
+                    case 'name-desc': return b.r.name.localeCompare(a.r.name, 'pl');
+                    case 'kcal-asc': return a.r.kcal - b.r.kcal;
+                    case 'kcal-desc': return b.r.kcal - a.r.kcal;
+                    case 'protein-desc': return b.r.protein - a.r.protein;
+                    default: return 0;
+                }
+            });
+
+            let hasRecipes = filteredRecipes.length > 0;
+
+            // Recipe count display
+            const countEl = document.getElementById('recipe-count');
+            if (countEl) {
+                countEl.textContent = hasRecipes ? `Znaleziono ${filteredRecipes.length} przepisów` : '';
+            }
+
+            filteredRecipes.forEach(({ mt, r }, index) => {
                     const isFav = favoriteRecipes.has(r.id);
 
                     // Oblicz zoptymalizowane wartości dla wybranej osoby i typu posiłku
@@ -12745,16 +13725,19 @@
 
                     const card = document.createElement('div');
                     card.className = 'recipe-card';
+                    card.style.animationDelay = Math.min(index * 0.03, 0.6) + 's';
                     card.onclick = () => openRecipeModal(mt, r);
                     card.innerHTML = `
                         <div class="recipe-header ${mt}">
                             <button class="favorite-btn ${isFav ? 'active' : ''}"
                                 onclick="toggleFavorite('${r.id}', event)"
-                                title="${isFav ? 'Usuń z ulubionych' : 'Dodaj do ulubionych'}">
+                                title="${isFav ? 'Usuń z ulubionych' : 'Dodaj do ulubionych'}"
+                                aria-label="${isFav ? 'Usuń z ulubionych' : 'Dodaj do ulubionych'}">
                                 ${isFav ? '❤️' : '🤍'}
                             </button>
                             <div class="recipe-type">${mealNames[mt]}</div>
                             <div class="recipe-name">${r.name}</div>
+                            ${r.category ? `<span class="recipe-category-badge">${r.category}</span>` : ''}
                         </div>
                         <div class="recipe-body">
                             <div class="recipe-macros-optimized">
@@ -12767,10 +13750,9 @@
                                 <span class="target-badge">${person.name}</span>
                                 Oryginał: ${r.kcal} kcal
                             </div>
-                            <div class="recipe-preview">${r.ingredients.slice(0,3).map(x=>x.item).join(', ')}...</div>
+                            <div class="recipe-preview">${r.ingredients.length} składników • ${r.steps.length} kroków</div>
                         </div>`;
                     grid.appendChild(card);
-                });
             });
 
             // Pokaż komunikat gdy brak ulubionych
@@ -12840,6 +13822,9 @@
 
             document.getElementById('modal-steps').innerHTML = r.steps.map(s => `<li>${s}</li>`).join('');
             document.body.style.overflow = 'hidden';
+
+            // Focus trap
+            trapFocus(document.querySelector('#modal-overlay .modal'));
 
             // Automatyczna optymalizacja przy otwarciu przepisu (zawsze)
             setTimeout(() => {
@@ -13021,7 +14006,7 @@
                 };
 
                 // Info o trybie "Razem"
-                const optimizedLabel = showOriginal ? '' : ' <span style="color: #7c3aed; font-weight: 600;">(zoptymalizowane)</span>';
+                const optimizedLabel = showOriginal ? '' : ' <span style="color: #0891b2; font-weight: 600;">(zoptymalizowane)</span>';
                 multiplierEl.innerHTML = `<strong>🍳 Razem dla:</strong> ${personsInfo.join(' + ')}${optimizedLabel}`;
 
                 // Lista składników
@@ -13174,7 +14159,7 @@
 
                 const portionsInfo = modalPortions > 1 ? ` × ${modalPortions} porcji` : '';
                 const totalMultiplier = baseMultiplier * modalPortions;
-                const optimizedLabel = isOptimized ? ' <span style="color: #7c3aed; font-weight: 600;">(zoptymalizowane)</span>' : '';
+                const optimizedLabel = isOptimized ? ' <span style="color: #0891b2; font-weight: 600;">(zoptymalizowane)</span>' : '';
                 multiplierEl.innerHTML = `Składniki dla: <strong>${person?.name || 'Nieznany'}</strong> (${person?.portion || 1}x)${portionsInfo}${optimizedLabel}` + (modalPortions > 1 ? ` = <strong>${totalMultiplier.toFixed(2)}x</strong>` : '');
 
                 // Mnóż przez modalPortions
@@ -13342,6 +14327,7 @@
                 document.getElementById('modal-overlay').classList.remove('active');
                 document.body.style.overflow = '';
                 closeAllSubstitutePopups();
+                releaseFocusTrap();
             }
         }
 
@@ -13886,6 +14872,43 @@
                 checkedShoppingItems.delete(item);
             }
             saveCheckedItems();
+            updateShoppingCounter();
+
+            // Dynamically update the collapsible section count
+            const checkedToggle = document.querySelector('.checked-items-toggle');
+            if (checkedToggle) {
+                const checkedCount = document.querySelectorAll('#shopping-list .item input[type="checkbox"]:checked').length;
+                checkedToggle.innerHTML = `✅ Kupione (${checkedCount}) <span class="toggle-arrow">▸</span>`;
+            }
+        }
+
+        function updateShoppingCounter() {
+            const counterEl = document.getElementById('shopping-counter');
+            if (!counterEl) return;
+            const allItems = document.querySelectorAll('#shopping-list .item input[type="checkbox"]');
+            const totalItems = allItems.length;
+            const checkedTotal = Array.from(allItems).filter(cb => cb.checked).length;
+            if (totalItems > 0) {
+                const pct = Math.round((checkedTotal / totalItems) * 100);
+                counterEl.style.display = 'inline-flex';
+                // Check if fill element already exists for smooth transition
+                const existingFill = counterEl.querySelector('.shopping-counter-fill');
+                if (existingFill) {
+                    // Update only the dynamic parts without replacing innerHTML
+                    existingFill.style.width = pct + '%';
+                    counterEl.firstChild.textContent = `${checkedTotal} / ${totalItems} kupione `;
+                    const pctSpan = counterEl.querySelector('.shopping-counter-pct');
+                    if (pctSpan) pctSpan.textContent = pct + '%';
+                } else {
+                    counterEl.innerHTML = `${checkedTotal} / ${totalItems} kupione
+                        <div class="shopping-counter-progress">
+                            <div class="shopping-counter-fill" style="width:${pct}%"></div>
+                        </div>
+                        <span class="shopping-counter-pct">${pct}%</span>`;
+                }
+            } else {
+                counterEl.style.display = 'none';
+            }
         }
 
         function clearCheckedItems() {
@@ -13995,6 +15018,26 @@
             renderShoppingList();
         }
 
+        function showCustomMultiplier() {
+            const input = document.getElementById('custom-multiplier-input');
+            input.style.display = 'inline-block';
+            input.focus();
+        }
+
+        function applyCustomMultiplier(val) {
+            const num = parseFloat(val);
+            if (isNaN(num) || num < 0.5 || num > 10) {
+                showToast('Podaj wartość od 0.5 do 10', 'warning');
+                return;
+            }
+            shoppingListMultiplier = num;
+            const buttons = document.querySelectorAll('.multiplier-btn');
+            buttons.forEach(b => b.classList.remove('active'));
+            const info = document.getElementById('multiplier-info');
+            if (info) info.textContent = `(x${num})`;
+            renderShoppingList();
+        }
+
         function renderShoppingMultiplierButtons() {
             const container = document.getElementById('shopping-multiplier-container');
             if (!container) return;
@@ -14016,6 +15059,38 @@
         }
 
         // LISTA ZAKUPÓW - z uwzględnieniem mnożników porcji i filtrów
+        // MANUAL SHOPPING ITEMS
+        let manualShoppingItems = JSON.parse(localStorage.getItem('manualShoppingItems') || '[]');
+
+        function saveManualItems() {
+            localStorage.setItem('manualShoppingItems', JSON.stringify(manualShoppingItems));
+        }
+
+        function addManualItem() {
+            const input = document.getElementById('manual-item-input');
+            const name = input.value.trim();
+            if (!name) return;
+            manualShoppingItems.push({ name, checked: false, id: Date.now() });
+            saveManualItems();
+            input.value = '';
+            renderShoppingList();
+        }
+
+        function removeManualItem(id) {
+            manualShoppingItems = manualShoppingItems.filter(i => i.id !== id);
+            saveManualItems();
+            renderShoppingList();
+        }
+
+        function toggleManualItem(id) {
+            const item = manualShoppingItems.find(i => i.id === id);
+            if (item) {
+                item.checked = !item.checked;
+                saveManualItems();
+                renderShoppingList();
+            }
+        }
+
         function renderShoppingList() {
             const list = {};
             let total = 0;
@@ -14140,6 +15215,54 @@
                 });
                 container.appendChild(div);
             }
+
+            // Collapsible checked items section
+            const checkedCount = Object.keys(list).filter(item => checkedShoppingItems.has(item)).length;
+            if (checkedCount > 0) {
+                // Move checked items to separate collapsible section
+                const checkedSection = document.createElement('div');
+                checkedSection.className = 'checked-items-section';
+                checkedSection.innerHTML = `
+                    <button class="checked-items-toggle" onclick="this.parentElement.classList.toggle('expanded')">
+                        ✅ Kupione (${checkedCount}) <span class="toggle-arrow">▸</span>
+                    </button>
+                    <div class="checked-items-content"></div>
+                `;
+                const content = checkedSection.querySelector('.checked-items-content');
+                // Move checked items from categories into this section
+                container.querySelectorAll('.item').forEach(item => {
+                    const checkbox = item.querySelector('input[type="checkbox"]');
+                    if (checkbox && checkbox.checked) {
+                        content.appendChild(item);
+                    }
+                });
+                // Remove empty categories
+                container.querySelectorAll('.category').forEach(cat => {
+                    if (cat.querySelectorAll('.item').length === 0) cat.remove();
+                });
+                container.appendChild(checkedSection);
+            }
+
+            // Manual items section
+            if (manualShoppingItems.length > 0) {
+                const manualDiv = document.createElement('div');
+                manualDiv.className = 'category';
+                manualDiv.innerHTML = '<h3>✏️ DODANE RĘCZNIE</h3>';
+                manualShoppingItems.forEach(item => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'item';
+                    itemDiv.innerHTML = `
+                        <input type="checkbox" ${item.checked ? 'checked' : ''}
+                            onchange="toggleManualItem(${item.id})">
+                        <span class="item-name ${item.checked ? 'checked' : ''}">${item.name}</span>
+                        <button class="manual-item-delete" onclick="removeManualItem(${item.id})" aria-label="Usuń">✕</button>
+                    `;
+                    manualDiv.appendChild(itemDiv);
+                });
+                container.appendChild(manualDiv);
+            }
+
+            updateShoppingCounter();
         }
 
         function showRecipePopupForIngredient(btn, recipesList) {
@@ -14231,11 +15354,11 @@
             }
 
             if (!hasItems) {
-                alert('Wszystkie produkty zostały odhaczone! Nie ma nic do skopiowania.');
+                showToast('Wszystkie produkty zostały odhaczone! Nie ma nic do skopiowania.', 'warning');
                 return;
             }
 
-            navigator.clipboard.writeText(txt).then(() => alert('Lista skopiowana do schowka!\n\n(Odhaczone produkty zostały pominięte)')).catch(() => alert('Nie udało się skopiować listy. Spróbuj ponownie.'));
+            navigator.clipboard.writeText(txt).then(() => showToast('Lista skopiowana do schowka!', 'success')).catch(() => showToast('Nie udało się skopiować listy. Spróbuj ponownie.', 'error'));
         }
 
         // Udostępnianie listy zakupów (natywne iOS/Android)
@@ -14295,7 +15418,7 @@
             }
 
             if (!hasItems) {
-                alert('Wszystkie produkty zostały odhaczone! Nie ma nic do wysłania.');
+                showToast('Wszystkie produkty zostały odhaczone! Nie ma nic do wysłania.', 'warning');
                 return;
             }
 
@@ -14304,15 +15427,14 @@
                     title: 'Lista zakupów',
                     text: txt
                 }).catch(() => {
-                    // Użytkownik anulował - kopiuj do schowka
                     navigator.clipboard.writeText(txt).then(() => {
-                        alert('Lista skopiowana do schowka!\nWyślij przez SMS lub komunikator.');
-                    }).catch(() => alert('Nie udało się skopiować listy.'));
+                        showToast('Lista skopiowana do schowka!', 'success');
+                    }).catch(() => showToast('Nie udało się skopiować listy.', 'error'));
                 });
             } else {
                 navigator.clipboard.writeText(txt).then(() => {
-                    alert('Lista skopiowana do schowka!\nWyślij przez SMS lub komunikator.');
-                }).catch(() => alert('Nie udało się skopiować listy.'));
+                    showToast('Lista skopiowana do schowka!', 'success');
+                }).catch(() => showToast('Nie udało się skopiować listy.', 'error'));
             }
         }
 
@@ -14340,7 +15462,7 @@
 
         function addPerson() {
             if (persons.length >= MAX_PERSONS) {
-                alert('Maksymalna liczba osób to ' + MAX_PERSONS);
+                showToast('Maksymalna liczba osób to ' + MAX_PERSONS, 'warning');
                 return;
             }
 
@@ -14393,50 +15515,64 @@
 
         function removePerson(personId) {
             if (persons.length <= MIN_PERSONS) {
-                alert('Musi być co najmniej ' + MIN_PERSONS + ' osoba');
+                showToast('Musi być co najmniej ' + MIN_PERSONS + ' osoba', 'warning');
                 return;
             }
 
             const personToRemove = persons.find(p => p.id === personId);
             if (!personToRemove) return;
 
-            if (!confirm(`Czy na pewno usunąć osobę "${personToRemove.name}"? Przepisy przypisane do tej osoby zostaną usunięte.`)) {
-                return;
-            }
+            showConfirm(`Czy na pewno usunąć osobę "${personToRemove.name}"? Przepisy przypisane do tej osoby zostaną usunięte.`, () => {
+                // Backup for undo
+                const backupPersons = JSON.parse(JSON.stringify(persons));
+                const backupPlan = JSON.parse(JSON.stringify(plan));
+                const backupEaten = JSON.parse(JSON.stringify(eatenMeals));
 
-            // Zamknij modal przepisu jeśli jest otwarty (może odwoływać się do usuwanej osoby)
-            if (currentModalRecipe) closeModal();
+                // Zamknij modal przepisu jeśli jest otwarty (może odwoływać się do usuwanej osoby)
+                if (currentModalRecipe) closeModal();
 
-            persons = persons.filter(p => p.id !== personId);
+                persons = persons.filter(p => p.id !== personId);
 
-            // Usuń z planu
-            days.forEach(day => {
-                mealTypes.forEach(mt => {
-                    if (plan[day] && plan[day][mt]) {
-                        delete plan[day][mt][personId];
-                    }
+                // Usuń z planu
+                days.forEach(day => {
+                    mealTypes.forEach(mt => {
+                        if (plan[day] && plan[day][mt]) {
+                            delete plan[day][mt][personId];
+                        }
+                    });
                 });
-            });
 
-            // Usuń z eatenMeals
-            days.forEach(day => {
-                mealTypes.forEach(mt => {
-                    if (eatenMeals[day] && eatenMeals[day][mt]) {
-                        delete eatenMeals[day][mt][personId];
-                    }
+                // Usuń z eatenMeals
+                days.forEach(day => {
+                    mealTypes.forEach(mt => {
+                        if (eatenMeals[day] && eatenMeals[day][mt]) {
+                            delete eatenMeals[day][mt][personId];
+                        }
+                    });
                 });
-            });
 
-            savePersons();
-            savePlan();
-            saveEatenMeals();
-            refreshAllViews();
+                savePersons();
+                savePlan();
+                saveEatenMeals();
+                refreshAllViews();
+
+                showToast(`Usunięto osobę "${personToRemove.name}"`, 'success', 8000, () => {
+                    persons = backupPersons;
+                    plan = backupPlan;
+                    eatenMeals = backupEaten;
+                    savePersons();
+                    savePlan();
+                    saveEatenMeals();
+                    refreshAllViews();
+                });
+            }, true);
         }
 
         function refreshAllViews() {
             renderSettingsPanel();
             renderPersonsPanel();
             updateTableHeaders();
+            renderVariantButtons();
             renderPlannerTable();
             renderKcalSummary();
             renderShoppingList();
@@ -14558,17 +15694,422 @@
                     copyToClipboard(shareUrl);
                 }
             } catch(e) {
-                alert('Błąd podczas generowania linku. Spróbuj ponownie.');
+                showToast('Błąd podczas generowania linku. Spróbuj ponownie.', 'error');
+            }
+        }
+
+        function shareRecipe() {
+            const r = currentModalRecipe;
+            if (!r) return;
+
+            const mealNamePl = { breakfast: 'Śniadanie', lunch: 'Obiad', dinner: 'Kolacja' };
+            let ingredientsList = [];
+            let displayMacros = {};
+            let personsText = '';
+
+            if (modalSelectedPersons.length > 1 && currentModalMealType) {
+                let combinedIngredients = {};
+                let combinedNutrition = { kcal: 0, protein: 0, fat: 0, carbs: 0 };
+                const personsInfo = [];
+                const showOriginal = modalOptimizedIngredients === false;
+
+                if (showOriginal) {
+                    let totalMultiplier = 0;
+                    for (const personId of modalSelectedPersons) {
+                        const person = persons.find(p => p.id === personId);
+                        if (!person) continue;
+                        totalMultiplier += person.portion * modalPortions;
+                        personsInfo.push(person.name + ' (' + person.portion + 'x)');
+                    }
+                    for (const ing of r.ingredients) {
+                        combinedIngredients[ing.item] = {
+                            item: ing.item,
+                            amount: Math.round(ing.amount * totalMultiplier * 10) / 10,
+                            unit: ing.unit
+                        };
+                    }
+                    combinedNutrition = {
+                        kcal: r.kcal * totalMultiplier,
+                        protein: r.protein * totalMultiplier,
+                        fat: r.fat * totalMultiplier,
+                        carbs: r.carbs * totalMultiplier
+                    };
+                } else {
+                    for (const personId of modalSelectedPersons) {
+                        const person = persons.find(p => p.id === personId);
+                        if (!person) continue;
+                        const mealTarget = calculateMealTargets(person, currentModalMealType);
+                        if (!mealTarget) continue;
+                        const result = optimizeIngredients(r, mealTarget, person.portion);
+                        for (const ing of result.ingredients) {
+                            if (!combinedIngredients[ing.item]) {
+                                combinedIngredients[ing.item] = { ...ing, amount: 0, unit: ing.unit };
+                            }
+                            combinedIngredients[ing.item].amount += ing.amount * modalPortions;
+                        }
+                        combinedNutrition.kcal += result.nutrition.kcal * modalPortions;
+                        combinedNutrition.protein += result.nutrition.protein * modalPortions;
+                        combinedNutrition.fat += result.nutrition.fat * modalPortions;
+                        combinedNutrition.carbs += result.nutrition.carbs * modalPortions;
+                        personsInfo.push(person.name + ' (' + person.portion + 'x)');
+                    }
+                }
+
+                ingredientsList = Object.values(combinedIngredients).map(ing => ({
+                    ...ing, amount: Math.round(ing.amount * 10) / 10
+                }));
+                displayMacros = {
+                    kcal: Math.round(combinedNutrition.kcal),
+                    protein: Math.round(combinedNutrition.protein),
+                    fat: Math.round(combinedNutrition.fat),
+                    carbs: Math.round(combinedNutrition.carbs)
+                };
+                personsText = 'Dla: ' + personsInfo.join(' + ');
+            } else {
+                const person = persons.find(p => p.id === modalSelectedPersons[0]);
+                const baseMultiplier = person ? person.portion : 1;
+                const isOptimized = modalOptimizedIngredients !== null && modalOptimizedIngredients !== false;
+
+                let baseMacros;
+                if (isOptimized) {
+                    ingredientsList = modalOptimizedIngredients.ingredients.map(ing => ({
+                        item: ing.item,
+                        amount: Math.round(ing.amount * modalPortions * 10) / 10,
+                        unit: ing.unit
+                    }));
+                    baseMacros = modalOptimizedIngredients.nutrition;
+                } else {
+                    ingredientsList = r.ingredients.map(ing => ({
+                        item: ing.item,
+                        amount: Math.round(ing.amount * baseMultiplier * modalPortions * 10) / 10,
+                        unit: ing.unit
+                    }));
+                    baseMacros = {
+                        kcal: r.kcal * baseMultiplier,
+                        protein: r.protein * baseMultiplier,
+                        fat: r.fat * baseMultiplier,
+                        carbs: r.carbs * baseMultiplier
+                    };
+                }
+
+                displayMacros = {
+                    kcal: Math.round(baseMacros.kcal * modalPortions),
+                    protein: Math.round(baseMacros.protein * modalPortions),
+                    fat: Math.round(baseMacros.fat * modalPortions),
+                    carbs: Math.round(baseMacros.carbs * modalPortions)
+                };
+                personsText = 'Dla: ' + (person?.name || '') + (person ? ' (' + person.portion + 'x)' : '');
+            }
+
+            let txt = '';
+            txt += '🍽️ ' + r.name.toUpperCase() + '\n';
+            txt += (mealNamePl[currentModalMealType] || '') + ' | Porcji: ' + modalPortions + '\n';
+            if (personsText) txt += personsText + '\n';
+            txt += '\n';
+
+            txt += '📊 WARTOŚCI ODŻYWCZE\n';
+            txt += 'Kalorie: ' + displayMacros.kcal + ' kcal\n';
+            txt += 'Białko: ' + displayMacros.protein + 'g\n';
+            txt += 'Tłuszcze: ' + displayMacros.fat + 'g\n';
+            txt += 'Węglowodany: ' + displayMacros.carbs + 'g\n\n';
+
+            txt += '📝 SKŁADNIKI\n';
+            ingredientsList.forEach(ing => {
+                txt += '• ' + ing.item + ' — ' + ing.amount + ' ' + ing.unit + '\n';
+            });
+            txt += '\n';
+
+            txt += '👨‍🍳 PRZYGOTOWANIE\n';
+            r.steps.forEach((step, i) => {
+                txt += (i + 1) + '. ' + step + '\n';
+            });
+
+            if (navigator.share) {
+                navigator.share({
+                    title: r.name,
+                    text: txt
+                }).catch(() => {
+                    navigator.clipboard.writeText(txt).then(() => {
+                        showToast('Przepis skopiowany do schowka!', 'success');
+                    }).catch(() => {
+                        prompt('Skopiuj przepis:', txt);
+                    });
+                });
+            } else {
+                navigator.clipboard.writeText(txt).then(() => {
+                    showToast('Przepis skopiowany do schowka!', 'success');
+                }).catch(() => {
+                    prompt('Skopiuj przepis:', txt);
+                });
             }
         }
 
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => {
-                alert('✅ Link skopiowany do schowka!\n\nWyślij go przez SMS, WhatsApp lub inny komunikator.');
+                showToast('Link skopiowany do schowka!', 'success');
             }).catch(() => {
-                // Fallback dla starszych przeglądarek
                 prompt('Skopiuj ten link:', text);
             });
+        }
+
+        // TOAST / CONFIRM SYSTEM
+        function showToast(message, type = 'info', duration = 3000, onUndo = null) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            const undoHtml = onUndo ? `<button class="toast-undo" aria-label="Cofnij">Cofnij</button>` : '';
+            toast.innerHTML = `
+                <span class="toast-message">${message}</span>
+                ${undoHtml}
+                <button class="toast-close" onclick="this.parentElement.remove()" aria-label="Zamknij">&times;</button>
+            `;
+            if (onUndo) {
+                toast.querySelector('.toast-undo').addEventListener('click', () => {
+                    onUndo();
+                    toast.remove();
+                });
+                duration = 8000; // longer for undo toasts
+            }
+            container.appendChild(toast);
+            requestAnimationFrame(() => toast.classList.add('show'));
+            const timer = setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 250);
+            }, duration);
+        }
+
+        function showConfirm(message, onConfirm, danger = false) {
+            const overlay = document.createElement('div');
+            overlay.className = 'confirm-overlay';
+            overlay.innerHTML = `
+                <div class="confirm-dialog" role="alertdialog" aria-modal="true">
+                    <p>${message}</p>
+                    <div class="confirm-actions">
+                        <button class="confirm-cancel">Anuluj</button>
+                        <button class="confirm-ok ${danger ? 'danger' : ''}">Potwierdź</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(overlay);
+            requestAnimationFrame(() => overlay.classList.add('show'));
+            const close = () => {
+                overlay.classList.remove('show');
+                setTimeout(() => overlay.remove(), 200);
+            };
+            overlay.querySelector('.confirm-cancel').onclick = close;
+            overlay.querySelector('.confirm-ok').onclick = () => { close(); onConfirm(); };
+            overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
+            overlay.querySelector('.confirm-ok').focus();
+        }
+
+        // FOCUS TRAP
+        let activeFocusTrap = null;
+        let previousFocusElement = null;
+
+        function trapFocus(container) {
+            previousFocusElement = document.activeElement;
+            const focusable = container.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            if (focusable.length === 0) return;
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+
+            function handler(e) {
+                if (e.key !== 'Tab') return;
+                if (e.shiftKey) {
+                    if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+                } else {
+                    if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+                }
+            }
+            container.addEventListener('keydown', handler);
+            activeFocusTrap = { container, handler };
+            first.focus();
+        }
+
+        function releaseFocusTrap() {
+            if (activeFocusTrap) {
+                activeFocusTrap.container.removeEventListener('keydown', activeFocusTrap.handler);
+                activeFocusTrap = null;
+            }
+            if (previousFocusElement) {
+                previousFocusElement.focus();
+                previousFocusElement = null;
+            }
+        }
+
+        // ONBOARDING WIZARD
+        function showOnboarding() {
+            const steps = [
+                {
+                    icon: '👋',
+                    title: 'Witaj w Planerze Posiłków!',
+                    text: 'Zaplanuj posiłki na cały tydzień, śledź kalorie i makroskładniki, i generuj listę zakupów jednym kliknięciem.',
+                    features: [
+                        { icon: '📅', text: 'Planowanie posiłków na tydzień' },
+                        { icon: '🎯', text: 'Automatyczne dopasowanie do Twoich celów' },
+                        { icon: '🛒', text: 'Generowanie listy zakupów' }
+                    ]
+                },
+                {
+                    icon: '⚙️',
+                    title: 'Konfiguracja',
+                    text: 'Przejdź do zakładki <strong>Ustawienia</strong>, aby podać swoje dane (waga, wzrost, cel). Aplikacja obliczy Twoje zapotrzebowanie kaloryczne (TDEE) i dostosuje porcje.',
+                    features: [
+                        { icon: '👤', text: 'Dodaj do 5 osób z indywidualnymi celami' },
+                        { icon: '📊', text: 'Dostosuj proporcje białko/tłuszcze/węgle' },
+                        { icon: '🍽️', text: 'Ustaw alokację kalorii na posiłki' }
+                    ]
+                },
+                {
+                    icon: '🚀',
+                    title: 'Gotowe!',
+                    text: 'Teraz możesz planować! Kliknij na komórkę w tabeli, aby wybrać przepis, lub użyj <strong>przycisków wariantów</strong> u góry planera, aby szybko wypełnić cały tydzień.',
+                    features: [
+                        { icon: '📖', text: 'Ponad 100 przepisów z optymalizacją składników' },
+                        { icon: '↔️', text: 'Zamienniki składników dla elastyczności' },
+                        { icon: '❤️', text: 'Zapisuj ulubione przepisy' }
+                    ]
+                }
+            ];
+
+            let currentStep = 0;
+            const overlay = document.createElement('div');
+            overlay.className = 'onboarding-overlay';
+            document.body.appendChild(overlay);
+
+            function renderStep() {
+                const s = steps[currentStep];
+                overlay.innerHTML = `
+                    <div class="onboarding-card">
+                        <div class="onboarding-icon">${s.icon}</div>
+                        <h2>${s.title}</h2>
+                        <p>${s.text}</p>
+                        <div class="onboarding-features">
+                            ${s.features.map(f => `
+                                <div class="onboarding-feature">
+                                    <span class="onboarding-feature-icon">${f.icon}</span>
+                                    <span>${f.text}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="onboarding-steps">
+                            ${steps.map((_, i) => `<div class="onboarding-dot ${i === currentStep ? 'active' : ''} ${i < currentStep ? 'done' : ''}"></div>`).join('')}
+                        </div>
+                        <div class="onboarding-actions">
+                            <button class="onboarding-skip" onclick="closeOnboarding()">Pomiń</button>
+                            <button class="onboarding-next" onclick="nextOnboardingStep()">
+                                ${currentStep === steps.length - 1 ? 'Zaczynamy!' : 'Dalej →'}
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.nextOnboardingStep = function() {
+                currentStep++;
+                if (currentStep >= steps.length) {
+                    closeOnboarding();
+                    return;
+                }
+                renderStep();
+            };
+
+            window.closeOnboarding = function() {
+                overlay.classList.remove('show');
+                setTimeout(() => overlay.remove(), 300);
+                localStorage.setItem('onboardingComplete', 'true');
+            };
+
+            renderStep();
+            requestAnimationFrame(() => overlay.classList.add('show'));
+        }
+
+        // KEYBOARD: Escape zamyka modale
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const substituteOverlay = document.getElementById('substitute-modal-overlay');
+                if (substituteOverlay && substituteOverlay.style.display !== 'none' && substituteOverlay.style.display !== '') {
+                    closeSubstituteModal();
+                    return;
+                }
+                const mealPicker = document.getElementById('mealPickerModal');
+                if (mealPicker && !mealPicker.classList.contains('hidden')) {
+                    closeMealPicker();
+                    return;
+                }
+                const modalOverlay = document.getElementById('modal-overlay');
+                if (modalOverlay && modalOverlay.classList.contains('active')) {
+                    closeModal();
+                    return;
+                }
+            }
+        });
+
+        // ==========================================
+        // SCROLL TO TOP
+        // ==========================================
+        window.addEventListener('scroll', function() {
+            const btn = document.getElementById('scroll-to-top');
+            if (window.scrollY > 400) {
+                btn.classList.add('visible');
+            } else {
+                btn.classList.remove('visible');
+            }
+        });
+
+        // ==========================================
+        // EXPORT / IMPORT DATA
+        // ==========================================
+        function exportData() {
+            const data = {};
+            const keys = ['mealPlanV5', 'mealPersons', 'mealEatenStatus', 'recipeFavorites',
+                          'mealOptimizations', 'shoppingListSelection', 'checkedShoppingItems',
+                          'manualShoppingItems', 'onboardingComplete'];
+            keys.forEach(key => {
+                const val = localStorage.getItem(key);
+                if (val !== null) data[key] = val;
+            });
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'planer-posilkow-backup-' + new Date().toISOString().slice(0,10) + '.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('Dane wyeksportowane!', 'success');
+        }
+
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    showConfirm('Czy na pewno chcesz zaimportować dane? Nadpiszą one obecne ustawienia.', function() {
+                        Object.entries(data).forEach(([key, val]) => {
+                            localStorage.setItem(key, val);
+                        });
+                        showToast('Dane zaimportowane! Odświeżam...', 'success');
+                        setTimeout(() => location.reload(), 1500);
+                    });
+                } catch(err) {
+                    showToast('Błąd: nieprawidłowy plik', 'error');
+                }
+            };
+            reader.readAsText(file);
+            event.target.value = '';
+        }
+
+        // ==========================================
+        // SAVE FEEDBACK (micro-interaction pulse)
+        // ==========================================
+        function showSaveFeedback(element) {
+            if (!element) return;
+            element.classList.remove('save-pulse');
+            void element.offsetWidth; // force reflow
+            element.classList.add('save-pulse');
+            element.addEventListener('animationend', () => element.classList.remove('save-pulse'), { once: true });
         }
 
         // INIT
@@ -14588,6 +16129,11 @@
         renderPlannerTable();
         renderRecipesPersonSelector();
         renderRecipes();
+
+        // Onboarding for first-time users
+        if (!localStorage.getItem('onboardingComplete')) {
+            setTimeout(() => showOnboarding(), 500);
+        }
     </script>
     <script>
         if ('serviceWorker' in navigator) {
