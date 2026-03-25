@@ -4533,6 +4533,53 @@
             }
         };
 
+        // Składniki, które muszą być w całych sztukach (nie da się podzielić)
+        const WHOLE_ONLY_INGREDIENTS = new Set([
+            // Jajka
+            "Jajka", "Jajko", "Całe jajko", "Jajka przepiórcze",
+            "Żółtko jajka", "Żółtko jajka (do sosu)", "Żółtko przepiórcze", "Jajko gotowane",
+            // Tortille i wrapy
+            "Tortilla", "Tortilla pszenna", "Tortilla pszenna duża",
+            "Tortilla pełnoziarnista", "Tortilla kukurydziana",
+            "Wrap pszenny", "Wrap pełnoziarnisty", "Lawasz", "Lavash",
+            // Bułki i pieczywo sztukowe
+            "Bułka", "Bułka grahamka", "Bułka graham", "Bułki grahamki",
+            "Bułka kajzerka", "Bułki kajzerki",
+            "Bułka pełnoziarnista", "Bułka owsiana",
+            "Bułka burgerowa", "Bułki burgerowe",
+            "Bułka do burgera pełnoziarnista", "Bułka do burgera zwykła",
+            "Bułka do hotdoga", "Bułki hot-dog",
+            "Bułka brioche", "Bułki brioche",
+            "Bułka angielska (English muffin)", "Bułki na parze", "Bułeczki bao (gotowe)",
+            "Bajgiel", "Bajgiel pełnoziarnisty",
+            "Pita", "Pita pełnoziarnista", "Chleb pita",
+            "Bagietka", "Bagietka pełnoziarnista",
+            "Focaccia", "Ciabatta", "Croissant", "Pinsa",
+            "Placek pszenny Piadina", "Chleb turecki", "Kajzerki",
+            // Parówki i kiełbaski
+            "Parówki drobiowe", "Parówki wołowe",
+            "Parówki (wysokiej jakości)", "Parówki wieprzowe",
+            "Kiełbasa drobiowa", "Kiełbaski śniadaniowe",
+            "Kiełbaski z kurczaka", "Kiełbaski roślinne",
+            // Części kurczaka (całe sztuki)
+            "Udko z kurczaka", "Udko z kurczaka (bez kości)",
+            "Pałki z kurczaka", "Podudzia z kurczaka",
+            // Drobne przedmioty liczone w sztukach
+            "Kostka rosołowa", "Kostka rosołowa drobiowa", "Kostka rosołowa warzywna",
+            "Nori", "Nori (arkusze)",
+            "Pieczywo chrupkie", "Wafle ryżowe", "Wafle kukurydziane",
+            "Kluski śląskie", "Daktyle suszone",
+            "Papryczka chilli", "Jalapeno",
+            "Ser mozzarella kulka", "Mozzarella di bufala",
+            "Pudding proteinowy karmel",
+            "Placki ziemniaczane mrożone",
+            // Dodatkowe składniki całe
+            "Cynamon (laska)", "Kukurydza kolba",
+            "Marakuja", "Figi", "Figi świeże",
+            "Płaty lasagne", "Anyż gwiazdkowy",
+            "Tuńczyk w sosie własnym (puszka)", "Anchois"
+        ]);
+
         // ===========================================
         // CENTRALNA MAPA ZAMIENNIKÓW SKŁADNIKÓW
         // ===========================================
@@ -12754,7 +12801,7 @@
 
             // Zaokrąglij ilości do sensownych wartości
             for (const ing of optimizedIngredients) {
-                ing.amount = roundIngredientAmount(ing.amount, ing.unit);
+                ing.amount = roundIngredientAmount(ing.amount, ing.unit, ing.item);
             }
 
             const finalNutrition = calculateOptimizedNutrition(optimizedIngredients);
@@ -12805,14 +12852,23 @@
         }
 
         // Zaokrąglij ilość składnika do sensownych wartości
-        function roundIngredientAmount(amount, unit) {
+        function roundIngredientAmount(amount, unit, itemName) {
             if (unit === 'g' || unit === 'ml') {
                 if (amount >= 100) return Math.round(amount / 5) * 5; // do 5g
                 if (amount >= 10) return Math.round(amount);
                 return Math.round(amount * 10) / 10; // do 0.1g
             }
             if (unit === 'szt' || unit === 'kromki' || unit === 'kromka') {
-                return Math.round(amount * 2) / 2; // do 0.5 szt
+                if (unit === 'kromki' || unit === 'kromka') {
+                    return Math.max(1, Math.round(amount)); // całe kromki
+                }
+                if (itemName && WHOLE_ONLY_INGREDIENTS.has(itemName)) {
+                    return Math.max(1, Math.round(amount)); // całe sztuki
+                }
+                return Math.round(amount * 2) / 2; // do 0.5 szt (warzywa, owoce)
+            }
+            if (unit === 'arkusze') {
+                return Math.max(1, Math.round(amount)); // całe arkusze
             }
             if (unit === 'łyżka' || unit === 'łyżki' || unit === 'łyżeczka' || unit === 'łyżeczki') {
                 return Math.round(amount * 2) / 2; // do 0.5 łyżki
@@ -13946,7 +14002,7 @@
                     for (const ing of r.ingredients) {
                         combinedIngredients[ing.item] = {
                             item: ing.item,
-                            amount: Math.round(ing.amount * totalMultiplier * 10) / 10,
+                            amount: roundIngredientAmount(ing.amount * totalMultiplier, ing.unit, ing.item),
                             unit: ing.unit
                         };
                     }
@@ -13995,7 +14051,7 @@
                 // Zaokrąglij składniki
                 const ingredientsList = Object.values(combinedIngredients).map(ing => ({
                     ...ing,
-                    amount: Math.round(ing.amount * 10) / 10
+                    amount: roundIngredientAmount(ing.amount, ing.unit, ing.item)
                 }));
 
                 displayMacros = {
@@ -14171,7 +14227,7 @@
                 };
 
                 ingredientsHtml = ingredientsList.map((i, index) => {
-                    const amount = Math.round(i.amount * modalPortions * 10) / 10;
+                    const amount = roundIngredientAmount(i.amount * modalPortions, i.unit, i.item);
                     const nutrition = calculateIngredientNutrition(i.item, i.amount * modalPortions, i.unit);
                     const ingredient = ingredientsDatabase[i.item];
                     const infoBtn = ingredient
@@ -14448,8 +14504,8 @@
 
             // Lista składników z wartościami odżywczymi (zoptymalizowane)
             const ingredientsHtml = result.ingredients.map((ing, index) => {
-                const amount = Math.round(ing.amount * 10) / 10;
-                const originalAmount = Math.round(ing.originalAmount * 10) / 10;
+                const amount = roundIngredientAmount(ing.amount, ing.unit, ing.item);
+                const originalAmount = roundIngredientAmount(ing.originalAmount, ing.unit, ing.item);
                 const nutrition = calculateIngredientNutrition(ing.item, ing.amount, ing.unit);
                 const ingredient = ingredientsDatabase[ing.item];
 
@@ -15724,7 +15780,7 @@
                     for (const ing of r.ingredients) {
                         combinedIngredients[ing.item] = {
                             item: ing.item,
-                            amount: Math.round(ing.amount * totalMultiplier * 10) / 10,
+                            amount: roundIngredientAmount(ing.amount * totalMultiplier, ing.unit, ing.item),
                             unit: ing.unit
                         };
                     }
@@ -15756,7 +15812,7 @@
                 }
 
                 ingredientsList = Object.values(combinedIngredients).map(ing => ({
-                    ...ing, amount: Math.round(ing.amount * 10) / 10
+                    ...ing, amount: roundIngredientAmount(ing.amount, ing.unit, ing.item)
                 }));
                 displayMacros = {
                     kcal: Math.round(combinedNutrition.kcal),
@@ -15774,14 +15830,14 @@
                 if (isOptimized) {
                     ingredientsList = modalOptimizedIngredients.ingredients.map(ing => ({
                         item: ing.item,
-                        amount: Math.round(ing.amount * modalPortions * 10) / 10,
+                        amount: roundIngredientAmount(ing.amount * modalPortions, ing.unit, ing.item),
                         unit: ing.unit
                     }));
                     baseMacros = modalOptimizedIngredients.nutrition;
                 } else {
                     ingredientsList = r.ingredients.map(ing => ({
                         item: ing.item,
-                        amount: Math.round(ing.amount * baseMultiplier * modalPortions * 10) / 10,
+                        amount: roundIngredientAmount(ing.amount * baseMultiplier * modalPortions, ing.unit, ing.item),
                         unit: ing.unit
                     }));
                     baseMacros = {
