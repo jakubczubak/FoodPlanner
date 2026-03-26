@@ -149,6 +149,11 @@
         .day-name { font-weight: 700; color: #1f2937; font-size: 14px; }
         .weekend-row { background: #fefce8; }
         .weekend-row .day-name { color: #92400e; }
+        .today-row { background: rgba(5, 150, 105, 0.06); border-left: 4px solid #059669; }
+        .today-row.weekend-row { background: linear-gradient(90deg, rgba(5,150,105,0.08) 0%, #fefce8 30%); }
+        .today-row .day-name { color: #059669; font-weight: 800; }
+        .mobile-day-btn.today { border-color: #059669; font-weight: 700; }
+        .mobile-day-btn.today.active { border-color: transparent; }
         /* MOBILE DAY VIEW */
         .mobile-day-view { display: none; }
         .mobile-day-strip {
@@ -171,7 +176,7 @@
             cursor: pointer;
             transition: all 0.15s;
             text-align: center;
-            min-width: 44px;
+            min-width: 56px;
         }
         .mobile-day-btn.active {
             background: linear-gradient(135deg, #059669 0%, #10b981 100%);
@@ -12166,6 +12171,30 @@
         // ===========================================
         const days = ['Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota', 'Niedziela'];
         const daysShort = ['Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'Sb', 'Nd'];
+
+        function getTodayIndex() {
+            const jsDay = new Date().getDay();
+            return jsDay === 0 ? 6 : jsDay - 1;
+        }
+
+        function getWeekDates() {
+            const today = new Date();
+            const todayIndex = getTodayIndex();
+            const monday = new Date(today);
+            monday.setDate(today.getDate() - todayIndex);
+            return Array.from({ length: 7 }, (_, i) => {
+                const d = new Date(monday);
+                d.setDate(monday.getDate() + i);
+                return d;
+            });
+        }
+
+        function formatDayLabel(shortName, date) {
+            const dd = String(date.getDate()).padStart(2, '0');
+            const mm = String(date.getMonth() + 1).padStart(2, '0');
+            return `${shortName} ${dd}.${mm}`;
+        }
+
         const mealTypes = ['breakfast', 'lunch', 'dinner'];
         const mealNames = { breakfast: 'Śniadanie', lunch: 'Obiad', dinner: 'Kolacja' };
 
@@ -13598,10 +13627,15 @@
             tbody.innerHTML = '';
             let totalMeals = 0;
 
+            const todayIdx = getTodayIndex();
+            const weekDates = getWeekDates();
+
             days.forEach((day, i) => {
                 const row = document.createElement('tr');
                 if (i >= 5) row.classList.add('weekend-row');
-                row.innerHTML = `<td class="day-name">${daysShort[i]}</td>`;
+                if (i === todayIdx) row.classList.add('today-row');
+                const dayLabel = formatDayLabel(daysShort[i], weekDates[i]);
+                row.innerHTML = `<td class="day-name">${dayLabel}</td>`;
 
                 mealTypes.forEach(mealType => {
                     const td = document.createElement('td');
@@ -13741,7 +13775,7 @@
             renderMobileDayView();
         }
 
-        let mobileDayIndex = 0;
+        let mobileDayIndex = getTodayIndex();
 
         function renderMobileDayView() {
             const strip = document.getElementById('mobile-day-strip');
@@ -13749,12 +13783,21 @@
             if (!strip || !content) return;
 
             // Day strip
+            const todayIdx = getTodayIndex();
+            const weekDates = getWeekDates();
+
             strip.innerHTML = days.map((day, i) => {
                 const mealCount = mealTypes.reduce((sum, mt) =>
                     sum + persons.filter(p => plan[day][mt][p.id]).length, 0);
-                return `<button class="mobile-day-btn ${i === mobileDayIndex ? 'active' : ''} ${i >= 5 ? 'weekend' : ''}"
+                const label = formatDayLabel(daysShort[i], weekDates[i]);
+                const classes = ['mobile-day-btn',
+                    i === mobileDayIndex ? 'active' : '',
+                    i >= 5 ? 'weekend' : '',
+                    i === todayIdx ? 'today' : ''
+                ].filter(Boolean).join(' ');
+                return `<button class="${classes}"
                     onclick="selectMobileDay(${i})">
-                    ${daysShort[i]}
+                    ${label}
                     ${mealCount > 0 ? `<span class="day-meals-count">${mealCount}</span>` : ''}
                 </button>`;
             }).join('');
