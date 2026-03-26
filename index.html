@@ -520,8 +520,11 @@
             font-size: 18px;
             cursor: pointer;
         }
-        .meal-picker-close:active {
+        .meal-picker-close:hover {
             background: #e5e7eb;
+        }
+        .meal-picker-close:active {
+            background: #d1d5db;
         }
 
         .meal-picker-options {
@@ -538,6 +541,9 @@
             align-items: center;
             justify-content: space-between;
             gap: 10px;
+        }
+        .meal-picker-option:hover {
+            background: #f9fafb;
         }
         .meal-picker-option:active {
             background: #f3f4f6;
@@ -599,6 +605,53 @@
             text-transform: uppercase;
             position: sticky;
             top: 0;
+        }
+
+        /* Filtry kategorii w meal picker */
+        .meal-picker-filters {
+            display: flex;
+            gap: 6px;
+            padding: 8px 12px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            border-bottom: 1px solid #e5e7eb;
+            background: white;
+            flex-shrink: 0;
+        }
+        .meal-picker-filters::-webkit-scrollbar { display: none; }
+
+        .meal-picker-chip {
+            padding: 6px 12px;
+            border: 1.5px solid #e5e7eb;
+            border-radius: 20px;
+            background: white;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 500;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: all 0.15s;
+        }
+        .meal-picker-chip:hover { border-color: #d1d5db; background: #f9fafb; }
+        .meal-picker-chip.active { border-color: #059669; background: #ecfdf5; color: #047857; }
+        .meal-picker-chip.favorites { border-color: #fecaca; color: #dc2626; }
+        .meal-picker-chip.favorites.active { background: #fee2e2; border-color: #ef4444; }
+
+        .meal-picker-empty {
+            padding: 40px 20px;
+            text-align: center;
+            color: #9ca3af;
+        }
+        .meal-picker-empty-icon { font-size: 32px; margin-bottom: 8px; }
+        .meal-picker-empty-title { font-weight: 600; margin-bottom: 4px; color: #6b7280; }
+        .meal-picker-empty-desc { font-size: 13px; }
+
+        .meal-picker-option mark {
+            background: #fef08a;
+            color: inherit;
+            border-radius: 2px;
+            padding: 0 1px;
         }
 
         /* Combobox trigger (zamiast select) */
@@ -3426,6 +3479,7 @@
                        oninput="filterMealPickerOptions(this.value)">
                 <button class="meal-picker-close" onclick="closeMealPicker()" aria-label="Zamknij wybór przepisu">✕</button>
             </div>
+            <div class="meal-picker-filters" id="mealPickerFilters"></div>
             <div class="meal-picker-options" id="mealPickerOptions">
                 <!-- Opcje generowane dynamicznie -->
             </div>
@@ -13796,14 +13850,39 @@
         // MEAL PICKER (mobile-friendly searchable dropdown)
         // ===========================================
         let currentMealPicker = { day: null, mealType: null, personId: null };
+        let mealPickerOptCache = {};
+        let mealPickerActiveFilter = 'all';
+        let recentRecipes = { breakfast: [], lunch: [], dinner: [] };
+
+        function loadRecentRecipes() {
+            try {
+                const saved = localStorage.getItem('recentRecipes');
+                if (saved) recentRecipes = JSON.parse(saved);
+            } catch(e) { recentRecipes = { breakfast: [], lunch: [], dinner: [] }; }
+        }
+
+        function saveRecentRecipe(mealType, recipeId) {
+            if (!recipeId) return;
+            const list = recentRecipes[mealType] || [];
+            const idx = list.indexOf(recipeId);
+            if (idx > -1) list.splice(idx, 1);
+            list.unshift(recipeId);
+            recentRecipes[mealType] = list.slice(0, 5);
+            safeSetItem('recentRecipes', JSON.stringify(recentRecipes));
+        }
+
+        loadRecentRecipes();
 
         function openMealPicker(day, mealType, personId) {
             currentMealPicker = { day, mealType, personId };
+            mealPickerOptCache = {};
+            mealPickerActiveFilter = 'all';
 
             const modal = document.getElementById('mealPickerModal');
             const searchInput = document.getElementById('mealPickerSearch');
 
             // Generuj opcje
+            renderMealPickerFilters(mealType);
             renderMealPickerOptions(mealType, '');
 
             // Wyczyść wyszukiwanie
@@ -13823,6 +13902,28 @@
 
         function filterMealPickerOptions(searchTerm) {
             renderMealPickerOptions(currentMealPicker.mealType, searchTerm.toLowerCase());
+        }
+
+        function renderMealPickerFilters(mealType) {
+            const container = document.getElementById('mealPickerFilters');
+            const categories = [...new Set(recipes[mealType].map(r => r.category))].sort();
+            const hasFavorites = recipes[mealType].some(r => favoriteRecipes.has(r.id));
+
+            let html = '<button class="meal-picker-chip active" onclick="setMealPickerFilter(\'all\', this)">Wszystkie</button>';
+            if (hasFavorites) {
+                html += '<button class="meal-picker-chip favorites" onclick="setMealPickerFilter(\'favorites\', this)">❤️ Ulubione</button>';
+            }
+            categories.forEach(cat => {
+                html += `<button class="meal-picker-chip" onclick="setMealPickerFilter('${cat.replace(/'/g, "\\'")}', this)">${cat}</button>`;
+            });
+            container.innerHTML = html;
+        }
+
+        function setMealPickerFilter(filter, btn) {
+            mealPickerActiveFilter = filter;
+            document.querySelectorAll('.meal-picker-chip').forEach(c => c.classList.remove('active'));
+            btn.classList.add('active');
+            filterMealPickerOptions(document.getElementById('mealPickerSearch').value);
         }
 
         // Oblicz score dopasowania przepisu do celów makro (0-100) - PO OPTYMALIZACJI
@@ -13858,19 +13959,30 @@
             // Grupuj przepisy po kategorii
             const grouped = {};
             recipes[mealType].forEach(r => {
+                // Filtruj po kategorii / ulubionych
+                if (mealPickerActiveFilter === 'favorites' && !favoriteRecipes.has(r.id)) return;
+                if (mealPickerActiveFilter !== 'all' && mealPickerActiveFilter !== 'favorites' && r.category !== mealPickerActiveFilter) return;
+
                 // Filtruj po wyszukiwaniu
                 if (searchTerm) {
                     const matchesName = r.name.toLowerCase().includes(searchTerm);
                     const matchesIngredient = r.ingredients.some(ing =>
                         ing.item.toLowerCase().includes(searchTerm)
                     );
-                    if (!matchesName && !matchesIngredient) return;
+                    const matchesCategory = r.category.toLowerCase().includes(searchTerm);
+                    if (!matchesName && !matchesIngredient && !matchesCategory) return;
                 }
 
                 if (!grouped[r.category]) grouped[r.category] = [];
 
-                // Oblicz optymalizację i score dopasowania do celów makro
-                const optimized = optimizeIngredients(r, targetMacros, portion);
+                // Oblicz optymalizację i score dopasowania do celów makro (z cache)
+                let optimized;
+                if (mealPickerOptCache[r.id]) {
+                    optimized = mealPickerOptCache[r.id];
+                } else {
+                    optimized = optimizeIngredients(r, targetMacros, portion);
+                    mealPickerOptCache[r.id] = optimized;
+                }
                 const opt = optimized.nutrition;
 
                 // Oblicz score z zoptymalizowanych wartości
@@ -13892,6 +14004,56 @@
                 <span class="recipe-name">-- wybierz --</span>
             </div>`;
 
+            // Funkcja do podświetlania dopasowania w tekście
+            const highlightMatch = (text, term) => {
+                if (!term) return text;
+                const regex = new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+                return text.replace(regex, '<mark>$1</mark>');
+            };
+
+            // Sekcja "Ostatnio używane" (tylko gdy brak filtra i searcha)
+            if (!searchTerm && mealPickerActiveFilter === 'all') {
+                const recentIds = (recentRecipes[mealType] || []).filter(id =>
+                    recipes[mealType].some(r => r.id === id)
+                );
+                if (recentIds.length > 0) {
+                    html += '<div class="meal-picker-category">🕐 Ostatnio używane</div>';
+                    recentIds.forEach(id => {
+                        const r = recipes[mealType].find(rec => rec.id === id);
+                        if (!r) return;
+                        if (!mealPickerOptCache[r.id]) {
+                            mealPickerOptCache[r.id] = optimizeIngredients(r, targetMacros, portion);
+                        }
+                        const opt = mealPickerOptCache[r.id].nutrition;
+                        const isFav = favoriteRecipes.has(r.id);
+                        const isSelected = r.id === currentValue;
+                        // Oblicz score
+                        let matchScore = 0;
+                        if (targetMacros) {
+                            const kcalDiff = targetMacros.kcal > 0 ? Math.abs(opt.kcal - targetMacros.kcal) / targetMacros.kcal : 0;
+                            const proteinDiff = targetMacros.protein > 0 ? Math.abs(opt.protein - targetMacros.protein) / targetMacros.protein : 0;
+                            const fatDiff = targetMacros.fat > 0 ? Math.abs(opt.fat - targetMacros.fat) / targetMacros.fat : 0;
+                            const carbsDiff = targetMacros.carbs > 0 ? Math.abs(opt.carbs - targetMacros.carbs) / targetMacros.carbs : 0;
+                            const avgDiff = (kcalDiff + proteinDiff + fatDiff + carbsDiff) / 4;
+                            matchScore = Math.max(0, Math.round(100 - (avgDiff * 100)));
+                        }
+                        const scoreBadge = matchScore >= 80 ? '🎯 ' : matchScore >= 60 ? '✓ ' : '';
+                        const scoreClass = matchScore >= 80 ? 'high' : matchScore >= 60 ? 'medium' : 'low';
+                        html += `
+                            <div class="meal-picker-option ${isSelected ? 'selected' : ''}"
+                                 onclick="selectMealOption('${r.id}')">
+                                <span class="recipe-name">${scoreBadge}${isFav ? '❤️ ' : ''}${r.name}</span>
+                                <span class="recipe-macros">
+                                    <span class="match-score ${scoreClass}">${matchScore}%</span>
+                                    <span class="macro-kcal">${opt.kcal}</span>
+                                    <span class="macro-detail">B${opt.protein} T${opt.fat} W${opt.carbs}</span>
+                                </span>
+                            </div>
+                        `;
+                    });
+                }
+            }
+
             Object.keys(grouped).sort().forEach(category => {
                 html += `<div class="meal-picker-category">${category}</div>`;
 
@@ -13906,10 +14068,11 @@
 
                     // Użyj zoptymalizowanych wartości
                     const optNutr = r.optimizedNutrition;
+                    const displayName = highlightMatch(r.name, searchTerm);
                     html += `
                         <div class="meal-picker-option ${isSelected ? 'selected' : ''}"
                              onclick="selectMealOption('${r.id}')">
-                            <span class="recipe-name">${scoreBadge}${isFav ? '❤️ ' : ''}${r.name}</span>
+                            <span class="recipe-name">${scoreBadge}${isFav ? '❤️ ' : ''}${displayName}</span>
                             <span class="recipe-macros">
                                 <span class="match-score ${scoreClass}">${r.matchScore}%</span>
                                 <span class="macro-kcal">${optNutr.kcal}</span>
@@ -13920,11 +14083,29 @@
                 });
             });
 
+            // Empty state
+            if (Object.keys(grouped).length === 0) {
+                if (searchTerm) {
+                    html += `<div class="meal-picker-empty">
+                        <div class="meal-picker-empty-icon">🔍</div>
+                        <div class="meal-picker-empty-title">Brak wyników</div>
+                        <div class="meal-picker-empty-desc">Nie znaleziono przepisów dla „${searchTerm}"</div>
+                    </div>`;
+                } else if (mealPickerActiveFilter === 'favorites') {
+                    html += `<div class="meal-picker-empty">
+                        <div class="meal-picker-empty-icon">❤️</div>
+                        <div class="meal-picker-empty-title">Brak ulubionych</div>
+                        <div class="meal-picker-empty-desc">Dodaj przepisy do ulubionych w zakładce Przepisy</div>
+                    </div>`;
+                }
+            }
+
             container.innerHTML = html;
         }
 
         function selectMealOption(recipeId) {
             const { day, mealType, personId } = currentMealPicker;
+            saveRecentRecipe(mealType, recipeId);
             setMealForPerson(day, mealType, personId, recipeId);
             closeMealPicker();
         }
