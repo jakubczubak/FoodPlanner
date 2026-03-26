@@ -127,6 +127,7 @@
         .btn-green { background: linear-gradient(135deg, #059669 0%, #10b981 100%); color: white; width: 100%; padding: 16px; font-size: 16px; margin-top: 10px; box-shadow: 0 2px 8px rgba(16,185,129,0.3); }
         .btn-green:disabled { background: #d1d5db; color: #9ca3af; cursor: not-allowed; transform: none; box-shadow: none; }
         .btn-share { background: linear-gradient(135deg, #059669 0%, #10b981 100%); color: white; box-shadow: 0 2px 6px rgba(16,185,129,0.25); }
+        .btn-shopping-basket { background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%); color: white; box-shadow: 0 2px 6px rgba(245,158,11,0.25); }
         .btn-copy-plan { background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%); color: white; box-shadow: 0 2px 6px rgba(6,182,212,0.25); }
         .variant-separator { width: 100%; text-align: center; padding: 10px 0 5px 0; font-size: 12px; color: #166534; font-weight: 600; margin-top: 5px; }
         .variant-separator.action-separator { color: #1e40af; }
@@ -2871,7 +2872,7 @@
 
             /* Przyciski akcji */
             .btn-green { padding: 12px; font-size: 14px; }
-            .btn-share { padding: 10px 15px; font-size: 12px; }
+            .btn-share, .btn-shopping-basket { padding: 10px 15px; font-size: 12px; }
 
             /* Alert */
             .loaded-alert {
@@ -3453,9 +3454,12 @@
                     <h3>👨‍🍳 Przygotowanie</h3>
                     <ul class="modal-steps" id="modal-steps"></ul>
                 </div>
-                <div class="modal-section" style="text-align: center; padding-bottom: 20px;">
-                    <button class="btn btn-share" onclick="shareRecipe()" style="width: 100%; padding: 14px; font-size: 15px;">
+                <div class="modal-section" style="text-align: center; padding-bottom: 20px; display: flex; gap: 10px;">
+                    <button class="btn btn-share" onclick="shareRecipe()" style="flex: 1; padding: 14px; font-size: 15px;">
                         📤 Udostępnij przepis
+                    </button>
+                    <button class="btn btn-shopping-basket" onclick="shareRecipeShoppingList()" style="flex: 1; padding: 14px; font-size: 15px;">
+                        🛒 Koszyk zakupowy
                     </button>
                 </div>
             </div>
@@ -16666,34 +16670,32 @@
                 const baseMultiplier = person ? person.portion : 1;
                 const isOptimized = modalOptimizedIngredients !== null && modalOptimizedIngredients !== false;
 
-                let baseMacros;
                 if (isOptimized) {
+                    // modalOptimizedIngredients już zawiera przeliczenie na modalPortions
                     ingredientsList = modalOptimizedIngredients.ingredients.map(ing => ({
                         item: ing.item,
-                        amount: roundIngredientAmount(ing.amount * modalPortions, ing.unit, ing.item),
+                        amount: roundIngredientAmount(ing.amount, ing.unit, ing.item),
                         unit: ing.unit
                     }));
-                    baseMacros = modalOptimizedIngredients.nutrition;
+                    displayMacros = {
+                        kcal: Math.round(modalOptimizedIngredients.nutrition.kcal),
+                        protein: Math.round(modalOptimizedIngredients.nutrition.protein),
+                        fat: Math.round(modalOptimizedIngredients.nutrition.fat),
+                        carbs: Math.round(modalOptimizedIngredients.nutrition.carbs)
+                    };
                 } else {
                     ingredientsList = r.ingredients.map(ing => ({
                         item: ing.item,
                         amount: roundIngredientAmount(ing.amount * baseMultiplier * modalPortions, ing.unit, ing.item),
                         unit: ing.unit
                     }));
-                    baseMacros = {
-                        kcal: r.kcal * baseMultiplier,
-                        protein: r.protein * baseMultiplier,
-                        fat: r.fat * baseMultiplier,
-                        carbs: r.carbs * baseMultiplier
+                    displayMacros = {
+                        kcal: Math.round(r.kcal * baseMultiplier * modalPortions),
+                        protein: Math.round(r.protein * baseMultiplier * modalPortions),
+                        fat: Math.round(r.fat * baseMultiplier * modalPortions),
+                        carbs: Math.round(r.carbs * baseMultiplier * modalPortions)
                     };
                 }
-
-                displayMacros = {
-                    kcal: Math.round(baseMacros.kcal * modalPortions),
-                    protein: Math.round(baseMacros.protein * modalPortions),
-                    fat: Math.round(baseMacros.fat * modalPortions),
-                    carbs: Math.round(baseMacros.carbs * modalPortions)
-                };
                 personsText = 'Dla: ' + (person?.name || '') + (person ? ' (' + person.portion + 'x)' : '');
             }
 
@@ -16736,6 +16738,110 @@
                     showToast('Przepis skopiowany do schowka!', 'success');
                 }).catch(() => {
                     prompt('Skopiuj przepis:', txt);
+                });
+            }
+        }
+
+        function shareRecipeShoppingList() {
+            const r = currentModalRecipe;
+            if (!r) return;
+
+            // Zbierz składniki z aktualnego widoku modala (z uwzględnieniem porcji i optymalizacji)
+            let ingredientsList = [];
+
+            if (modalSelectedPersons.length > 1 && currentModalMealType) {
+                let combinedIngredients = {};
+                const showOriginal = modalOptimizedIngredients === false;
+
+                if (showOriginal) {
+                    let totalMultiplier = 0;
+                    for (const personId of modalSelectedPersons) {
+                        const person = persons.find(p => p.id === personId);
+                        if (!person) continue;
+                        totalMultiplier += person.portion * modalPortions;
+                    }
+                    for (const ing of r.ingredients) {
+                        combinedIngredients[ing.item] = {
+                            item: ing.item,
+                            amount: roundIngredientAmount(ing.amount * totalMultiplier, ing.unit, ing.item),
+                            unit: ing.unit
+                        };
+                    }
+                } else {
+                    for (const personId of modalSelectedPersons) {
+                        const person = persons.find(p => p.id === personId);
+                        if (!person) continue;
+                        const mealTarget = calculateMealTargets(person, currentModalMealType);
+                        if (!mealTarget) continue;
+                        const result = optimizeIngredients(r, mealTarget, person.portion);
+                        for (const ing of result.ingredients) {
+                            if (!combinedIngredients[ing.item]) {
+                                combinedIngredients[ing.item] = { ...ing, amount: 0, unit: ing.unit };
+                            }
+                            combinedIngredients[ing.item].amount += ing.amount * modalPortions;
+                        }
+                    }
+                }
+                ingredientsList = Object.values(combinedIngredients).map(ing => ({
+                    ...ing, amount: roundIngredientAmount(ing.amount, ing.unit, ing.item)
+                }));
+            } else {
+                const person = persons.find(p => p.id === modalSelectedPersons[0]);
+                const baseMultiplier = person ? person.portion : 1;
+                const isOptimized = modalOptimizedIngredients !== null && modalOptimizedIngredients !== false;
+
+                if (isOptimized) {
+                    ingredientsList = modalOptimizedIngredients.ingredients.map(ing => ({
+                        item: ing.item,
+                        amount: roundIngredientAmount(ing.amount, ing.unit, ing.item),
+                        unit: ing.unit
+                    }));
+                } else {
+                    ingredientsList = r.ingredients.map(ing => ({
+                        item: ing.item,
+                        amount: roundIngredientAmount(ing.amount * baseMultiplier * modalPortions, ing.unit, ing.item),
+                        unit: ing.unit
+                    }));
+                }
+            }
+
+            // Kategoryzuj składniki
+            const categorized = new Set();
+            let txt = `🛒 KOSZYK ZAKUPOWY\n🍽️ ${r.name}\nPorcji: ${modalPortions}\n\n`;
+
+            categories.forEach(cat => {
+                const items = ingredientsList.filter(ing =>
+                    cat.keywords.some(kw => ing.item.toLowerCase().includes(kw)));
+                if (items.length === 0) return;
+                items.forEach(ing => categorized.add(ing.item));
+                txt += cat.name + '\n';
+                items.forEach(ing => txt += `☐ ${ing.item} — ${ing.amount} ${ing.unit}\n`);
+                txt += '\n';
+            });
+
+            const uncategorized = ingredientsList.filter(ing => !categorized.has(ing.item));
+            if (uncategorized.length > 0) {
+                txt += '📦 POZOSTAŁE\n';
+                uncategorized.forEach(ing => txt += `☐ ${ing.item} — ${ing.amount} ${ing.unit}\n`);
+                txt += '\n';
+            }
+
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Koszyk zakupowy — ' + r.name,
+                    text: txt
+                }).catch(() => {
+                    navigator.clipboard.writeText(txt).then(() => {
+                        showToast('Koszyk zakupowy skopiowany do schowka!', 'success');
+                    }).catch(() => {
+                        prompt('Skopiuj koszyk zakupowy:', txt);
+                    });
+                });
+            } else {
+                navigator.clipboard.writeText(txt).then(() => {
+                    showToast('Koszyk zakupowy skopiowany do schowka!', 'success');
+                }).catch(() => {
+                    prompt('Skopiuj koszyk zakupowy:', txt);
                 });
             }
         }
