@@ -620,16 +620,13 @@
         /* Filtry kategorii w meal picker */
         .meal-picker-filters {
             display: flex;
+            flex-wrap: wrap;
             gap: 6px;
             padding: 8px 12px;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
             border-bottom: 1px solid #e5e7eb;
             background: white;
             flex-shrink: 0;
         }
-        .meal-picker-filters::-webkit-scrollbar { display: none; }
 
         .meal-picker-chip {
             padding: 6px 12px;
@@ -1744,16 +1741,11 @@
         /* FILTER TABS */
         .filter-tabs {
             display: flex;
+            flex-wrap: wrap;
             gap: 8px;
             margin-bottom: 20px;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
             padding-bottom: 4px;
-            mask-image: linear-gradient(to right, transparent 0, black 8px, black calc(100% - 24px), transparent 100%);
-            -webkit-mask-image: linear-gradient(to right, transparent 0, black 8px, black calc(100% - 24px), transparent 100%);
         }
-        .filter-tabs::-webkit-scrollbar { display: none; }
         .filter-tab {
             padding: 8px 16px;
             border: 2px solid #e5e7eb;
@@ -3336,6 +3328,7 @@
                     <button class="filter-tab" onclick="filterRecipes('fish', this)">🐟 Ryby</button>
                     <button class="filter-tab" onclick="filterRecipes('casseroles', this)">🥘 Zapiekanki</button>
                     <button class="filter-tab" onclick="filterRecipes('shakes', this)">🥤 Shake'i</button>
+                    <button class="filter-tab" onclick="filterRecipes('antiaging', this)">🧬 Anti-Aging</button>
                 </div>
                 <div class="search-container">
                     <input type="text"
@@ -14370,10 +14363,14 @@
             const defaultBreakfast = ["🍳 Jajka", "🥪 Kanapki/Wrapy"];
             const defaultDinner = ["🧀 Nabiał", "🥗 Sałatki"];
 
+            // Sprawdź czy wybrana kategoria ma przepisy w śniadaniach/kolacjach
+            const hasBreakfast = (recipes.breakfast || []).some(r => r.category === lunchCategory);
+            const hasDinner = (recipes.dinner || []).some(r => r.category === lunchCategory);
+
             const categoryConfig = {
-                breakfast: defaultBreakfast,
+                breakfast: hasBreakfast ? [lunchCategory] : defaultBreakfast,
                 lunch: [lunchCategory],
-                dinner: defaultDinner
+                dinner: hasDinner ? [lunchCategory] : defaultDinner
             };
 
             // Dla każdego typu posiłku wylosuj 2 przepisy z dozwolonych kategorii
@@ -14593,7 +14590,7 @@
 
             // Dla nowych filtrów przeszukuj wszystkie typy posiłków
             const specialFilters = ['all', 'favorites', 'oven', 'chicken', 'pasta', 'asian', 'mexican',
-                'eggs', 'sandwiches', 'dairy', 'pancakes', 'oatmeal', 'meat', 'pizza', 'soups', 'salads', 'fish', 'casseroles', 'shakes'];
+                'eggs', 'sandwiches', 'dairy', 'pancakes', 'oatmeal', 'meat', 'pizza', 'soups', 'salads', 'fish', 'casseroles', 'shakes', 'antiaging'];
             const types = specialFilters.includes(filter) ? mealTypes : [filter];
 
             // Mapowanie filtrów na kategorie
@@ -14613,7 +14610,8 @@
                 salads: 'Sałatki',
                 fish: 'Ryby',
                 casseroles: 'Zapiekanki',
-                shakes: "Shake'i"
+                shakes: "Shake'i",
+                antiaging: 'Anti-Aging'
             };
 
             // Collect filtered recipes
@@ -14630,12 +14628,13 @@
                     if (currentSearchTerm) {
                         const termLower = currentSearchTerm;
                         const matchesName = r.name.toLowerCase().includes(termLower);
+                        const matchesCategory = r.category && r.category.toLowerCase().includes(termLower);
                         const matchesIngredient = r.ingredients.some(ing => ing.item.toLowerCase().includes(termLower));
                         const matchesSubstitute = r.ingredients.some(ing =>
                             ing.substitutes && ing.substitutes.some(sub => sub.item.toLowerCase().includes(termLower))
                         );
                         const matchesSteps = r.steps.some(step => step.toLowerCase().includes(termLower));
-                        if (!matchesName && !matchesIngredient && !matchesSubstitute && !matchesSteps) return;
+                        if (!matchesName && !matchesCategory && !matchesIngredient && !matchesSubstitute && !matchesSteps) return;
                     }
                     filteredRecipes.push({ mt, r });
                 });
