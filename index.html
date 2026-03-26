@@ -176,8 +176,12 @@
             cursor: pointer;
             transition: all 0.15s;
             text-align: center;
-            min-width: 56px;
+            min-width: 44px;
+            line-height: 1.2;
         }
+        .mobile-day-btn .day-short { display: block; font-size: 13px; }
+        .mobile-day-btn .day-date { display: block; font-size: 10px; opacity: 0.6; font-weight: 400; }
+        .mobile-day-btn.active .day-date { opacity: 0.85; }
         .mobile-day-btn.active {
             background: linear-gradient(135deg, #059669 0%, #10b981 100%);
             color: white;
@@ -13789,7 +13793,9 @@
             strip.innerHTML = days.map((day, i) => {
                 const mealCount = mealTypes.reduce((sum, mt) =>
                     sum + persons.filter(p => plan[day][mt][p.id]).length, 0);
-                const label = formatDayLabel(daysShort[i], weekDates[i]);
+                const dateObj = weekDates[i];
+                const dd = String(dateObj.getDate()).padStart(2, '0');
+                const mm = String(dateObj.getMonth() + 1).padStart(2, '0');
                 const classes = ['mobile-day-btn',
                     i === mobileDayIndex ? 'active' : '',
                     i >= 5 ? 'weekend' : '',
@@ -13797,10 +13803,15 @@
                 ].filter(Boolean).join(' ');
                 return `<button class="${classes}"
                     onclick="selectMobileDay(${i})">
-                    ${label}
+                    <span class="day-short">${daysShort[i]}</span>
+                    <span class="day-date">${dd}.${mm}</span>
                     ${mealCount > 0 ? `<span class="day-meals-count">${mealCount}</span>` : ''}
                 </button>`;
             }).join('');
+
+            // Auto-scroll to active day
+            const activeBtn = strip.querySelector('.mobile-day-btn.active');
+            if (activeBtn) activeBtn.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
 
             // Day content
             const day = days[mobileDayIndex];
