@@ -5645,26 +5645,26 @@
         "id": "b62",
         "name": "Nocna owsianka z jagodami i chia",
         "declared": {
-          "kcal": 707,
-          "protein": 27,
-          "fat": 34,
-          "carbs": 80
+          "kcal": 809,
+          "protein": 31,
+          "fat": 39,
+          "carbs": 90
         },
         "calculated": {
-          "kcal": 707,
-          "protein": 27,
-          "fat": 34,
-          "carbs": 80
+          "kcal": 809,
+          "protein": 31,
+          "fat": 39,
+          "carbs": 90
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Płatki owsiane",
-            "grams": 60,
-            "kcal": 233.39999999999998,
-            "protein": 10.2,
-            "fat": 4.2,
-            "carbs": 39.6
+            "grams": 70,
+            "kcal": 272.29999999999995,
+            "protein": 11.899999999999999,
+            "fat": 4.8999999999999995,
+            "carbs": 46.199999999999996
           },
           {
             "missing": false,
@@ -5678,11 +5678,11 @@
           {
             "missing": false,
             "item": "Orzechy włoskie",
-            "grams": 20,
-            "kcal": 130.8,
-            "protein": 3,
-            "fat": 13,
-            "carbs": 2.8000000000000003
+            "grams": 25,
+            "kcal": 163.5,
+            "protein": 3.75,
+            "fat": 16.25,
+            "carbs": 3.5
           },
           {
             "missing": false,
@@ -5696,20 +5696,20 @@
           {
             "missing": false,
             "item": "Borówki",
-            "grams": 80,
-            "kcal": 45.6,
-            "protein": 0.5599999999999999,
-            "fat": 0.24,
-            "carbs": 11.200000000000001
+            "grams": 95,
+            "kcal": 54.15,
+            "protein": 0.6649999999999999,
+            "fat": 0.285,
+            "carbs": 13.299999999999999
           },
           {
             "missing": false,
             "item": "Mleko migdałowe",
-            "grams": 200,
-            "kcal": 48,
-            "protein": 1.8,
-            "fat": 3.6,
-            "carbs": 1.6
+            "grams": 230,
+            "kcal": 55.199999999999996,
+            "protein": 2.07,
+            "fat": 4.14,
+            "carbs": 1.8399999999999999
           },
           {
             "missing": false,
@@ -5723,11 +5723,11 @@
           {
             "missing": false,
             "item": "Jogurt grecki",
-            "grams": 80,
-            "kcal": 77.60000000000001,
-            "protein": 7.2,
-            "fat": 4,
-            "carbs": 2.8800000000000003
+            "grams": 95,
+            "kcal": 92.14999999999999,
+            "protein": 8.549999999999999,
+            "fat": 4.75,
+            "carbs": 3.42
           }
         ],
         "missingIngredients": [],
@@ -5744,35 +5744,35 @@
         "id": "b63",
         "name": "Zielone smoothie bowl anti-aging",
         "declared": {
-          "kcal": 555,
-          "protein": 12,
-          "fat": 30,
-          "carbs": 72
+          "kcal": 747,
+          "protein": 16,
+          "fat": 37,
+          "carbs": 103
         },
         "calculated": {
-          "kcal": 555,
-          "protein": 12,
-          "fat": 30,
-          "carbs": 72
+          "kcal": 747,
+          "protein": 16,
+          "fat": 37,
+          "carbs": 103
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Szpinak świeży",
-            "grams": 60,
-            "kcal": 13.799999999999999,
-            "protein": 1.74,
-            "fat": 0.24,
-            "carbs": 2.16
+            "grams": 90,
+            "kcal": 20.7,
+            "protein": 2.61,
+            "fat": 0.36000000000000004,
+            "carbs": 3.24
           },
           {
             "missing": false,
             "item": "Banan",
-            "grams": 120,
-            "kcal": 106.8,
-            "protein": 1.32,
-            "fat": 0.36,
-            "carbs": 27.599999999999998
+            "grams": 180,
+            "kcal": 160.20000000000002,
+            "protein": 1.9800000000000002,
+            "fat": 0.54,
+            "carbs": 41.4
           },
           {
             "missing": false,
@@ -5786,56 +5786,56 @@
           {
             "missing": false,
             "item": "Borówki",
-            "grams": 100,
-            "kcal": 57,
-            "protein": 0.7,
-            "fat": 0.3,
-            "carbs": 14
+            "grams": 150,
+            "kcal": 85.5,
+            "protein": 1.0499999999999998,
+            "fat": 0.44999999999999996,
+            "carbs": 21
           },
           {
             "missing": false,
             "item": "Mleko migdałowe",
-            "grams": 200,
-            "kcal": 48,
-            "protein": 1.8,
-            "fat": 3.6,
-            "carbs": 1.6
+            "grams": 295,
+            "kcal": 70.80000000000001,
+            "protein": 2.6550000000000002,
+            "fat": 5.3100000000000005,
+            "carbs": 2.3600000000000003
           },
           {
             "missing": false,
             "item": "Nasiona chia",
-            "grams": 10,
-            "kcal": 48.6,
-            "protein": 1.7000000000000002,
-            "fat": 3.1,
-            "carbs": 4.2
+            "grams": 15,
+            "kcal": 72.89999999999999,
+            "protein": 2.55,
+            "fat": 4.6499999999999995,
+            "carbs": 6.3
           },
           {
             "missing": false,
             "item": "Miód",
-            "grams": 10,
-            "kcal": 30.400000000000002,
-            "protein": 0.03,
+            "grams": 15,
+            "kcal": 45.6,
+            "protein": 0.045,
             "fat": 0,
-            "carbs": 8.200000000000001
+            "carbs": 12.299999999999999
           },
           {
             "missing": false,
             "item": "Orzechy włoskie",
-            "grams": 15,
-            "kcal": 98.1,
-            "protein": 2.25,
-            "fat": 9.75,
-            "carbs": 2.1
+            "grams": 20,
+            "kcal": 130.8,
+            "protein": 3,
+            "fat": 13,
+            "carbs": 2.8000000000000003
           },
           {
             "missing": false,
             "item": "Truskawki",
-            "grams": 50,
-            "kcal": 16,
-            "protein": 0.35,
-            "fat": 0.15,
-            "carbs": 4
+            "grams": 75,
+            "kcal": 24,
+            "protein": 0.5249999999999999,
+            "fat": 0.22499999999999998,
+            "carbs": 6
           }
         ],
         "missingIngredients": [],
@@ -5852,35 +5852,35 @@
         "id": "b64",
         "name": "Jajecznica ze szpinakiem i kurkumą",
         "declared": {
-          "kcal": 720,
-          "protein": 34,
-          "fat": 42,
-          "carbs": 57
+          "kcal": 771,
+          "protein": 38,
+          "fat": 45,
+          "carbs": 58
         },
         "calculated": {
-          "kcal": 720,
-          "protein": 33,
-          "fat": 42,
-          "carbs": 57
+          "kcal": 771,
+          "protein": 38,
+          "fat": 45,
+          "carbs": 58
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Jajka",
-            "grams": 180,
-            "kcal": 257.40000000000003,
-            "protein": 22.68,
-            "fat": 17.1,
-            "carbs": 1.26
+            "grams": 210,
+            "kcal": 300.3,
+            "protein": 26.46,
+            "fat": 19.95,
+            "carbs": 1.47
           },
           {
             "missing": false,
             "item": "Szpinak świeży",
-            "grams": 80,
-            "kcal": 18.400000000000002,
-            "protein": 2.32,
-            "fat": 0.32000000000000006,
-            "carbs": 2.8800000000000003
+            "grams": 90,
+            "kcal": 20.7,
+            "protein": 2.61,
+            "fat": 0.36000000000000004,
+            "carbs": 3.24
           },
           {
             "missing": false,
@@ -5894,11 +5894,11 @@
           {
             "missing": false,
             "item": "Kurkuma",
-            "grams": 3,
-            "kcal": 9.36,
-            "protein": 0.3,
-            "fat": 0.09,
-            "carbs": 2.01
+            "grams": 5,
+            "kcal": 15.600000000000001,
+            "protein": 0.5,
+            "fat": 0.15000000000000002,
+            "carbs": 3.35
           },
           {
             "missing": false,
@@ -5940,7 +5940,7 @@
         "missingIngredients": [],
         "discrepancies": {
           "kcal": 0,
-          "protein": -2.941176470588235,
+          "protein": 0,
           "fat": 0,
           "carbs": 0
         },
@@ -5951,89 +5951,89 @@
         "id": "b65",
         "name": "Pudding chia z matcha i owocami",
         "declared": {
-          "kcal": 493,
-          "protein": 20,
-          "fat": 26,
-          "carbs": 50
+          "kcal": 824,
+          "protein": 34,
+          "fat": 44,
+          "carbs": 84
         },
         "calculated": {
-          "kcal": 493,
-          "protein": 20,
-          "fat": 26,
-          "carbs": 50
+          "kcal": 824,
+          "protein": 34,
+          "fat": 44,
+          "carbs": 84
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Nasiona chia",
-            "grams": 30,
-            "kcal": 145.79999999999998,
-            "protein": 5.1,
-            "fat": 9.299999999999999,
-            "carbs": 12.6
+            "grams": 50,
+            "kcal": 243,
+            "protein": 8.5,
+            "fat": 15.5,
+            "carbs": 21
           },
           {
             "missing": false,
             "item": "Mleko migdałowe",
-            "grams": 250,
-            "kcal": 60,
-            "protein": 2.25,
-            "fat": 4.5,
-            "carbs": 2
+            "grams": 415,
+            "kcal": 99.60000000000001,
+            "protein": 3.7350000000000003,
+            "fat": 7.470000000000001,
+            "carbs": 3.3200000000000003
           },
           {
             "missing": false,
             "item": "Matcha w proszku",
-            "grams": 3,
-            "kcal": 9.719999999999999,
-            "protein": 0.8999999999999999,
-            "fat": 0.15,
-            "carbs": 1.17
+            "grams": 5,
+            "kcal": 16.2,
+            "protein": 1.5,
+            "fat": 0.25,
+            "carbs": 1.9500000000000002
           },
           {
             "missing": false,
             "item": "Miód",
-            "grams": 15,
-            "kcal": 45.6,
-            "protein": 0.045,
+            "grams": 25,
+            "kcal": 76,
+            "protein": 0.075,
             "fat": 0,
-            "carbs": 12.299999999999999
+            "carbs": 20.5
           },
           {
             "missing": false,
             "item": "Maliny",
-            "grams": 80,
-            "kcal": 41.6,
-            "protein": 0.96,
-            "fat": 0.5599999999999999,
-            "carbs": 9.600000000000001
+            "grams": 135,
+            "kcal": 70.2,
+            "protein": 1.62,
+            "fat": 0.945,
+            "carbs": 16.200000000000003
           },
           {
             "missing": false,
             "item": "Truskawki",
-            "grams": 80,
-            "kcal": 25.6,
-            "protein": 0.5599999999999999,
-            "fat": 0.24,
-            "carbs": 6.4
+            "grams": 135,
+            "kcal": 43.2,
+            "protein": 0.945,
+            "fat": 0.405,
+            "carbs": 10.8
           },
           {
             "missing": false,
             "item": "Migdały",
-            "grams": 15,
-            "kcal": 86.85,
-            "protein": 3.15,
-            "fat": 7.5,
-            "carbs": 3.3
+            "grams": 25,
+            "kcal": 144.75,
+            "protein": 5.25,
+            "fat": 12.5,
+            "carbs": 5.5
           },
           {
             "missing": false,
             "item": "Jogurt grecki",
-            "grams": 80,
-            "kcal": 77.60000000000001,
-            "protein": 7.2,
-            "fat": 4,
-            "carbs": 2.8800000000000003
+            "grams": 135,
+            "kcal": 130.95000000000002,
+            "protein": 12.15,
+            "fat": 6.75,
+            "carbs": 4.86
           }
         ],
         "missingIngredients": [],
@@ -6050,71 +6050,71 @@
         "id": "b66",
         "name": "Owsianka golden milk z kurkumą i orzechami",
         "declared": {
-          "kcal": 617,
-          "protein": 20,
-          "fat": 29,
-          "carbs": 77
+          "kcal": 800,
+          "protein": 26,
+          "fat": 37,
+          "carbs": 98
         },
         "calculated": {
-          "kcal": 617,
-          "protein": 20,
-          "fat": 29,
-          "carbs": 77
+          "kcal": 800,
+          "protein": 26,
+          "fat": 37,
+          "carbs": 98
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Płatki owsiane",
-            "grams": 60,
-            "kcal": 233.39999999999998,
-            "protein": 10.2,
-            "fat": 4.2,
-            "carbs": 39.6
+            "grams": 80,
+            "kcal": 311.20000000000005,
+            "protein": 13.600000000000001,
+            "fat": 5.6000000000000005,
+            "carbs": 52.800000000000004
           },
           {
             "missing": false,
             "item": "Mleko migdałowe",
-            "grams": 250,
-            "kcal": 60,
-            "protein": 2.25,
-            "fat": 4.5,
-            "carbs": 2
+            "grams": 330,
+            "kcal": 79.19999999999999,
+            "protein": 2.9699999999999998,
+            "fat": 5.9399999999999995,
+            "carbs": 2.64
           },
           {
             "missing": false,
             "item": "Kurkuma",
-            "grams": 3,
-            "kcal": 9.36,
-            "protein": 0.3,
-            "fat": 0.09,
-            "carbs": 2.01
+            "grams": 5,
+            "kcal": 15.600000000000001,
+            "protein": 0.5,
+            "fat": 0.15000000000000002,
+            "carbs": 3.35
           },
           {
             "missing": false,
             "item": "Imbir",
-            "grams": 2,
-            "kcal": 1.6,
-            "protein": 0.036000000000000004,
-            "fat": 0.016,
-            "carbs": 0.36
+            "grams": 5,
+            "kcal": 4,
+            "protein": 0.09000000000000001,
+            "fat": 0.04000000000000001,
+            "carbs": 0.9
           },
           {
             "missing": false,
             "item": "Miód",
-            "grams": 15,
-            "kcal": 45.6,
-            "protein": 0.045,
+            "grams": 20,
+            "kcal": 60.800000000000004,
+            "protein": 0.06,
             "fat": 0,
-            "carbs": 12.299999999999999
+            "carbs": 16.400000000000002
           },
           {
             "missing": false,
             "item": "Migdały",
-            "grams": 20,
-            "kcal": 115.80000000000001,
-            "protein": 4.2,
-            "fat": 10,
-            "carbs": 4.4
+            "grams": 25,
+            "kcal": 144.75,
+            "protein": 5.25,
+            "fat": 12.5,
+            "carbs": 5.5
           },
           {
             "missing": false,
@@ -6128,11 +6128,11 @@
           {
             "missing": false,
             "item": "Orzechy włoskie",
-            "grams": 15,
-            "kcal": 98.1,
-            "protein": 2.25,
-            "fat": 9.75,
-            "carbs": 2.1
+            "grams": 20,
+            "kcal": 130.8,
+            "protein": 3,
+            "fat": 13,
+            "carbs": 2.8000000000000003
           }
         ],
         "missingIngredients": [],
@@ -6239,80 +6239,80 @@
         "id": "b68",
         "name": "Koktajl proteinowy z kolagenem i matcha",
         "declared": {
-          "kcal": 453,
-          "protein": 29,
-          "fat": 19,
-          "carbs": 48
+          "kcal": 843,
+          "protein": 51,
+          "fat": 34,
+          "carbs": 93
         },
         "calculated": {
-          "kcal": 453,
-          "protein": 29,
-          "fat": 19,
-          "carbs": 48
+          "kcal": 843,
+          "protein": 51,
+          "fat": 34,
+          "carbs": 93
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Kolagen w proszku",
-            "grams": 20,
-            "kcal": 68,
-            "protein": 17,
+            "grams": 35,
+            "kcal": 118.99999999999999,
+            "protein": 29.749999999999996,
             "fat": 0,
             "carbs": 0
           },
           {
             "missing": false,
             "item": "Matcha w proszku",
-            "grams": 3,
-            "kcal": 9.719999999999999,
-            "protein": 0.8999999999999999,
-            "fat": 0.15,
-            "carbs": 1.17
+            "grams": 5,
+            "kcal": 16.2,
+            "protein": 1.5,
+            "fat": 0.25,
+            "carbs": 1.9500000000000002
           },
           {
             "missing": false,
             "item": "Banan",
-            "grams": 120,
-            "kcal": 106.8,
-            "protein": 1.32,
-            "fat": 0.36,
-            "carbs": 27.599999999999998
+            "grams": 240,
+            "kcal": 213.6,
+            "protein": 2.64,
+            "fat": 0.72,
+            "carbs": 55.199999999999996
           },
           {
             "missing": false,
             "item": "Mleko migdałowe",
-            "grams": 300,
-            "kcal": 72,
-            "protein": 2.7,
-            "fat": 5.4,
-            "carbs": 2.4000000000000004
+            "grams": 545,
+            "kcal": 130.8,
+            "protein": 4.905,
+            "fat": 9.81,
+            "carbs": 4.36
           },
           {
             "missing": false,
             "item": "Masło orzechowe",
-            "grams": 20,
-            "kcal": 117.60000000000001,
-            "protein": 5,
-            "fat": 10,
-            "carbs": 4
+            "grams": 35,
+            "kcal": 205.79999999999998,
+            "protein": 8.75,
+            "fat": 17.5,
+            "carbs": 7
           },
           {
             "missing": false,
             "item": "Nasiona chia",
-            "grams": 10,
-            "kcal": 48.6,
-            "protein": 1.7000000000000002,
-            "fat": 3.1,
-            "carbs": 4.2
+            "grams": 20,
+            "kcal": 97.2,
+            "protein": 3.4000000000000004,
+            "fat": 6.2,
+            "carbs": 8.4
           },
           {
             "missing": false,
             "item": "Miód",
-            "grams": 10,
-            "kcal": 30.400000000000002,
-            "protein": 0.03,
+            "grams": 20,
+            "kcal": 60.800000000000004,
+            "protein": 0.06,
             "fat": 0,
-            "carbs": 8.200000000000001
+            "carbs": 16.400000000000002
           }
         ],
         "missingIngredients": [],
@@ -21496,52 +21496,52 @@
         "id": "l121",
         "name": "Łosoś pieczony z batatami i brokułem",
         "declared": {
-          "kcal": 695,
-          "protein": 38,
-          "fat": 36,
-          "carbs": 57
+          "kcal": 837,
+          "protein": 45,
+          "fat": 44,
+          "carbs": 67
         },
         "calculated": {
-          "kcal": 695,
-          "protein": 38,
-          "fat": 35,
-          "carbs": 57
+          "kcal": 837,
+          "protein": 45,
+          "fat": 44,
+          "carbs": 67
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Filet z łososia",
-            "grams": 150,
-            "kcal": 312,
-            "protein": 30,
-            "fat": 19.5,
+            "grams": 175,
+            "kcal": 364,
+            "protein": 35,
+            "fat": 22.75,
             "carbs": 0
           },
           {
             "missing": false,
             "item": "Bataty",
-            "grams": 200,
-            "kcal": 172,
-            "protein": 3.2,
-            "fat": 0.2,
-            "carbs": 40
+            "grams": 235,
+            "kcal": 202.1,
+            "protein": 3.7600000000000002,
+            "fat": 0.23500000000000001,
+            "carbs": 47
           },
           {
             "missing": false,
             "item": "Brokuł",
-            "grams": 150,
-            "kcal": 51,
-            "protein": 4.199999999999999,
-            "fat": 0.6000000000000001,
-            "carbs": 10.5
+            "grams": 175,
+            "kcal": 59.5,
+            "protein": 4.8999999999999995,
+            "fat": 0.7000000000000001,
+            "carbs": 12.25
           },
           {
             "missing": false,
             "item": "Oliwa extra virgin",
-            "grams": 15,
-            "kcal": 132.6,
+            "grams": 20,
+            "kcal": 176.8,
             "protein": 0,
-            "fat": 15,
+            "fat": 20,
             "carbs": 0
           },
           {
@@ -21556,27 +21556,27 @@
           {
             "missing": false,
             "item": "Kurkuma",
-            "grams": 3,
-            "kcal": 9.36,
-            "protein": 0.3,
-            "fat": 0.09,
-            "carbs": 2.01
+            "grams": 5,
+            "kcal": 15.600000000000001,
+            "protein": 0.5,
+            "fat": 0.15000000000000002,
+            "carbs": 3.35
           },
           {
             "missing": false,
             "item": "Sok z cytryny",
-            "grams": 15,
-            "kcal": 3.3,
-            "protein": 0.06,
-            "fat": 0.03,
-            "carbs": 1.05
+            "grams": 20,
+            "kcal": 4.4,
+            "protein": 0.08000000000000002,
+            "fat": 0.04000000000000001,
+            "carbs": 1.4000000000000001
           }
         ],
         "missingIngredients": [],
         "discrepancies": {
           "kcal": 0,
           "protein": 0,
-          "fat": -2.7777777777777777,
+          "fat": 0,
           "carbs": 0
         },
         "withinTolerance": true,
@@ -21586,44 +21586,44 @@
         "id": "l122",
         "name": "Miska Buddy z quinoa i warzywami",
         "declared": {
-          "kcal": 769,
-          "protein": 25,
-          "fat": 36,
-          "carbs": 94
+          "kcal": 810,
+          "protein": 27,
+          "fat": 37,
+          "carbs": 101
         },
         "calculated": {
-          "kcal": 768,
-          "protein": 25,
-          "fat": 36,
-          "carbs": 94
+          "kcal": 810,
+          "protein": 27,
+          "fat": 37,
+          "carbs": 101
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Quinoa",
-            "grams": 60,
-            "kcal": 220.79999999999998,
-            "protein": 8.4,
-            "fat": 3.5999999999999996,
-            "carbs": 38.4
+            "grams": 65,
+            "kcal": 239.20000000000002,
+            "protein": 9.1,
+            "fat": 3.9000000000000004,
+            "carbs": 41.6
           },
           {
             "missing": false,
             "item": "Ciecierzyca",
-            "grams": 80,
-            "kcal": 131.20000000000002,
-            "protein": 7.120000000000001,
-            "fat": 2.08,
-            "carbs": 21.6
+            "grams": 85,
+            "kcal": 139.4,
+            "protein": 7.565,
+            "fat": 2.21,
+            "carbs": 22.95
           },
           {
             "missing": false,
             "item": "Szpinak świeży",
-            "grams": 60,
-            "kcal": 13.799999999999999,
-            "protein": 1.74,
-            "fat": 0.24,
-            "carbs": 2.16
+            "grams": 65,
+            "kcal": 14.950000000000001,
+            "protein": 1.885,
+            "fat": 0.26,
+            "carbs": 2.3400000000000003
           },
           {
             "missing": false,
@@ -21637,11 +21637,11 @@
           {
             "missing": false,
             "item": "Batat",
-            "grams": 100,
-            "kcal": 86,
-            "protein": 1.6,
-            "fat": 0.1,
-            "carbs": 20
+            "grams": 105,
+            "kcal": 90.3,
+            "protein": 1.6800000000000002,
+            "fat": 0.10500000000000001,
+            "carbs": 21
           },
           {
             "missing": false,
@@ -21664,11 +21664,11 @@
           {
             "missing": false,
             "item": "Kurkuma",
-            "grams": 2,
-            "kcal": 6.24,
-            "protein": 0.2,
-            "fat": 0.06,
-            "carbs": 1.34
+            "grams": 5,
+            "kcal": 15.600000000000001,
+            "protein": 0.5,
+            "fat": 0.15000000000000002,
+            "carbs": 3.35
           },
           {
             "missing": false,
@@ -21682,7 +21682,7 @@
         ],
         "missingIngredients": [],
         "discrepancies": {
-          "kcal": -0.13003901170351106,
+          "kcal": 0,
           "protein": 0,
           "fat": 0,
           "carbs": 0
@@ -21694,71 +21694,71 @@
         "id": "l123",
         "name": "Curry z soczewicy z jarmużem",
         "declared": {
-          "kcal": 649,
-          "protein": 19,
-          "fat": 23,
-          "carbs": 93
+          "kcal": 853,
+          "protein": 24,
+          "fat": 32,
+          "carbs": 120
         },
         "calculated": {
-          "kcal": 649,
-          "protein": 19,
-          "fat": 23,
-          "carbs": 93
+          "kcal": 853,
+          "protein": 24,
+          "fat": 32,
+          "carbs": 120
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Soczewica czerwona",
-            "grams": 80,
-            "kcal": 92.80000000000001,
-            "protein": 7.2,
-            "fat": 0.32000000000000006,
-            "carbs": 16
+            "grams": 100,
+            "kcal": 116,
+            "protein": 9,
+            "fat": 0.4,
+            "carbs": 20
           },
           {
             "missing": false,
             "item": "Jarmuż",
-            "grams": 80,
-            "kcal": 28,
-            "protein": 2.32,
-            "fat": 0.5599999999999999,
-            "carbs": 3.5200000000000005
+            "grams": 100,
+            "kcal": 35,
+            "protein": 2.9,
+            "fat": 0.7,
+            "carbs": 4.4
           },
           {
             "missing": false,
             "item": "Mleko kokosowe light",
-            "grams": 150,
-            "kcal": 114,
-            "protein": 1.0499999999999998,
-            "fat": 10.5,
-            "carbs": 4.199999999999999
+            "grams": 190,
+            "kcal": 144.4,
+            "protein": 1.3299999999999998,
+            "fat": 13.299999999999999,
+            "carbs": 5.319999999999999
           },
           {
             "missing": false,
             "item": "Passata",
-            "grams": 150,
-            "kcal": 36,
-            "protein": 1.5,
-            "fat": 0.15000000000000002,
-            "carbs": 7.5
+            "grams": 190,
+            "kcal": 45.599999999999994,
+            "protein": 1.9,
+            "fat": 0.19,
+            "carbs": 9.5
           },
           {
             "missing": false,
             "item": "Cebula",
-            "grams": 110,
-            "kcal": 44,
-            "protein": 1.2100000000000002,
-            "fat": 0.11000000000000001,
-            "carbs": 9.9
+            "grams": 165,
+            "kcal": 66,
+            "protein": 1.815,
+            "fat": 0.165,
+            "carbs": 14.85
           },
           {
             "missing": false,
             "item": "Czosnek",
-            "grams": 10,
-            "kcal": 14.9,
-            "protein": 0.6400000000000001,
-            "fat": 0.05,
-            "carbs": 3.3000000000000003
+            "grams": 15,
+            "kcal": 22.349999999999998,
+            "protein": 0.96,
+            "fat": 0.075,
+            "carbs": 4.95
           },
           {
             "missing": false,
@@ -21772,29 +21772,29 @@
           {
             "missing": false,
             "item": "Kurkuma",
-            "grams": 3,
-            "kcal": 9.36,
-            "protein": 0.3,
-            "fat": 0.09,
-            "carbs": 2.01
+            "grams": 5,
+            "kcal": 15.600000000000001,
+            "protein": 0.5,
+            "fat": 0.15000000000000002,
+            "carbs": 3.35
           },
           {
             "missing": false,
             "item": "Oliwa extra virgin",
-            "grams": 10,
-            "kcal": 88.4,
+            "grams": 15,
+            "kcal": 132.6,
             "protein": 0,
-            "fat": 10,
+            "fat": 15,
             "carbs": 0
           },
           {
             "missing": false,
             "item": "Ryż brązowy",
-            "grams": 60,
-            "kcal": 217.2,
-            "protein": 4.8,
-            "fat": 1.62,
-            "carbs": 45.6
+            "grams": 75,
+            "kcal": 271.5,
+            "protein": 6,
+            "fat": 2.0250000000000004,
+            "carbs": 57
           }
         ],
         "missingIngredients": [],
@@ -21919,44 +21919,44 @@
         "id": "l125",
         "name": "Bowl z tofu, batatami i jarmużem",
         "declared": {
-          "kcal": 706,
-          "protein": 32,
-          "fat": 33,
-          "carbs": 76
+          "kcal": 798,
+          "protein": 36,
+          "fat": 36,
+          "carbs": 90
         },
         "calculated": {
-          "kcal": 706,
-          "protein": 32,
-          "fat": 33,
-          "carbs": 76
+          "kcal": 798,
+          "protein": 36,
+          "fat": 36,
+          "carbs": 90
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Tofu",
-            "grams": 200,
-            "kcal": 152,
-            "protein": 16,
-            "fat": 9.6,
-            "carbs": 3.8
+            "grams": 230,
+            "kcal": 174.79999999999998,
+            "protein": 18.4,
+            "fat": 11.04,
+            "carbs": 4.369999999999999
           },
           {
             "missing": false,
             "item": "Bataty",
-            "grams": 150,
-            "kcal": 129,
-            "protein": 2.4000000000000004,
-            "fat": 0.15000000000000002,
-            "carbs": 30
+            "grams": 175,
+            "kcal": 150.5,
+            "protein": 2.8000000000000003,
+            "fat": 0.17500000000000002,
+            "carbs": 35
           },
           {
             "missing": false,
             "item": "Jarmuż",
-            "grams": 80,
-            "kcal": 28,
-            "protein": 2.32,
-            "fat": 0.5599999999999999,
-            "carbs": 3.5200000000000005
+            "grams": 95,
+            "kcal": 33.25,
+            "protein": 2.755,
+            "fat": 0.6649999999999999,
+            "carbs": 4.18
           },
           {
             "missing": false,
@@ -21970,11 +21970,11 @@
           {
             "missing": false,
             "item": "Kurkuma",
-            "grams": 3,
-            "kcal": 9.36,
-            "protein": 0.3,
-            "fat": 0.09,
-            "carbs": 2.01
+            "grams": 5,
+            "kcal": 15.600000000000001,
+            "protein": 0.5,
+            "fat": 0.15000000000000002,
+            "carbs": 3.35
           },
           {
             "missing": false,
@@ -21988,11 +21988,11 @@
           {
             "missing": false,
             "item": "Quinoa",
-            "grams": 50,
-            "kcal": 184,
-            "protein": 7,
-            "fat": 3,
-            "carbs": 32
+            "grams": 60,
+            "kcal": 220.79999999999998,
+            "protein": 8.4,
+            "fat": 3.5999999999999996,
+            "carbs": 38.4
           },
           {
             "missing": false,
@@ -22018,26 +22018,26 @@
         "id": "l126",
         "name": "Zupa krem z brokułów z pestkami dyni",
         "declared": {
-          "kcal": 657,
-          "protein": 22,
-          "fat": 34,
-          "carbs": 74
+          "kcal": 774,
+          "protein": 26,
+          "fat": 44,
+          "carbs": 81
         },
         "calculated": {
-          "kcal": 657,
-          "protein": 22,
-          "fat": 34,
-          "carbs": 74
+          "kcal": 774,
+          "protein": 26,
+          "fat": 44,
+          "carbs": 81
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Brokuł",
-            "grams": 300,
-            "kcal": 102,
-            "protein": 8.399999999999999,
-            "fat": 1.2000000000000002,
-            "carbs": 21
+            "grams": 375,
+            "kcal": 127.5,
+            "protein": 10.5,
+            "fat": 1.5,
+            "carbs": 26.25
           },
           {
             "missing": false,
@@ -22060,29 +22060,29 @@
           {
             "missing": false,
             "item": "Oliwa extra virgin",
-            "grams": 15,
-            "kcal": 132.6,
+            "grams": 20,
+            "kcal": 176.8,
             "protein": 0,
-            "fat": 15,
+            "fat": 20,
             "carbs": 0
           },
           {
             "missing": false,
             "item": "Mleko kokosowe light",
-            "grams": 100,
-            "kcal": 76,
-            "protein": 0.7,
-            "fat": 7,
-            "carbs": 2.8
+            "grams": 125,
+            "kcal": 95,
+            "protein": 0.875,
+            "fat": 8.75,
+            "carbs": 3.5
           },
           {
             "missing": false,
             "item": "Pestki dyni",
-            "grams": 20,
-            "kcal": 111.80000000000001,
-            "protein": 6,
-            "fat": 9.8,
-            "carbs": 2.2
+            "grams": 25,
+            "kcal": 139.75,
+            "protein": 7.5,
+            "fat": 12.25,
+            "carbs": 2.75
           },
           {
             "missing": false,
@@ -22108,44 +22108,44 @@
         "id": "l127",
         "name": "Sałatka z ciecierzycą, quinoa i awokado",
         "declared": {
-          "kcal": 725,
-          "protein": 23,
-          "fat": 42,
-          "carbs": 75
+          "kcal": 809,
+          "protein": 27,
+          "fat": 46,
+          "carbs": 84
         },
         "calculated": {
-          "kcal": 724,
-          "protein": 23,
-          "fat": 41,
-          "carbs": 75
+          "kcal": 809,
+          "protein": 27,
+          "fat": 46,
+          "carbs": 84
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Ciecierzyca",
-            "grams": 100,
-            "kcal": 164,
-            "protein": 8.9,
-            "fat": 2.6,
-            "carbs": 27
+            "grams": 115,
+            "kcal": 188.6,
+            "protein": 10.235,
+            "fat": 2.9899999999999998,
+            "carbs": 31.049999999999997
           },
           {
             "missing": false,
             "item": "Quinoa",
-            "grams": 40,
-            "kcal": 147.20000000000002,
-            "protein": 5.6000000000000005,
-            "fat": 2.4000000000000004,
-            "carbs": 25.6
+            "grams": 45,
+            "kcal": 165.6,
+            "protein": 6.3,
+            "fat": 2.7,
+            "carbs": 28.8
           },
           {
             "missing": false,
             "item": "Szpinak świeży",
-            "grams": 80,
-            "kcal": 18.400000000000002,
-            "protein": 2.32,
-            "fat": 0.32000000000000006,
-            "carbs": 2.8800000000000003
+            "grams": 90,
+            "kcal": 20.7,
+            "protein": 2.61,
+            "fat": 0.36000000000000004,
+            "carbs": 3.24
           },
           {
             "missing": false,
@@ -22177,20 +22177,20 @@
           {
             "missing": false,
             "item": "Kurkuma",
-            "grams": 3,
-            "kcal": 9.36,
-            "protein": 0.3,
-            "fat": 0.09,
-            "carbs": 2.01
+            "grams": 5,
+            "kcal": 15.600000000000001,
+            "protein": 0.5,
+            "fat": 0.15000000000000002,
+            "carbs": 3.35
           },
           {
             "missing": false,
             "item": "Orzechy włoskie",
-            "grams": 20,
-            "kcal": 130.8,
-            "protein": 3,
-            "fat": 13,
-            "carbs": 2.8000000000000003
+            "grams": 25,
+            "kcal": 163.5,
+            "protein": 3.75,
+            "fat": 16.25,
+            "carbs": 3.5
           },
           {
             "missing": false,
@@ -22204,9 +22204,9 @@
         ],
         "missingIngredients": [],
         "discrepancies": {
-          "kcal": -0.13793103448275862,
+          "kcal": 0,
           "protein": 0,
-          "fat": -2.380952380952381,
+          "fat": 0,
           "carbs": 0
         },
         "withinTolerance": true,
@@ -22216,44 +22216,44 @@
         "id": "l128",
         "name": "Łosoś z soczewicą i szpinakiem",
         "declared": {
-          "kcal": 722,
-          "protein": 44,
-          "fat": 32,
-          "carbs": 64
+          "kcal": 798,
+          "protein": 50,
+          "fat": 35,
+          "carbs": 71
         },
         "calculated": {
-          "kcal": 722,
-          "protein": 44,
-          "fat": 32,
-          "carbs": 64
+          "kcal": 798,
+          "protein": 50,
+          "fat": 35,
+          "carbs": 71
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Filet z łososia",
-            "grams": 150,
-            "kcal": 312,
-            "protein": 30,
-            "fat": 19.5,
+            "grams": 170,
+            "kcal": 353.59999999999997,
+            "protein": 34,
+            "fat": 22.099999999999998,
             "carbs": 0
           },
           {
             "missing": false,
             "item": "Soczewica czerwona",
-            "grams": 60,
-            "kcal": 69.6,
-            "protein": 5.3999999999999995,
-            "fat": 0.24,
-            "carbs": 12
+            "grams": 70,
+            "kcal": 81.19999999999999,
+            "protein": 6.3,
+            "fat": 0.27999999999999997,
+            "carbs": 14
           },
           {
             "missing": false,
             "item": "Szpinak świeży",
-            "grams": 100,
-            "kcal": 23,
-            "protein": 2.9,
-            "fat": 0.4,
-            "carbs": 3.6
+            "grams": 115,
+            "kcal": 26.45,
+            "protein": 3.3349999999999995,
+            "fat": 0.45999999999999996,
+            "carbs": 4.14
           },
           {
             "missing": false,
@@ -22294,20 +22294,20 @@
           {
             "missing": false,
             "item": "Imbir",
-            "grams": 3,
-            "kcal": 2.4,
-            "protein": 0.054,
-            "fat": 0.024,
-            "carbs": 0.54
+            "grams": 5,
+            "kcal": 4,
+            "protein": 0.09000000000000001,
+            "fat": 0.04000000000000001,
+            "carbs": 0.9
           },
           {
             "missing": false,
             "item": "Ryż brązowy",
-            "grams": 50,
-            "kcal": 181,
-            "protein": 4,
-            "fat": 1.35,
-            "carbs": 38
+            "grams": 55,
+            "kcal": 199.10000000000002,
+            "protein": 4.4,
+            "fat": 1.4850000000000003,
+            "carbs": 41.800000000000004
           }
         ],
         "missingIngredients": [],
@@ -29004,89 +29004,89 @@
         "id": "d47",
         "name": "Shake kolagenowy z borówkami i szpinakiem",
         "declared": {
-          "kcal": 472,
-          "protein": 30,
-          "fat": 18,
-          "carbs": 58
+          "kcal": 769,
+          "protein": 51,
+          "fat": 30,
+          "carbs": 93
         },
         "calculated": {
-          "kcal": 472,
-          "protein": 30,
-          "fat": 18,
-          "carbs": 58
+          "kcal": 769,
+          "protein": 51,
+          "fat": 30,
+          "carbs": 93
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Kolagen w proszku",
-            "grams": 20,
-            "kcal": 68,
-            "protein": 17,
+            "grams": 35,
+            "kcal": 118.99999999999999,
+            "protein": 29.749999999999996,
             "fat": 0,
             "carbs": 0
           },
           {
             "missing": false,
             "item": "Borówki",
-            "grams": 120,
-            "kcal": 68.39999999999999,
-            "protein": 0.84,
-            "fat": 0.36,
-            "carbs": 16.8
+            "grams": 200,
+            "kcal": 114,
+            "protein": 1.4,
+            "fat": 0.6,
+            "carbs": 28
           },
           {
             "missing": false,
             "item": "Szpinak świeży",
-            "grams": 40,
-            "kcal": 9.200000000000001,
-            "protein": 1.16,
-            "fat": 0.16000000000000003,
-            "carbs": 1.4400000000000002
+            "grams": 65,
+            "kcal": 14.950000000000001,
+            "protein": 1.885,
+            "fat": 0.26,
+            "carbs": 2.3400000000000003
           },
           {
             "missing": false,
             "item": "Banan",
-            "grams": 120,
-            "kcal": 106.8,
-            "protein": 1.32,
-            "fat": 0.36,
-            "carbs": 27.599999999999998
+            "grams": 180,
+            "kcal": 160.20000000000002,
+            "protein": 1.9800000000000002,
+            "fat": 0.54,
+            "carbs": 41.4
           },
           {
             "missing": false,
             "item": "Mleko migdałowe",
-            "grams": 250,
-            "kcal": 60,
-            "protein": 2.25,
-            "fat": 4.5,
-            "carbs": 2
+            "grams": 415,
+            "kcal": 99.60000000000001,
+            "protein": 3.7350000000000003,
+            "fat": 7.470000000000001,
+            "carbs": 3.3200000000000003
           },
           {
             "missing": false,
             "item": "Masło orzechowe",
-            "grams": 15,
-            "kcal": 88.2,
-            "protein": 3.75,
-            "fat": 7.5,
-            "carbs": 3
+            "grams": 25,
+            "kcal": 147,
+            "protein": 6.25,
+            "fat": 12.5,
+            "carbs": 5
           },
           {
             "missing": false,
             "item": "Siemię lniane mielone",
-            "grams": 10,
-            "kcal": 53.400000000000006,
-            "protein": 1.8,
-            "fat": 4.2,
-            "carbs": 2.9000000000000004
+            "grams": 15,
+            "kcal": 80.1,
+            "protein": 2.6999999999999997,
+            "fat": 6.3,
+            "carbs": 4.35
           },
           {
             "missing": false,
             "item": "Kakao",
-            "grams": 8,
-            "kcal": 18.240000000000002,
-            "protein": 1.6,
-            "fat": 1.12,
-            "carbs": 4.64
+            "grams": 15,
+            "kcal": 34.199999999999996,
+            "protein": 3,
+            "fat": 2.1,
+            "carbs": 8.7
           }
         ],
         "missingIngredients": [],
@@ -29103,26 +29103,26 @@
         "id": "d48",
         "name": "Sałatka z awokado, jarmużem i orzechami",
         "declared": {
-          "kcal": 673,
-          "protein": 19,
-          "fat": 54,
-          "carbs": 39
+          "kcal": 727,
+          "protein": 21,
+          "fat": 57,
+          "carbs": 43
         },
         "calculated": {
-          "kcal": 673,
-          "protein": 19,
-          "fat": 54,
-          "carbs": 39
+          "kcal": 727,
+          "protein": 21,
+          "fat": 57,
+          "carbs": 43
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Jarmuż",
-            "grams": 80,
-            "kcal": 28,
-            "protein": 2.32,
-            "fat": 0.5599999999999999,
-            "carbs": 3.5200000000000005
+            "grams": 95,
+            "kcal": 33.25,
+            "protein": 2.755,
+            "fat": 0.6649999999999999,
+            "carbs": 4.18
           },
           {
             "missing": false,
@@ -29136,20 +29136,20 @@
           {
             "missing": false,
             "item": "Orzechy włoskie",
-            "grams": 25,
-            "kcal": 163.5,
-            "protein": 3.75,
-            "fat": 16.25,
-            "carbs": 3.5
+            "grams": 30,
+            "kcal": 196.2,
+            "protein": 4.5,
+            "fat": 19.5,
+            "carbs": 4.2
           },
           {
             "missing": false,
             "item": "Ciecierzyca",
-            "grams": 60,
-            "kcal": 98.39999999999999,
-            "protein": 5.34,
-            "fat": 1.56,
-            "carbs": 16.2
+            "grams": 70,
+            "kcal": 114.8,
+            "protein": 6.2299999999999995,
+            "fat": 1.8199999999999998,
+            "carbs": 18.9
           },
           {
             "missing": false,
@@ -29202,35 +29202,35 @@
         "id": "d49",
         "name": "Czekoladowy pudding z awokado",
         "declared": {
-          "kcal": 558,
-          "protein": 12,
-          "fat": 40,
-          "carbs": 63
+          "kcal": 782,
+          "protein": 16,
+          "fat": 57,
+          "carbs": 84
         },
         "calculated": {
-          "kcal": 558,
-          "protein": 12,
-          "fat": 40,
-          "carbs": 63
+          "kcal": 782,
+          "protein": 16,
+          "fat": 57,
+          "carbs": 84
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Awokado",
-            "grams": 170,
-            "kcal": 272,
-            "protein": 3.4,
-            "fat": 25.5,
-            "carbs": 15.299999999999999
+            "grams": 255,
+            "kcal": 408,
+            "protein": 5.1,
+            "fat": 38.25,
+            "carbs": 22.95
           },
           {
             "missing": false,
             "item": "Kakao",
-            "grams": 20,
-            "kcal": 45.6,
-            "protein": 4,
-            "fat": 2.8000000000000003,
-            "carbs": 11.600000000000001
+            "grams": 30,
+            "kcal": 68.39999999999999,
+            "protein": 6,
+            "fat": 4.2,
+            "carbs": 17.4
           },
           {
             "missing": false,
@@ -29244,38 +29244,38 @@
           {
             "missing": false,
             "item": "Miód",
-            "grams": 15,
-            "kcal": 45.6,
-            "protein": 0.045,
+            "grams": 20,
+            "kcal": 60.800000000000004,
+            "protein": 0.06,
             "fat": 0,
-            "carbs": 12.299999999999999
+            "carbs": 16.400000000000002
           },
           {
             "missing": false,
             "item": "Mleko migdałowe",
-            "grams": 50,
-            "kcal": 12,
-            "protein": 0.45,
-            "fat": 0.9,
-            "carbs": 0.4
+            "grams": 70,
+            "kcal": 16.799999999999997,
+            "protein": 0.63,
+            "fat": 1.26,
+            "carbs": 0.5599999999999999
           },
           {
             "missing": false,
             "item": "Orzechy włoskie",
-            "grams": 15,
-            "kcal": 98.1,
-            "protein": 2.25,
-            "fat": 9.75,
-            "carbs": 2.1
+            "grams": 20,
+            "kcal": 130.8,
+            "protein": 3,
+            "fat": 13,
+            "carbs": 2.8000000000000003
           },
           {
             "missing": false,
             "item": "Maliny",
-            "grams": 60,
-            "kcal": 31.2,
-            "protein": 0.72,
-            "fat": 0.42,
-            "carbs": 7.199999999999999
+            "grams": 85,
+            "kcal": 44.199999999999996,
+            "protein": 1.02,
+            "fat": 0.595,
+            "carbs": 10.2
           }
         ],
         "missingIngredients": [],
@@ -29292,89 +29292,89 @@
         "id": "d50",
         "name": "Tofu scramble ze szpinakiem i kurkumą",
         "declared": {
-          "kcal": 584,
-          "protein": 28,
-          "fat": 31,
-          "carbs": 55
+          "kcal": 831,
+          "protein": 38,
+          "fat": 44,
+          "carbs": 81
         },
         "calculated": {
-          "kcal": 584,
-          "protein": 28,
-          "fat": 31,
-          "carbs": 55
+          "kcal": 831,
+          "protein": 38,
+          "fat": 44,
+          "carbs": 81
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Tofu",
-            "grams": 200,
-            "kcal": 152,
-            "protein": 16,
-            "fat": 9.6,
-            "carbs": 3.8
+            "grams": 265,
+            "kcal": 201.4,
+            "protein": 21.2,
+            "fat": 12.719999999999999,
+            "carbs": 5.034999999999999
           },
           {
             "missing": false,
             "item": "Szpinak świeży",
-            "grams": 80,
-            "kcal": 18.400000000000002,
-            "protein": 2.32,
-            "fat": 0.32000000000000006,
-            "carbs": 2.8800000000000003
+            "grams": 105,
+            "kcal": 24.150000000000002,
+            "protein": 3.045,
+            "fat": 0.42000000000000004,
+            "carbs": 3.7800000000000002
           },
           {
             "missing": false,
             "item": "Kurkuma",
-            "grams": 3,
-            "kcal": 9.36,
-            "protein": 0.3,
-            "fat": 0.09,
-            "carbs": 2.01
+            "grams": 5,
+            "kcal": 15.600000000000001,
+            "protein": 0.5,
+            "fat": 0.15000000000000002,
+            "carbs": 3.35
           },
           {
             "missing": false,
             "item": "Oliwa extra virgin",
-            "grams": 10,
-            "kcal": 88.4,
+            "grams": 15,
+            "kcal": 132.6,
             "protein": 0,
-            "fat": 10,
+            "fat": 15,
             "carbs": 0
           },
           {
             "missing": false,
             "item": "Czosnek",
-            "grams": 10,
-            "kcal": 14.9,
-            "protein": 0.6400000000000001,
-            "fat": 0.05,
-            "carbs": 3.3000000000000003
+            "grams": 15,
+            "kcal": 22.349999999999998,
+            "protein": 0.96,
+            "fat": 0.075,
+            "carbs": 4.95
           },
           {
             "missing": false,
             "item": "Pomidor",
-            "grams": 150,
-            "kcal": 27,
-            "protein": 1.35,
-            "fat": 0.30000000000000004,
-            "carbs": 5.85
+            "grams": 225,
+            "kcal": 40.5,
+            "protein": 2.025,
+            "fat": 0.45,
+            "carbs": 8.775
           },
           {
             "missing": false,
             "item": "Chleb żytni razowy",
-            "grams": 80,
-            "kcal": 176,
-            "protein": 4.800000000000001,
-            "fat": 1.2000000000000002,
-            "carbs": 35.2
+            "grams": 120,
+            "kcal": 264,
+            "protein": 7.199999999999999,
+            "fat": 1.7999999999999998,
+            "carbs": 52.8
           },
           {
             "missing": false,
             "item": "Orzechy włoskie",
-            "grams": 15,
-            "kcal": 98.1,
-            "protein": 2.25,
-            "fat": 9.75,
-            "carbs": 2.1
+            "grams": 20,
+            "kcal": 130.8,
+            "protein": 3,
+            "fat": 13,
+            "carbs": 2.8000000000000003
           }
         ],
         "missingIngredients": [],
@@ -29391,80 +29391,80 @@
         "id": "d51",
         "name": "Miska jogurtowa z orzechami i jagodami",
         "declared": {
-          "kcal": 579,
-          "protein": 27,
-          "fat": 34,
-          "carbs": 47
+          "kcal": 778,
+          "protein": 37,
+          "fat": 45,
+          "carbs": 65
         },
         "calculated": {
-          "kcal": 579,
-          "protein": 27,
-          "fat": 34,
-          "carbs": 47
+          "kcal": 778,
+          "protein": 37,
+          "fat": 45,
+          "carbs": 65
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Jogurt grecki",
-            "grams": 200,
-            "kcal": 194,
-            "protein": 18,
-            "fat": 10,
-            "carbs": 7.2
+            "grams": 270,
+            "kcal": 261.90000000000003,
+            "protein": 24.3,
+            "fat": 13.5,
+            "carbs": 9.72
           },
           {
             "missing": false,
             "item": "Borówki",
-            "grams": 100,
-            "kcal": 57,
-            "protein": 0.7,
-            "fat": 0.3,
-            "carbs": 14
+            "grams": 135,
+            "kcal": 76.95,
+            "protein": 0.945,
+            "fat": 0.405,
+            "carbs": 18.900000000000002
           },
           {
             "missing": false,
             "item": "Orzechy włoskie",
-            "grams": 20,
-            "kcal": 130.8,
-            "protein": 3,
-            "fat": 13,
-            "carbs": 2.8000000000000003
+            "grams": 25,
+            "kcal": 163.5,
+            "protein": 3.75,
+            "fat": 16.25,
+            "carbs": 3.5
           },
           {
             "missing": false,
             "item": "Nasiona chia",
-            "grams": 10,
-            "kcal": 48.6,
-            "protein": 1.7000000000000002,
-            "fat": 3.1,
-            "carbs": 4.2
+            "grams": 15,
+            "kcal": 72.89999999999999,
+            "protein": 2.55,
+            "fat": 4.6499999999999995,
+            "carbs": 6.3
           },
           {
             "missing": false,
             "item": "Miód",
-            "grams": 10,
-            "kcal": 30.400000000000002,
-            "protein": 0.03,
+            "grams": 15,
+            "kcal": 45.6,
+            "protein": 0.045,
             "fat": 0,
-            "carbs": 8.200000000000001
+            "carbs": 12.299999999999999
           },
           {
             "missing": false,
             "item": "Migdały",
-            "grams": 15,
-            "kcal": 86.85,
-            "protein": 3.15,
-            "fat": 7.5,
-            "carbs": 3.3
+            "grams": 20,
+            "kcal": 115.80000000000001,
+            "protein": 4.2,
+            "fat": 10,
+            "carbs": 4.4
           },
           {
             "missing": false,
             "item": "Maliny",
-            "grams": 60,
-            "kcal": 31.2,
-            "protein": 0.72,
-            "fat": 0.42,
-            "carbs": 7.199999999999999
+            "grams": 80,
+            "kcal": 41.6,
+            "protein": 0.96,
+            "fat": 0.5599999999999999,
+            "carbs": 9.600000000000001
           }
         ],
         "missingIngredients": [],
@@ -29481,80 +29481,80 @@
         "id": "d52",
         "name": "Smoothie z borówkami, bananem i siemieniem",
         "declared": {
-          "kcal": 570,
-          "protein": 22,
-          "fat": 26,
-          "carbs": 70
+          "kcal": 792,
+          "protein": 30,
+          "fat": 35,
+          "carbs": 99
         },
         "calculated": {
-          "kcal": 570,
-          "protein": 22,
-          "fat": 26,
-          "carbs": 69
+          "kcal": 792,
+          "protein": 30,
+          "fat": 35,
+          "carbs": 99
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Borówki",
-            "grams": 150,
-            "kcal": 85.5,
-            "protein": 1.0499999999999998,
-            "fat": 0.44999999999999996,
-            "carbs": 21
+            "grams": 205,
+            "kcal": 116.85,
+            "protein": 1.4349999999999998,
+            "fat": 0.6149999999999999,
+            "carbs": 28.699999999999996
           },
           {
             "missing": false,
             "item": "Banan",
-            "grams": 120,
-            "kcal": 106.8,
-            "protein": 1.32,
-            "fat": 0.36,
-            "carbs": 27.599999999999998
+            "grams": 180,
+            "kcal": 160.20000000000002,
+            "protein": 1.9800000000000002,
+            "fat": 0.54,
+            "carbs": 41.4
           },
           {
             "missing": false,
             "item": "Jogurt grecki",
-            "grams": 150,
-            "kcal": 145.5,
-            "protein": 13.5,
-            "fat": 7.5,
-            "carbs": 5.4
+            "grams": 205,
+            "kcal": 198.85,
+            "protein": 18.45,
+            "fat": 10.25,
+            "carbs": 7.38
           },
           {
             "missing": false,
             "item": "Siemię lniane mielone",
-            "grams": 15,
-            "kcal": 80.1,
-            "protein": 2.6999999999999997,
-            "fat": 6.3,
-            "carbs": 4.35
+            "grams": 20,
+            "kcal": 106.80000000000001,
+            "protein": 3.6,
+            "fat": 8.4,
+            "carbs": 5.800000000000001
           },
           {
             "missing": false,
             "item": "Miód",
-            "grams": 10,
-            "kcal": 30.400000000000002,
-            "protein": 0.03,
+            "grams": 15,
+            "kcal": 45.6,
+            "protein": 0.045,
             "fat": 0,
-            "carbs": 8.200000000000001
+            "carbs": 12.299999999999999
           },
           {
             "missing": false,
             "item": "Orzechy włoskie",
-            "grams": 15,
-            "kcal": 98.1,
-            "protein": 2.25,
-            "fat": 9.75,
-            "carbs": 2.1
+            "grams": 20,
+            "kcal": 130.8,
+            "protein": 3,
+            "fat": 13,
+            "carbs": 2.8000000000000003
           },
           {
             "missing": false,
             "item": "Mleko migdałowe",
-            "grams": 100,
-            "kcal": 24,
-            "protein": 0.9,
-            "fat": 1.8,
-            "carbs": 0.8
+            "grams": 135,
+            "kcal": 32.400000000000006,
+            "protein": 1.215,
+            "fat": 2.43,
+            "carbs": 1.08
           }
         ],
         "missingIngredients": [],
@@ -29562,7 +29562,7 @@
           "kcal": 0,
           "protein": 0,
           "fat": 0,
-          "carbs": -1.4285714285714286
+          "carbs": 0
         },
         "withinTolerance": true,
         "hasMissingIngredients": false
@@ -29571,52 +29571,52 @@
         "id": "d53",
         "name": "Placki z batatów ze szpinakiem",
         "declared": {
-          "kcal": 563,
-          "protein": 26,
-          "fat": 26,
-          "carbs": 59
+          "kcal": 805,
+          "protein": 37,
+          "fat": 39,
+          "carbs": 81
         },
         "calculated": {
-          "kcal": 563,
-          "protein": 26,
-          "fat": 26,
-          "carbs": 59
+          "kcal": 805,
+          "protein": 37,
+          "fat": 39,
+          "carbs": 81
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Batat",
-            "grams": 250,
-            "kcal": 215,
-            "protein": 4,
-            "fat": 0.25,
-            "carbs": 50
+            "grams": 345,
+            "kcal": 296.7,
+            "protein": 5.5200000000000005,
+            "fat": 0.34500000000000003,
+            "carbs": 69
           },
           {
             "missing": false,
             "item": "Jajko",
-            "grams": 60,
-            "kcal": 85.8,
-            "protein": 7.56,
-            "fat": 5.7,
-            "carbs": 0.42
+            "grams": 90,
+            "kcal": 128.70000000000002,
+            "protein": 11.34,
+            "fat": 8.55,
+            "carbs": 0.63
           },
           {
             "missing": false,
             "item": "Szpinak świeży",
-            "grams": 60,
-            "kcal": 13.799999999999999,
-            "protein": 1.74,
-            "fat": 0.24,
-            "carbs": 2.16
+            "grams": 85,
+            "kcal": 19.55,
+            "protein": 2.465,
+            "fat": 0.34,
+            "carbs": 3.06
           },
           {
             "missing": false,
             "item": "Oliwa extra virgin",
-            "grams": 10,
-            "kcal": 88.4,
+            "grams": 15,
+            "kcal": 132.6,
             "protein": 0,
-            "fat": 10,
+            "fat": 15,
             "carbs": 0
           },
           {
@@ -29631,20 +29631,20 @@
           {
             "missing": false,
             "item": "Jogurt grecki",
-            "grams": 100,
-            "kcal": 97,
-            "protein": 9,
-            "fat": 5,
-            "carbs": 3.6
+            "grams": 140,
+            "kcal": 135.79999999999998,
+            "protein": 12.6,
+            "fat": 7,
+            "carbs": 5.04
           },
           {
             "missing": false,
             "item": "Pestki dyni",
-            "grams": 10,
-            "kcal": 55.900000000000006,
-            "protein": 3,
-            "fat": 4.9,
-            "carbs": 1.1
+            "grams": 15,
+            "kcal": 83.85,
+            "protein": 4.5,
+            "fat": 7.35,
+            "carbs": 1.65
           }
         ],
         "missingIngredients": [],
@@ -29661,98 +29661,98 @@
         "id": "d54",
         "name": "Krem z soczewicy z kurkumą",
         "declared": {
-          "kcal": 604,
-          "protein": 18,
-          "fat": 29,
-          "carbs": 71
+          "kcal": 853,
+          "protein": 25,
+          "fat": 39,
+          "carbs": 103
         },
         "calculated": {
-          "kcal": 604,
-          "protein": 18,
-          "fat": 29,
-          "carbs": 71
+          "kcal": 853,
+          "protein": 25,
+          "fat": 39,
+          "carbs": 103
         },
         "ingredients": [
           {
             "missing": false,
             "item": "Soczewica czerwona",
-            "grams": 80,
-            "kcal": 92.80000000000001,
-            "protein": 7.2,
-            "fat": 0.32000000000000006,
-            "carbs": 16
+            "grams": 105,
+            "kcal": 121.80000000000001,
+            "protein": 9.450000000000001,
+            "fat": 0.42000000000000004,
+            "carbs": 21
           },
           {
             "missing": false,
             "item": "Cebula",
-            "grams": 110,
-            "kcal": 44,
-            "protein": 1.2100000000000002,
-            "fat": 0.11000000000000001,
-            "carbs": 9.9
+            "grams": 165,
+            "kcal": 66,
+            "protein": 1.815,
+            "fat": 0.165,
+            "carbs": 14.85
           },
           {
             "missing": false,
             "item": "Czosnek",
-            "grams": 10,
-            "kcal": 14.9,
-            "protein": 0.6400000000000001,
-            "fat": 0.05,
-            "carbs": 3.3000000000000003
+            "grams": 15,
+            "kcal": 22.349999999999998,
+            "protein": 0.96,
+            "fat": 0.075,
+            "carbs": 4.95
           },
           {
             "missing": false,
             "item": "Kurkuma",
-            "grams": 3,
-            "kcal": 9.36,
-            "protein": 0.3,
-            "fat": 0.09,
-            "carbs": 2.01
+            "grams": 5,
+            "kcal": 15.600000000000001,
+            "protein": 0.5,
+            "fat": 0.15000000000000002,
+            "carbs": 3.35
           },
           {
             "missing": false,
             "item": "Imbir",
-            "grams": 3,
-            "kcal": 2.4,
-            "protein": 0.054,
-            "fat": 0.024,
-            "carbs": 0.54
+            "grams": 5,
+            "kcal": 4,
+            "protein": 0.09000000000000001,
+            "fat": 0.04000000000000001,
+            "carbs": 0.9
           },
           {
             "missing": false,
             "item": "Oliwa extra virgin",
-            "grams": 15,
-            "kcal": 132.6,
+            "grams": 20,
+            "kcal": 176.8,
             "protein": 0,
-            "fat": 15,
+            "fat": 20,
             "carbs": 0
           },
           {
             "missing": false,
             "item": "Mleko kokosowe light",
-            "grams": 100,
-            "kcal": 76,
-            "protein": 0.7,
-            "fat": 7,
-            "carbs": 2.8
+            "grams": 130,
+            "kcal": 98.8,
+            "protein": 0.9099999999999999,
+            "fat": 9.1,
+            "carbs": 3.6399999999999997
           },
           {
             "missing": false,
             "item": "Chleb żytni razowy",
-            "grams": 80,
-            "kcal": 176,
-            "protein": 4.800000000000001,
-            "fat": 1.2000000000000002,
-            "carbs": 35.2
+            "grams": 120,
+            "kcal": 264,
+            "protein": 7.199999999999999,
+            "fat": 1.7999999999999998,
+            "carbs": 52.8
           },
           {
             "missing": false,
             "item": "Pestki dyni",
-            "grams": 10,
-            "kcal": 55.900000000000006,
-            "protein": 3,
-            "fat": 4.9,
-            "carbs": 1.1
+            "grams": 15,
+            "kcal": 83.85,
+            "protein": 4.5,
+            "fat": 7.35,
+            "carbs": 1.65
           }
         ],
         "missingIngredients": [],
