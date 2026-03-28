@@ -1,9 +1,9 @@
 {
   "summary": {
-    "total": 251,
-    "ok": 251,
-    "discrepancies": 0,
-    "missingIngredients": 0
+    "total": 344,
+    "ok": 316,
+    "discrepancies": 28,
+    "missingIngredients": 3
   },
   "details": {
     "breakfast": [
@@ -6403,6 +6403,2292 @@
             "protein": 0.9,
             "fat": 2.1,
             "carbs": 1.4500000000000002
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "b70",
+        "name": "Jajka w kokilkach z air fryer",
+        "declared": {
+          "kcal": 437,
+          "protein": 42,
+          "fat": 26,
+          "carbs": 7
+        },
+        "calculated": {
+          "kcal": 437,
+          "protein": 42,
+          "fat": 26,
+          "carbs": 7
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Jajka",
+            "grams": 180,
+            "kcal": 257.40000000000003,
+            "protein": 22.68,
+            "fat": 17.1,
+            "carbs": 1.26
+          },
+          {
+            "missing": false,
+            "item": "Szynka z indyka",
+            "grams": 60,
+            "kcal": 50.4,
+            "protein": 10.2,
+            "fat": 0.8999999999999999,
+            "carbs": 0.6
+          },
+          {
+            "missing": false,
+            "item": "Ser żółty (gouda)",
+            "grams": 30,
+            "kcal": 106.8,
+            "protein": 7.5,
+            "fat": 8.1,
+            "carbs": 0.66
+          },
+          {
+            "missing": false,
+            "item": "Papryka czerwona",
+            "grams": 50,
+            "kcal": 15.5,
+            "protein": 0.5,
+            "fat": 0.15,
+            "carbs": 3
+          },
+          {
+            "missing": false,
+            "item": "Szpinak świeży",
+            "grams": 30,
+            "kcal": 6.8999999999999995,
+            "protein": 0.87,
+            "fat": 0.12,
+            "carbs": 1.08
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "b71",
+        "name": "Tosty z serem i szynką z air fryer",
+        "declared": {
+          "kcal": 574,
+          "protein": 31,
+          "fat": 24,
+          "carbs": 60
+        },
+        "calculated": {
+          "kcal": 574,
+          "protein": 31,
+          "fat": 24,
+          "carbs": 60
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Chleb tostowy pełnoziarnisty",
+            "grams": 120,
+            "kcal": 296.4,
+            "protein": 9.6,
+            "fat": 3.5999999999999996,
+            "carbs": 55.199999999999996
+          },
+          {
+            "missing": false,
+            "item": "Ser żółty (gouda)",
+            "grams": 40,
+            "kcal": 142.4,
+            "protein": 10,
+            "fat": 10.8,
+            "carbs": 0.8800000000000001
+          },
+          {
+            "missing": false,
+            "item": "Szynka z indyka",
+            "grams": 60,
+            "kcal": 50.4,
+            "protein": 10.2,
+            "fat": 0.8999999999999999,
+            "carbs": 0.6
+          },
+          {
+            "missing": false,
+            "item": "Pomidor",
+            "grams": 75,
+            "kcal": 13.5,
+            "protein": 0.675,
+            "fat": 0.15000000000000002,
+            "carbs": 2.925
+          },
+          {
+            "missing": false,
+            "item": "Masło",
+            "grams": 10,
+            "kcal": 71.7,
+            "protein": 0.09000000000000001,
+            "fat": 8.1,
+            "carbs": 0.010000000000000002
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "b72",
+        "name": "Chrupiący boczek z jajkiem z air fryer",
+        "declared": {
+          "kcal": 534,
+          "protein": 25,
+          "fat": 39,
+          "carbs": 18
+        },
+        "calculated": {
+          "kcal": 534,
+          "protein": 25,
+          "fat": 39,
+          "carbs": 18
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Bekon",
+            "grams": 60,
+            "kcal": 274.8,
+            "protein": 7.199999999999999,
+            "fat": 27,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Jajka",
+            "grams": 120,
+            "kcal": 171.6,
+            "protein": 15.12,
+            "fat": 11.4,
+            "carbs": 0.84
+          },
+          {
+            "missing": false,
+            "item": "Chleb tostowy pełnoziarnisty",
+            "grams": 30,
+            "kcal": 74.1,
+            "protein": 2.4,
+            "fat": 0.8999999999999999,
+            "carbs": 13.799999999999999
+          },
+          {
+            "missing": false,
+            "item": "Pomidor",
+            "grams": 75,
+            "kcal": 13.5,
+            "protein": 0.675,
+            "fat": 0.15000000000000002,
+            "carbs": 2.925
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "b73",
+        "name": "Placuszki owsiane z air fryer",
+        "declared": {
+          "kcal": 487,
+          "protein": 21,
+          "fat": 12,
+          "carbs": 78
+        },
+        "calculated": {
+          "kcal": 487,
+          "protein": 21,
+          "fat": 12,
+          "carbs": 78
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Płatki owsiane",
+            "grams": 60,
+            "kcal": 233.39999999999998,
+            "protein": 10.2,
+            "fat": 4.2,
+            "carbs": 39.6
+          },
+          {
+            "missing": false,
+            "item": "Banan",
+            "grams": 120,
+            "kcal": 106.8,
+            "protein": 1.32,
+            "fat": 0.36,
+            "carbs": 27.599999999999998
+          },
+          {
+            "missing": false,
+            "item": "Jajka",
+            "grams": 60,
+            "kcal": 85.8,
+            "protein": 7.56,
+            "fat": 5.7,
+            "carbs": 0.42
+          },
+          {
+            "missing": false,
+            "item": "Jogurt naturalny",
+            "grams": 50,
+            "kcal": 30.5,
+            "protein": 1.75,
+            "fat": 1.6,
+            "carbs": 2.35
+          },
+          {
+            "missing": false,
+            "item": "Miód",
+            "grams": 10,
+            "kcal": 30.400000000000002,
+            "protein": 0.03,
+            "fat": 0,
+            "carbs": 8.200000000000001
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "b74",
+        "name": "Rogaliki z twarogiem z air fryer",
+        "declared": {
+          "kcal": 687,
+          "protein": 32,
+          "fat": 31,
+          "carbs": 69
+        },
+        "calculated": {
+          "kcal": 687,
+          "protein": 32,
+          "fat": 31,
+          "carbs": 69
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Croissant",
+            "grams": 120,
+            "kcal": 487.2,
+            "protein": 9.6,
+            "fat": 25.2,
+            "carbs": 55.199999999999996
+          },
+          {
+            "missing": false,
+            "item": "Twaróg",
+            "grams": 80,
+            "kcal": 78.4,
+            "protein": 14.4,
+            "fat": 0.48,
+            "carbs": 3.2
+          },
+          {
+            "missing": false,
+            "item": "Jajka",
+            "grams": 60,
+            "kcal": 85.8,
+            "protein": 7.56,
+            "fat": 5.7,
+            "carbs": 0.42
+          },
+          {
+            "missing": false,
+            "item": "Miód",
+            "grams": 10,
+            "kcal": 30.400000000000002,
+            "protein": 0.03,
+            "fat": 0,
+            "carbs": 8.200000000000001
+          },
+          {
+            "missing": false,
+            "item": "Cynamon",
+            "grams": 2,
+            "kcal": 4.94,
+            "protein": 0.08,
+            "fat": 0.02,
+            "carbs": 1.62
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "b75",
+        "name": "Grzanki francuskie z air fryer",
+        "declared": {
+          "kcal": 600,
+          "protein": 27,
+          "fat": 24,
+          "carbs": 68
+        },
+        "calculated": {
+          "kcal": 600,
+          "protein": 27,
+          "fat": 24,
+          "carbs": 68
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Chleb tostowy pełnoziarnisty",
+            "grams": 120,
+            "kcal": 296.4,
+            "protein": 9.6,
+            "fat": 3.5999999999999996,
+            "carbs": 55.199999999999996
+          },
+          {
+            "missing": false,
+            "item": "Jajka",
+            "grams": 120,
+            "kcal": 171.6,
+            "protein": 15.12,
+            "fat": 11.4,
+            "carbs": 0.84
+          },
+          {
+            "missing": false,
+            "item": "Mleko 2%",
+            "grams": 50,
+            "kcal": 25,
+            "protein": 1.7,
+            "fat": 1,
+            "carbs": 2.45
+          },
+          {
+            "missing": false,
+            "item": "Cynamon",
+            "grams": 2,
+            "kcal": 4.94,
+            "protein": 0.08,
+            "fat": 0.02,
+            "carbs": 1.62
+          },
+          {
+            "missing": false,
+            "item": "Masło",
+            "grams": 10,
+            "kcal": 71.7,
+            "protein": 0.09000000000000001,
+            "fat": 8.1,
+            "carbs": 0.010000000000000002
+          },
+          {
+            "missing": false,
+            "item": "Miód",
+            "grams": 10,
+            "kcal": 30.400000000000002,
+            "protein": 0.03,
+            "fat": 0,
+            "carbs": 8.200000000000001
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "b76",
+        "name": "Muffiny jajeczne z warzywami z air fryer",
+        "declared": {
+          "kcal": 415,
+          "protein": 33,
+          "fat": 26,
+          "carbs": 10
+        },
+        "calculated": {
+          "kcal": 415,
+          "protein": 33,
+          "fat": 26,
+          "carbs": 10
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Jajka",
+            "grams": 180,
+            "kcal": 257.40000000000003,
+            "protein": 22.68,
+            "fat": 17.1,
+            "carbs": 1.26
+          },
+          {
+            "missing": false,
+            "item": "Papryka czerwona",
+            "grams": 50,
+            "kcal": 15.5,
+            "protein": 0.5,
+            "fat": 0.15,
+            "carbs": 3
+          },
+          {
+            "missing": false,
+            "item": "Szpinak świeży",
+            "grams": 40,
+            "kcal": 9.200000000000001,
+            "protein": 1.16,
+            "fat": 0.16000000000000003,
+            "carbs": 1.4400000000000002
+          },
+          {
+            "missing": false,
+            "item": "Ser żółty (gouda)",
+            "grams": 30,
+            "kcal": 106.8,
+            "protein": 7.5,
+            "fat": 8.1,
+            "carbs": 0.66
+          },
+          {
+            "missing": false,
+            "item": "Cebula",
+            "grams": 27.5,
+            "kcal": 11,
+            "protein": 0.30250000000000005,
+            "fat": 0.027500000000000004,
+            "carbs": 2.475
+          },
+          {
+            "missing": false,
+            "item": "Mleko 2%",
+            "grams": 30,
+            "kcal": 15,
+            "protein": 1.02,
+            "fat": 0.6,
+            "carbs": 1.47
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "b77",
+        "name": "Croissanty z szynką i serem z air fryer",
+        "declared": {
+          "kcal": 773,
+          "protein": 39,
+          "fat": 43,
+          "carbs": 57
+        },
+        "calculated": {
+          "kcal": 773,
+          "protein": 39,
+          "fat": 43,
+          "carbs": 57
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Croissant",
+            "grams": 120,
+            "kcal": 487.2,
+            "protein": 9.6,
+            "fat": 25.2,
+            "carbs": 55.199999999999996
+          },
+          {
+            "missing": false,
+            "item": "Szynka z kurczaka",
+            "grams": 60,
+            "kcal": 57.599999999999994,
+            "protein": 11.4,
+            "fat": 1.2,
+            "carbs": 0.6
+          },
+          {
+            "missing": false,
+            "item": "Ser żółty (gouda)",
+            "grams": 40,
+            "kcal": 142.4,
+            "protein": 10,
+            "fat": 10.8,
+            "carbs": 0.8800000000000001
+          },
+          {
+            "missing": false,
+            "item": "Jajka",
+            "grams": 60,
+            "kcal": 85.8,
+            "protein": 7.56,
+            "fat": 5.7,
+            "carbs": 0.42
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "b78",
+        "name": "Fit Owsianka proteinowa z masłem orzechowym",
+        "declared": {
+          "kcal": 805,
+          "protein": 60,
+          "fat": 21,
+          "carbs": 100
+        },
+        "calculated": {
+          "kcal": 805,
+          "protein": 60,
+          "fat": 21,
+          "carbs": 100
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Płatki owsiane",
+            "grams": 80,
+            "kcal": 311.20000000000005,
+            "protein": 13.600000000000001,
+            "fat": 5.6000000000000005,
+            "carbs": 52.800000000000004
+          },
+          {
+            "missing": false,
+            "item": "Odżywka białkowa",
+            "grams": 40,
+            "kcal": 152,
+            "protein": 32,
+            "fat": 1.6,
+            "carbs": 3.2
+          },
+          {
+            "missing": false,
+            "item": "Mleko 1.5%",
+            "grams": 250,
+            "kcal": 117.5,
+            "protein": 8.5,
+            "fat": 3.75,
+            "carbs": 12.25
+          },
+          {
+            "missing": false,
+            "item": "Masło orzechowe",
+            "grams": 20,
+            "kcal": 117.60000000000001,
+            "protein": 5,
+            "fat": 10,
+            "carbs": 4
+          },
+          {
+            "missing": false,
+            "item": "Banan",
+            "grams": 120,
+            "kcal": 106.8,
+            "protein": 1.32,
+            "fat": 0.36,
+            "carbs": 27.599999999999998
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "b79",
+        "name": "Fit Jajecznica z piersią z indyka",
+        "declared": {
+          "kcal": 679,
+          "protein": 61,
+          "fat": 30,
+          "carbs": 39
+        },
+        "calculated": {
+          "kcal": 679,
+          "protein": 60,
+          "fat": 30,
+          "carbs": 39
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Jajka",
+            "grams": 240,
+            "kcal": 343.2,
+            "protein": 30.24,
+            "fat": 22.8,
+            "carbs": 1.68
+          },
+          {
+            "missing": false,
+            "item": "Pierś z indyka",
+            "grams": 100,
+            "kcal": 104,
+            "protein": 24,
+            "fat": 0.7,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Chleb żytni razowy",
+            "grams": 80,
+            "kcal": 176,
+            "protein": 4.800000000000001,
+            "fat": 1.2000000000000002,
+            "carbs": 35.2
+          },
+          {
+            "missing": false,
+            "item": "Szpinak świeży",
+            "grams": 50,
+            "kcal": 11.5,
+            "protein": 1.45,
+            "fat": 0.2,
+            "carbs": 1.8
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 5,
+            "kcal": 44.2,
+            "protein": 0,
+            "fat": 5,
+            "carbs": 0
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": -1.639344262295082,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "b80",
+        "name": "Fit Twarożek z jajkami i rzodkiewką",
+        "declared": {
+          "kcal": 603,
+          "protein": 73,
+          "fat": 19,
+          "carbs": 31
+        },
+        "calculated": {
+          "kcal": 601,
+          "protein": 73,
+          "fat": 19,
+          "carbs": 31
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Twaróg chudy",
+            "grams": 250,
+            "kcal": 240,
+            "protein": 47.5,
+            "fat": 0.75,
+            "carbs": 8.75
+          },
+          {
+            "missing": false,
+            "item": "Jajka",
+            "grams": 180,
+            "kcal": 257.40000000000003,
+            "protein": 22.68,
+            "fat": 17.1,
+            "carbs": 1.26
+          },
+          {
+            "missing": false,
+            "item": "Rzodkiewka",
+            "grams": 80,
+            "kcal": 12.8,
+            "protein": 0.5599999999999999,
+            "fat": 0.08000000000000002,
+            "carbs": 2.72
+          },
+          {
+            "missing": false,
+            "item": "Szczypiorek",
+            "grams": 10,
+            "kcal": 3,
+            "protein": 0.33,
+            "fat": 0.06999999999999999,
+            "carbs": 0.44000000000000006
+          },
+          {
+            "missing": false,
+            "item": "Chleb żytni razowy",
+            "grams": 40,
+            "kcal": 88,
+            "protein": 2.4000000000000004,
+            "fat": 0.6000000000000001,
+            "carbs": 17.6
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": -0.33167495854063017,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "b81",
+        "name": "Fit Wrap z kurczakiem i jajkiem",
+        "declared": {
+          "kcal": 540,
+          "protein": 55,
+          "fat": 17,
+          "carbs": 38
+        },
+        "calculated": {
+          "kcal": 539,
+          "protein": 55,
+          "fat": 17,
+          "carbs": 39
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Tortilla pełnoziarnista",
+            "grams": 60,
+            "kcal": 174.6,
+            "protein": 5.3999999999999995,
+            "fat": 3.5999999999999996,
+            "carbs": 28.799999999999997
+          },
+          {
+            "missing": false,
+            "item": "Pierś z kurczaka",
+            "grams": 120,
+            "kcal": 132,
+            "protein": 27.599999999999998,
+            "fat": 1.56,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Jajka",
+            "grams": 120,
+            "kcal": 171.6,
+            "protein": 15.12,
+            "fat": 11.4,
+            "carbs": 0.84
+          },
+          {
+            "missing": false,
+            "item": "Jogurt grecki 0%",
+            "grams": 50,
+            "kcal": 27,
+            "protein": 5,
+            "fat": 0.35,
+            "carbs": 2
+          },
+          {
+            "missing": false,
+            "item": "Szpinak świeży",
+            "grams": 30,
+            "kcal": 6.8999999999999995,
+            "protein": 0.87,
+            "fat": 0.12,
+            "carbs": 1.08
+          },
+          {
+            "missing": false,
+            "item": "Pomidor",
+            "grams": 150,
+            "kcal": 27,
+            "protein": 1.35,
+            "fat": 0.30000000000000004,
+            "carbs": 5.85
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": -0.1851851851851852,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 2.631578947368421
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "b82",
+        "name": "Fit Omlet z twarogiem i szpinakiem",
+        "declared": {
+          "kcal": 489,
+          "protein": 53,
+          "fat": 24,
+          "carbs": 15
+        },
+        "calculated": {
+          "kcal": 489,
+          "protein": 53,
+          "fat": 24,
+          "carbs": 15
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Jajka",
+            "grams": 240,
+            "kcal": 343.2,
+            "protein": 30.24,
+            "fat": 22.8,
+            "carbs": 1.68
+          },
+          {
+            "missing": false,
+            "item": "Twaróg chudy",
+            "grams": 100,
+            "kcal": 96,
+            "protein": 19,
+            "fat": 0.3,
+            "carbs": 3.5
+          },
+          {
+            "missing": false,
+            "item": "Szpinak mrożony",
+            "grams": 100,
+            "kcal": 23,
+            "protein": 2.9,
+            "fat": 0.4,
+            "carbs": 3.6
+          },
+          {
+            "missing": false,
+            "item": "Pomidor",
+            "grams": 150,
+            "kcal": 27,
+            "protein": 1.35,
+            "fat": 0.30000000000000004,
+            "carbs": 5.85
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "b83",
+        "name": "Fit Skyr z owocami i orzechami",
+        "declared": {
+          "kcal": 582,
+          "protein": 67,
+          "fat": 14,
+          "carbs": 50
+        },
+        "calculated": {
+          "kcal": 581,
+          "protein": 67,
+          "fat": 14,
+          "carbs": 50
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Jogurt Skyr naturalny",
+            "grams": 300,
+            "kcal": 189,
+            "protein": 33,
+            "fat": 0.6000000000000001,
+            "carbs": 12
+          },
+          {
+            "missing": false,
+            "item": "Odżywka białkowa",
+            "grams": 30,
+            "kcal": 114,
+            "protein": 24,
+            "fat": 1.2,
+            "carbs": 2.4
+          },
+          {
+            "missing": false,
+            "item": "Borówki amerykańskie",
+            "grams": 80,
+            "kcal": 45.6,
+            "protein": 0.5599999999999999,
+            "fat": 0.24,
+            "carbs": 11.200000000000001
+          },
+          {
+            "missing": false,
+            "item": "Migdały",
+            "grams": 20,
+            "kcal": 115.80000000000001,
+            "protein": 4.2,
+            "fat": 10,
+            "carbs": 4.4
+          },
+          {
+            "missing": false,
+            "item": "Płatki owsiane",
+            "grams": 30,
+            "kcal": 116.69999999999999,
+            "protein": 5.1,
+            "fat": 2.1,
+            "carbs": 19.8
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": -0.1718213058419244,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "b84",
+        "name": "Fit Shakshuka proteinowa",
+        "declared": {
+          "kcal": 642,
+          "protein": 59,
+          "fat": 25,
+          "carbs": 40
+        },
+        "calculated": {
+          "kcal": 653,
+          "protein": 60,
+          "fat": 25,
+          "carbs": 42
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Jajka",
+            "grams": 240,
+            "kcal": 343.2,
+            "protein": 30.24,
+            "fat": 22.8,
+            "carbs": 1.68
+          },
+          {
+            "missing": false,
+            "item": "Pierś z kurczaka",
+            "grams": 100,
+            "kcal": 110,
+            "protein": 23,
+            "fat": 1.3,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Pomidory krojone (puszka)",
+            "grams": 200,
+            "kcal": 40,
+            "protein": 2,
+            "fat": 0.2,
+            "carbs": 8
+          },
+          {
+            "missing": false,
+            "item": "Papryka czerwona",
+            "grams": 160,
+            "kcal": 49.6,
+            "protein": 1.6,
+            "fat": 0.48,
+            "carbs": 9.600000000000001
+          },
+          {
+            "missing": false,
+            "item": "Cebula",
+            "grams": 55,
+            "kcal": 22,
+            "protein": 0.6050000000000001,
+            "fat": 0.05500000000000001,
+            "carbs": 4.95
+          },
+          {
+            "missing": false,
+            "item": "Chleb żytni razowy",
+            "grams": 40,
+            "kcal": 88,
+            "protein": 2.4000000000000004,
+            "fat": 0.6000000000000001,
+            "carbs": 17.6
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 1.7133956386292832,
+          "protein": 1.694915254237288,
+          "fat": 0,
+          "carbs": 5
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "b85",
+        "name": "Fit Overnight oats z odżywką",
+        "declared": {
+          "kcal": 620,
+          "protein": 52,
+          "fat": 16,
+          "carbs": 70
+        },
+        "calculated": {
+          "kcal": 616,
+          "protein": 60,
+          "fat": 12,
+          "carbs": 73
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Płatki owsiane",
+            "grams": 70,
+            "kcal": 272.29999999999995,
+            "protein": 11.899999999999999,
+            "fat": 4.8999999999999995,
+            "carbs": 46.199999999999996
+          },
+          {
+            "missing": false,
+            "item": "Odżywka białkowa waniliowa",
+            "grams": 35,
+            "kcal": 133,
+            "protein": 28,
+            "fat": 1.4,
+            "carbs": 2.8
+          },
+          {
+            "missing": false,
+            "item": "Jogurt grecki 0%",
+            "grams": 150,
+            "kcal": 81,
+            "protein": 15,
+            "fat": 1.0499999999999998,
+            "carbs": 6
+          },
+          {
+            "missing": false,
+            "item": "Mleko 1.5%",
+            "grams": 100,
+            "kcal": 47,
+            "protein": 3.4,
+            "fat": 1.5,
+            "carbs": 4.9
+          },
+          {
+            "missing": false,
+            "item": "Nasiona chia",
+            "grams": 10,
+            "kcal": 48.6,
+            "protein": 1.7000000000000002,
+            "fat": 3.1,
+            "carbs": 4.2
+          },
+          {
+            "missing": false,
+            "item": "Borówki amerykańskie",
+            "grams": 60,
+            "kcal": 34.199999999999996,
+            "protein": 0.42,
+            "fat": 0.18,
+            "carbs": 8.4
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": -0.6451612903225806,
+          "protein": 15.384615384615385,
+          "fat": -25,
+          "carbs": 4.285714285714286
+        },
+        "withinTolerance": false,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "b86",
+        "name": "Fit Tosty z jajkiem i awokado",
+        "declared": {
+          "kcal": 590,
+          "protein": 42,
+          "fat": 30,
+          "carbs": 38
+        },
+        "calculated": {
+          "kcal": 632,
+          "protein": 39,
+          "fat": 31,
+          "carbs": 49
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Chleb żytni razowy",
+            "grams": 80,
+            "kcal": 176,
+            "protein": 4.800000000000001,
+            "fat": 1.2000000000000002,
+            "carbs": 35.2
+          },
+          {
+            "missing": false,
+            "item": "Jajka",
+            "grams": 180,
+            "kcal": 257.40000000000003,
+            "protein": 22.68,
+            "fat": 17.1,
+            "carbs": 1.26
+          },
+          {
+            "missing": false,
+            "item": "Awokado",
+            "grams": 85,
+            "kcal": 136,
+            "protein": 1.7,
+            "fat": 12.75,
+            "carbs": 7.6499999999999995
+          },
+          {
+            "missing": false,
+            "item": "Pomidorki cherry",
+            "grams": 80,
+            "kcal": 14.4,
+            "protein": 0.7200000000000001,
+            "fat": 0.16000000000000003,
+            "carbs": 3.12
+          },
+          {
+            "missing": false,
+            "item": "Twaróg chudy",
+            "grams": 50,
+            "kcal": 48,
+            "protein": 9.5,
+            "fat": 0.15,
+            "carbs": 1.75
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 7.118644067796611,
+          "protein": -7.142857142857142,
+          "fat": 3.3333333333333335,
+          "carbs": 28.947368421052634
+        },
+        "withinTolerance": false,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "b87",
+        "name": "Fit Granola proteinowa z jogurtem",
+        "declared": {
+          "kcal": 650,
+          "protein": 58,
+          "fat": 18,
+          "carbs": 65
+        },
+        "calculated": {
+          "kcal": 705,
+          "protein": 65,
+          "fat": 13,
+          "carbs": 89
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Jogurt Skyr naturalny",
+            "grams": 250,
+            "kcal": 157.5,
+            "protein": 27.5,
+            "fat": 0.5,
+            "carbs": 10
+          },
+          {
+            "missing": false,
+            "item": "Odżywka białkowa",
+            "grams": 30,
+            "kcal": 114,
+            "protein": 24,
+            "fat": 1.2,
+            "carbs": 2.4
+          },
+          {
+            "missing": false,
+            "item": "Płatki owsiane",
+            "grams": 50,
+            "kcal": 194.5,
+            "protein": 8.5,
+            "fat": 3.5,
+            "carbs": 33
+          },
+          {
+            "missing": false,
+            "item": "Migdały",
+            "grams": 15,
+            "kcal": 86.85,
+            "protein": 3.15,
+            "fat": 7.5,
+            "carbs": 3.3
+          },
+          {
+            "missing": false,
+            "item": "Miód",
+            "grams": 15,
+            "kcal": 45.6,
+            "protein": 0.045,
+            "fat": 0,
+            "carbs": 12.299999999999999
+          },
+          {
+            "missing": false,
+            "item": "Banan",
+            "grams": 120,
+            "kcal": 106.8,
+            "protein": 1.32,
+            "fat": 0.36,
+            "carbs": 27.599999999999998
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 8.461538461538462,
+          "protein": 12.068965517241379,
+          "fat": -27.77777777777778,
+          "carbs": 36.92307692307693
+        },
+        "withinTolerance": false,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "b88",
+        "name": "Fit Naleśniki z twarogiem i bananem",
+        "declared": {
+          "kcal": 720,
+          "protein": 62,
+          "fat": 22,
+          "carbs": 72
+        },
+        "calculated": {
+          "kcal": 839,
+          "protein": 86,
+          "fat": 22,
+          "carbs": 77
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Jajka",
+            "grams": 180,
+            "kcal": 257.40000000000003,
+            "protein": 22.68,
+            "fat": 17.1,
+            "carbs": 1.26
+          },
+          {
+            "missing": false,
+            "item": "Mąka pszenna pełnoziarnista",
+            "grams": 50,
+            "kcal": 170,
+            "protein": 6.5,
+            "fat": 1.25,
+            "carbs": 36
+          },
+          {
+            "missing": false,
+            "item": "Odżywka białkowa waniliowa",
+            "grams": 30,
+            "kcal": 114,
+            "protein": 24,
+            "fat": 1.2,
+            "carbs": 2.4
+          },
+          {
+            "missing": false,
+            "item": "Mleko 1.5%",
+            "grams": 100,
+            "kcal": 47,
+            "protein": 3.4,
+            "fat": 1.5,
+            "carbs": 4.9
+          },
+          {
+            "missing": false,
+            "item": "Twaróg chudy",
+            "grams": 150,
+            "kcal": 144,
+            "protein": 28.5,
+            "fat": 0.44999999999999996,
+            "carbs": 5.25
+          },
+          {
+            "missing": false,
+            "item": "Banan",
+            "grams": 120,
+            "kcal": 106.8,
+            "protein": 1.32,
+            "fat": 0.36,
+            "carbs": 27.599999999999998
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 16.52777777777778,
+          "protein": 38.70967741935484,
+          "fat": 0,
+          "carbs": 6.944444444444445
+        },
+        "withinTolerance": false,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "b89",
+        "name": "Fit Jaglanka proteinowa z owocami",
+        "declared": {
+          "kcal": 680,
+          "protein": 50,
+          "fat": 14,
+          "carbs": 88
+        },
+        "calculated": {
+          "kcal": 643,
+          "protein": 47,
+          "fat": 13,
+          "carbs": 88
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Kasza jaglana",
+            "grams": 60,
+            "kcal": 226.79999999999998,
+            "protein": 6.6,
+            "fat": 2.52,
+            "carbs": 43.8
+          },
+          {
+            "missing": false,
+            "item": "Mleko 1.5%",
+            "grams": 250,
+            "kcal": 117.5,
+            "protein": 8.5,
+            "fat": 3.75,
+            "carbs": 12.25
+          },
+          {
+            "missing": false,
+            "item": "Odżywka białkowa waniliowa",
+            "grams": 35,
+            "kcal": 133,
+            "protein": 28,
+            "fat": 1.4,
+            "carbs": 2.8
+          },
+          {
+            "missing": false,
+            "item": "Banan",
+            "grams": 120,
+            "kcal": 106.8,
+            "protein": 1.32,
+            "fat": 0.36,
+            "carbs": 27.599999999999998
+          },
+          {
+            "missing": false,
+            "item": "Masło orzechowe",
+            "grams": 10,
+            "kcal": 58.800000000000004,
+            "protein": 2.5,
+            "fat": 5,
+            "carbs": 2
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": -5.4411764705882355,
+          "protein": -6,
+          "fat": -7.142857142857142,
+          "carbs": 0
+        },
+        "withinTolerance": false,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "b90",
+        "name": "Fit Kanapki z kurczakiem i twarogiem",
+        "declared": {
+          "kcal": 560,
+          "protein": 58,
+          "fat": 12,
+          "carbs": 48
+        },
+        "calculated": {
+          "kcal": 428,
+          "protein": 50,
+          "fat": 3,
+          "carbs": 47
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Chleb żytni razowy",
+            "grams": 80,
+            "kcal": 176,
+            "protein": 4.800000000000001,
+            "fat": 1.2000000000000002,
+            "carbs": 35.2
+          },
+          {
+            "missing": false,
+            "item": "Pierś z kurczaka",
+            "grams": 120,
+            "kcal": 132,
+            "protein": 27.599999999999998,
+            "fat": 1.56,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Twaróg chudy",
+            "grams": 80,
+            "kcal": 76.80000000000001,
+            "protein": 15.200000000000001,
+            "fat": 0.24,
+            "carbs": 2.8000000000000003
+          },
+          {
+            "missing": false,
+            "item": "Ogórek",
+            "grams": 100,
+            "kcal": 15,
+            "protein": 0.7,
+            "fat": 0.1,
+            "carbs": 3.1
+          },
+          {
+            "missing": false,
+            "item": "Pomidor",
+            "grams": 150,
+            "kcal": 27,
+            "protein": 1.35,
+            "fat": 0.30000000000000004,
+            "carbs": 5.85
+          },
+          {
+            "missing": false,
+            "item": "Szczypiorek",
+            "grams": 5,
+            "kcal": 1.5,
+            "protein": 0.165,
+            "fat": 0.034999999999999996,
+            "carbs": 0.22000000000000003
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": -23.57142857142857,
+          "protein": -13.793103448275861,
+          "fat": -75,
+          "carbs": -2.083333333333333
+        },
+        "withinTolerance": false,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "b91",
+        "name": "Fit Omlet z łososiem i szparagami",
+        "declared": {
+          "kcal": 550,
+          "protein": 48,
+          "fat": 32,
+          "carbs": 12
+        },
+        "calculated": {
+          "kcal": 518,
+          "protein": 43,
+          "fat": 35,
+          "carbs": 6
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Jajka",
+            "grams": 240,
+            "kcal": 343.2,
+            "protein": 30.24,
+            "fat": 22.8,
+            "carbs": 1.68
+          },
+          {
+            "missing": false,
+            "item": "Łosoś wędzony",
+            "grams": 60,
+            "kcal": 108,
+            "protein": 10.799999999999999,
+            "fat": 6.6,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Szparagi zielone",
+            "grams": 100,
+            "kcal": 20,
+            "protein": 2.2,
+            "fat": 0.1,
+            "carbs": 3.9
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 5,
+            "kcal": 44.2,
+            "protein": 0,
+            "fat": 5,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Koperek",
+            "grams": 5,
+            "kcal": 2.15,
+            "protein": 0.17500000000000002,
+            "fat": 0.05500000000000001,
+            "carbs": 0.35000000000000003
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": -5.818181818181818,
+          "protein": -10.416666666666668,
+          "fat": 9.375,
+          "carbs": -50
+        },
+        "withinTolerance": false,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "b92",
+        "name": "Fit Smoothie bowl proteinowy",
+        "declared": {
+          "kcal": 610,
+          "protein": 55,
+          "fat": 12,
+          "carbs": 72
+        },
+        "calculated": {
+          "kcal": 577,
+          "protein": 59,
+          "fat": 10,
+          "carbs": 69
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Jogurt Skyr naturalny",
+            "grams": 200,
+            "kcal": 126,
+            "protein": 22,
+            "fat": 0.4,
+            "carbs": 8
+          },
+          {
+            "missing": false,
+            "item": "Odżywka białkowa czekoladowa",
+            "grams": 35,
+            "kcal": 134.75,
+            "protein": 27.299999999999997,
+            "fat": 1.75,
+            "carbs": 3.5
+          },
+          {
+            "missing": false,
+            "item": "Banan",
+            "grams": 120,
+            "kcal": 106.8,
+            "protein": 1.32,
+            "fat": 0.36,
+            "carbs": 27.599999999999998
+          },
+          {
+            "missing": false,
+            "item": "Płatki owsiane",
+            "grams": 30,
+            "kcal": 116.69999999999999,
+            "protein": 5.1,
+            "fat": 2.1,
+            "carbs": 19.8
+          },
+          {
+            "missing": false,
+            "item": "Masło orzechowe",
+            "grams": 10,
+            "kcal": 58.800000000000004,
+            "protein": 2.5,
+            "fat": 5,
+            "carbs": 2
+          },
+          {
+            "missing": false,
+            "item": "Mrożone owoce leśne",
+            "grams": 80,
+            "kcal": 34.4,
+            "protein": 0.6400000000000001,
+            "fat": 0.24,
+            "carbs": 8
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": -5.409836065573771,
+          "protein": 7.2727272727272725,
+          "fat": -16.666666666666664,
+          "carbs": -4.166666666666666
+        },
+        "withinTolerance": false,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "b93",
+        "name": "Kiełbaska śląska z jajkiem z air fryer",
+        "declared": {
+          "kcal": 581,
+          "protein": 32,
+          "fat": 40,
+          "carbs": 22
+        },
+        "calculated": {
+          "kcal": 581,
+          "protein": 32,
+          "fat": 40,
+          "carbs": 22
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Kiełbasa śląska",
+            "grams": 100,
+            "kcal": 312,
+            "protein": 14,
+            "fat": 28,
+            "carbs": 2
+          },
+          {
+            "missing": false,
+            "item": "Jajka",
+            "grams": 120,
+            "kcal": 171.6,
+            "protein": 15.12,
+            "fat": 11.4,
+            "carbs": 0.84
+          },
+          {
+            "missing": false,
+            "item": "Chleb żytni razowy",
+            "grams": 40,
+            "kcal": 88,
+            "protein": 2.4000000000000004,
+            "fat": 0.6000000000000001,
+            "carbs": 17.6
+          },
+          {
+            "missing": false,
+            "item": "Ogórek kiszony",
+            "grams": 80,
+            "kcal": 9.600000000000001,
+            "protein": 0.32000000000000006,
+            "fat": 0.16000000000000003,
+            "carbs": 1.8399999999999999
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "b94",
+        "name": "Halloumi z pomidorami z air fryer",
+        "declared": {
+          "kcal": 564,
+          "protein": 27,
+          "fat": 32,
+          "carbs": 42
+        },
+        "calculated": {
+          "kcal": 564,
+          "protein": 27,
+          "fat": 32,
+          "carbs": 42
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Ser halloumi",
+            "grams": 100,
+            "kcal": 321,
+            "protein": 21,
+            "fat": 25,
+            "carbs": 2.6
+          },
+          {
+            "missing": false,
+            "item": "Pomidorki cherry",
+            "grams": 100,
+            "kcal": 18,
+            "protein": 0.9,
+            "fat": 0.2,
+            "carbs": 3.9
+          },
+          {
+            "missing": false,
+            "item": "Chleb żytni razowy",
+            "grams": 80,
+            "kcal": 176,
+            "protein": 4.800000000000001,
+            "fat": 1.2000000000000002,
+            "carbs": 35.2
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 5,
+            "kcal": 44.2,
+            "protein": 0,
+            "fat": 5,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Rukola",
+            "grams": 20,
+            "kcal": 5,
+            "protein": 0.52,
+            "fat": 0.13999999999999999,
+            "carbs": 0.7400000000000001
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "b95",
+        "name": "Tortilla śniadaniowa z air fryer",
+        "declared": {
+          "kcal": 498,
+          "protein": 34,
+          "fat": 24,
+          "carbs": 34
+        },
+        "calculated": {
+          "kcal": 498,
+          "protein": 34,
+          "fat": 24,
+          "carbs": 34
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Tortilla pszenna",
+            "grams": 55,
+            "kcal": 170.5,
+            "protein": 4.4,
+            "fat": 3.8500000000000005,
+            "carbs": 28.6
+          },
+          {
+            "missing": false,
+            "item": "Jajka",
+            "grams": 120,
+            "kcal": 171.6,
+            "protein": 15.12,
+            "fat": 11.4,
+            "carbs": 0.84
+          },
+          {
+            "missing": false,
+            "item": "Ser żółty (gouda)",
+            "grams": 30,
+            "kcal": 106.8,
+            "protein": 7.5,
+            "fat": 8.1,
+            "carbs": 0.66
+          },
+          {
+            "missing": false,
+            "item": "Szynka z indyka",
+            "grams": 40,
+            "kcal": 33.6,
+            "protein": 6.800000000000001,
+            "fat": 0.6000000000000001,
+            "carbs": 0.4
+          },
+          {
+            "missing": false,
+            "item": "Papryka czerwona",
+            "grams": 50,
+            "kcal": 15.5,
+            "protein": 0.5,
+            "fat": 0.15,
+            "carbs": 3
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "b96",
+        "name": "Pieczarki z jajkiem i serem z air fryer",
+        "declared": {
+          "kcal": 501,
+          "protein": 33,
+          "fat": 26,
+          "carbs": 34
+        },
+        "calculated": {
+          "kcal": 501,
+          "protein": 33,
+          "fat": 26,
+          "carbs": 34
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Pieczarki",
+            "grams": 150,
+            "kcal": 33,
+            "protein": 4.65,
+            "fat": 0.44999999999999996,
+            "carbs": 4.949999999999999
+          },
+          {
+            "missing": false,
+            "item": "Jajka",
+            "grams": 120,
+            "kcal": 171.6,
+            "protein": 15.12,
+            "fat": 11.4,
+            "carbs": 0.84
+          },
+          {
+            "missing": false,
+            "item": "Ser mozzarella",
+            "grams": 40,
+            "kcal": 112,
+            "protein": 8.8,
+            "fat": 8.4,
+            "carbs": 0.8800000000000001
+          },
+          {
+            "missing": false,
+            "item": "Chleb tostowy pełnoziarnisty",
+            "grams": 60,
+            "kcal": 148.2,
+            "protein": 4.8,
+            "fat": 1.7999999999999998,
+            "carbs": 27.599999999999998
+          },
+          {
+            "missing": false,
+            "item": "Masło",
+            "grams": 5,
+            "kcal": 35.85,
+            "protein": 0.045000000000000005,
+            "fat": 4.05,
+            "carbs": 0.005000000000000001
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "b97",
+        "name": "Owsiane ciasteczka śniadaniowe z air fryer",
+        "declared": {
+          "kcal": 615,
+          "protein": 23,
+          "fat": 19,
+          "carbs": 96
+        },
+        "calculated": {
+          "kcal": 615,
+          "protein": 23,
+          "fat": 19,
+          "carbs": 96
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Płatki owsiane",
+            "grams": 80,
+            "kcal": 311.20000000000005,
+            "protein": 13.600000000000001,
+            "fat": 5.6000000000000005,
+            "carbs": 52.800000000000004
+          },
+          {
+            "missing": false,
+            "item": "Banan",
+            "grams": 120,
+            "kcal": 106.8,
+            "protein": 1.32,
+            "fat": 0.36,
+            "carbs": 27.599999999999998
+          },
+          {
+            "missing": false,
+            "item": "Masło orzechowe",
+            "grams": 20,
+            "kcal": 117.60000000000001,
+            "protein": 5,
+            "fat": 10,
+            "carbs": 4
+          },
+          {
+            "missing": false,
+            "item": "Miód",
+            "grams": 10,
+            "kcal": 30.400000000000002,
+            "protein": 0.03,
+            "fat": 0,
+            "carbs": 8.200000000000001
+          },
+          {
+            "missing": false,
+            "item": "Jogurt naturalny",
+            "grams": 80,
+            "kcal": 48.800000000000004,
+            "protein": 2.8000000000000003,
+            "fat": 2.5600000000000005,
+            "carbs": 3.7600000000000002
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "b98",
+        "name": "Bułki z jajkiem i boczkiem z air fryer",
+        "declared": {
+          "kcal": 635,
+          "protein": 32,
+          "fat": 36,
+          "carbs": 40
+        },
+        "calculated": {
+          "kcal": 635,
+          "protein": 32,
+          "fat": 36,
+          "carbs": 40
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Bułka grahamka",
+            "grams": 80,
+            "kcal": 206.4,
+            "protein": 7.2,
+            "fat": 1.6,
+            "carbs": 38.400000000000006
+          },
+          {
+            "missing": false,
+            "item": "Jajka",
+            "grams": 120,
+            "kcal": 171.6,
+            "protein": 15.12,
+            "fat": 11.4,
+            "carbs": 0.84
+          },
+          {
+            "missing": false,
+            "item": "Bekon",
+            "grams": 40,
+            "kcal": 183.20000000000002,
+            "protein": 4.800000000000001,
+            "fat": 18,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Ser żółty (gouda)",
+            "grams": 20,
+            "kcal": 71.2,
+            "protein": 5,
+            "fat": 5.4,
+            "carbs": 0.44000000000000006
+          },
+          {
+            "missing": false,
+            "item": "Sałata lodowa",
+            "grams": 20,
+            "kcal": 2.8000000000000003,
+            "protein": 0.18000000000000002,
+            "fat": 0.020000000000000004,
+            "carbs": 0.6000000000000001
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "b99",
+        "name": "Camembert pieczony z air fryer",
+        "declared": {
+          "kcal": 609,
+          "protein": 30,
+          "fat": 35,
+          "carbs": 43
+        },
+        "calculated": {
+          "kcal": 609,
+          "protein": 30,
+          "fat": 35,
+          "carbs": 43
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Ser camembert",
+            "grams": 120,
+            "kcal": 358.8,
+            "protein": 24,
+            "fat": 28.799999999999997,
+            "carbs": 0.6
+          },
+          {
+            "missing": false,
+            "item": "Chleb żytni razowy",
+            "grams": 80,
+            "kcal": 176,
+            "protein": 4.800000000000001,
+            "fat": 1.2000000000000002,
+            "carbs": 35.2
+          },
+          {
+            "missing": false,
+            "item": "Pomidorki cherry",
+            "grams": 80,
+            "kcal": 14.4,
+            "protein": 0.7200000000000001,
+            "fat": 0.16000000000000003,
+            "carbs": 3.12
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 5,
+            "kcal": 44.2,
+            "protein": 0,
+            "fat": 5,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Miód",
+            "grams": 5,
+            "kcal": 15.200000000000001,
+            "protein": 0.015,
+            "fat": 0,
+            "carbs": 4.1000000000000005
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "b100",
+        "name": "Kanapki panini z air fryer",
+        "declared": {
+          "kcal": 387,
+          "protein": 24,
+          "fat": 16,
+          "carbs": 37
+        },
+        "calculated": {
+          "kcal": 387,
+          "protein": 24,
+          "fat": 16,
+          "carbs": 37
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Bułka",
+            "grams": 60,
+            "kcal": 165.6,
+            "protein": 5.1,
+            "fat": 1.62,
+            "carbs": 31.799999999999997
+          },
+          {
+            "missing": false,
+            "item": "Szynka z kurczaka",
+            "grams": 50,
+            "kcal": 48,
+            "protein": 9.5,
+            "fat": 1,
+            "carbs": 0.5
+          },
+          {
+            "missing": false,
+            "item": "Ser mozzarella",
+            "grams": 40,
+            "kcal": 112,
+            "protein": 8.8,
+            "fat": 8.4,
+            "carbs": 0.8800000000000001
+          },
+          {
+            "missing": false,
+            "item": "Pomidor",
+            "grams": 75,
+            "kcal": 13.5,
+            "protein": 0.675,
+            "fat": 0.15000000000000002,
+            "carbs": 2.925
+          },
+          {
+            "missing": false,
+            "item": "Rukola",
+            "grams": 15,
+            "kcal": 3.75,
+            "protein": 0.39,
+            "fat": 0.105,
+            "carbs": 0.555
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 5,
+            "kcal": 44.2,
+            "protein": 0,
+            "fat": 5,
+            "carbs": 0
           }
         ],
         "missingIngredients": [],
@@ -20033,6 +22319,2362 @@
         },
         "withinTolerance": true,
         "hasMissingIngredients": false
+      },
+      {
+        "id": "l129",
+        "name": "Nuggetsy z kurczaka z air fryer",
+        "declared": {
+          "kcal": 791,
+          "protein": 65,
+          "fat": 15,
+          "carbs": 93
+        },
+        "calculated": {
+          "kcal": 791,
+          "protein": 65,
+          "fat": 15,
+          "carbs": 93
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Pierś z kurczaka",
+            "grams": 200,
+            "kcal": 220,
+            "protein": 46,
+            "fat": 2.6,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Panko",
+            "grams": 40,
+            "kcal": 158,
+            "protein": 4.4,
+            "fat": 1.2000000000000002,
+            "carbs": 30.8
+          },
+          {
+            "missing": false,
+            "item": "Jajka",
+            "grams": 60,
+            "kcal": 85.8,
+            "protein": 7.56,
+            "fat": 5.7,
+            "carbs": 0.42
+          },
+          {
+            "missing": false,
+            "item": "Mąka pszenna",
+            "grams": 20,
+            "kcal": 72.8,
+            "protein": 2,
+            "fat": 0.2,
+            "carbs": 15.200000000000001
+          },
+          {
+            "missing": false,
+            "item": "Ryż basmati",
+            "grams": 60,
+            "kcal": 210,
+            "protein": 4.8,
+            "fat": 0.3,
+            "carbs": 46.199999999999996
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 5,
+            "kcal": 44.2,
+            "protein": 0,
+            "fat": 5,
+            "carbs": 0
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "l130",
+        "name": "Frytki z batatów z kurczakiem z air fryer",
+        "declared": {
+          "kcal": 483,
+          "protein": 39,
+          "fat": 13,
+          "carbs": 53
+        },
+        "calculated": {
+          "kcal": 483,
+          "protein": 39,
+          "fat": 13,
+          "carbs": 53
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Bataty",
+            "grams": 250,
+            "kcal": 215,
+            "protein": 4,
+            "fat": 0.25,
+            "carbs": 50
+          },
+          {
+            "missing": false,
+            "item": "Pierś z kurczaka",
+            "grams": 150,
+            "kcal": 165,
+            "protein": 34.5,
+            "fat": 1.9500000000000002,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 10,
+            "kcal": 88.4,
+            "protein": 0,
+            "fat": 10,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Papryka słodka",
+            "grams": 3,
+            "kcal": 8.459999999999999,
+            "protein": 0.42,
+            "fat": 0.39,
+            "carbs": 1.6199999999999999
+          },
+          {
+            "missing": false,
+            "item": "Czosnek granulowany",
+            "grams": 2,
+            "kcal": 6.62,
+            "protein": 0.34,
+            "fat": 0.013999999999999999,
+            "carbs": 1.46
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "l131",
+        "name": "Kotlety schabowe z air fryer",
+        "declared": {
+          "kcal": 771,
+          "protein": 67,
+          "fat": 21,
+          "carbs": 78
+        },
+        "calculated": {
+          "kcal": 771,
+          "protein": 67,
+          "fat": 21,
+          "carbs": 78
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Schab",
+            "grams": 200,
+            "kcal": 256,
+            "protein": 48,
+            "fat": 8,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Bułka tarta",
+            "grams": 40,
+            "kcal": 158,
+            "protein": 5.2,
+            "fat": 2,
+            "carbs": 28.8
+          },
+          {
+            "missing": false,
+            "item": "Jajka",
+            "grams": 60,
+            "kcal": 85.8,
+            "protein": 7.56,
+            "fat": 5.7,
+            "carbs": 0.42
+          },
+          {
+            "missing": false,
+            "item": "Mąka pszenna",
+            "grams": 20,
+            "kcal": 72.8,
+            "protein": 2,
+            "fat": 0.2,
+            "carbs": 15.200000000000001
+          },
+          {
+            "missing": false,
+            "item": "Ziemniaki",
+            "grams": 200,
+            "kcal": 154,
+            "protein": 4,
+            "fat": 0.2,
+            "carbs": 34
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 5,
+            "kcal": 44.2,
+            "protein": 0,
+            "fat": 5,
+            "carbs": 0
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "l132",
+        "name": "Łosoś z warzywami z air fryer",
+        "declared": {
+          "kcal": 547,
+          "protein": 41,
+          "fat": 34,
+          "carbs": 17
+        },
+        "calculated": {
+          "kcal": 547,
+          "protein": 41,
+          "fat": 34,
+          "carbs": 17
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Łosoś świeży",
+            "grams": 180,
+            "kcal": 374.40000000000003,
+            "protein": 36,
+            "fat": 23.400000000000002,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Cukinia",
+            "grams": 100,
+            "kcal": 17,
+            "protein": 1.2,
+            "fat": 0.3,
+            "carbs": 3.1
+          },
+          {
+            "missing": false,
+            "item": "Papryka czerwona",
+            "grams": 100,
+            "kcal": 31,
+            "protein": 1,
+            "fat": 0.3,
+            "carbs": 6
+          },
+          {
+            "missing": false,
+            "item": "Brokuł świeży",
+            "grams": 100,
+            "kcal": 34,
+            "protein": 2.8,
+            "fat": 0.4,
+            "carbs": 7
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 10,
+            "kcal": 88.4,
+            "protein": 0,
+            "fat": 10,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Sok z cytryny",
+            "grams": 10,
+            "kcal": 2.2,
+            "protein": 0.04000000000000001,
+            "fat": 0.020000000000000004,
+            "carbs": 0.7000000000000001
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "l133",
+        "name": "Skrzydełka BBQ z air fryer",
+        "declared": {
+          "kcal": 879,
+          "protein": 56,
+          "fat": 44,
+          "carbs": 58
+        },
+        "calculated": {
+          "kcal": 879,
+          "protein": 56,
+          "fat": 44,
+          "carbs": 58
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Skrzydełka z kurczaka",
+            "grams": 300,
+            "kcal": 573,
+            "protein": 51,
+            "fat": 39,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Sos BBQ",
+            "grams": 30,
+            "kcal": 51.6,
+            "protein": 0.42,
+            "fat": 0.18,
+            "carbs": 12
+          },
+          {
+            "missing": false,
+            "item": "Ryż basmati",
+            "grams": 60,
+            "kcal": 210,
+            "protein": 4.8,
+            "fat": 0.3,
+            "carbs": 46.199999999999996
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 5,
+            "kcal": 44.2,
+            "protein": 0,
+            "fat": 5,
+            "carbs": 0
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "l134",
+        "name": "Falafel z air fryer z sałatką",
+        "declared": {
+          "kcal": 613,
+          "protein": 28,
+          "fat": 12,
+          "carbs": 98
+        },
+        "calculated": {
+          "kcal": 613,
+          "protein": 28,
+          "fat": 12,
+          "carbs": 98
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Ciecierzyca (z puszki)",
+            "grams": 250,
+            "kcal": 297.5,
+            "protein": 17.5,
+            "fat": 6.25,
+            "carbs": 42.5
+          },
+          {
+            "missing": false,
+            "item": "Cebula",
+            "grams": 27.5,
+            "kcal": 11,
+            "protein": 0.30250000000000005,
+            "fat": 0.027500000000000004,
+            "carbs": 2.475
+          },
+          {
+            "missing": false,
+            "item": "Czosnek",
+            "grams": 10,
+            "kcal": 14.9,
+            "protein": 0.6400000000000001,
+            "fat": 0.05,
+            "carbs": 3.3000000000000003
+          },
+          {
+            "missing": false,
+            "item": "Mąka pszenna",
+            "grams": 15,
+            "kcal": 54.6,
+            "protein": 1.5,
+            "fat": 0.15,
+            "carbs": 11.4
+          },
+          {
+            "missing": false,
+            "item": "Tortilla pszenna",
+            "grams": 55,
+            "kcal": 170.5,
+            "protein": 4.4,
+            "fat": 3.8500000000000005,
+            "carbs": 28.6
+          },
+          {
+            "missing": false,
+            "item": "Sałata lodowa",
+            "grams": 50,
+            "kcal": 7,
+            "protein": 0.45,
+            "fat": 0.05,
+            "carbs": 1.5
+          },
+          {
+            "missing": false,
+            "item": "Pomidor",
+            "grams": 150,
+            "kcal": 27,
+            "protein": 1.35,
+            "fat": 0.30000000000000004,
+            "carbs": 5.85
+          },
+          {
+            "missing": false,
+            "item": "Jogurt naturalny",
+            "grams": 50,
+            "kcal": 30.5,
+            "protein": 1.75,
+            "fat": 1.6,
+            "carbs": 2.35
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "l135",
+        "name": "Krokiety z mięsem z air fryer",
+        "declared": {
+          "kcal": 668,
+          "protein": 43,
+          "fat": 25,
+          "carbs": 66
+        },
+        "calculated": {
+          "kcal": 668,
+          "protein": 43,
+          "fat": 25,
+          "carbs": 66
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Mięso mielone z kurczaka",
+            "grams": 150,
+            "kcal": 214.5,
+            "protein": 25.5,
+            "fat": 12,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Ziemniaki",
+            "grams": 200,
+            "kcal": 154,
+            "protein": 4,
+            "fat": 0.2,
+            "carbs": 34
+          },
+          {
+            "missing": false,
+            "item": "Cebula",
+            "grams": 27.5,
+            "kcal": 11,
+            "protein": 0.30250000000000005,
+            "fat": 0.027500000000000004,
+            "carbs": 2.475
+          },
+          {
+            "missing": false,
+            "item": "Jajka",
+            "grams": 60,
+            "kcal": 85.8,
+            "protein": 7.56,
+            "fat": 5.7,
+            "carbs": 0.42
+          },
+          {
+            "missing": false,
+            "item": "Bułka tarta",
+            "grams": 40,
+            "kcal": 158,
+            "protein": 5.2,
+            "fat": 2,
+            "carbs": 28.8
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 5,
+            "kcal": 44.2,
+            "protein": 0,
+            "fat": 5,
+            "carbs": 0
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "l136",
+        "name": "Pierś z kurczaka w panierce z air fryer",
+        "declared": {
+          "kcal": 760,
+          "protein": 67,
+          "fat": 11,
+          "carbs": 92
+        },
+        "calculated": {
+          "kcal": 760,
+          "protein": 67,
+          "fat": 11,
+          "carbs": 92
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Pierś z kurczaka",
+            "grams": 200,
+            "kcal": 220,
+            "protein": 46,
+            "fat": 2.6,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Panko",
+            "grams": 40,
+            "kcal": 158,
+            "protein": 4.4,
+            "fat": 1.2000000000000002,
+            "carbs": 30.8
+          },
+          {
+            "missing": false,
+            "item": "Jajka",
+            "grams": 60,
+            "kcal": 85.8,
+            "protein": 7.56,
+            "fat": 5.7,
+            "carbs": 0.42
+          },
+          {
+            "missing": false,
+            "item": "Mąka pszenna",
+            "grams": 15,
+            "kcal": 54.6,
+            "protein": 1.5,
+            "fat": 0.15,
+            "carbs": 11.4
+          },
+          {
+            "missing": false,
+            "item": "Ryż basmati",
+            "grams": 60,
+            "kcal": 210,
+            "protein": 4.8,
+            "fat": 0.3,
+            "carbs": 46.199999999999996
+          },
+          {
+            "missing": false,
+            "item": "Kapusta pekińska",
+            "grams": 100,
+            "kcal": 13,
+            "protein": 1.2,
+            "fat": 0.2,
+            "carbs": 2
+          },
+          {
+            "missing": false,
+            "item": "Jogurt naturalny",
+            "grams": 30,
+            "kcal": 18.3,
+            "protein": 1.05,
+            "fat": 0.96,
+            "carbs": 1.41
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "l137",
+        "name": "Fit Kurczak z ryżem i brokułem XL",
+        "declared": {
+          "kcal": 769,
+          "protein": 71,
+          "fat": 14,
+          "carbs": 87
+        },
+        "calculated": {
+          "kcal": 769,
+          "protein": 71,
+          "fat": 14,
+          "carbs": 87
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Pierś z kurczaka",
+            "grams": 250,
+            "kcal": 275,
+            "protein": 57.5,
+            "fat": 3.25,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Ryż basmati",
+            "grams": 100,
+            "kcal": 350,
+            "protein": 8,
+            "fat": 0.5,
+            "carbs": 77
+          },
+          {
+            "missing": false,
+            "item": "Brokuł mrożony",
+            "grams": 200,
+            "kcal": 56,
+            "protein": 5.2,
+            "fat": 0.6,
+            "carbs": 10
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 10,
+            "kcal": 88.4,
+            "protein": 0,
+            "fat": 10,
+            "carbs": 0
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "l138",
+        "name": "Fit Indyk z kaszą gryczaną i szpinakiem",
+        "declared": {
+          "kcal": 657,
+          "protein": 75,
+          "fat": 15,
+          "carbs": 63
+        },
+        "calculated": {
+          "kcal": 672,
+          "protein": 75,
+          "fat": 15,
+          "carbs": 66
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Pierś z indyka",
+            "grams": 250,
+            "kcal": 260,
+            "protein": 60,
+            "fat": 1.75,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Kasza gryczana",
+            "grams": 80,
+            "kcal": 274.40000000000003,
+            "protein": 10.4,
+            "fat": 2.72,
+            "carbs": 57.6
+          },
+          {
+            "missing": false,
+            "item": "Szpinak mrożony",
+            "grams": 150,
+            "kcal": 34.5,
+            "protein": 4.35,
+            "fat": 0.6000000000000001,
+            "carbs": 5.4
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 10,
+            "kcal": 88.4,
+            "protein": 0,
+            "fat": 10,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Czosnek",
+            "grams": 10,
+            "kcal": 14.9,
+            "protein": 0.6400000000000001,
+            "fat": 0.05,
+            "carbs": 3.3000000000000003
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 2.28310502283105,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 4.761904761904762
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "l139",
+        "name": "Fit Łosoś z batatami i szparagami",
+        "declared": {
+          "kcal": 662,
+          "protein": 47,
+          "fat": 31,
+          "carbs": 44
+        },
+        "calculated": {
+          "kcal": 666,
+          "protein": 47,
+          "fat": 31,
+          "carbs": 47
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Łosoś (filet)",
+            "grams": 200,
+            "kcal": 416,
+            "protein": 40,
+            "fat": 26,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Bataty",
+            "grams": 200,
+            "kcal": 172,
+            "protein": 3.2,
+            "fat": 0.2,
+            "carbs": 40
+          },
+          {
+            "missing": false,
+            "item": "Szparagi zielone",
+            "grams": 150,
+            "kcal": 30,
+            "protein": 3.3000000000000003,
+            "fat": 0.15000000000000002,
+            "carbs": 5.85
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 5,
+            "kcal": 44.2,
+            "protein": 0,
+            "fat": 5,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Sok z cytryny",
+            "grams": 15,
+            "kcal": 3.3,
+            "protein": 0.06,
+            "fat": 0.03,
+            "carbs": 1.05
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0.6042296072507553,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 6.8181818181818175
+        },
+        "withinTolerance": false,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "l140",
+        "name": "Fit Bowl z tuńczykiem i ryżem",
+        "declared": {
+          "kcal": 672,
+          "protein": 57,
+          "fat": 17,
+          "carbs": 75
+        },
+        "calculated": {
+          "kcal": 464,
+          "protein": 10,
+          "fat": 15,
+          "carbs": 76
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Ryż brązowy",
+            "grams": 80,
+            "kcal": 289.6,
+            "protein": 6.4,
+            "fat": 2.16,
+            "carbs": 60.800000000000004
+          },
+          {
+            "missing": false,
+            "item": "Awokado",
+            "grams": 85,
+            "kcal": 136,
+            "protein": 1.7,
+            "fat": 12.75,
+            "carbs": 7.6499999999999995
+          },
+          {
+            "missing": false,
+            "item": "Ogórek",
+            "grams": 200,
+            "kcal": 30,
+            "protein": 1.4,
+            "fat": 0.2,
+            "carbs": 6.2
+          },
+          {
+            "missing": false,
+            "item": "Sos sojowy",
+            "grams": 15,
+            "kcal": 7.949999999999999,
+            "protein": 0.75,
+            "fat": 0,
+            "carbs": 1.2
+          }
+        ],
+        "missingIngredients": [
+          {
+            "missing": true,
+            "item": "Tuńczyk w wodzie (puszka)",
+            "amount": 200,
+            "unit": "g"
+          }
+        ],
+        "discrepancies": {
+          "kcal": -30.952380952380953,
+          "protein": -82.45614035087719,
+          "fat": -11.76470588235294,
+          "carbs": 1.3333333333333335
+        },
+        "withinTolerance": false,
+        "hasMissingIngredients": true
+      },
+      {
+        "id": "l141",
+        "name": "Fit Kurczak tikka z ryżem",
+        "declared": {
+          "kcal": 730,
+          "protein": 76,
+          "fat": 10,
+          "carbs": 82
+        },
+        "calculated": {
+          "kcal": 725,
+          "protein": 76,
+          "fat": 10,
+          "carbs": 80
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Pierś z kurczaka",
+            "grams": 250,
+            "kcal": 275,
+            "protein": 57.5,
+            "fat": 3.25,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Jogurt grecki 0%",
+            "grams": 100,
+            "kcal": 54,
+            "protein": 10,
+            "fat": 0.7,
+            "carbs": 4
+          },
+          {
+            "missing": false,
+            "item": "Ryż basmati",
+            "grams": 80,
+            "kcal": 280,
+            "protein": 6.4,
+            "fat": 0.4,
+            "carbs": 61.6
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 5,
+            "kcal": 44.2,
+            "protein": 0,
+            "fat": 5,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Papryka czerwona",
+            "grams": 160,
+            "kcal": 49.6,
+            "protein": 1.6,
+            "fat": 0.48,
+            "carbs": 9.600000000000001
+          },
+          {
+            "missing": false,
+            "item": "Cebula",
+            "grams": 55,
+            "kcal": 22,
+            "protein": 0.6050000000000001,
+            "fat": 0.05500000000000001,
+            "carbs": 4.95
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": -0.684931506849315,
+          "protein": 0,
+          "fat": 0,
+          "carbs": -2.4390243902439024
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "l142",
+        "name": "Fit Stek wołowy z batatami",
+        "declared": {
+          "kcal": 800,
+          "protein": 59,
+          "fat": 42,
+          "carbs": 48
+        },
+        "calculated": {
+          "kcal": 800,
+          "protein": 59,
+          "fat": 42,
+          "carbs": 48
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Stek wołowy",
+            "grams": 200,
+            "kcal": 542,
+            "protein": 52,
+            "fat": 36,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Bataty",
+            "grams": 200,
+            "kcal": 172,
+            "protein": 3.2,
+            "fat": 0.2,
+            "carbs": 40
+          },
+          {
+            "missing": false,
+            "item": "Brokuł mrożony",
+            "grams": 150,
+            "kcal": 42,
+            "protein": 3.9000000000000004,
+            "fat": 0.44999999999999996,
+            "carbs": 7.5
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 5,
+            "kcal": 44.2,
+            "protein": 0,
+            "fat": 5,
+            "carbs": 0
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "l143",
+        "name": "Fit Mielone z indyka z ryżem",
+        "declared": {
+          "kcal": 732,
+          "protein": 62,
+          "fat": 18,
+          "carbs": 77
+        },
+        "calculated": {
+          "kcal": 722,
+          "protein": 62,
+          "fat": 18,
+          "carbs": 75
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Mięso mielone z indyka",
+            "grams": 250,
+            "kcal": 370,
+            "protein": 50,
+            "fat": 17.5,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Ryż basmati",
+            "grams": 80,
+            "kcal": 280,
+            "protein": 6.4,
+            "fat": 0.4,
+            "carbs": 61.6
+          },
+          {
+            "missing": false,
+            "item": "Brokuł mrożony",
+            "grams": 150,
+            "kcal": 42,
+            "protein": 3.9000000000000004,
+            "fat": 0.44999999999999996,
+            "carbs": 7.5
+          },
+          {
+            "missing": false,
+            "item": "Cebula",
+            "grams": 55,
+            "kcal": 22,
+            "protein": 0.6050000000000001,
+            "fat": 0.05500000000000001,
+            "carbs": 4.95
+          },
+          {
+            "missing": false,
+            "item": "Sos sojowy",
+            "grams": 15,
+            "kcal": 7.949999999999999,
+            "protein": 0.75,
+            "fat": 0,
+            "carbs": 1.2
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": -1.366120218579235,
+          "protein": 0,
+          "fat": 0,
+          "carbs": -2.5974025974025974
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "l144",
+        "name": "Fit Dorsz z kaszą bulgur i cukinią",
+        "declared": {
+          "kcal": 520,
+          "protein": 52,
+          "fat": 8,
+          "carbs": 62
+        },
+        "calculated": {
+          "kcal": 559,
+          "protein": 57,
+          "fat": 8,
+          "carbs": 68
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Filet z dorsza",
+            "grams": 250,
+            "kcal": 205,
+            "protein": 45,
+            "fat": 1.75,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Kasza bulgur",
+            "grams": 80,
+            "kcal": 273.6,
+            "protein": 9.600000000000001,
+            "fat": 1.04,
+            "carbs": 60.800000000000004
+          },
+          {
+            "missing": false,
+            "item": "Cukinia",
+            "grams": 200,
+            "kcal": 34,
+            "protein": 2.4,
+            "fat": 0.6,
+            "carbs": 6.2
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 5,
+            "kcal": 44.2,
+            "protein": 0,
+            "fat": 5,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Sok z cytryny",
+            "grams": 10,
+            "kcal": 2.2,
+            "protein": 0.04000000000000001,
+            "fat": 0.020000000000000004,
+            "carbs": 0.7000000000000001
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 7.5,
+          "protein": 9.615384615384617,
+          "fat": 0,
+          "carbs": 9.67741935483871
+        },
+        "withinTolerance": false,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "l145",
+        "name": "Fit Kurczak z quinoa i szpinakiem",
+        "declared": {
+          "kcal": 710,
+          "protein": 72,
+          "fat": 18,
+          "carbs": 58
+        },
+        "calculated": {
+          "kcal": 677,
+          "protein": 72,
+          "fat": 18,
+          "carbs": 56
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Pierś z kurczaka",
+            "grams": 250,
+            "kcal": 275,
+            "protein": 57.5,
+            "fat": 3.25,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Quinoa",
+            "grams": 70,
+            "kcal": 257.59999999999997,
+            "protein": 9.799999999999999,
+            "fat": 4.199999999999999,
+            "carbs": 44.8
+          },
+          {
+            "missing": false,
+            "item": "Szpinak świeży",
+            "grams": 100,
+            "kcal": 23,
+            "protein": 2.9,
+            "fat": 0.4,
+            "carbs": 3.6
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 10,
+            "kcal": 88.4,
+            "protein": 0,
+            "fat": 10,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Czosnek",
+            "grams": 10,
+            "kcal": 14.9,
+            "protein": 0.6400000000000001,
+            "fat": 0.05,
+            "carbs": 3.3000000000000003
+          },
+          {
+            "missing": false,
+            "item": "Pomidorki cherry",
+            "grams": 100,
+            "kcal": 18,
+            "protein": 0.9,
+            "fat": 0.2,
+            "carbs": 3.9
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": -4.647887323943662,
+          "protein": 0,
+          "fat": 0,
+          "carbs": -3.4482758620689653
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "l146",
+        "name": "Fit Schab z kaszą pęczak i fasolką",
+        "declared": {
+          "kcal": 690,
+          "protein": 65,
+          "fat": 14,
+          "carbs": 74
+        },
+        "calculated": {
+          "kcal": 637,
+          "protein": 59,
+          "fat": 15,
+          "carbs": 71
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Schab wieprzowy",
+            "grams": 200,
+            "kcal": 256,
+            "protein": 48,
+            "fat": 8,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Kasza pęczak",
+            "grams": 80,
+            "kcal": 283.2,
+            "protein": 8,
+            "fat": 1.36,
+            "carbs": 59.2
+          },
+          {
+            "missing": false,
+            "item": "Fasolka szparagowa mrożona",
+            "grams": 150,
+            "kcal": 46.5,
+            "protein": 2.7,
+            "fat": 0.15000000000000002,
+            "carbs": 10.5
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 5,
+            "kcal": 44.2,
+            "protein": 0,
+            "fat": 5,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Czosnek",
+            "grams": 5,
+            "kcal": 7.45,
+            "protein": 0.32000000000000006,
+            "fat": 0.025,
+            "carbs": 1.6500000000000001
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": -7.681159420289855,
+          "protein": -9.230769230769232,
+          "fat": 7.142857142857142,
+          "carbs": -4.054054054054054
+        },
+        "withinTolerance": false,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "l147",
+        "name": "Fit Krewetki z makaronem pełnoziarnistym",
+        "declared": {
+          "kcal": 640,
+          "protein": 56,
+          "fat": 12,
+          "carbs": 72
+        },
+        "calculated": {
+          "kcal": 617,
+          "protein": 63,
+          "fat": 13,
+          "carbs": 65
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Krewetki",
+            "grams": 200,
+            "kcal": 198,
+            "protein": 48,
+            "fat": 0.6,
+            "carbs": 0.4
+          },
+          {
+            "missing": false,
+            "item": "Makaron pełnoziarnisty",
+            "grams": 80,
+            "kcal": 278.40000000000003,
+            "protein": 11.200000000000001,
+            "fat": 2,
+            "carbs": 54.400000000000006
+          },
+          {
+            "missing": false,
+            "item": "Czosnek",
+            "grams": 15,
+            "kcal": 22.349999999999998,
+            "protein": 0.96,
+            "fat": 0.075,
+            "carbs": 4.95
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 10,
+            "kcal": 88.4,
+            "protein": 0,
+            "fat": 10,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Pomidorki cherry",
+            "grams": 100,
+            "kcal": 18,
+            "protein": 0.9,
+            "fat": 0.2,
+            "carbs": 3.9
+          },
+          {
+            "missing": false,
+            "item": "Szpinak świeży",
+            "grams": 50,
+            "kcal": 11.5,
+            "protein": 1.45,
+            "fat": 0.2,
+            "carbs": 1.8
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": -3.5937499999999996,
+          "protein": 12.5,
+          "fat": 8.333333333333332,
+          "carbs": -9.722222222222223
+        },
+        "withinTolerance": false,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "l148",
+        "name": "Fit Tilapia z ryżem i warzywami",
+        "declared": {
+          "kcal": 560,
+          "protein": 54,
+          "fat": 8,
+          "carbs": 68
+        },
+        "calculated": {
+          "kcal": 639,
+          "protein": 60,
+          "fat": 11,
+          "carbs": 76
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Tilapia",
+            "grams": 250,
+            "kcal": 240,
+            "protein": 50,
+            "fat": 4.25,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Ryż basmati",
+            "grams": 80,
+            "kcal": 280,
+            "protein": 6.4,
+            "fat": 0.4,
+            "carbs": 61.6
+          },
+          {
+            "missing": false,
+            "item": "Papryka czerwona",
+            "grams": 160,
+            "kcal": 49.6,
+            "protein": 1.6,
+            "fat": 0.48,
+            "carbs": 9.600000000000001
+          },
+          {
+            "missing": false,
+            "item": "Cukinia",
+            "grams": 150,
+            "kcal": 25.5,
+            "protein": 1.7999999999999998,
+            "fat": 0.44999999999999996,
+            "carbs": 4.65
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 5,
+            "kcal": 44.2,
+            "protein": 0,
+            "fat": 5,
+            "carbs": 0
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 14.107142857142858,
+          "protein": 11.11111111111111,
+          "fat": 37.5,
+          "carbs": 11.76470588235294
+        },
+        "withinTolerance": false,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "l149",
+        "name": "Fit Kurczak teriyaki z ryżem brązowym",
+        "declared": {
+          "kcal": 750,
+          "protein": 68,
+          "fat": 12,
+          "carbs": 90
+        },
+        "calculated": {
+          "kcal": 730,
+          "protein": 71,
+          "fat": 9,
+          "carbs": 91
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Pierś z kurczaka",
+            "grams": 250,
+            "kcal": 275,
+            "protein": 57.5,
+            "fat": 3.25,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Ryż brązowy",
+            "grams": 90,
+            "kcal": 325.8,
+            "protein": 7.2,
+            "fat": 2.43,
+            "carbs": 68.4
+          },
+          {
+            "missing": false,
+            "item": "Sos sojowy",
+            "grams": 25,
+            "kcal": 13.25,
+            "protein": 1.25,
+            "fat": 0,
+            "carbs": 2
+          },
+          {
+            "missing": false,
+            "item": "Miód",
+            "grams": 15,
+            "kcal": 45.6,
+            "protein": 0.045,
+            "fat": 0,
+            "carbs": 12.299999999999999
+          },
+          {
+            "missing": false,
+            "item": "Brokuł mrożony",
+            "grams": 150,
+            "kcal": 42,
+            "protein": 3.9000000000000004,
+            "fat": 0.44999999999999996,
+            "carbs": 7.5
+          },
+          {
+            "missing": false,
+            "item": "Sezam",
+            "grams": 5,
+            "kcal": 28.650000000000002,
+            "protein": 0.9,
+            "fat": 2.5,
+            "carbs": 1.1500000000000001
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": -2.666666666666667,
+          "protein": 4.411764705882353,
+          "fat": -25,
+          "carbs": 1.1111111111111112
+        },
+        "withinTolerance": false,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "l150",
+        "name": "Fit Polędwica wieprzowa z batatami",
+        "declared": {
+          "kcal": 620,
+          "protein": 52,
+          "fat": 16,
+          "carbs": 68
+        },
+        "calculated": {
+          "kcal": 640,
+          "protein": 49,
+          "fat": 23,
+          "carbs": 61
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Polędwiczka wieprzowa",
+            "grams": 200,
+            "kcal": 286,
+            "protein": 42,
+            "fat": 12,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Bataty",
+            "grams": 250,
+            "kcal": 215,
+            "protein": 4,
+            "fat": 0.25,
+            "carbs": 50
+          },
+          {
+            "missing": false,
+            "item": "Fasolka szparagowa mrożona",
+            "grams": 150,
+            "kcal": 46.5,
+            "protein": 2.7,
+            "fat": 0.15000000000000002,
+            "carbs": 10.5
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 10,
+            "kcal": 88.4,
+            "protein": 0,
+            "fat": 10,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Rozmaryn",
+            "grams": 3,
+            "kcal": 3.9299999999999997,
+            "protein": 0.09,
+            "fat": 0.18,
+            "carbs": 0.63
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 3.225806451612903,
+          "protein": -5.769230769230769,
+          "fat": 43.75,
+          "carbs": -10.294117647058822
+        },
+        "withinTolerance": false,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "l151",
+        "name": "Fit Makaron z mielonym kurczakiem i warzywami",
+        "declared": {
+          "kcal": 700,
+          "protein": 55,
+          "fat": 16,
+          "carbs": 82
+        },
+        "calculated": {
+          "kcal": 698,
+          "protein": 51,
+          "fat": 19,
+          "carbs": 81
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Mięso mielone z kurczaka",
+            "grams": 200,
+            "kcal": 286,
+            "protein": 34,
+            "fat": 16,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Makaron pełnoziarnisty",
+            "grams": 80,
+            "kcal": 278.40000000000003,
+            "protein": 11.200000000000001,
+            "fat": 2,
+            "carbs": 54.400000000000006
+          },
+          {
+            "missing": false,
+            "item": "Cukinia",
+            "grams": 150,
+            "kcal": 25.5,
+            "protein": 1.7999999999999998,
+            "fat": 0.44999999999999996,
+            "carbs": 4.65
+          },
+          {
+            "missing": false,
+            "item": "Papryka czerwona",
+            "grams": 160,
+            "kcal": 49.6,
+            "protein": 1.6,
+            "fat": 0.48,
+            "carbs": 9.600000000000001
+          },
+          {
+            "missing": false,
+            "item": "Passata pomidorowa",
+            "grams": 150,
+            "kcal": 36,
+            "protein": 1.5,
+            "fat": 0.15000000000000002,
+            "carbs": 7.5
+          },
+          {
+            "missing": false,
+            "item": "Cebula",
+            "grams": 55,
+            "kcal": 22,
+            "protein": 0.6050000000000001,
+            "fat": 0.05500000000000001,
+            "carbs": 4.95
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": -0.2857142857142857,
+          "protein": -7.2727272727272725,
+          "fat": 18.75,
+          "carbs": -1.2195121951219512
+        },
+        "withinTolerance": false,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "l152",
+        "name": "Udka z kurczaka z air fryer",
+        "declared": {
+          "kcal": 700,
+          "protein": 50,
+          "fat": 38,
+          "carbs": 37
+        },
+        "calculated": {
+          "kcal": 700,
+          "protein": 50,
+          "fat": 38,
+          "carbs": 37
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Udka z kurczaka (bez kości)",
+            "grams": 250,
+            "kcal": 442.5,
+            "protein": 45,
+            "fat": 27.5,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Ziemniaki",
+            "grams": 200,
+            "kcal": 154,
+            "protein": 4,
+            "fat": 0.2,
+            "carbs": 34
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 10,
+            "kcal": 88.4,
+            "protein": 0,
+            "fat": 10,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Papryka słodka",
+            "grams": 3,
+            "kcal": 8.459999999999999,
+            "protein": 0.42,
+            "fat": 0.39,
+            "carbs": 1.6199999999999999
+          },
+          {
+            "missing": false,
+            "item": "Czosnek granulowany",
+            "grams": 2,
+            "kcal": 6.62,
+            "protein": 0.34,
+            "fat": 0.013999999999999999,
+            "carbs": 1.46
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "l153",
+        "name": "Dorsz w panierce z air fryer",
+        "declared": {
+          "kcal": 579,
+          "protein": 52,
+          "fat": 8,
+          "carbs": 70
+        },
+        "calculated": {
+          "kcal": 579,
+          "protein": 52,
+          "fat": 8,
+          "carbs": 70
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Dorsz",
+            "grams": 200,
+            "kcal": 164,
+            "protein": 36,
+            "fat": 1.4,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Panko",
+            "grams": 30,
+            "kcal": 118.5,
+            "protein": 3.3,
+            "fat": 0.8999999999999999,
+            "carbs": 23.099999999999998
+          },
+          {
+            "missing": false,
+            "item": "Jajka",
+            "grams": 60,
+            "kcal": 85.8,
+            "protein": 7.56,
+            "fat": 5.7,
+            "carbs": 0.42
+          },
+          {
+            "missing": false,
+            "item": "Mąka pszenna",
+            "grams": 15,
+            "kcal": 54.6,
+            "protein": 1.5,
+            "fat": 0.15,
+            "carbs": 11.4
+          },
+          {
+            "missing": false,
+            "item": "Ziemniaki",
+            "grams": 200,
+            "kcal": 154,
+            "protein": 4,
+            "fat": 0.2,
+            "carbs": 34
+          },
+          {
+            "missing": false,
+            "item": "Sok z cytryny",
+            "grams": 10,
+            "kcal": 2.2,
+            "protein": 0.04000000000000001,
+            "fat": 0.020000000000000004,
+            "carbs": 0.7000000000000001
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "l154",
+        "name": "Karkówka z warzywami z air fryer",
+        "declared": {
+          "kcal": 630,
+          "protein": 33,
+          "fat": 48,
+          "carbs": 14
+        },
+        "calculated": {
+          "kcal": 630,
+          "protein": 33,
+          "fat": 48,
+          "carbs": 14
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Karkówka",
+            "grams": 180,
+            "kcal": 471.6,
+            "protein": 30.6,
+            "fat": 37.800000000000004,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Papryka czerwona",
+            "grams": 100,
+            "kcal": 31,
+            "protein": 1,
+            "fat": 0.3,
+            "carbs": 6
+          },
+          {
+            "missing": false,
+            "item": "Cukinia",
+            "grams": 100,
+            "kcal": 17,
+            "protein": 1.2,
+            "fat": 0.3,
+            "carbs": 3.1
+          },
+          {
+            "missing": false,
+            "item": "Cebula",
+            "grams": 55,
+            "kcal": 22,
+            "protein": 0.6050000000000001,
+            "fat": 0.05500000000000001,
+            "carbs": 4.95
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 10,
+            "kcal": 88.4,
+            "protein": 0,
+            "fat": 10,
+            "carbs": 0
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "l155",
+        "name": "Krewetki z warzywami z air fryer",
+        "declared": {
+          "kcal": 586,
+          "protein": 59,
+          "fat": 12,
+          "carbs": 64
+        },
+        "calculated": {
+          "kcal": 586,
+          "protein": 59,
+          "fat": 12,
+          "carbs": 64
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Krewetki mrożone",
+            "grams": 200,
+            "kcal": 198,
+            "protein": 48,
+            "fat": 0.6,
+            "carbs": 0.4
+          },
+          {
+            "missing": false,
+            "item": "Brokuł świeży",
+            "grams": 150,
+            "kcal": 51,
+            "protein": 4.199999999999999,
+            "fat": 0.6000000000000001,
+            "carbs": 10.5
+          },
+          {
+            "missing": false,
+            "item": "Papryka czerwona",
+            "grams": 100,
+            "kcal": 31,
+            "protein": 1,
+            "fat": 0.3,
+            "carbs": 6
+          },
+          {
+            "missing": false,
+            "item": "Ryż basmati",
+            "grams": 60,
+            "kcal": 210,
+            "protein": 4.8,
+            "fat": 0.3,
+            "carbs": 46.199999999999996
+          },
+          {
+            "missing": false,
+            "item": "Sos sojowy",
+            "grams": 15,
+            "kcal": 7.949999999999999,
+            "protein": 0.75,
+            "fat": 0,
+            "carbs": 1.2
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 10,
+            "kcal": 88.4,
+            "protein": 0,
+            "fat": 10,
+            "carbs": 0
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "l156",
+        "name": "Pierogi z air fryer",
+        "declared": {
+          "kcal": 786,
+          "protein": 19,
+          "fat": 30,
+          "carbs": 111
+        },
+        "calculated": {
+          "kcal": 786,
+          "protein": 19,
+          "fat": 30,
+          "carbs": 111
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Pierogi ruskie",
+            "grams": 300,
+            "kcal": 621,
+            "protein": 18,
+            "fat": 15,
+            "carbs": 105
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 10,
+            "kcal": 88.4,
+            "protein": 0,
+            "fat": 10,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Cebula",
+            "grams": 55,
+            "kcal": 22,
+            "protein": 0.6050000000000001,
+            "fat": 0.05500000000000001,
+            "carbs": 4.95
+          },
+          {
+            "missing": false,
+            "item": "Śmietana 18%",
+            "grams": 30,
+            "kcal": 54.6,
+            "protein": 0.78,
+            "fat": 5.3999999999999995,
+            "carbs": 1.08
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "l157",
+        "name": "Polędwiczka wieprzowa z batatami z air fryer",
+        "declared": {
+          "kcal": 592,
+          "protein": 48,
+          "fat": 24,
+          "carbs": 46
+        },
+        "calculated": {
+          "kcal": 592,
+          "protein": 48,
+          "fat": 24,
+          "carbs": 46
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Polędwiczka wieprzowa",
+            "grams": 200,
+            "kcal": 286,
+            "protein": 42,
+            "fat": 12,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Bataty",
+            "grams": 200,
+            "kcal": 172,
+            "protein": 3.2,
+            "fat": 0.2,
+            "carbs": 40
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 10,
+            "kcal": 88.4,
+            "protein": 0,
+            "fat": 10,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Czosnek",
+            "grams": 10,
+            "kcal": 14.9,
+            "protein": 0.6400000000000001,
+            "fat": 0.05,
+            "carbs": 3.3000000000000003
+          },
+          {
+            "missing": false,
+            "item": "Jogurt naturalny",
+            "grams": 50,
+            "kcal": 30.5,
+            "protein": 1.75,
+            "fat": 1.6,
+            "carbs": 2.35
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "l158",
+        "name": "Tofu w panierce z air fryer",
+        "declared": {
+          "kcal": 692,
+          "protein": 46,
+          "fat": 20,
+          "carbs": 90
+        },
+        "calculated": {
+          "kcal": 692,
+          "protein": 46,
+          "fat": 20,
+          "carbs": 90
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Tofu extra firm",
+            "grams": 200,
+            "kcal": 288,
+            "protein": 34,
+            "fat": 18,
+            "carbs": 4
+          },
+          {
+            "missing": false,
+            "item": "Panko",
+            "grams": 30,
+            "kcal": 118.5,
+            "protein": 3.3,
+            "fat": 0.8999999999999999,
+            "carbs": 23.099999999999998
+          },
+          {
+            "missing": false,
+            "item": "Sos sojowy",
+            "grams": 15,
+            "kcal": 7.949999999999999,
+            "protein": 0.75,
+            "fat": 0,
+            "carbs": 1.2
+          },
+          {
+            "missing": false,
+            "item": "Ryż basmati",
+            "grams": 60,
+            "kcal": 210,
+            "protein": 4.8,
+            "fat": 0.3,
+            "carbs": 46.199999999999996
+          },
+          {
+            "missing": false,
+            "item": "Brokuł świeży",
+            "grams": 100,
+            "kcal": 34,
+            "protein": 2.8,
+            "fat": 0.4,
+            "carbs": 7
+          },
+          {
+            "missing": false,
+            "item": "Sos sweet chili",
+            "grams": 15,
+            "kcal": 33.75,
+            "protein": 0.075,
+            "fat": 0.045,
+            "carbs": 8.25
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "l159",
+        "name": "Kalafior w panierce z air fryer",
+        "declared": {
+          "kcal": 458,
+          "protein": 27,
+          "fat": 13,
+          "carbs": 60
+        },
+        "calculated": {
+          "kcal": 458,
+          "protein": 27,
+          "fat": 13,
+          "carbs": 60
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Kalafior",
+            "grams": 300,
+            "kcal": 75,
+            "protein": 5.699999999999999,
+            "fat": 0.8999999999999999,
+            "carbs": 15
+          },
+          {
+            "missing": false,
+            "item": "Bułka tarta",
+            "grams": 40,
+            "kcal": 158,
+            "protein": 5.2,
+            "fat": 2,
+            "carbs": 28.8
+          },
+          {
+            "missing": false,
+            "item": "Jajka",
+            "grams": 60,
+            "kcal": 85.8,
+            "protein": 7.56,
+            "fat": 5.7,
+            "carbs": 0.42
+          },
+          {
+            "missing": false,
+            "item": "Mąka pszenna",
+            "grams": 15,
+            "kcal": 54.6,
+            "protein": 1.5,
+            "fat": 0.15,
+            "carbs": 11.4
+          },
+          {
+            "missing": false,
+            "item": "Jogurt grecki",
+            "grams": 80,
+            "kcal": 77.60000000000001,
+            "protein": 7.2,
+            "fat": 4,
+            "carbs": 2.8800000000000003
+          },
+          {
+            "missing": false,
+            "item": "Czosnek",
+            "grams": 5,
+            "kcal": 7.45,
+            "protein": 0.32000000000000006,
+            "fat": 0.025,
+            "carbs": 1.6500000000000001
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
       }
     ],
     "dinner": [
@@ -25120,8 +29762,2364 @@
         },
         "withinTolerance": true,
         "hasMissingIngredients": false
+      },
+      {
+        "id": "d55",
+        "name": "Warzywa grillowane z air fryer z dipem",
+        "declared": {
+          "kcal": 321,
+          "protein": 14,
+          "fat": 20,
+          "carbs": 24
+        },
+        "calculated": {
+          "kcal": 321,
+          "protein": 14,
+          "fat": 20,
+          "carbs": 24
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Cukinia",
+            "grams": 150,
+            "kcal": 25.5,
+            "protein": 1.7999999999999998,
+            "fat": 0.44999999999999996,
+            "carbs": 4.65
+          },
+          {
+            "missing": false,
+            "item": "Papryka czerwona",
+            "grams": 100,
+            "kcal": 31,
+            "protein": 1,
+            "fat": 0.3,
+            "carbs": 6
+          },
+          {
+            "missing": false,
+            "item": "Bakłażan",
+            "grams": 100,
+            "kcal": 25,
+            "protein": 1,
+            "fat": 0.2,
+            "carbs": 6
+          },
+          {
+            "missing": false,
+            "item": "Pieczarki",
+            "grams": 100,
+            "kcal": 22,
+            "protein": 3.1,
+            "fat": 0.3,
+            "carbs": 3.3
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 15,
+            "kcal": 132.6,
+            "protein": 0,
+            "fat": 15,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Jogurt grecki",
+            "grams": 80,
+            "kcal": 77.60000000000001,
+            "protein": 7.2,
+            "fat": 4,
+            "carbs": 2.8800000000000003
+          },
+          {
+            "missing": false,
+            "item": "Czosnek",
+            "grams": 5,
+            "kcal": 7.45,
+            "protein": 0.32000000000000006,
+            "fat": 0.025,
+            "carbs": 1.6500000000000001
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "d56",
+        "name": "Quesadilla z air fryer",
+        "declared": {
+          "kcal": 653,
+          "protein": 44,
+          "fat": 21,
+          "carbs": 68
+        },
+        "calculated": {
+          "kcal": 653,
+          "protein": 44,
+          "fat": 21,
+          "carbs": 68
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Tortilla pszenna",
+            "grams": 110,
+            "kcal": 341,
+            "protein": 8.8,
+            "fat": 7.700000000000001,
+            "carbs": 57.2
+          },
+          {
+            "missing": false,
+            "item": "Pierś z kurczaka",
+            "grams": 100,
+            "kcal": 110,
+            "protein": 23,
+            "fat": 1.3,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Ser żółty (gouda)",
+            "grams": 40,
+            "kcal": 142.4,
+            "protein": 10,
+            "fat": 10.8,
+            "carbs": 0.8800000000000001
+          },
+          {
+            "missing": false,
+            "item": "Papryka czerwona",
+            "grams": 50,
+            "kcal": 15.5,
+            "protein": 0.5,
+            "fat": 0.15,
+            "carbs": 3
+          },
+          {
+            "missing": false,
+            "item": "Kukurydza",
+            "grams": 30,
+            "kcal": 25.8,
+            "protein": 0.9899999999999999,
+            "fat": 0.42,
+            "carbs": 5.7
+          },
+          {
+            "missing": false,
+            "item": "Jogurt naturalny",
+            "grams": 30,
+            "kcal": 18.3,
+            "protein": 1.05,
+            "fat": 0.96,
+            "carbs": 1.41
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "d57",
+        "name": "Tostowe rollsy z air fryer",
+        "declared": {
+          "kcal": 571,
+          "protein": 30,
+          "fat": 24,
+          "carbs": 59
+        },
+        "calculated": {
+          "kcal": 571,
+          "protein": 30,
+          "fat": 24,
+          "carbs": 59
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Chleb tostowy pełnoziarnisty",
+            "grams": 120,
+            "kcal": 296.4,
+            "protein": 9.6,
+            "fat": 3.5999999999999996,
+            "carbs": 55.199999999999996
+          },
+          {
+            "missing": false,
+            "item": "Szynka z indyka",
+            "grams": 60,
+            "kcal": 50.4,
+            "protein": 10.2,
+            "fat": 0.8999999999999999,
+            "carbs": 0.6
+          },
+          {
+            "missing": false,
+            "item": "Ser żółty (gouda)",
+            "grams": 40,
+            "kcal": 142.4,
+            "protein": 10,
+            "fat": 10.8,
+            "carbs": 0.8800000000000001
+          },
+          {
+            "missing": false,
+            "item": "Ogórek kiszony",
+            "grams": 80,
+            "kcal": 9.600000000000001,
+            "protein": 0.32000000000000006,
+            "fat": 0.16000000000000003,
+            "carbs": 1.8399999999999999
+          },
+          {
+            "missing": false,
+            "item": "Masło",
+            "grams": 10,
+            "kcal": 71.7,
+            "protein": 0.09000000000000001,
+            "fat": 8.1,
+            "carbs": 0.010000000000000002
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "d58",
+        "name": "Pieczarki faszerowane z air fryer",
+        "declared": {
+          "kcal": 335,
+          "protein": 19,
+          "fat": 24,
+          "carbs": 15
+        },
+        "calculated": {
+          "kcal": 335,
+          "protein": 19,
+          "fat": 24,
+          "carbs": 15
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Pieczarki portobello",
+            "grams": 200,
+            "kcal": 44,
+            "protein": 4.2,
+            "fat": 0.8,
+            "carbs": 7.8
+          },
+          {
+            "missing": false,
+            "item": "Ser mozzarella",
+            "grams": 50,
+            "kcal": 140,
+            "protein": 11,
+            "fat": 10.5,
+            "carbs": 1.1
+          },
+          {
+            "missing": false,
+            "item": "Szpinak świeży",
+            "grams": 50,
+            "kcal": 11.5,
+            "protein": 1.45,
+            "fat": 0.2,
+            "carbs": 1.8
+          },
+          {
+            "missing": false,
+            "item": "Czosnek",
+            "grams": 10,
+            "kcal": 14.9,
+            "protein": 0.6400000000000001,
+            "fat": 0.05,
+            "carbs": 3.3000000000000003
+          },
+          {
+            "missing": false,
+            "item": "Serek śmietankowy",
+            "grams": 30,
+            "kcal": 80.7,
+            "protein": 1.62,
+            "fat": 7.8,
+            "carbs": 1.05
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 5,
+            "kcal": 44.2,
+            "protein": 0,
+            "fat": 5,
+            "carbs": 0
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "d59",
+        "name": "Placki ziemniaczane z air fryer",
+        "declared": {
+          "kcal": 520,
+          "protein": 18,
+          "fat": 18,
+          "carbs": 71
+        },
+        "calculated": {
+          "kcal": 520,
+          "protein": 18,
+          "fat": 18,
+          "carbs": 71
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Ziemniaki",
+            "grams": 300,
+            "kcal": 231,
+            "protein": 6,
+            "fat": 0.30000000000000004,
+            "carbs": 51
+          },
+          {
+            "missing": false,
+            "item": "Cebula",
+            "grams": 27.5,
+            "kcal": 11,
+            "protein": 0.30250000000000005,
+            "fat": 0.027500000000000004,
+            "carbs": 2.475
+          },
+          {
+            "missing": false,
+            "item": "Jajka",
+            "grams": 60,
+            "kcal": 85.8,
+            "protein": 7.56,
+            "fat": 5.7,
+            "carbs": 0.42
+          },
+          {
+            "missing": false,
+            "item": "Mąka pszenna",
+            "grams": 20,
+            "kcal": 72.8,
+            "protein": 2,
+            "fat": 0.2,
+            "carbs": 15.200000000000001
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 10,
+            "kcal": 88.4,
+            "protein": 0,
+            "fat": 10,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Jogurt naturalny",
+            "grams": 50,
+            "kcal": 30.5,
+            "protein": 1.75,
+            "fat": 1.6,
+            "carbs": 2.35
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "d60",
+        "name": "Spring rollsy z air fryer",
+        "declared": {
+          "kcal": 371,
+          "protein": 21,
+          "fat": 1,
+          "carbs": 68
+        },
+        "calculated": {
+          "kcal": 371,
+          "protein": 21,
+          "fat": 1,
+          "carbs": 68
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Papier ryżowy",
+            "grams": 60,
+            "kcal": 198,
+            "protein": 0.48,
+            "fat": 0,
+            "carbs": 49.199999999999996
+          },
+          {
+            "missing": false,
+            "item": "Pierś z kurczaka",
+            "grams": 80,
+            "kcal": 88,
+            "protein": 18.400000000000002,
+            "fat": 1.04,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Marchew",
+            "grams": 80,
+            "kcal": 32.800000000000004,
+            "protein": 0.7200000000000001,
+            "fat": 0.16000000000000003,
+            "carbs": 8
+          },
+          {
+            "missing": false,
+            "item": "Kapusta pekińska",
+            "grams": 80,
+            "kcal": 10.4,
+            "protein": 0.96,
+            "fat": 0.16000000000000003,
+            "carbs": 1.6
+          },
+          {
+            "missing": false,
+            "item": "Sos sojowy",
+            "grams": 15,
+            "kcal": 7.949999999999999,
+            "protein": 0.75,
+            "fat": 0,
+            "carbs": 1.2
+          },
+          {
+            "missing": false,
+            "item": "Sos sweet chili",
+            "grams": 15,
+            "kcal": 33.75,
+            "protein": 0.075,
+            "fat": 0.045,
+            "carbs": 8.25
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "d61",
+        "name": "Bruschetta z air fryer",
+        "declared": {
+          "kcal": 532,
+          "protein": 20,
+          "fat": 23,
+          "carbs": 62
+        },
+        "calculated": {
+          "kcal": 532,
+          "protein": 20,
+          "fat": 23,
+          "carbs": 62
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Chleb żytni razowy",
+            "grams": 120,
+            "kcal": 264,
+            "protein": 7.199999999999999,
+            "fat": 1.7999999999999998,
+            "carbs": 52.8
+          },
+          {
+            "missing": false,
+            "item": "Pomidory",
+            "grams": 150,
+            "kcal": 27,
+            "protein": 1.35,
+            "fat": 0.30000000000000004,
+            "carbs": 5.85
+          },
+          {
+            "missing": false,
+            "item": "Mozzarella",
+            "grams": 50,
+            "kcal": 140,
+            "protein": 11,
+            "fat": 10.5,
+            "carbs": 1.1
+          },
+          {
+            "missing": false,
+            "item": "Czosnek",
+            "grams": 5,
+            "kcal": 7.45,
+            "protein": 0.32000000000000006,
+            "fat": 0.025,
+            "carbs": 1.6500000000000001
+          },
+          {
+            "missing": false,
+            "item": "Oliwa extra virgin",
+            "grams": 10,
+            "kcal": 88.4,
+            "protein": 0,
+            "fat": 10,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Rukola",
+            "grams": 20,
+            "kcal": 5,
+            "protein": 0.52,
+            "fat": 0.13999999999999999,
+            "carbs": 0.7400000000000001
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "d62",
+        "name": "Wrapy z kurczakiem z air fryer",
+        "declared": {
+          "kcal": 617,
+          "protein": 46,
+          "fat": 19,
+          "carbs": 63
+        },
+        "calculated": {
+          "kcal": 617,
+          "protein": 46,
+          "fat": 19,
+          "carbs": 63
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Tortilla pszenna",
+            "grams": 110,
+            "kcal": 341,
+            "protein": 8.8,
+            "fat": 7.700000000000001,
+            "carbs": 57.2
+          },
+          {
+            "missing": false,
+            "item": "Pierś z kurczaka",
+            "grams": 120,
+            "kcal": 132,
+            "protein": 27.599999999999998,
+            "fat": 1.56,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Sałata lodowa",
+            "grams": 40,
+            "kcal": 5.6000000000000005,
+            "protein": 0.36000000000000004,
+            "fat": 0.04000000000000001,
+            "carbs": 1.2000000000000002
+          },
+          {
+            "missing": false,
+            "item": "Pomidor",
+            "grams": 75,
+            "kcal": 13.5,
+            "protein": 0.675,
+            "fat": 0.15000000000000002,
+            "carbs": 2.925
+          },
+          {
+            "missing": false,
+            "item": "Jogurt naturalny",
+            "grams": 30,
+            "kcal": 18.3,
+            "protein": 1.05,
+            "fat": 0.96,
+            "carbs": 1.41
+          },
+          {
+            "missing": false,
+            "item": "Ser żółty (gouda)",
+            "grams": 30,
+            "kcal": 106.8,
+            "protein": 7.5,
+            "fat": 8.1,
+            "carbs": 0.66
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "d63",
+        "name": "Fit Twarożek z rzodkiewką i ogórkiem",
+        "declared": {
+          "kcal": 507,
+          "protein": 64,
+          "fat": 2,
+          "carbs": 54
+        },
+        "calculated": {
+          "kcal": 510,
+          "protein": 64,
+          "fat": 2,
+          "carbs": 55
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Twaróg chudy",
+            "grams": 300,
+            "kcal": 288,
+            "protein": 57,
+            "fat": 0.8999999999999999,
+            "carbs": 10.5
+          },
+          {
+            "missing": false,
+            "item": "Ogórek",
+            "grams": 200,
+            "kcal": 30,
+            "protein": 1.4,
+            "fat": 0.2,
+            "carbs": 6.2
+          },
+          {
+            "missing": false,
+            "item": "Rzodkiewka",
+            "grams": 80,
+            "kcal": 12.8,
+            "protein": 0.5599999999999999,
+            "fat": 0.08000000000000002,
+            "carbs": 2.72
+          },
+          {
+            "missing": false,
+            "item": "Chleb żytni razowy",
+            "grams": 80,
+            "kcal": 176,
+            "protein": 4.800000000000001,
+            "fat": 1.2000000000000002,
+            "carbs": 35.2
+          },
+          {
+            "missing": false,
+            "item": "Szczypiorek",
+            "grams": 10,
+            "kcal": 3,
+            "protein": 0.33,
+            "fat": 0.06999999999999999,
+            "carbs": 0.44000000000000006
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0.591715976331361,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 1.8518518518518516
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "d64",
+        "name": "Fit Shake proteinowy z owsianką",
+        "declared": {
+          "kcal": 682,
+          "protein": 62,
+          "fat": 17,
+          "carbs": 75
+        },
+        "calculated": {
+          "kcal": 682,
+          "protein": 62,
+          "fat": 17,
+          "carbs": 76
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Odżywka białkowa",
+            "grams": 50,
+            "kcal": 190,
+            "protein": 40,
+            "fat": 2,
+            "carbs": 4
+          },
+          {
+            "missing": false,
+            "item": "Mleko 1.5%",
+            "grams": 300,
+            "kcal": 141,
+            "protein": 10.2,
+            "fat": 4.5,
+            "carbs": 14.700000000000001
+          },
+          {
+            "missing": false,
+            "item": "Płatki owsiane",
+            "grams": 40,
+            "kcal": 155.60000000000002,
+            "protein": 6.800000000000001,
+            "fat": 2.8000000000000003,
+            "carbs": 26.400000000000002
+          },
+          {
+            "missing": false,
+            "item": "Masło orzechowe",
+            "grams": 15,
+            "kcal": 88.2,
+            "protein": 3.75,
+            "fat": 7.5,
+            "carbs": 3
+          },
+          {
+            "missing": false,
+            "item": "Banan",
+            "grams": 120,
+            "kcal": 106.8,
+            "protein": 1.32,
+            "fat": 0.36,
+            "carbs": 27.599999999999998
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 1.3333333333333335
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "d65",
+        "name": "Fit Sałatka z kurczakiem i jajkami",
+        "declared": {
+          "kcal": 523,
+          "protein": 66,
+          "fat": 20,
+          "carbs": 18
+        },
+        "calculated": {
+          "kcal": 523,
+          "protein": 66,
+          "fat": 20,
+          "carbs": 19
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Pierś z kurczaka",
+            "grams": 150,
+            "kcal": 165,
+            "protein": 34.5,
+            "fat": 1.9500000000000002,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Jajka",
+            "grams": 180,
+            "kcal": 257.40000000000003,
+            "protein": 22.68,
+            "fat": 17.1,
+            "carbs": 1.26
+          },
+          {
+            "missing": false,
+            "item": "Sałata rzymska",
+            "grams": 100,
+            "kcal": 17,
+            "protein": 1.2,
+            "fat": 0.3,
+            "carbs": 3.3
+          },
+          {
+            "missing": false,
+            "item": "Ogórek",
+            "grams": 200,
+            "kcal": 30,
+            "protein": 1.4,
+            "fat": 0.2,
+            "carbs": 6.2
+          },
+          {
+            "missing": false,
+            "item": "Pomidor",
+            "grams": 150,
+            "kcal": 27,
+            "protein": 1.35,
+            "fat": 0.30000000000000004,
+            "carbs": 5.85
+          },
+          {
+            "missing": false,
+            "item": "Jogurt grecki 0%",
+            "grams": 50,
+            "kcal": 27,
+            "protein": 5,
+            "fat": 0.35,
+            "carbs": 2
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 5.555555555555555
+        },
+        "withinTolerance": false,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "d66",
+        "name": "Fit Kanapki z tuńczykiem",
+        "declared": {
+          "kcal": 515,
+          "protein": 49,
+          "fat": 14,
+          "carbs": 46
+        },
+        "calculated": {
+          "kcal": 411,
+          "protein": 26,
+          "fat": 13,
+          "carbs": 47
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Jogurt grecki 0%",
+            "grams": 40,
+            "kcal": 21.6,
+            "protein": 4,
+            "fat": 0.27999999999999997,
+            "carbs": 1.6
+          },
+          {
+            "missing": false,
+            "item": "Chleb żytni razowy",
+            "grams": 80,
+            "kcal": 176,
+            "protein": 4.800000000000001,
+            "fat": 1.2000000000000002,
+            "carbs": 35.2
+          },
+          {
+            "missing": false,
+            "item": "Jajka",
+            "grams": 120,
+            "kcal": 171.6,
+            "protein": 15.12,
+            "fat": 11.4,
+            "carbs": 0.84
+          },
+          {
+            "missing": false,
+            "item": "Ogórek",
+            "grams": 100,
+            "kcal": 15,
+            "protein": 0.7,
+            "fat": 0.1,
+            "carbs": 3.1
+          },
+          {
+            "missing": false,
+            "item": "Pomidor",
+            "grams": 150,
+            "kcal": 27,
+            "protein": 1.35,
+            "fat": 0.30000000000000004,
+            "carbs": 5.85
+          }
+        ],
+        "missingIngredients": [
+          {
+            "missing": true,
+            "item": "Tuńczyk w wodzie (puszka)",
+            "amount": 100,
+            "unit": "g"
+          }
+        ],
+        "discrepancies": {
+          "kcal": -20.19417475728155,
+          "protein": -46.93877551020408,
+          "fat": -7.142857142857142,
+          "carbs": 2.1739130434782608
+        },
+        "withinTolerance": false,
+        "hasMissingIngredients": true
+      },
+      {
+        "id": "d67",
+        "name": "Fit Skyr bowl z odżywką i owocami",
+        "declared": {
+          "kcal": 553,
+          "protein": 68,
+          "fat": 4,
+          "carbs": 66
+        },
+        "calculated": {
+          "kcal": 553,
+          "protein": 68,
+          "fat": 4,
+          "carbs": 66
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Jogurt Skyr naturalny",
+            "grams": 350,
+            "kcal": 220.5,
+            "protein": 38.5,
+            "fat": 0.7000000000000001,
+            "carbs": 14
+          },
+          {
+            "missing": false,
+            "item": "Odżywka białkowa",
+            "grams": 30,
+            "kcal": 114,
+            "protein": 24,
+            "fat": 1.2,
+            "carbs": 2.4
+          },
+          {
+            "missing": false,
+            "item": "Banan",
+            "grams": 120,
+            "kcal": 106.8,
+            "protein": 1.32,
+            "fat": 0.36,
+            "carbs": 27.599999999999998
+          },
+          {
+            "missing": false,
+            "item": "Borówki amerykańskie",
+            "grams": 60,
+            "kcal": 34.199999999999996,
+            "protein": 0.42,
+            "fat": 0.18,
+            "carbs": 8.4
+          },
+          {
+            "missing": false,
+            "item": "Płatki owsiane",
+            "grams": 20,
+            "kcal": 77.80000000000001,
+            "protein": 3.4000000000000004,
+            "fat": 1.4000000000000001,
+            "carbs": 13.200000000000001
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "d68",
+        "name": "Fit Omlet z szynką i warzywami",
+        "declared": {
+          "kcal": 489,
+          "protein": 51,
+          "fat": 25,
+          "carbs": 15
+        },
+        "calculated": {
+          "kcal": 491,
+          "protein": 51,
+          "fat": 25,
+          "carbs": 15
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Jajka",
+            "grams": 240,
+            "kcal": 343.2,
+            "protein": 30.24,
+            "fat": 22.8,
+            "carbs": 1.68
+          },
+          {
+            "missing": false,
+            "item": "Szynka z indyka",
+            "grams": 100,
+            "kcal": 84,
+            "protein": 17,
+            "fat": 1.5,
+            "carbs": 1
+          },
+          {
+            "missing": false,
+            "item": "Papryka czerwona",
+            "grams": 80,
+            "kcal": 24.8,
+            "protein": 0.8,
+            "fat": 0.24,
+            "carbs": 4.800000000000001
+          },
+          {
+            "missing": false,
+            "item": "Szpinak świeży",
+            "grams": 50,
+            "kcal": 11.5,
+            "protein": 1.45,
+            "fat": 0.2,
+            "carbs": 1.8
+          },
+          {
+            "missing": false,
+            "item": "Pomidor",
+            "grams": 150,
+            "kcal": 27,
+            "protein": 1.35,
+            "fat": 0.30000000000000004,
+            "carbs": 5.85
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0.408997955010225,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "d69",
+        "name": "Fit Serek wiejski z łososiem wędzonym",
+        "declared": {
+          "kcal": 520,
+          "protein": 51,
+          "fat": 14,
+          "carbs": 46
+        },
+        "calculated": {
+          "kcal": 548,
+          "protein": 43,
+          "fat": 19,
+          "carbs": 48
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Serek wiejski",
+            "grams": 200,
+            "kcal": 196,
+            "protein": 22,
+            "fat": 8.6,
+            "carbs": 6
+          },
+          {
+            "missing": false,
+            "item": "Łosoś wędzony",
+            "grams": 80,
+            "kcal": 144,
+            "protein": 14.4,
+            "fat": 8.8,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Chleb żytni razowy",
+            "grams": 80,
+            "kcal": 176,
+            "protein": 4.800000000000001,
+            "fat": 1.2000000000000002,
+            "carbs": 35.2
+          },
+          {
+            "missing": false,
+            "item": "Ogórek",
+            "grams": 200,
+            "kcal": 30,
+            "protein": 1.4,
+            "fat": 0.2,
+            "carbs": 6.2
+          },
+          {
+            "missing": false,
+            "item": "Koperek",
+            "grams": 5,
+            "kcal": 2.15,
+            "protein": 0.17500000000000002,
+            "fat": 0.05500000000000001,
+            "carbs": 0.35000000000000003
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 5.384615384615385,
+          "protein": -15.686274509803921,
+          "fat": 35.714285714285715,
+          "carbs": 4.3478260869565215
+        },
+        "withinTolerance": false,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "d70",
+        "name": "Fit Sałatka z tuńczykiem i quinoa",
+        "declared": {
+          "kcal": 580,
+          "protein": 55,
+          "fat": 15,
+          "carbs": 52
+        },
+        "calculated": {
+          "kcal": 359,
+          "protein": 11,
+          "fat": 14,
+          "carbs": 49
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Quinoa",
+            "grams": 60,
+            "kcal": 220.79999999999998,
+            "protein": 8.4,
+            "fat": 3.5999999999999996,
+            "carbs": 38.4
+          },
+          {
+            "missing": false,
+            "item": "Ogórek",
+            "grams": 200,
+            "kcal": 30,
+            "protein": 1.4,
+            "fat": 0.2,
+            "carbs": 6.2
+          },
+          {
+            "missing": false,
+            "item": "Pomidorki cherry",
+            "grams": 100,
+            "kcal": 18,
+            "protein": 0.9,
+            "fat": 0.2,
+            "carbs": 3.9
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 10,
+            "kcal": 88.4,
+            "protein": 0,
+            "fat": 10,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Sok z cytryny",
+            "grams": 10,
+            "kcal": 2.2,
+            "protein": 0.04000000000000001,
+            "fat": 0.020000000000000004,
+            "carbs": 0.7000000000000001
+          }
+        ],
+        "missingIngredients": [
+          {
+            "missing": true,
+            "item": "Tuńczyk w wodzie (puszka)",
+            "amount": 150,
+            "unit": "g"
+          }
+        ],
+        "discrepancies": {
+          "kcal": -38.103448275862064,
+          "protein": -80,
+          "fat": -6.666666666666667,
+          "carbs": -5.769230769230769
+        },
+        "withinTolerance": false,
+        "hasMissingIngredients": true
+      },
+      {
+        "id": "d71",
+        "name": "Fit Wrap z indykiem i warzywami",
+        "declared": {
+          "kcal": 495,
+          "protein": 48,
+          "fat": 12,
+          "carbs": 42
+        },
+        "calculated": {
+          "kcal": 372,
+          "protein": 41,
+          "fat": 5,
+          "carbs": 41
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Tortilla pełnoziarnista",
+            "grams": 60,
+            "kcal": 174.6,
+            "protein": 5.3999999999999995,
+            "fat": 3.5999999999999996,
+            "carbs": 28.799999999999997
+          },
+          {
+            "missing": false,
+            "item": "Pierś z indyka",
+            "grams": 120,
+            "kcal": 124.8,
+            "protein": 28.799999999999997,
+            "fat": 0.84,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Jogurt grecki 0%",
+            "grams": 40,
+            "kcal": 21.6,
+            "protein": 4,
+            "fat": 0.27999999999999997,
+            "carbs": 1.6
+          },
+          {
+            "missing": false,
+            "item": "Sałata rzymska",
+            "grams": 50,
+            "kcal": 8.5,
+            "protein": 0.6,
+            "fat": 0.15,
+            "carbs": 1.65
+          },
+          {
+            "missing": false,
+            "item": "Pomidor",
+            "grams": 150,
+            "kcal": 27,
+            "protein": 1.35,
+            "fat": 0.30000000000000004,
+            "carbs": 5.85
+          },
+          {
+            "missing": false,
+            "item": "Ogórek",
+            "grams": 100,
+            "kcal": 15,
+            "protein": 0.7,
+            "fat": 0.1,
+            "carbs": 3.1
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": -24.848484848484848,
+          "protein": -14.583333333333334,
+          "fat": -58.333333333333336,
+          "carbs": -2.380952380952381
+        },
+        "withinTolerance": false,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "d72",
+        "name": "Fit Jogurt grecki z orzechami i miodem",
+        "declared": {
+          "kcal": 520,
+          "protein": 45,
+          "fat": 22,
+          "carbs": 40
+        },
+        "calculated": {
+          "kcal": 650,
+          "protein": 47,
+          "fat": 29,
+          "carbs": 55
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Jogurt grecki",
+            "grams": 300,
+            "kcal": 291,
+            "protein": 27,
+            "fat": 15,
+            "carbs": 10.8
+          },
+          {
+            "missing": false,
+            "item": "Odżywka białkowa waniliowa",
+            "grams": 20,
+            "kcal": 76,
+            "protein": 16,
+            "fat": 0.8,
+            "carbs": 1.6
+          },
+          {
+            "missing": false,
+            "item": "Orzechy włoskie",
+            "grams": 20,
+            "kcal": 130.8,
+            "protein": 3,
+            "fat": 13,
+            "carbs": 2.8000000000000003
+          },
+          {
+            "missing": false,
+            "item": "Miód",
+            "grams": 15,
+            "kcal": 45.6,
+            "protein": 0.045,
+            "fat": 0,
+            "carbs": 12.299999999999999
+          },
+          {
+            "missing": false,
+            "item": "Banan",
+            "grams": 120,
+            "kcal": 106.8,
+            "protein": 1.32,
+            "fat": 0.36,
+            "carbs": 27.599999999999998
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 25,
+          "protein": 4.444444444444445,
+          "fat": 31.818181818181817,
+          "carbs": 37.5
+        },
+        "withinTolerance": false,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "d73",
+        "name": "Fit Kazeina z twarogiem na noc",
+        "declared": {
+          "kcal": 480,
+          "protein": 72,
+          "fat": 5,
+          "carbs": 35
+        },
+        "calculated": {
+          "kcal": 454,
+          "protein": 67,
+          "fat": 8,
+          "carbs": 27
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Twaróg chudy",
+            "grams": 200,
+            "kcal": 192,
+            "protein": 38,
+            "fat": 0.6,
+            "carbs": 7
+          },
+          {
+            "missing": false,
+            "item": "Kazeina waniliowa",
+            "grams": 30,
+            "kcal": 111,
+            "protein": 23.099999999999998,
+            "fat": 0.44999999999999996,
+            "carbs": 2.1
+          },
+          {
+            "missing": false,
+            "item": "Mleko 1.5%",
+            "grams": 100,
+            "kcal": 47,
+            "protein": 3.4,
+            "fat": 1.5,
+            "carbs": 4.9
+          },
+          {
+            "missing": false,
+            "item": "Borówki amerykańskie",
+            "grams": 80,
+            "kcal": 45.6,
+            "protein": 0.5599999999999999,
+            "fat": 0.24,
+            "carbs": 11.200000000000001
+          },
+          {
+            "missing": false,
+            "item": "Migdały",
+            "grams": 10,
+            "kcal": 57.900000000000006,
+            "protein": 2.1,
+            "fat": 5,
+            "carbs": 2.2
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": -5.416666666666667,
+          "protein": -6.944444444444445,
+          "fat": 60,
+          "carbs": -22.857142857142858
+        },
+        "withinTolerance": false,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "d74",
+        "name": "Fit Jajka na twardo z hummusem i warzywami",
+        "declared": {
+          "kcal": 530,
+          "protein": 42,
+          "fat": 28,
+          "carbs": 30
+        },
+        "calculated": {
+          "kcal": 608,
+          "protein": 42,
+          "fat": 34,
+          "carbs": 34
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Jajka",
+            "grams": 240,
+            "kcal": 343.2,
+            "protein": 30.24,
+            "fat": 22.8,
+            "carbs": 1.68
+          },
+          {
+            "missing": false,
+            "item": "Ciecierzyca (z puszki)",
+            "grams": 100,
+            "kcal": 119,
+            "protein": 7,
+            "fat": 2.5,
+            "carbs": 17
+          },
+          {
+            "missing": false,
+            "item": "Tahini",
+            "grams": 15,
+            "kcal": 89.25,
+            "protein": 2.55,
+            "fat": 8.1,
+            "carbs": 3.15
+          },
+          {
+            "missing": false,
+            "item": "Ogórek",
+            "grams": 200,
+            "kcal": 30,
+            "protein": 1.4,
+            "fat": 0.2,
+            "carbs": 6.2
+          },
+          {
+            "missing": false,
+            "item": "Papryka czerwona",
+            "grams": 80,
+            "kcal": 24.8,
+            "protein": 0.8,
+            "fat": 0.24,
+            "carbs": 4.800000000000001
+          },
+          {
+            "missing": false,
+            "item": "Sok z cytryny",
+            "grams": 10,
+            "kcal": 2.2,
+            "protein": 0.04000000000000001,
+            "fat": 0.020000000000000004,
+            "carbs": 0.7000000000000001
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 14.716981132075471,
+          "protein": 0,
+          "fat": 21.428571428571427,
+          "carbs": 13.333333333333334
+        },
+        "withinTolerance": false,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "d75",
+        "name": "Fit Sałatka z krewetkami i awokado",
+        "declared": {
+          "kcal": 490,
+          "protein": 52,
+          "fat": 22,
+          "carbs": 18
+        },
+        "calculated": {
+          "kcal": 412,
+          "protein": 52,
+          "fat": 19,
+          "carbs": 15
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Krewetki",
+            "grams": 200,
+            "kcal": 198,
+            "protein": 48,
+            "fat": 0.6,
+            "carbs": 0.4
+          },
+          {
+            "missing": false,
+            "item": "Awokado",
+            "grams": 85,
+            "kcal": 136,
+            "protein": 1.7,
+            "fat": 12.75,
+            "carbs": 7.6499999999999995
+          },
+          {
+            "missing": false,
+            "item": "Sałata rzymska",
+            "grams": 100,
+            "kcal": 17,
+            "protein": 1.2,
+            "fat": 0.3,
+            "carbs": 3.3
+          },
+          {
+            "missing": false,
+            "item": "Pomidorki cherry",
+            "grams": 80,
+            "kcal": 14.4,
+            "protein": 0.7200000000000001,
+            "fat": 0.16000000000000003,
+            "carbs": 3.12
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 5,
+            "kcal": 44.2,
+            "protein": 0,
+            "fat": 5,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Sok z cytryny",
+            "grams": 10,
+            "kcal": 2.2,
+            "protein": 0.04000000000000001,
+            "fat": 0.020000000000000004,
+            "carbs": 0.7000000000000001
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": -15.918367346938775,
+          "protein": 0,
+          "fat": -13.636363636363635,
+          "carbs": -16.666666666666664
+        },
+        "withinTolerance": false,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "d76",
+        "name": "Fit Tosty z twarogiem i łososiem",
+        "declared": {
+          "kcal": 540,
+          "protein": 52,
+          "fat": 18,
+          "carbs": 42
+        },
+        "calculated": {
+          "kcal": 602,
+          "protein": 59,
+          "fat": 20,
+          "carbs": 42
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Chleb żytni razowy",
+            "grams": 80,
+            "kcal": 176,
+            "protein": 4.800000000000001,
+            "fat": 1.2000000000000002,
+            "carbs": 35.2
+          },
+          {
+            "missing": false,
+            "item": "Twaróg chudy",
+            "grams": 150,
+            "kcal": 144,
+            "protein": 28.5,
+            "fat": 0.44999999999999996,
+            "carbs": 5.25
+          },
+          {
+            "missing": false,
+            "item": "Łosoś wędzony",
+            "grams": 60,
+            "kcal": 108,
+            "protein": 10.799999999999999,
+            "fat": 6.6,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Jajka",
+            "grams": 120,
+            "kcal": 171.6,
+            "protein": 15.12,
+            "fat": 11.4,
+            "carbs": 0.84
+          },
+          {
+            "missing": false,
+            "item": "Koperek",
+            "grams": 5,
+            "kcal": 2.15,
+            "protein": 0.17500000000000002,
+            "fat": 0.05500000000000001,
+            "carbs": 0.35000000000000003
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 11.481481481481481,
+          "protein": 13.461538461538462,
+          "fat": 11.11111111111111,
+          "carbs": 0
+        },
+        "withinTolerance": false,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "d77",
+        "name": "Fit Koktajl kazeinowy czekoladowy",
+        "declared": {
+          "kcal": 450,
+          "protein": 58,
+          "fat": 8,
+          "carbs": 38
+        },
+        "calculated": {
+          "kcal": 474,
+          "protein": 46,
+          "fat": 7,
+          "carbs": 58
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Kazeina czekoladowa",
+            "grams": 40,
+            "kcal": 148,
+            "protein": 30.8,
+            "fat": 0.8,
+            "carbs": 2.8000000000000003
+          },
+          {
+            "missing": false,
+            "item": "Mleko 1.5%",
+            "grams": 300,
+            "kcal": 141,
+            "protein": 10.2,
+            "fat": 4.5,
+            "carbs": 14.700000000000001
+          },
+          {
+            "missing": false,
+            "item": "Banan",
+            "grams": 120,
+            "kcal": 106.8,
+            "protein": 1.32,
+            "fat": 0.36,
+            "carbs": 27.599999999999998
+          },
+          {
+            "missing": false,
+            "item": "Płatki owsiane",
+            "grams": 20,
+            "kcal": 77.80000000000001,
+            "protein": 3.4000000000000004,
+            "fat": 1.4000000000000001,
+            "carbs": 13.200000000000001
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 5.333333333333334,
+          "protein": -20.689655172413794,
+          "fat": -12.5,
+          "carbs": 52.63157894736842
+        },
+        "withinTolerance": false,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "d78",
+        "name": "Halloumi z warzywami z air fryer",
+        "declared": {
+          "kcal": 472,
+          "protein": 24,
+          "fat": 36,
+          "carbs": 15
+        },
+        "calculated": {
+          "kcal": 472,
+          "protein": 24,
+          "fat": 36,
+          "carbs": 15
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Ser halloumi",
+            "grams": 100,
+            "kcal": 321,
+            "protein": 21,
+            "fat": 25,
+            "carbs": 2.6
+          },
+          {
+            "missing": false,
+            "item": "Cukinia",
+            "grams": 100,
+            "kcal": 17,
+            "protein": 1.2,
+            "fat": 0.3,
+            "carbs": 3.1
+          },
+          {
+            "missing": false,
+            "item": "Papryka czerwona",
+            "grams": 100,
+            "kcal": 31,
+            "protein": 1,
+            "fat": 0.3,
+            "carbs": 6
+          },
+          {
+            "missing": false,
+            "item": "Pomidorki cherry",
+            "grams": 80,
+            "kcal": 14.4,
+            "protein": 0.7200000000000001,
+            "fat": 0.16000000000000003,
+            "carbs": 3.12
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 10,
+            "kcal": 88.4,
+            "protein": 0,
+            "fat": 10,
+            "carbs": 0
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "d79",
+        "name": "Brukselka z boczkiem z air fryer",
+        "declared": {
+          "kcal": 490,
+          "protein": 20,
+          "fat": 38,
+          "carbs": 23
+        },
+        "calculated": {
+          "kcal": 490,
+          "protein": 20,
+          "fat": 38,
+          "carbs": 23
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Brukselka",
+            "grams": 250,
+            "kcal": 107.5,
+            "protein": 8.5,
+            "fat": 0.75,
+            "carbs": 22.5
+          },
+          {
+            "missing": false,
+            "item": "Bekon",
+            "grams": 50,
+            "kcal": 229,
+            "protein": 6,
+            "fat": 22.5,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 10,
+            "kcal": 88.4,
+            "protein": 0,
+            "fat": 10,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Parmezan tarty",
+            "grams": 15,
+            "kcal": 64.64999999999999,
+            "protein": 5.7,
+            "fat": 4.35,
+            "carbs": 0.6149999999999999
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "d80",
+        "name": "Kiełbasa z warzywami z air fryer",
+        "declared": {
+          "kcal": 587,
+          "protein": 21,
+          "fat": 39,
+          "carbs": 39
+        },
+        "calculated": {
+          "kcal": 587,
+          "protein": 21,
+          "fat": 39,
+          "carbs": 39
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Kiełbasa śląska",
+            "grams": 120,
+            "kcal": 374.4,
+            "protein": 16.8,
+            "fat": 33.6,
+            "carbs": 2.4
+          },
+          {
+            "missing": false,
+            "item": "Papryka czerwona",
+            "grams": 100,
+            "kcal": 31,
+            "protein": 1,
+            "fat": 0.3,
+            "carbs": 6
+          },
+          {
+            "missing": false,
+            "item": "Cebula",
+            "grams": 55,
+            "kcal": 22,
+            "protein": 0.6050000000000001,
+            "fat": 0.05500000000000001,
+            "carbs": 4.95
+          },
+          {
+            "missing": false,
+            "item": "Ziemniaki",
+            "grams": 150,
+            "kcal": 115.5,
+            "protein": 3,
+            "fat": 0.15000000000000002,
+            "carbs": 25.5
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 5,
+            "kcal": 44.2,
+            "protein": 0,
+            "fat": 5,
+            "carbs": 0
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "d81",
+        "name": "Krewetki w czosnku z air fryer",
+        "declared": {
+          "kcal": 539,
+          "protein": 55,
+          "fat": 17,
+          "carbs": 42
+        },
+        "calculated": {
+          "kcal": 539,
+          "protein": 55,
+          "fat": 17,
+          "carbs": 42
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Krewetki mrożone",
+            "grams": 200,
+            "kcal": 198,
+            "protein": 48,
+            "fat": 0.6,
+            "carbs": 0.4
+          },
+          {
+            "missing": false,
+            "item": "Czosnek",
+            "grams": 15,
+            "kcal": 22.349999999999998,
+            "protein": 0.96,
+            "fat": 0.075,
+            "carbs": 4.95
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 15,
+            "kcal": 132.6,
+            "protein": 0,
+            "fat": 15,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Chleb żytni razowy",
+            "grams": 80,
+            "kcal": 176,
+            "protein": 4.800000000000001,
+            "fat": 1.2000000000000002,
+            "carbs": 35.2
+          },
+          {
+            "missing": false,
+            "item": "Sok z cytryny",
+            "grams": 10,
+            "kcal": 2.2,
+            "protein": 0.04000000000000001,
+            "fat": 0.020000000000000004,
+            "carbs": 0.7000000000000001
+          },
+          {
+            "missing": false,
+            "item": "Rukola",
+            "grams": 30,
+            "kcal": 7.5,
+            "protein": 0.78,
+            "fat": 0.21,
+            "carbs": 1.11
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "d82",
+        "name": "Tortilla z warzywami i serem z air fryer",
+        "declared": {
+          "kcal": 561,
+          "protein": 24,
+          "fat": 20,
+          "carbs": 73
+        },
+        "calculated": {
+          "kcal": 561,
+          "protein": 24,
+          "fat": 20,
+          "carbs": 73
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Tortilla pszenna",
+            "grams": 110,
+            "kcal": 341,
+            "protein": 8.8,
+            "fat": 7.700000000000001,
+            "carbs": 57.2
+          },
+          {
+            "missing": false,
+            "item": "Ser mozzarella",
+            "grams": 50,
+            "kcal": 140,
+            "protein": 11,
+            "fat": 10.5,
+            "carbs": 1.1
+          },
+          {
+            "missing": false,
+            "item": "Szpinak świeży",
+            "grams": 40,
+            "kcal": 9.200000000000001,
+            "protein": 1.16,
+            "fat": 0.16000000000000003,
+            "carbs": 1.4400000000000002
+          },
+          {
+            "missing": false,
+            "item": "Pomidory",
+            "grams": 100,
+            "kcal": 18,
+            "protein": 0.9,
+            "fat": 0.2,
+            "carbs": 3.9
+          },
+          {
+            "missing": false,
+            "item": "Kukurydza",
+            "grams": 40,
+            "kcal": 34.4,
+            "protein": 1.32,
+            "fat": 0.5599999999999999,
+            "carbs": 7.6000000000000005
+          },
+          {
+            "missing": false,
+            "item": "Jogurt naturalny",
+            "grams": 30,
+            "kcal": 18.3,
+            "protein": 1.05,
+            "fat": 0.96,
+            "carbs": 1.41
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "d83",
+        "name": "Dorsz z cytryną z air fryer",
+        "declared": {
+          "kcal": 314,
+          "protein": 41,
+          "fat": 12,
+          "carbs": 13
+        },
+        "calculated": {
+          "kcal": 314,
+          "protein": 41,
+          "fat": 12,
+          "carbs": 13
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Dorsz",
+            "grams": 200,
+            "kcal": 164,
+            "protein": 36,
+            "fat": 1.4,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Brokuł świeży",
+            "grams": 150,
+            "kcal": 51,
+            "protein": 4.199999999999999,
+            "fat": 0.6000000000000001,
+            "carbs": 10.5
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 10,
+            "kcal": 88.4,
+            "protein": 0,
+            "fat": 10,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Sok z cytryny",
+            "grams": 15,
+            "kcal": 3.3,
+            "protein": 0.06,
+            "fat": 0.03,
+            "carbs": 1.05
+          },
+          {
+            "missing": false,
+            "item": "Czosnek",
+            "grams": 5,
+            "kcal": 7.45,
+            "protein": 0.32000000000000006,
+            "fat": 0.025,
+            "carbs": 1.6500000000000001
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "d84",
+        "name": "Tofu chrupiące z warzywami z air fryer",
+        "declared": {
+          "kcal": 422,
+          "protein": 37,
+          "fat": 24,
+          "carbs": 23
+        },
+        "calculated": {
+          "kcal": 422,
+          "protein": 37,
+          "fat": 24,
+          "carbs": 23
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Tofu extra firm",
+            "grams": 200,
+            "kcal": 288,
+            "protein": 34,
+            "fat": 18,
+            "carbs": 4
+          },
+          {
+            "missing": false,
+            "item": "Papryka czerwona",
+            "grams": 100,
+            "kcal": 31,
+            "protein": 1,
+            "fat": 0.3,
+            "carbs": 6
+          },
+          {
+            "missing": false,
+            "item": "Cukinia",
+            "grams": 100,
+            "kcal": 17,
+            "protein": 1.2,
+            "fat": 0.3,
+            "carbs": 3.1
+          },
+          {
+            "missing": false,
+            "item": "Sos sojowy",
+            "grams": 15,
+            "kcal": 7.949999999999999,
+            "protein": 0.75,
+            "fat": 0,
+            "carbs": 1.2
+          },
+          {
+            "missing": false,
+            "item": "Sos sweet chili",
+            "grams": 15,
+            "kcal": 33.75,
+            "protein": 0.075,
+            "fat": 0.045,
+            "carbs": 8.25
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 5,
+            "kcal": 44.2,
+            "protein": 0,
+            "fat": 5,
+            "carbs": 0
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
+      },
+      {
+        "id": "d85",
+        "name": "Pierożki z serem z air fryer",
+        "declared": {
+          "kcal": 690,
+          "protein": 16,
+          "fat": 30,
+          "carbs": 91
+        },
+        "calculated": {
+          "kcal": 690,
+          "protein": 16,
+          "fat": 30,
+          "carbs": 91
+        },
+        "ingredients": [
+          {
+            "missing": false,
+            "item": "Pierogi ruskie",
+            "grams": 250,
+            "kcal": 517.5,
+            "protein": 15,
+            "fat": 12.5,
+            "carbs": 87.5
+          },
+          {
+            "missing": false,
+            "item": "Oliwa z oliwek",
+            "grams": 10,
+            "kcal": 88.4,
+            "protein": 0,
+            "fat": 10,
+            "carbs": 0
+          },
+          {
+            "missing": false,
+            "item": "Śmietana 18%",
+            "grams": 40,
+            "kcal": 72.8,
+            "protein": 1.04,
+            "fat": 7.2,
+            "carbs": 1.4400000000000002
+          },
+          {
+            "missing": false,
+            "item": "Cebula",
+            "grams": 27.5,
+            "kcal": 11,
+            "protein": 0.30250000000000005,
+            "fat": 0.027500000000000004,
+            "carbs": 2.475
+          }
+        ],
+        "missingIngredients": [],
+        "discrepancies": {
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 0
+        },
+        "withinTolerance": true,
+        "hasMissingIngredients": false
       }
     ]
   },
-  "allMissingIngredients": []
+  "allMissingIngredients": [
+    "Tuńczyk w wodzie (puszka)"
+  ]
 }

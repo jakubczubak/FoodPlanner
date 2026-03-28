@@ -3312,6 +3312,7 @@
                     <button class="filter-tab" onclick="filterRecipes('lunch', this)">🍽️ Obiady</button>
                     <button class="filter-tab" onclick="filterRecipes('dinner', this)">🥗 Kolacje</button>
                     <button class="filter-tab" onclick="filterRecipes('oven', this)">🔥 Z piekarnika</button>
+                    <button class="filter-tab" onclick="filterRecipes('airfryer', this)">🍟 Air Fryer</button>
                     <button class="filter-tab" onclick="filterRecipes('chicken', this)">🍗 Kurczak</button>
                     <button class="filter-tab" onclick="filterRecipes('pasta', this)">🍝 Makarony</button>
                     <button class="filter-tab" onclick="filterRecipes('asian', this)">🍚 Azjatyckie</button>
@@ -3329,6 +3330,7 @@
                     <button class="filter-tab" onclick="filterRecipes('casseroles', this)">🥘 Zapiekanki</button>
                     <button class="filter-tab" onclick="filterRecipes('shakes', this)">🥤 Shake'i</button>
                     <button class="filter-tab" onclick="filterRecipes('antiaging', this)">🧬 Anti-Aging</button>
+                    <button class="filter-tab" onclick="filterRecipes('fit', this)">💪 Fit</button>
                 </div>
                 <div class="search-container">
                     <input type="text"
@@ -4048,6 +4050,7 @@
             "Tortilla kukurydziana": { kcal: 218, protein: 6, fat: 3, carbs: 44, unitWeight: { szt: 25 } },
             "Wrap pszenny": { kcal: 310, protein: 8, fat: 7, carbs: 52, unitWeight: { szt: 60 } },
             "Chipsy tortilla": { kcal: 489, protein: 7, fat: 24, carbs: 63 },
+            "Papier ryżowy": { kcal: 330, protein: 0.8, fat: 0, carbs: 82, unitWeight: { szt: 10 } },
 
             // TŁUSZCZE I OLEJE
             "Masło": { kcal: 717, protein: 0.9, fat: 81, carbs: 0.1 },
@@ -5600,7 +5603,7 @@
                 {
                     id: 'b8',
                     name: "Fit Placuszki proteinowe",
-                    category: "🥞 Naleśniki",
+                    category: "💪 Fit",
                     kcal: 872,
                     protein: 83,
                     fat: 32,
@@ -7195,6 +7198,726 @@
                         "Pomidora pokrój w plastry, ułóż obok.",
                         "Posyp pestkami dyni i siemieniem lnianym.",
                         "Skrop oliwą, dopraw solą i pieprzem."
+                    ]
+                },
+                {
+                    id: 'b70',
+                    name: "Jajka w kokilkach z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 437,
+                    protein: 42,
+                    fat: 26,
+                    carbs: 7,
+                    ingredients: [
+                        { item: "Jajka", amount: 3, unit: "szt" },
+                        { item: "Szynka z indyka", amount: 60, unit: "g" },
+                        { item: "Ser żółty (gouda)", amount: 30, unit: "g" },
+                        { item: "Papryka czerwona", amount: 50, unit: "g" },
+                        { item: "Szpinak świeży", amount: 30, unit: "g" }
+                    ],
+                    steps: [
+                        "Kokilki natłuść odrobiną oliwy.",
+                        "Na dno każdej kokilki włóż pokrojoną szynkę i szpinak.",
+                        "Wbij jajko do każdej kokilki.",
+                        "Posyp startym serem i pokrojoną papryką.",
+                        "Włóż do air fryera na 180°C na 8-10 minut.",
+                        "Dopraw solą i pieprzem."
+                    ]
+                },
+                {
+                    id: 'b71',
+                    name: "Tosty z serem i szynką z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 574,
+                    protein: 31,
+                    fat: 24,
+                    carbs: 60,
+                    ingredients: [
+                        { item: "Chleb tostowy pełnoziarnisty", amount: 4, unit: "kromki" },
+                        { item: "Ser żółty (gouda)", amount: 40, unit: "g" },
+                        { item: "Szynka z indyka", amount: 60, unit: "g" },
+                        { item: "Pomidor", amount: 0.5, unit: "szt" },
+                        { item: "Masło", amount: 10, unit: "g" }
+                    ],
+                    steps: [
+                        "Chleb posmaruj cienką warstwą masła z jednej strony.",
+                        "Na kromkę bez masła ułóż szynkę, ser i plastry pomidora.",
+                        "Przykryj drugą kromką (masłem na zewnątrz).",
+                        "Włóż do air fryera na 180°C na 5-6 minut.",
+                        "Odwróć w połowie czasu pieczenia.",
+                        "Podawaj gorące, gdy ser się roztopi."
+                    ]
+                },
+                {
+                    id: 'b72',
+                    name: "Chrupiący boczek z jajkiem z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 534,
+                    protein: 25,
+                    fat: 39,
+                    carbs: 18,
+                    ingredients: [
+                        { item: "Bekon", amount: 60, unit: "g" },
+                        { item: "Jajka", amount: 2, unit: "szt" },
+                        { item: "Chleb tostowy pełnoziarnisty", amount: 1, unit: "kromki" },
+                        { item: "Pomidor", amount: 0.5, unit: "szt" }
+                    ],
+                    steps: [
+                        "Boczek ułóż w air fryerze w jednej warstwie.",
+                        "Piecz w 200°C przez 6-8 minut aż będzie chrupiący.",
+                        "Wyjmij boczek, w foremce żaroodpornej wbij jajka.",
+                        "Piecz jajka w air fryerze 180°C przez 5-6 minut.",
+                        "Chleb opiecz w air fryerze 180°C przez 2 minuty.",
+                        "Podawaj z pokrojonym pomidorem."
+                    ]
+                },
+                {
+                    id: 'b73',
+                    name: "Placuszki owsiane z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 487,
+                    protein: 21,
+                    fat: 12,
+                    carbs: 78,
+                    ingredients: [
+                        { item: "Płatki owsiane", amount: 60, unit: "g" },
+                        { item: "Banan", amount: 1, unit: "szt" },
+                        { item: "Jajka", amount: 1, unit: "szt" },
+                        { item: "Jogurt naturalny", amount: 50, unit: "g" },
+                        { item: "Miód", amount: 10, unit: "g" }
+                    ],
+                    steps: [
+                        "Banana rozgnieć widelcem, wymieszaj z jajkiem.",
+                        "Dodaj płatki owsiane i jogurt, wymieszaj na ciasto.",
+                        "Uformuj placuszki (ok. 6 sztuk).",
+                        "Włóż do air fryera na 170°C na 8-10 minut.",
+                        "Odwróć w połowie czasu pieczenia.",
+                        "Polej miodem przed podaniem."
+                    ]
+                },
+                {
+                    id: 'b74',
+                    name: "Rogaliki z twarogiem z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 687,
+                    protein: 32,
+                    fat: 31,
+                    carbs: 69,
+                    ingredients: [
+                        { item: "Croissant", amount: 2, unit: "szt" },
+                        { item: "Twaróg", amount: 80, unit: "g" },
+                        { item: "Jajka", amount: 1, unit: "szt" },
+                        { item: "Miód", amount: 10, unit: "g" },
+                        { item: "Cynamon", amount: 2, unit: "g" }
+                    ],
+                    steps: [
+                        "Twaróg wymieszaj z miodem i cynamonem.",
+                        "Croissanty przekrój na pół wzdłuż.",
+                        "Nałóż masę twarogową na dolną część.",
+                        "Zamknij croissanty i posmaruj roztrzepanym jajkiem.",
+                        "Włóż do air fryera na 170°C na 5-6 minut.",
+                        "Podawaj ciepłe."
+                    ]
+                },
+                {
+                    id: 'b75',
+                    name: "Grzanki francuskie z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 600,
+                    protein: 27,
+                    fat: 24,
+                    carbs: 68,
+                    ingredients: [
+                        { item: "Chleb tostowy pełnoziarnisty", amount: 4, unit: "kromki" },
+                        { item: "Jajka", amount: 2, unit: "szt" },
+                        { item: "Mleko 2%", amount: 50, unit: "ml" },
+                        { item: "Cynamon", amount: 2, unit: "g" },
+                        { item: "Masło", amount: 10, unit: "g" },
+                        { item: "Miód", amount: 10, unit: "g" }
+                    ],
+                    steps: [
+                        "Jajka roztrzep z mlekiem i cynamonem.",
+                        "Każdą kromkę chleba namocz w mieszance jajecznej.",
+                        "Lekko posmaruj kosz air fryera masłem.",
+                        "Ułóż grzanki w air fryerze w jednej warstwie.",
+                        "Piecz w 180°C przez 4-5 minut z każdej strony.",
+                        "Polej miodem przed podaniem."
+                    ]
+                },
+                {
+                    id: 'b76',
+                    name: "Muffiny jajeczne z warzywami z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 415,
+                    protein: 33,
+                    fat: 26,
+                    carbs: 10,
+                    ingredients: [
+                        { item: "Jajka", amount: 3, unit: "szt" },
+                        { item: "Papryka czerwona", amount: 50, unit: "g" },
+                        { item: "Szpinak świeży", amount: 40, unit: "g" },
+                        { item: "Ser żółty (gouda)", amount: 30, unit: "g" },
+                        { item: "Cebula", amount: 0.25, unit: "szt" },
+                        { item: "Mleko 2%", amount: 30, unit: "ml" }
+                    ],
+                    steps: [
+                        "Jajka roztrzep z mlekiem, dopraw solą i pieprzem.",
+                        "Warzywa pokrój w drobną kostkę.",
+                        "Dodaj warzywa i starty ser do masy jajecznej.",
+                        "Rozlej do silikonowych foremek na muffiny.",
+                        "Włóż do air fryera na 170°C na 10-12 minut.",
+                        "Gotowe, gdy będą sprężyste w dotyku."
+                    ]
+                },
+                {
+                    id: 'b77',
+                    name: "Croissanty z szynką i serem z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 773,
+                    protein: 39,
+                    fat: 43,
+                    carbs: 57,
+                    ingredients: [
+                        { item: "Croissant", amount: 2, unit: "szt" },
+                        { item: "Szynka z kurczaka", amount: 60, unit: "g" },
+                        { item: "Ser żółty (gouda)", amount: 40, unit: "g" },
+                        { item: "Jajka", amount: 1, unit: "szt" }
+                    ],
+                    steps: [
+                        "Croissanty przekrój na pół.",
+                        "Ułóż szynkę i plastry sera na dolnej połówce.",
+                        "Zamknij croissanty.",
+                        "Posmaruj wierzch roztrzepanym jajkiem.",
+                        "Włóż do air fryera na 170°C na 5-6 minut.",
+                        "Podawaj gdy ser się roztopi."
+                    ]
+                },
+                {
+                    id: 'b78',
+                    name: "Fit Owsianka proteinowa z masłem orzechowym",
+                    category: "💪 Fit",
+                    kcal: 805,
+                    protein: 60,
+                    fat: 21,
+                    carbs: 100,
+                    ingredients: [
+                        { item: "Płatki owsiane", amount: 80, unit: "g" },
+                        { item: "Odżywka białkowa", amount: 40, unit: "g" },
+                        { item: "Mleko 1.5%", amount: 250, unit: "ml" },
+                        { item: "Masło orzechowe", amount: 20, unit: "g" },
+                        { item: "Banan", amount: 1, unit: "szt" }
+                    ],
+                    steps: [
+                        "Płatki owsiane zalej mlekiem i gotuj na małym ogniu 5 min.",
+                        "Zdejmij z ognia, wymieszaj z odżywką białkową.",
+                        "Przełóż do miski, dodaj masło orzechowe i pokrojonego banana."
+                    ]
+                },
+                {
+                    id: 'b79',
+                    name: "Fit Jajecznica z piersią z indyka",
+                    category: "💪 Fit",
+                    kcal: 679,
+                    protein: 61,
+                    fat: 30,
+                    carbs: 39,
+                    ingredients: [
+                        { item: "Jajka", amount: 4, unit: "szt" },
+                        { item: "Pierś z indyka", amount: 100, unit: "g" },
+                        { item: "Chleb żytni razowy", amount: 2, unit: "kromki" },
+                        { item: "Szpinak świeży", amount: 50, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 5, unit: "g" }
+                    ],
+                    steps: [
+                        "Pierś z indyka pokrój w kostkę, smaż na oliwie 5 min.",
+                        "Dodaj szpinak, smaż 1 min aż opadnie.",
+                        "Wbij jajka, mieszaj do ścięcia.",
+                        "Dopraw solą i pieprzem. Podawaj z chlebem."
+                    ]
+                },
+                {
+                    id: 'b80',
+                    name: "Fit Twarożek z jajkami i rzodkiewką",
+                    category: "💪 Fit",
+                    kcal: 603,
+                    protein: 73,
+                    fat: 19,
+                    carbs: 31,
+                    ingredients: [
+                        { item: "Twaróg chudy", amount: 250, unit: "g" },
+                        { item: "Jajka", amount: 3, unit: "szt" },
+                        { item: "Rzodkiewka", amount: 80, unit: "g" },
+                        { item: "Szczypiorek", amount: 10, unit: "g" },
+                        { item: "Chleb żytni razowy", amount: 1, unit: "kromki" }
+                    ],
+                    steps: [
+                        "Jajka ugotuj na twardo (10 min), pokrój w kostkę.",
+                        "Twaróg wymieszaj z pokrojoną rzodkiewką i szczypiorkiem.",
+                        "Dodaj jajka, dopraw solą i pieprzem.",
+                        "Podawaj z kromką chleba."
+                    ]
+                },
+                {
+                    id: 'b81',
+                    name: "Fit Wrap z kurczakiem i jajkiem",
+                    category: "💪 Fit",
+                    kcal: 540,
+                    protein: 55,
+                    fat: 17,
+                    carbs: 38,
+                    ingredients: [
+                        { item: "Tortilla pełnoziarnista", amount: 1, unit: "szt" },
+                        { item: "Pierś z kurczaka", amount: 120, unit: "g" },
+                        { item: "Jajka", amount: 2, unit: "szt" },
+                        { item: "Jogurt grecki 0%", amount: 50, unit: "g" },
+                        { item: "Szpinak świeży", amount: 30, unit: "g" },
+                        { item: "Pomidor", amount: 1, unit: "szt" }
+                    ],
+                    steps: [
+                        "Pierś z kurczaka ugotuj lub usmaż, pokrój w paski.",
+                        "Usmaż jajka w formie omleta.",
+                        "Na tortilli rozłóż jogurt, szpinak, kurczaka, omlet i pomidora.",
+                        "Zwiń w wrap i opiecz z obu stron na suchej patelni 1-2 min."
+                    ]
+                },
+                {
+                    id: 'b82',
+                    name: "Fit Omlet z twarogiem i szpinakiem",
+                    category: "💪 Fit",
+                    kcal: 489,
+                    protein: 53,
+                    fat: 24,
+                    carbs: 15,
+                    ingredients: [
+                        { item: "Jajka", amount: 4, unit: "szt" },
+                        { item: "Twaróg chudy", amount: 100, unit: "g" },
+                        { item: "Szpinak mrożony", amount: 100, unit: "g" },
+                        { item: "Pomidor", amount: 1, unit: "szt" }
+                    ],
+                    steps: [
+                        "Roztrzep jajka, dopraw solą i pieprzem.",
+                        "Wylej na rozgrzaną patelnię, smaż na małym ogniu.",
+                        "Na połówkę omleta rozłóż twaróg i rozmrożony szpinak.",
+                        "Złóż omlet na pół, smaż jeszcze 1 min.",
+                        "Podawaj z pokrojonym pomidorem."
+                    ]
+                },
+                {
+                    id: 'b83',
+                    name: "Fit Skyr z owocami i orzechami",
+                    category: "💪 Fit",
+                    kcal: 582,
+                    protein: 67,
+                    fat: 14,
+                    carbs: 50,
+                    ingredients: [
+                        { item: "Jogurt Skyr naturalny", amount: 300, unit: "g" },
+                        { item: "Odżywka białkowa", amount: 30, unit: "g" },
+                        { item: "Borówki amerykańskie", amount: 80, unit: "g" },
+                        { item: "Migdały", amount: 20, unit: "g" },
+                        { item: "Płatki owsiane", amount: 30, unit: "g" }
+                    ],
+                    steps: [
+                        "Skyr wymieszaj z odżywką białkową na gładko.",
+                        "Dodaj płatki owsiane, wymieszaj.",
+                        "Przełóż do miski, na wierzch układaj borówki.",
+                        "Posyp posiekanymi migdałami."
+                    ]
+                },
+                {
+                    id: 'b84',
+                    name: "Fit Shakshuka proteinowa",
+                    category: "💪 Fit",
+                    kcal: 642,
+                    protein: 59,
+                    fat: 25,
+                    carbs: 40,
+                    ingredients: [
+                        { item: "Jajka", amount: 4, unit: "szt" },
+                        { item: "Pierś z kurczaka", amount: 100, unit: "g" },
+                        { item: "Pomidory krojone (puszka)", amount: 200, unit: "g" },
+                        { item: "Papryka czerwona", amount: 1, unit: "szt" },
+                        { item: "Cebula", amount: 0.5, unit: "szt" },
+                        { item: "Chleb żytni razowy", amount: 1, unit: "kromki" }
+                    ],
+                    steps: [
+                        "Na oliwie zeszklij cebulę, dodaj pokrojoną paprykę.",
+                        "Dodaj pokrojoną pierś z kurczaka, smaż 5 min.",
+                        "Wlej pomidory, duś 10 min na małym ogniu.",
+                        "Zrób 4 zagłębienia, wbij jajka, przykryj pokrywką na 5-7 min.",
+                        "Dopraw solą, pieprzem i kuminkiem. Podawaj z chlebem."
+                    ]
+                },
+                {
+                    id: 'b85',
+                    name: "Fit Overnight oats z odżywką",
+                    category: "💪 Fit",
+                    kcal: 620,
+                    protein: 52,
+                    fat: 16,
+                    carbs: 70,
+                    ingredients: [
+                        { item: "Płatki owsiane", amount: 70, unit: "g" },
+                        { item: "Odżywka białkowa waniliowa", amount: 35, unit: "g" },
+                        { item: "Jogurt grecki 0%", amount: 150, unit: "g" },
+                        { item: "Mleko 1.5%", amount: 100, unit: "ml" },
+                        { item: "Nasiona chia", amount: 10, unit: "g" },
+                        { item: "Borówki amerykańskie", amount: 60, unit: "g" }
+                    ],
+                    steps: [
+                        "Płatki owsiane wymieszaj z odżywką, jogurtem i mlekiem.",
+                        "Dodaj nasiona chia, wymieszaj dokładnie.",
+                        "Przykryj i wstaw do lodówki na noc (min. 6h).",
+                        "Rano dodaj borówki na wierzch i podawaj na zimno."
+                    ]
+                },
+                {
+                    id: 'b86',
+                    name: "Fit Tosty z jajkiem i awokado",
+                    category: "💪 Fit",
+                    kcal: 590,
+                    protein: 42,
+                    fat: 30,
+                    carbs: 38,
+                    ingredients: [
+                        { item: "Chleb żytni razowy", amount: 2, unit: "kromki" },
+                        { item: "Jajka", amount: 3, unit: "szt" },
+                        { item: "Awokado", amount: 0.5, unit: "szt" },
+                        { item: "Pomidorki cherry", amount: 80, unit: "g" },
+                        { item: "Twaróg chudy", amount: 50, unit: "g" }
+                    ],
+                    steps: [
+                        "Chleb opiecz w tosterze.",
+                        "Jajka usmaż na sadzone lub jajecznicę.",
+                        "Awokado rozgnieć widelcem z solą i pieprzem.",
+                        "Na tosty nałóż awokado, twaróg i jajka.",
+                        "Udekoruj pomidorkami cherry."
+                    ]
+                },
+                {
+                    id: 'b87',
+                    name: "Fit Granola proteinowa z jogurtem",
+                    category: "💪 Fit",
+                    kcal: 650,
+                    protein: 58,
+                    fat: 18,
+                    carbs: 65,
+                    ingredients: [
+                        { item: "Jogurt Skyr naturalny", amount: 250, unit: "g" },
+                        { item: "Odżywka białkowa", amount: 30, unit: "g" },
+                        { item: "Płatki owsiane", amount: 50, unit: "g" },
+                        { item: "Migdały", amount: 15, unit: "g" },
+                        { item: "Miód", amount: 15, unit: "g" },
+                        { item: "Banan", amount: 1, unit: "szt" }
+                    ],
+                    steps: [
+                        "Płatki owsiane i migdały praż na suchej patelni 3 min.",
+                        "Dodaj miód, mieszaj aż się zkarmelizują.",
+                        "Skyr wymieszaj z odżywką białkową.",
+                        "W misce ułóż jogurt, granolę i pokrojonego banana."
+                    ]
+                },
+                {
+                    id: 'b88',
+                    name: "Fit Naleśniki z twarogiem i bananem",
+                    category: "💪 Fit",
+                    kcal: 720,
+                    protein: 62,
+                    fat: 22,
+                    carbs: 72,
+                    ingredients: [
+                        { item: "Jajka", amount: 3, unit: "szt" },
+                        { item: "Mąka pszenna pełnoziarnista", amount: 50, unit: "g" },
+                        { item: "Odżywka białkowa waniliowa", amount: 30, unit: "g" },
+                        { item: "Mleko 1.5%", amount: 100, unit: "ml" },
+                        { item: "Twaróg chudy", amount: 150, unit: "g" },
+                        { item: "Banan", amount: 1, unit: "szt" }
+                    ],
+                    steps: [
+                        "Jajka, mąkę, odżywkę i mleko zblenduj na ciasto.",
+                        "Smaż cienkie naleśniki na suchej patelni teflonowej.",
+                        "Twaróg rozgnieć, wymieszaj z pokrojonym bananem.",
+                        "Naleśniki nadziej twarogiem, zwiń i podawaj."
+                    ]
+                },
+                {
+                    id: 'b89',
+                    name: "Fit Jaglanka proteinowa z owocami",
+                    category: "💪 Fit",
+                    kcal: 680,
+                    protein: 50,
+                    fat: 14,
+                    carbs: 88,
+                    ingredients: [
+                        { item: "Kasza jaglana", amount: 60, unit: "g" },
+                        { item: "Mleko 1.5%", amount: 250, unit: "ml" },
+                        { item: "Odżywka białkowa waniliowa", amount: 35, unit: "g" },
+                        { item: "Banan", amount: 1, unit: "szt" },
+                        { item: "Masło orzechowe", amount: 10, unit: "g" }
+                    ],
+                    steps: [
+                        "Kaszę jaglaną przepłucz i zalej mlekiem.",
+                        "Gotuj na małym ogniu 15 min, mieszając.",
+                        "Zdejmij z ognia, dodaj odżywkę, wymieszaj.",
+                        "Podawaj z pokrojonym bananem i masłem orzechowym."
+                    ]
+                },
+                {
+                    id: 'b90',
+                    name: "Fit Kanapki z kurczakiem i twarogiem",
+                    category: "💪 Fit",
+                    kcal: 560,
+                    protein: 58,
+                    fat: 12,
+                    carbs: 48,
+                    ingredients: [
+                        { item: "Chleb żytni razowy", amount: 2, unit: "kromki" },
+                        { item: "Pierś z kurczaka", amount: 120, unit: "g" },
+                        { item: "Twaróg chudy", amount: 80, unit: "g" },
+                        { item: "Ogórek", amount: 0.5, unit: "szt" },
+                        { item: "Pomidor", amount: 1, unit: "szt" },
+                        { item: "Szczypiorek", amount: 5, unit: "g" }
+                    ],
+                    steps: [
+                        "Pierś z kurczaka ugotuj, pokrój w plastry.",
+                        "Twaróg wymieszaj ze szczypiorkiem.",
+                        "Chleb posmaruj twarogiem, ułóż kurczaka.",
+                        "Dodaj plasterki ogórka i pomidora."
+                    ]
+                },
+                {
+                    id: 'b91',
+                    name: "Fit Omlet z łososiem i szparagami",
+                    category: "💪 Fit",
+                    kcal: 550,
+                    protein: 48,
+                    fat: 32,
+                    carbs: 12,
+                    ingredients: [
+                        { item: "Jajka", amount: 4, unit: "szt" },
+                        { item: "Łosoś wędzony", amount: 60, unit: "g" },
+                        { item: "Szparagi zielone", amount: 100, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 5, unit: "g" },
+                        { item: "Koperek", amount: 5, unit: "g" }
+                    ],
+                    steps: [
+                        "Szparagi pokrój na kawałki, podsmaż na oliwie 3 min.",
+                        "Roztrzep jajka, dopraw solą i pieprzem.",
+                        "Wylej jajka na patelnię ze szparagami.",
+                        "Na połówkę ułóż łososia, posyp koperkiem.",
+                        "Złóż omlet na pół, smaż jeszcze 1 min."
+                    ]
+                },
+                {
+                    id: 'b92',
+                    name: "Fit Smoothie bowl proteinowy",
+                    category: "💪 Fit",
+                    kcal: 610,
+                    protein: 55,
+                    fat: 12,
+                    carbs: 72,
+                    ingredients: [
+                        { item: "Jogurt Skyr naturalny", amount: 200, unit: "g" },
+                        { item: "Odżywka białkowa czekoladowa", amount: 35, unit: "g" },
+                        { item: "Banan", amount: 1, unit: "szt" },
+                        { item: "Płatki owsiane", amount: 30, unit: "g" },
+                        { item: "Masło orzechowe", amount: 10, unit: "g" },
+                        { item: "Mrożone owoce leśne", amount: 80, unit: "g" }
+                    ],
+                    steps: [
+                        "Skyr, odżywkę, banana i mrożone owoce zblenduj na gęsty krem.",
+                        "Przelej do miski.",
+                        "Na wierzch ułóż płatki owsiane i masło orzechowe.",
+                        "Podawaj od razu, dopóki jest gęsty."
+                    ]
+                },
+                {
+                    id: 'b93',
+                    name: "Kiełbaska śląska z jajkiem z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 581,
+                    protein: 32,
+                    fat: 40,
+                    carbs: 22,
+                    ingredients: [
+                        { item: "Kiełbasa śląska", amount: 100, unit: "g" },
+                        { item: "Jajka", amount: 2, unit: "szt" },
+                        { item: "Chleb żytni razowy", amount: 1, unit: "kromki" },
+                        { item: "Ogórek kiszony", amount: 1, unit: "szt" }
+                    ],
+                    steps: [
+                        "Kiełbasę natnij ukośnie co 2 cm.",
+                        "Włóż do air fryera na 190°C na 8-10 minut.",
+                        "W połowie czasu dołóż jajka w foremce żaroodpornej.",
+                        "Chleb opiecz w air fryerze przez ostatnie 2 minuty.",
+                        "Podawaj z ogórkiem kiszonym."
+                    ]
+                },
+                {
+                    id: 'b94',
+                    name: "Halloumi z pomidorami z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 564,
+                    protein: 27,
+                    fat: 32,
+                    carbs: 42,
+                    ingredients: [
+                        { item: "Ser halloumi", amount: 100, unit: "g" },
+                        { item: "Pomidorki cherry", amount: 100, unit: "g" },
+                        { item: "Chleb żytni razowy", amount: 2, unit: "kromki" },
+                        { item: "Oliwa z oliwek", amount: 5, unit: "ml" },
+                        { item: "Rukola", amount: 20, unit: "g" }
+                    ],
+                    steps: [
+                        "Halloumi pokrój w plastry grubości 1 cm.",
+                        "Pomidorki cherry przekrój na połówki.",
+                        "Halloumi i pomidorki spryskaj oliwą.",
+                        "Piecz w air fryerze 200°C przez 6-8 minut.",
+                        "Chleb opiecz w air fryerze przez 2 minuty.",
+                        "Podawaj halloumi na chlebie z rukolą i pomidorkami."
+                    ]
+                },
+                {
+                    id: 'b95',
+                    name: "Tortilla śniadaniowa z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 498,
+                    protein: 34,
+                    fat: 24,
+                    carbs: 34,
+                    ingredients: [
+                        { item: "Tortilla pszenna", amount: 1, unit: "szt" },
+                        { item: "Jajka", amount: 2, unit: "szt" },
+                        { item: "Ser żółty (gouda)", amount: 30, unit: "g" },
+                        { item: "Szynka z indyka", amount: 40, unit: "g" },
+                        { item: "Papryka czerwona", amount: 50, unit: "g" }
+                    ],
+                    steps: [
+                        "Jajka roztrzep i usmaż szybko na patelni na miękką jajecznicę.",
+                        "Na tortillę ułóż jajecznicę, szynkę, ser i paprykę.",
+                        "Zwiń tortillę ciasno w rulon.",
+                        "Włóż do air fryera na 180°C na 4-5 minut.",
+                        "Podawaj gorącą, pokrojoną na pół."
+                    ]
+                },
+                {
+                    id: 'b96',
+                    name: "Pieczarki z jajkiem i serem z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 501,
+                    protein: 33,
+                    fat: 26,
+                    carbs: 34,
+                    ingredients: [
+                        { item: "Pieczarki", amount: 150, unit: "g" },
+                        { item: "Jajka", amount: 2, unit: "szt" },
+                        { item: "Ser mozzarella", amount: 40, unit: "g" },
+                        { item: "Chleb tostowy pełnoziarnisty", amount: 2, unit: "kromki" },
+                        { item: "Masło", amount: 5, unit: "g" }
+                    ],
+                    steps: [
+                        "Pieczarki pokrój w plastry.",
+                        "Ułóż w naczyniu żaroodpornym, wbij jajka na wierzch.",
+                        "Posyp startą mozzarellą.",
+                        "Piecz w air fryerze 180°C przez 10-12 minut.",
+                        "Chleb posmaruj masłem i opiecz w air fryerze 2 minuty.",
+                        "Podawaj pieczarki z tostami."
+                    ]
+                },
+                {
+                    id: 'b97',
+                    name: "Owsiane ciasteczka śniadaniowe z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 615,
+                    protein: 23,
+                    fat: 19,
+                    carbs: 96,
+                    ingredients: [
+                        { item: "Płatki owsiane", amount: 80, unit: "g" },
+                        { item: "Banan", amount: 1, unit: "szt" },
+                        { item: "Masło orzechowe", amount: 20, unit: "g" },
+                        { item: "Miód", amount: 10, unit: "g" },
+                        { item: "Jogurt naturalny", amount: 80, unit: "g" }
+                    ],
+                    steps: [
+                        "Banana rozgnieć, wymieszaj z płatkami i masłem orzechowym.",
+                        "Dodaj miód, wymieszaj na gęstą masę.",
+                        "Uformuj placuszki (ok. 8 sztuk).",
+                        "Piecz w air fryerze 170°C przez 10-12 minut.",
+                        "Odwróć w połowie czasu.",
+                        "Podawaj z jogurtem naturalnym."
+                    ]
+                },
+                {
+                    id: 'b98',
+                    name: "Bułki z jajkiem i boczkiem z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 635,
+                    protein: 32,
+                    fat: 36,
+                    carbs: 40,
+                    ingredients: [
+                        { item: "Bułka grahamka", amount: 1, unit: "szt" },
+                        { item: "Jajka", amount: 2, unit: "szt" },
+                        { item: "Bekon", amount: 40, unit: "g" },
+                        { item: "Ser żółty (gouda)", amount: 20, unit: "g" },
+                        { item: "Sałata lodowa", amount: 20, unit: "g" }
+                    ],
+                    steps: [
+                        "Bekon piecz w air fryerze 200°C przez 5-6 minut.",
+                        "Jajka usmaż jako sadzone w foremce w air fryerze 180°C, 5 min.",
+                        "Bułkę przekrój i opiecz w air fryerze 1-2 minuty.",
+                        "Złóż burgera: bułka + sałata + jajka + bekon + ser.",
+                        "Podawaj od razu."
+                    ]
+                },
+                {
+                    id: 'b99',
+                    name: "Camembert pieczony z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 609,
+                    protein: 30,
+                    fat: 35,
+                    carbs: 43,
+                    ingredients: [
+                        { item: "Ser camembert", amount: 120, unit: "g" },
+                        { item: "Chleb żytni razowy", amount: 2, unit: "kromki" },
+                        { item: "Pomidorki cherry", amount: 80, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 5, unit: "ml" },
+                        { item: "Miód", amount: 5, unit: "g" }
+                    ],
+                    steps: [
+                        "Camembert natnij krzyżowo na wierzchu.",
+                        "Skrop oliwą i miodem.",
+                        "Piecz w air fryerze 180°C przez 8-10 minut aż się rozpłynie.",
+                        "Chleb opiecz w air fryerze 2 minuty.",
+                        "Pomidorki cherry przekrój na połówki.",
+                        "Podawaj camembert z chlebem i pomidorkami do maczania."
+                    ]
+                },
+                {
+                    id: 'b100',
+                    name: "Kanapki panini z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 387,
+                    protein: 24,
+                    fat: 16,
+                    carbs: 37,
+                    ingredients: [
+                        { item: "Bułka", amount: 1, unit: "szt" },
+                        { item: "Szynka z kurczaka", amount: 50, unit: "g" },
+                        { item: "Ser mozzarella", amount: 40, unit: "g" },
+                        { item: "Pomidor", amount: 0.5, unit: "szt" },
+                        { item: "Rukola", amount: 15, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 5, unit: "ml" }
+                    ],
+                    steps: [
+                        "Bułkę przekrój na pół.",
+                        "Ułóż szynkę, mozzarellę i plastry pomidora.",
+                        "Skrop oliwą, zamknij bułkę.",
+                        "Piecz w air fryerze 180°C przez 5-6 minut.",
+                        "Dodaj rukolę po wyciągnięciu.",
+                        "Podawaj ciepłe."
                     ]
                 }
             ],
@@ -10801,6 +11524,751 @@
                         "Wymieszaj z soczewicą.",
                         "Podawaj łososia na ryżu z soczewicą i szpinakiem."
                     ]
+                },
+                {
+                    id: 'l129',
+                    name: "Nuggetsy z kurczaka z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 791,
+                    protein: 65,
+                    fat: 15,
+                    carbs: 93,
+                    ingredients: [
+                        { item: "Pierś z kurczaka", amount: 200, unit: "g" },
+                        { item: "Panko", amount: 40, unit: "g" },
+                        { item: "Jajka", amount: 1, unit: "szt" },
+                        { item: "Mąka pszenna", amount: 20, unit: "g" },
+                        { item: "Ryż basmati", amount: 60, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 5, unit: "ml" }
+                    ],
+                    steps: [
+                        "Kurczaka pokrój w kawałki wielkości nuggetsów.",
+                        "Przygotuj trzy miski: mąka, roztrzepane jajko, panko.",
+                        "Każdy kawałek obtocz kolejno w mące, jajku i panko.",
+                        "Spryskaj nuggetsy oliwą z oliwek.",
+                        "Włóż do air fryera na 200°C na 10-12 minut.",
+                        "Odwróć w połowie czasu pieczenia.",
+                        "Ugotuj ryż i podawaj razem."
+                    ]
+                },
+                {
+                    id: 'l130',
+                    name: "Frytki z batatów z kurczakiem z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 483,
+                    protein: 39,
+                    fat: 13,
+                    carbs: 53,
+                    ingredients: [
+                        { item: "Bataty", amount: 250, unit: "g" },
+                        { item: "Pierś z kurczaka", amount: 150, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 10, unit: "ml" },
+                        { item: "Papryka słodka", amount: 3, unit: "g" },
+                        { item: "Czosnek granulowany", amount: 2, unit: "g" }
+                    ],
+                    steps: [
+                        "Bataty obierz i pokrój w słupki jak frytki.",
+                        "Skrop oliwą, posyp papryką i czosnkiem granulowanym.",
+                        "Włóż frytki do air fryera na 190°C na 15-18 minut, wstrząsając co 5 min.",
+                        "Kurczaka dopraw solą i pieprzem.",
+                        "Na ostatnie 12 minut dołóż kurczaka do air fryera.",
+                        "Podawaj frytki z pokrojonym kurczakiem."
+                    ]
+                },
+                {
+                    id: 'l131',
+                    name: "Kotlety schabowe z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 771,
+                    protein: 67,
+                    fat: 21,
+                    carbs: 78,
+                    ingredients: [
+                        { item: "Schab", amount: 200, unit: "g" },
+                        { item: "Bułka tarta", amount: 40, unit: "g" },
+                        { item: "Jajka", amount: 1, unit: "szt" },
+                        { item: "Mąka pszenna", amount: 20, unit: "g" },
+                        { item: "Ziemniaki", amount: 200, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 5, unit: "ml" }
+                    ],
+                    steps: [
+                        "Schab rozbij tłuczkiem, dopraw solą i pieprzem.",
+                        "Obtocz kolejno w mące, roztrzepanym jajku i bułce tartej.",
+                        "Spryskaj oliwą z obu stron.",
+                        "Włóż do air fryera na 200°C na 12-14 minut.",
+                        "Odwróć w połowie czasu pieczenia.",
+                        "Ziemniaki ugotuj i podawaj jako dodatek."
+                    ]
+                },
+                {
+                    id: 'l132',
+                    name: "Łosoś z warzywami z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 547,
+                    protein: 41,
+                    fat: 34,
+                    carbs: 17,
+                    ingredients: [
+                        { item: "Łosoś świeży", amount: 180, unit: "g" },
+                        { item: "Cukinia", amount: 100, unit: "g" },
+                        { item: "Papryka czerwona", amount: 100, unit: "g" },
+                        { item: "Brokuł świeży", amount: 100, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 10, unit: "ml" },
+                        { item: "Sok z cytryny", amount: 10, unit: "ml" }
+                    ],
+                    steps: [
+                        "Łososia dopraw solą, pieprzem i sokiem z cytryny.",
+                        "Warzywa pokrój na kawałki, skrop oliwą.",
+                        "Warzywa włóż do air fryera na 190°C na 8 minut.",
+                        "Dołóż łososia skórą do dołu na warzywa.",
+                        "Piecz jeszcze 10-12 minut w 180°C.",
+                        "Podawaj łososia na warzywach."
+                    ]
+                },
+                {
+                    id: 'l133',
+                    name: "Skrzydełka BBQ z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 879,
+                    protein: 56,
+                    fat: 44,
+                    carbs: 58,
+                    ingredients: [
+                        { item: "Skrzydełka z kurczaka", amount: 300, unit: "g" },
+                        { item: "Sos BBQ", amount: 30, unit: "g" },
+                        { item: "Ryż basmati", amount: 60, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 5, unit: "ml" }
+                    ],
+                    steps: [
+                        "Skrzydełka osusz, dopraw solą i pieprzem.",
+                        "Spryskaj oliwą i włóż do air fryera na 200°C.",
+                        "Piecz 20-25 minut, odwracając co 5 minut.",
+                        "Na 5 minut przed końcem posmaruj sosem BBQ.",
+                        "Ugotuj ryż basmati.",
+                        "Podawaj skrzydełka z ryżem."
+                    ]
+                },
+                {
+                    id: 'l134',
+                    name: "Falafel z air fryer z sałatką",
+                    category: "🍟 Air Fryer",
+                    kcal: 613,
+                    protein: 28,
+                    fat: 12,
+                    carbs: 98,
+                    ingredients: [
+                        { item: "Ciecierzyca (z puszki)", amount: 250, unit: "g" },
+                        { item: "Cebula", amount: 0.25, unit: "szt" },
+                        { item: "Czosnek", amount: 2, unit: "ząbki" },
+                        { item: "Mąka pszenna", amount: 15, unit: "g" },
+                        { item: "Tortilla pszenna", amount: 1, unit: "szt" },
+                        { item: "Sałata lodowa", amount: 50, unit: "g" },
+                        { item: "Pomidor", amount: 1, unit: "szt" },
+                        { item: "Jogurt naturalny", amount: 50, unit: "g" }
+                    ],
+                    steps: [
+                        "Ciecierzycę odcedź i zblenduj z cebulą i czosnkiem.",
+                        "Dodaj mąkę, dopraw solą, pieprzem i kminem.",
+                        "Uformuj kuleczki (ok. 8 sztuk).",
+                        "Spryskaj oliwą i piecz w air fryerze 190°C przez 12-15 minut.",
+                        "Odwróć w połowie czasu.",
+                        "Podawaj w tortilli z sałatą, pomidorem i jogurtem."
+                    ]
+                },
+                {
+                    id: 'l135',
+                    name: "Krokiety z mięsem z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 668,
+                    protein: 43,
+                    fat: 25,
+                    carbs: 66,
+                    ingredients: [
+                        { item: "Mięso mielone z kurczaka", amount: 150, unit: "g" },
+                        { item: "Ziemniaki", amount: 200, unit: "g" },
+                        { item: "Cebula", amount: 0.25, unit: "szt" },
+                        { item: "Jajka", amount: 1, unit: "szt" },
+                        { item: "Bułka tarta", amount: 40, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 5, unit: "ml" }
+                    ],
+                    steps: [
+                        "Ziemniaki ugotuj i zrób puree.",
+                        "Mięso usmaż z drobno pokrojoną cebulą.",
+                        "Wymieszaj puree z mięsem, dopraw solą i pieprzem.",
+                        "Uformuj krokiety, obtocz w jajku i bułce tartej.",
+                        "Spryskaj oliwą i piecz w air fryerze 190°C przez 12-15 minut.",
+                        "Odwróć w połowie czasu pieczenia."
+                    ]
+                },
+                {
+                    id: 'l136',
+                    name: "Pierś z kurczaka w panierce z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 760,
+                    protein: 67,
+                    fat: 11,
+                    carbs: 92,
+                    ingredients: [
+                        { item: "Pierś z kurczaka", amount: 200, unit: "g" },
+                        { item: "Panko", amount: 40, unit: "g" },
+                        { item: "Jajka", amount: 1, unit: "szt" },
+                        { item: "Mąka pszenna", amount: 15, unit: "g" },
+                        { item: "Ryż basmati", amount: 60, unit: "g" },
+                        { item: "Kapusta pekińska", amount: 100, unit: "g" },
+                        { item: "Jogurt naturalny", amount: 30, unit: "g" }
+                    ],
+                    steps: [
+                        "Kurczaka rozbij, pokrój na mniejsze kawałki.",
+                        "Obtocz w mące, jajku i panko.",
+                        "Spryskaj oliwą i piecz w air fryerze 200°C przez 12-14 minut.",
+                        "Odwróć w połowie czasu pieczenia.",
+                        "Ugotuj ryż basmati.",
+                        "Kapustę pekińską pokrój i wymieszaj z jogurtem na surówkę.",
+                        "Podawaj kurczaka z ryżem i surówką."
+                    ]
+                },
+                {
+                    id: 'l137',
+                    name: "Fit Kurczak z ryżem i brokułem XL",
+                    category: "💪 Fit",
+                    kcal: 769,
+                    protein: 71,
+                    fat: 14,
+                    carbs: 87,
+                    ingredients: [
+                        { item: "Pierś z kurczaka", amount: 250, unit: "g" },
+                        { item: "Ryż basmati", amount: 100, unit: "g" },
+                        { item: "Brokuł mrożony", amount: 200, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 10, unit: "g" }
+                    ],
+                    steps: [
+                        "Ugotuj ryż według instrukcji na opakowaniu.",
+                        "Pierś z kurczaka dopraw solą, pieprzem i papryką wędzoną.",
+                        "Smaż kurczaka na oliwie 6-8 min z każdej strony.",
+                        "Brokuł ugotuj na parze 5 min.",
+                        "Pokrój kurczaka w paski, podawaj z ryżem i brokułem."
+                    ]
+                },
+                {
+                    id: 'l138',
+                    name: "Fit Indyk z kaszą gryczaną i szpinakiem",
+                    category: "💪 Fit",
+                    kcal: 657,
+                    protein: 75,
+                    fat: 15,
+                    carbs: 63,
+                    ingredients: [
+                        { item: "Pierś z indyka", amount: 250, unit: "g" },
+                        { item: "Kasza gryczana", amount: 80, unit: "g" },
+                        { item: "Szpinak mrożony", amount: 150, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 10, unit: "g" },
+                        { item: "Czosnek", amount: 2, unit: "ząbki" }
+                    ],
+                    steps: [
+                        "Kaszę gryczaną ugotuj według instrukcji.",
+                        "Pierś z indyka pokrój w plastry, dopraw solą i pieprzem.",
+                        "Smaż na oliwie 5-6 min z każdej strony.",
+                        "Szpinak podsmaż na patelni z czosnkiem.",
+                        "Podawaj indyka z kaszą i szpinakiem."
+                    ]
+                },
+                {
+                    id: 'l139',
+                    name: "Fit Łosoś z batatami i szparagami",
+                    category: "💪 Fit",
+                    kcal: 662,
+                    protein: 47,
+                    fat: 31,
+                    carbs: 44,
+                    ingredients: [
+                        { item: "Łosoś (filet)", amount: 200, unit: "g" },
+                        { item: "Bataty", amount: 200, unit: "g" },
+                        { item: "Szparagi zielone", amount: 150, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 5, unit: "g" },
+                        { item: "Sok z cytryny", amount: 15, unit: "ml" }
+                    ],
+                    steps: [
+                        "Bataty pokrój w frytki, piecz w 200°C przez 25 min.",
+                        "Łososia dopraw solą, pieprzem i sokiem z cytryny.",
+                        "Piecz łososia w piekarniku 15 min w 180°C.",
+                        "Szparagi obierz, smaż na oliwie 5 min.",
+                        "Podawaj razem."
+                    ]
+                },
+                {
+                    id: 'l140',
+                    name: "Fit Bowl z tuńczykiem i ryżem",
+                    category: "💪 Fit",
+                    kcal: 672,
+                    protein: 57,
+                    fat: 17,
+                    carbs: 75,
+                    ingredients: [
+                        { item: "Tuńczyk w wodzie (puszka)", amount: 200, unit: "g" },
+                        { item: "Ryż brązowy", amount: 80, unit: "g" },
+                        { item: "Awokado", amount: 0.5, unit: "szt" },
+                        { item: "Ogórek", amount: 1, unit: "szt" },
+                        { item: "Sos sojowy", amount: 15, unit: "ml" }
+                    ],
+                    steps: [
+                        "Ugotuj ryż brązowy według instrukcji.",
+                        "Tuńczyka odcedź z wody.",
+                        "Awokado i ogórek pokrój w plastry.",
+                        "W misce ułóż ryż, tuńczyka, awokado i ogórek.",
+                        "Polej sosem sojowym, dopraw solą i pieprzem."
+                    ]
+                },
+                {
+                    id: 'l141',
+                    name: "Fit Kurczak tikka z ryżem",
+                    category: "💪 Fit",
+                    kcal: 730,
+                    protein: 76,
+                    fat: 10,
+                    carbs: 82,
+                    ingredients: [
+                        { item: "Pierś z kurczaka", amount: 250, unit: "g" },
+                        { item: "Jogurt grecki 0%", amount: 100, unit: "g" },
+                        { item: "Ryż basmati", amount: 80, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 5, unit: "g" },
+                        { item: "Papryka czerwona", amount: 1, unit: "szt" },
+                        { item: "Cebula", amount: 0.5, unit: "szt" }
+                    ],
+                    steps: [
+                        "Kurczaka pokrój w kostkę, zamarynuj w jogurcie z przyprawami tikka masala.",
+                        "Marynuj min. 30 min (lub noc wcześniej).",
+                        "Smaż kurczaka na oliwie na mocnym ogniu 8 min.",
+                        "Dodaj pokrojoną paprykę i cebulę, smaż 3 min.",
+                        "Ugotuj ryż. Podawaj kurczaka tikka z ryżem."
+                    ]
+                },
+                {
+                    id: 'l142',
+                    name: "Fit Stek wołowy z batatami",
+                    category: "💪 Fit",
+                    kcal: 800,
+                    protein: 59,
+                    fat: 42,
+                    carbs: 48,
+                    ingredients: [
+                        { item: "Stek wołowy", amount: 200, unit: "g" },
+                        { item: "Bataty", amount: 200, unit: "g" },
+                        { item: "Brokuł mrożony", amount: 150, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 5, unit: "g" }
+                    ],
+                    steps: [
+                        "Stek wyjmij z lodówki 30 min przed smażeniem.",
+                        "Dopraw solą i pieprzem, smaż na mocnym ogniu 3-4 min z każdej strony.",
+                        "Bataty pokrój w plastry, piecz w 200°C przez 20 min.",
+                        "Brokuł ugotuj na parze 5 min.",
+                        "Daj stekowi odpocząć 5 min, pokrój. Podawaj z batatami i brokułem."
+                    ]
+                },
+                {
+                    id: 'l143',
+                    name: "Fit Mielone z indyka z ryżem",
+                    category: "💪 Fit",
+                    kcal: 732,
+                    protein: 62,
+                    fat: 18,
+                    carbs: 77,
+                    ingredients: [
+                        { item: "Mięso mielone z indyka", amount: 250, unit: "g" },
+                        { item: "Ryż basmati", amount: 80, unit: "g" },
+                        { item: "Brokuł mrożony", amount: 150, unit: "g" },
+                        { item: "Cebula", amount: 0.5, unit: "szt" },
+                        { item: "Sos sojowy", amount: 15, unit: "ml" }
+                    ],
+                    steps: [
+                        "Ugotuj ryż według instrukcji.",
+                        "Na patelni zeszklij cebulę, dodaj mielone.",
+                        "Smaż mielone rozbijając widelcem na drobne kawałki, 8 min.",
+                        "Dodaj sos sojowy i brokuł, duś 3 min pod przykryciem.",
+                        "Podawaj z ryżem."
+                    ]
+                },
+                {
+                    id: 'l144',
+                    name: "Fit Dorsz z kaszą bulgur i cukinią",
+                    category: "💪 Fit",
+                    kcal: 520,
+                    protein: 52,
+                    fat: 8,
+                    carbs: 62,
+                    ingredients: [
+                        { item: "Filet z dorsza", amount: 250, unit: "g" },
+                        { item: "Kasza bulgur", amount: 80, unit: "g" },
+                        { item: "Cukinia", amount: 200, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 5, unit: "g" },
+                        { item: "Sok z cytryny", amount: 10, unit: "ml" }
+                    ],
+                    steps: [
+                        "Bulgur zalej wrzątkiem, odstaw na 15 min.",
+                        "Dorsza dopraw solą, pieprzem i sokiem z cytryny.",
+                        "Smaż dorsza na oliwie 4-5 min z każdej strony.",
+                        "Cukinię pokrój w plastry, podsmaż na patelni.",
+                        "Podawaj dorsza z bulgurem i cukinią."
+                    ]
+                },
+                {
+                    id: 'l145',
+                    name: "Fit Kurczak z quinoa i szpinakiem",
+                    category: "💪 Fit",
+                    kcal: 710,
+                    protein: 72,
+                    fat: 18,
+                    carbs: 58,
+                    ingredients: [
+                        { item: "Pierś z kurczaka", amount: 250, unit: "g" },
+                        { item: "Quinoa", amount: 70, unit: "g" },
+                        { item: "Szpinak świeży", amount: 100, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 10, unit: "g" },
+                        { item: "Czosnek", amount: 2, unit: "ząbki" },
+                        { item: "Pomidorki cherry", amount: 100, unit: "g" }
+                    ],
+                    steps: [
+                        "Quinoa ugotuj w osolonej wodzie 15 min.",
+                        "Kurczaka pokrój w kostkę, dopraw i smaż na oliwie 7 min.",
+                        "Dodaj czosnek i pomidorki cherry, smaż 2 min.",
+                        "Wrzuć szpinak, mieszaj aż opadnie.",
+                        "Podawaj na quinoa."
+                    ]
+                },
+                {
+                    id: 'l146',
+                    name: "Fit Schab z kaszą pęczak i fasolką",
+                    category: "💪 Fit",
+                    kcal: 690,
+                    protein: 65,
+                    fat: 14,
+                    carbs: 74,
+                    ingredients: [
+                        { item: "Schab wieprzowy", amount: 200, unit: "g" },
+                        { item: "Kasza pęczak", amount: 80, unit: "g" },
+                        { item: "Fasolka szparagowa mrożona", amount: 150, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 5, unit: "g" },
+                        { item: "Czosnek", amount: 1, unit: "ząbki" }
+                    ],
+                    steps: [
+                        "Kaszę pęczak ugotuj w osolonej wodzie 20 min.",
+                        "Schab pokrój w medaliony, rozbij, dopraw.",
+                        "Smaż schab na oliwie 4-5 min z każdej strony.",
+                        "Fasolkę ugotuj na parze 5 min.",
+                        "Podawaj schab z kaszą i fasolką."
+                    ]
+                },
+                {
+                    id: 'l147',
+                    name: "Fit Krewetki z makaronem pełnoziarnistym",
+                    category: "💪 Fit",
+                    kcal: 640,
+                    protein: 56,
+                    fat: 12,
+                    carbs: 72,
+                    ingredients: [
+                        { item: "Krewetki", amount: 200, unit: "g" },
+                        { item: "Makaron pełnoziarnisty", amount: 80, unit: "g" },
+                        { item: "Czosnek", amount: 3, unit: "ząbki" },
+                        { item: "Oliwa z oliwek", amount: 10, unit: "g" },
+                        { item: "Pomidorki cherry", amount: 100, unit: "g" },
+                        { item: "Szpinak świeży", amount: 50, unit: "g" }
+                    ],
+                    steps: [
+                        "Makaron ugotuj al dente.",
+                        "Na oliwie podsmaż czosnek, dodaj krewetki.",
+                        "Smaż krewetki 3 min z każdej strony.",
+                        "Dodaj pomidorki cherry i szpinak.",
+                        "Wymieszaj z makaronem, dopraw solą i pieprzem."
+                    ]
+                },
+                {
+                    id: 'l148',
+                    name: "Fit Tilapia z ryżem i warzywami",
+                    category: "💪 Fit",
+                    kcal: 560,
+                    protein: 54,
+                    fat: 8,
+                    carbs: 68,
+                    ingredients: [
+                        { item: "Tilapia", amount: 250, unit: "g" },
+                        { item: "Ryż basmati", amount: 80, unit: "g" },
+                        { item: "Papryka czerwona", amount: 1, unit: "szt" },
+                        { item: "Cukinia", amount: 150, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 5, unit: "g" }
+                    ],
+                    steps: [
+                        "Ugotuj ryż według instrukcji.",
+                        "Tilapię dopraw solą, pieprzem i papryką.",
+                        "Smaż na oliwie 3-4 min z każdej strony.",
+                        "Paprykę i cukinię pokrój i podsmaż na patelni.",
+                        "Podawaj rybę z ryżem i warzywami."
+                    ]
+                },
+                {
+                    id: 'l149',
+                    name: "Fit Kurczak teriyaki z ryżem brązowym",
+                    category: "💪 Fit",
+                    kcal: 750,
+                    protein: 68,
+                    fat: 12,
+                    carbs: 90,
+                    ingredients: [
+                        { item: "Pierś z kurczaka", amount: 250, unit: "g" },
+                        { item: "Ryż brązowy", amount: 90, unit: "g" },
+                        { item: "Sos sojowy", amount: 25, unit: "ml" },
+                        { item: "Miód", amount: 15, unit: "g" },
+                        { item: "Brokuł mrożony", amount: 150, unit: "g" },
+                        { item: "Sezam", amount: 5, unit: "g" }
+                    ],
+                    steps: [
+                        "Ugotuj ryż brązowy.",
+                        "Kurczaka pokrój w paski, smaż na mocnym ogniu 6 min.",
+                        "Wymieszaj sos sojowy z miodem, wlej na patelnię.",
+                        "Smaż 2 min aż sos zgęstnieje i obtocz kurczaka.",
+                        "Brokuł ugotuj na parze.",
+                        "Podawaj z ryżem, posyp sezamem."
+                    ]
+                },
+                {
+                    id: 'l150',
+                    name: "Fit Polędwica wieprzowa z batatami",
+                    category: "💪 Fit",
+                    kcal: 620,
+                    protein: 52,
+                    fat: 16,
+                    carbs: 68,
+                    ingredients: [
+                        { item: "Polędwiczka wieprzowa", amount: 200, unit: "g" },
+                        { item: "Bataty", amount: 250, unit: "g" },
+                        { item: "Fasolka szparagowa mrożona", amount: 150, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 10, unit: "g" },
+                        { item: "Rozmaryn", amount: 3, unit: "g" }
+                    ],
+                    steps: [
+                        "Bataty pokrój w kostkę, piecz z rozmarynem w 200°C 20 min.",
+                        "Polędwicę dopraw, smaż na oliwie 5 min z każdej strony.",
+                        "Wstaw do piekarnika na 10 min w 180°C.",
+                        "Fasolkę ugotuj na parze.",
+                        "Pokrój polędwicę w medaliony, podawaj z batatami i fasolką."
+                    ]
+                },
+                {
+                    id: 'l151',
+                    name: "Fit Makaron z mielonym kurczakiem i warzywami",
+                    category: "💪 Fit",
+                    kcal: 700,
+                    protein: 55,
+                    fat: 16,
+                    carbs: 82,
+                    ingredients: [
+                        { item: "Mięso mielone z kurczaka", amount: 200, unit: "g" },
+                        { item: "Makaron pełnoziarnisty", amount: 80, unit: "g" },
+                        { item: "Cukinia", amount: 150, unit: "g" },
+                        { item: "Papryka czerwona", amount: 1, unit: "szt" },
+                        { item: "Passata pomidorowa", amount: 150, unit: "g" },
+                        { item: "Cebula", amount: 0.5, unit: "szt" }
+                    ],
+                    steps: [
+                        "Makaron ugotuj al dente.",
+                        "Na patelni podsmaż cebulę, dodaj mielone z kurczaka.",
+                        "Smaż 6 min rozbijając widelcem.",
+                        "Dodaj pokrojoną cukinię i paprykę, smaż 3 min.",
+                        "Wlej passatę, dusz 5 min.",
+                        "Wymieszaj z makaronem, podawaj."
+                    ]
+                },
+                {
+                    id: 'l152',
+                    name: "Udka z kurczaka z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 700,
+                    protein: 50,
+                    fat: 38,
+                    carbs: 37,
+                    ingredients: [
+                        { item: "Udka z kurczaka (bez kości)", amount: 250, unit: "g" },
+                        { item: "Ziemniaki", amount: 200, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 10, unit: "ml" },
+                        { item: "Papryka słodka", amount: 3, unit: "g" },
+                        { item: "Czosnek granulowany", amount: 2, unit: "g" }
+                    ],
+                    steps: [
+                        "Udka dopraw papryką, czosnkiem, solą i pieprzem.",
+                        "Ziemniaki pokrój w ćwiartki, skrop oliwą.",
+                        "Włóż ziemniaki do air fryera na 190°C na 10 minut.",
+                        "Dołóż udka i piecz razem jeszcze 18-20 minut.",
+                        "Odwróć udka w połowie czasu.",
+                        "Podawaj gdy skóra będzie chrupiąca."
+                    ]
+                },
+                {
+                    id: 'l153',
+                    name: "Dorsz w panierce z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 579,
+                    protein: 52,
+                    fat: 8,
+                    carbs: 70,
+                    ingredients: [
+                        { item: "Dorsz", amount: 200, unit: "g" },
+                        { item: "Panko", amount: 30, unit: "g" },
+                        { item: "Jajka", amount: 1, unit: "szt" },
+                        { item: "Mąka pszenna", amount: 15, unit: "g" },
+                        { item: "Ziemniaki", amount: 200, unit: "g" },
+                        { item: "Sok z cytryny", amount: 10, unit: "ml" }
+                    ],
+                    steps: [
+                        "Dorsza pokrój na porcje, skrop sokiem z cytryny.",
+                        "Obtocz kolejno w mące, jajku i panko.",
+                        "Spryskaj oliwą i piecz w air fryerze 190°C przez 12 minut.",
+                        "Odwróć w połowie czasu.",
+                        "Ziemniaki ugotuj i podawaj jako dodatek.",
+                        "Dopraw solą i pieprzem."
+                    ]
+                },
+                {
+                    id: 'l154',
+                    name: "Karkówka z warzywami z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 630,
+                    protein: 33,
+                    fat: 48,
+                    carbs: 14,
+                    ingredients: [
+                        { item: "Karkówka", amount: 180, unit: "g" },
+                        { item: "Papryka czerwona", amount: 100, unit: "g" },
+                        { item: "Cukinia", amount: 100, unit: "g" },
+                        { item: "Cebula", amount: 0.5, unit: "szt" },
+                        { item: "Oliwa z oliwek", amount: 10, unit: "ml" }
+                    ],
+                    steps: [
+                        "Karkówkę pokrój w plastry, dopraw solą i pieprzem.",
+                        "Warzywa pokrój na kawałki, skrop oliwą.",
+                        "Włóż mięso i warzywa do air fryera na 190°C.",
+                        "Piecz 15-18 minut, mieszając co 5 minut.",
+                        "Podawaj gdy mięso będzie rumiane."
+                    ]
+                },
+                {
+                    id: 'l155',
+                    name: "Krewetki z warzywami z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 586,
+                    protein: 59,
+                    fat: 12,
+                    carbs: 64,
+                    ingredients: [
+                        { item: "Krewetki mrożone", amount: 200, unit: "g" },
+                        { item: "Brokuł świeży", amount: 150, unit: "g" },
+                        { item: "Papryka czerwona", amount: 100, unit: "g" },
+                        { item: "Ryż basmati", amount: 60, unit: "g" },
+                        { item: "Sos sojowy", amount: 15, unit: "ml" },
+                        { item: "Oliwa z oliwek", amount: 10, unit: "ml" }
+                    ],
+                    steps: [
+                        "Krewetki rozmroź i osusz.",
+                        "Brokuł podziel na różyczki, paprykę pokrój.",
+                        "Warzywa skrop oliwą, piecz w air fryerze 190°C, 8 min.",
+                        "Dołóż krewetki, piecz jeszcze 5-6 minut.",
+                        "Polej sosem sojowym.",
+                        "Ugotuj ryż i podawaj razem."
+                    ]
+                },
+                {
+                    id: 'l156',
+                    name: "Pierogi z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 786,
+                    protein: 19,
+                    fat: 30,
+                    carbs: 111,
+                    ingredients: [
+                        { item: "Pierogi ruskie", amount: 300, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 10, unit: "ml" },
+                        { item: "Cebula", amount: 0.5, unit: "szt" },
+                        { item: "Śmietana 18%", amount: 30, unit: "g" }
+                    ],
+                    steps: [
+                        "Pierogi spryskaj oliwą z obu stron.",
+                        "Ułóż w air fryerze w jednej warstwie.",
+                        "Piecz w 200°C przez 10-12 minut, odwracając w połowie.",
+                        "Cebulę pokrój i podsmaż na patelni na złoty kolor.",
+                        "Podawaj pierogi ze smażoną cebulą i śmietaną."
+                    ]
+                },
+                {
+                    id: 'l157',
+                    name: "Polędwiczka wieprzowa z batatami z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 592,
+                    protein: 48,
+                    fat: 24,
+                    carbs: 46,
+                    ingredients: [
+                        { item: "Polędwiczka wieprzowa", amount: 200, unit: "g" },
+                        { item: "Bataty", amount: 200, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 10, unit: "ml" },
+                        { item: "Czosnek", amount: 2, unit: "ząbki" },
+                        { item: "Jogurt naturalny", amount: 50, unit: "g" }
+                    ],
+                    steps: [
+                        "Polędwiczkę dopraw solą, pieprzem i przeciśniętym czosnkiem.",
+                        "Bataty pokrój w kostkę, skrop oliwą.",
+                        "Bataty piecz w air fryerze 190°C przez 10 minut.",
+                        "Dołóż polędwiczkę, piecz razem 15-18 minut.",
+                        "Odwróć mięso w połowie czasu.",
+                        "Polędwiczkę pokrój w plastry, podawaj z batatami i jogurtem."
+                    ]
+                },
+                {
+                    id: 'l158',
+                    name: "Tofu w panierce z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 692,
+                    protein: 46,
+                    fat: 20,
+                    carbs: 90,
+                    ingredients: [
+                        { item: "Tofu extra firm", amount: 200, unit: "g" },
+                        { item: "Panko", amount: 30, unit: "g" },
+                        { item: "Sos sojowy", amount: 15, unit: "ml" },
+                        { item: "Ryż basmati", amount: 60, unit: "g" },
+                        { item: "Brokuł świeży", amount: 100, unit: "g" },
+                        { item: "Sos sweet chili", amount: 15, unit: "ml" }
+                    ],
+                    steps: [
+                        "Tofu pokrój w kostkę, marynuj w sosie sojowym 10 minut.",
+                        "Obtocz kawałki tofu w panko.",
+                        "Piecz w air fryerze 200°C przez 12-15 minut.",
+                        "Wstrząśnij koszem w połowie czasu.",
+                        "Ugotuj ryż i brokuł na parze.",
+                        "Podawaj tofu z ryżem, brokułem i sosem sweet chili."
+                    ]
+                },
+                {
+                    id: 'l159',
+                    name: "Kalafior w panierce z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 458,
+                    protein: 27,
+                    fat: 13,
+                    carbs: 60,
+                    ingredients: [
+                        { item: "Kalafior", amount: 300, unit: "g" },
+                        { item: "Bułka tarta", amount: 40, unit: "g" },
+                        { item: "Jajka", amount: 1, unit: "szt" },
+                        { item: "Mąka pszenna", amount: 15, unit: "g" },
+                        { item: "Jogurt grecki", amount: 80, unit: "g" },
+                        { item: "Czosnek", amount: 1, unit: "ząbki" }
+                    ],
+                    steps: [
+                        "Kalafior podziel na różyczki.",
+                        "Obtocz kolejno w mące, jajku i bułce tartej.",
+                        "Spryskaj oliwą i piecz w air fryerze 190°C przez 12-15 minut.",
+                        "Wstrząśnij koszem w połowie czasu.",
+                        "Jogurt grecki wymieszaj z przeciśniętym czosnkiem.",
+                        "Podawaj kalafior z dipem czosnkowym."
+                    ]
                 }
             ],
             dinner: [
@@ -12158,6 +13626,739 @@
                         "Dodaj mleko kokosowe, zblenduj na gładki krem.",
                         "Dopraw solą i pieprzem.",
                         "Podawaj z pieczonym chlebem i pestkami dyni."
+                    ]
+                },
+                {
+                    id: 'd55',
+                    name: "Warzywa grillowane z air fryer z dipem",
+                    category: "🍟 Air Fryer",
+                    kcal: 321,
+                    protein: 14,
+                    fat: 20,
+                    carbs: 24,
+                    ingredients: [
+                        { item: "Cukinia", amount: 150, unit: "g" },
+                        { item: "Papryka czerwona", amount: 100, unit: "g" },
+                        { item: "Bakłażan", amount: 100, unit: "g" },
+                        { item: "Pieczarki", amount: 100, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 15, unit: "ml" },
+                        { item: "Jogurt grecki", amount: 80, unit: "g" },
+                        { item: "Czosnek", amount: 1, unit: "ząbki" }
+                    ],
+                    steps: [
+                        "Warzywa pokrój na grubsze plastry lub kawałki.",
+                        "Skrop oliwą, dopraw solą, pieprzem i ziołami.",
+                        "Włóż do air fryera na 190°C na 12-15 minut.",
+                        "Wstrząśnij koszem w połowie czasu.",
+                        "Jogurt grecki wymieszaj z przeciśniętym czosnkiem i solą.",
+                        "Podawaj warzywa z dipem jogurtowym."
+                    ]
+                },
+                {
+                    id: 'd56',
+                    name: "Quesadilla z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 653,
+                    protein: 44,
+                    fat: 21,
+                    carbs: 68,
+                    ingredients: [
+                        { item: "Tortilla pszenna", amount: 2, unit: "szt" },
+                        { item: "Pierś z kurczaka", amount: 100, unit: "g" },
+                        { item: "Ser żółty (gouda)", amount: 40, unit: "g" },
+                        { item: "Papryka czerwona", amount: 50, unit: "g" },
+                        { item: "Kukurydza", amount: 30, unit: "g" },
+                        { item: "Jogurt naturalny", amount: 30, unit: "g" }
+                    ],
+                    steps: [
+                        "Kurczaka ugotuj lub usmaż i pokrój w paski.",
+                        "Na tortillę ułóż kurczaka, starty ser, pokrojoną paprykę i kukurydzę.",
+                        "Przykryj drugą tortillą.",
+                        "Włóż do air fryera na 180°C na 6-8 minut.",
+                        "Odwróć w połowie czasu.",
+                        "Pokrój na trójkąty i podawaj z jogurtem."
+                    ]
+                },
+                {
+                    id: 'd57',
+                    name: "Tostowe rollsy z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 571,
+                    protein: 30,
+                    fat: 24,
+                    carbs: 59,
+                    ingredients: [
+                        { item: "Chleb tostowy pełnoziarnisty", amount: 4, unit: "kromki" },
+                        { item: "Szynka z indyka", amount: 60, unit: "g" },
+                        { item: "Ser żółty (gouda)", amount: 40, unit: "g" },
+                        { item: "Ogórek kiszony", amount: 1, unit: "szt" },
+                        { item: "Masło", amount: 10, unit: "g" }
+                    ],
+                    steps: [
+                        "Chleb tostowy rozwałkuj wałkiem na płasko.",
+                        "Na każdą kromkę ułóż szynkę, ser i plaster ogórka.",
+                        "Zwiń ciasno w rulonik.",
+                        "Posmaruj wierzch masłem.",
+                        "Piecz w air fryerze 180°C przez 6-8 minut aż będą chrupiące.",
+                        "Podawaj ciepłe."
+                    ]
+                },
+                {
+                    id: 'd58',
+                    name: "Pieczarki faszerowane z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 335,
+                    protein: 19,
+                    fat: 24,
+                    carbs: 15,
+                    ingredients: [
+                        { item: "Pieczarki portobello", amount: 200, unit: "g" },
+                        { item: "Ser mozzarella", amount: 50, unit: "g" },
+                        { item: "Szpinak świeży", amount: 50, unit: "g" },
+                        { item: "Czosnek", amount: 2, unit: "ząbki" },
+                        { item: "Serek śmietankowy", amount: 30, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 5, unit: "ml" }
+                    ],
+                    steps: [
+                        "Pieczarki oczyść i wydrąż środki.",
+                        "Szpinak podsmaż z czosnkiem na oliwie.",
+                        "Wymieszaj szpinak z serkiem śmietankowym.",
+                        "Nafaszeruj pieczarki masą szpinakową.",
+                        "Na wierzch ułóż pokrojoną mozzarellę.",
+                        "Piecz w air fryerze 180°C przez 10-12 minut."
+                    ]
+                },
+                {
+                    id: 'd59',
+                    name: "Placki ziemniaczane z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 520,
+                    protein: 18,
+                    fat: 18,
+                    carbs: 71,
+                    ingredients: [
+                        { item: "Ziemniaki", amount: 300, unit: "g" },
+                        { item: "Cebula", amount: 0.25, unit: "szt" },
+                        { item: "Jajka", amount: 1, unit: "szt" },
+                        { item: "Mąka pszenna", amount: 20, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 10, unit: "ml" },
+                        { item: "Jogurt naturalny", amount: 50, unit: "g" }
+                    ],
+                    steps: [
+                        "Ziemniaki obierz i zetrzyj na tarce o drobnych oczkach.",
+                        "Odciśnij nadmiar wody.",
+                        "Wymieszaj z tartą cebulą, jajkiem i mąką.",
+                        "Dopraw solą i pieprzem.",
+                        "Uformuj placki, spryskaj oliwą.",
+                        "Piecz w air fryerze 190°C przez 10-12 minut, odwracając w połowie.",
+                        "Podawaj z jogurtem naturalnym."
+                    ]
+                },
+                {
+                    id: 'd60',
+                    name: "Spring rollsy z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 371,
+                    protein: 21,
+                    fat: 1,
+                    carbs: 68,
+                    ingredients: [
+                        { item: "Papier ryżowy", amount: 6, unit: "szt" },
+                        { item: "Pierś z kurczaka", amount: 80, unit: "g" },
+                        { item: "Marchew", amount: 1, unit: "szt" },
+                        { item: "Kapusta pekińska", amount: 80, unit: "g" },
+                        { item: "Sos sojowy", amount: 15, unit: "ml" },
+                        { item: "Sos sweet chili", amount: 15, unit: "ml" }
+                    ],
+                    steps: [
+                        "Kurczaka ugotuj i poszarpaj na włókna.",
+                        "Marchew zetrzyj na tarce, kapustę pokrój w paski.",
+                        "Wymieszaj kurczaka z warzywami i sosem sojowym.",
+                        "Papier ryżowy namocz w ciepłej wodzie na 10 sekund.",
+                        "Nałóż farsz i zwiń ciasno w rollsy.",
+                        "Spryskaj oliwą i piecz w air fryerze 190°C przez 8-10 minut.",
+                        "Podawaj z sosem sweet chili."
+                    ]
+                },
+                {
+                    id: 'd61',
+                    name: "Bruschetta z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 532,
+                    protein: 20,
+                    fat: 23,
+                    carbs: 62,
+                    ingredients: [
+                        { item: "Chleb żytni razowy", amount: 3, unit: "kromki" },
+                        { item: "Pomidory", amount: 150, unit: "g" },
+                        { item: "Mozzarella", amount: 50, unit: "g" },
+                        { item: "Czosnek", amount: 1, unit: "ząbki" },
+                        { item: "Oliwa extra virgin", amount: 10, unit: "ml" },
+                        { item: "Rukola", amount: 20, unit: "g" }
+                    ],
+                    steps: [
+                        "Chleb opiecz w air fryerze 180°C przez 3-4 minuty.",
+                        "Pomidory pokrój w kostkę, wymieszaj z oliwą i solą.",
+                        "Opieczone kromki natrzyj przekrojonym czosnkiem.",
+                        "Na chleb ułóż pokrojoną mozzarellę.",
+                        "Włóż z powrotem do air fryera na 2 minuty (aż ser zmięknie).",
+                        "Nałóż pomidory i rukolę. Podawaj od razu."
+                    ]
+                },
+                {
+                    id: 'd62',
+                    name: "Wrapy z kurczakiem z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 617,
+                    protein: 46,
+                    fat: 19,
+                    carbs: 63,
+                    ingredients: [
+                        { item: "Tortilla pszenna", amount: 2, unit: "szt" },
+                        { item: "Pierś z kurczaka", amount: 120, unit: "g" },
+                        { item: "Sałata lodowa", amount: 40, unit: "g" },
+                        { item: "Pomidor", amount: 0.5, unit: "szt" },
+                        { item: "Jogurt naturalny", amount: 30, unit: "g" },
+                        { item: "Ser żółty (gouda)", amount: 30, unit: "g" }
+                    ],
+                    steps: [
+                        "Kurczaka pokrój w paski, dopraw solą i pieprzem.",
+                        "Piecz kurczaka w air fryerze 200°C przez 10 minut.",
+                        "Na tortillę ułóż sałatę, pomidora, kurczaka i starty ser.",
+                        "Polej jogurtem i zwiń w wrap.",
+                        "Wrapa włóż do air fryera na 180°C na 3-4 minuty.",
+                        "Podawaj ciepłe i chrupiące."
+                    ]
+                },
+                {
+                    id: 'd63',
+                    name: "Fit Twarożek z rzodkiewką i ogórkiem",
+                    category: "💪 Fit",
+                    kcal: 507,
+                    protein: 64,
+                    fat: 2,
+                    carbs: 54,
+                    ingredients: [
+                        { item: "Twaróg chudy", amount: 300, unit: "g" },
+                        { item: "Ogórek", amount: 1, unit: "szt" },
+                        { item: "Rzodkiewka", amount: 80, unit: "g" },
+                        { item: "Chleb żytni razowy", amount: 2, unit: "kromki" },
+                        { item: "Szczypiorek", amount: 10, unit: "g" }
+                    ],
+                    steps: [
+                        "Twaróg przełóż do miski, rozgnieć widelcem.",
+                        "Dodaj pokrojony ogórek, rzodkiewkę i szczypiorek.",
+                        "Dopraw solą i pieprzem, wymieszaj.",
+                        "Podawaj na kromkach chleba."
+                    ]
+                },
+                {
+                    id: 'd64',
+                    name: "Fit Shake proteinowy z owsianką",
+                    category: "💪 Fit",
+                    kcal: 682,
+                    protein: 62,
+                    fat: 17,
+                    carbs: 75,
+                    ingredients: [
+                        { item: "Odżywka białkowa", amount: 50, unit: "g" },
+                        { item: "Mleko 1.5%", amount: 300, unit: "ml" },
+                        { item: "Płatki owsiane", amount: 40, unit: "g" },
+                        { item: "Masło orzechowe", amount: 15, unit: "g" },
+                        { item: "Banan", amount: 1, unit: "szt" }
+                    ],
+                    steps: [
+                        "Wszystkie składniki wrzuć do blendera.",
+                        "Blenduj na gładki koktajl, ok. 30 sekund.",
+                        "Przelej do szklanki. Jeżeli za gęsty, dolej wody."
+                    ]
+                },
+                {
+                    id: 'd65',
+                    name: "Fit Sałatka z kurczakiem i jajkami",
+                    category: "💪 Fit",
+                    kcal: 523,
+                    protein: 66,
+                    fat: 20,
+                    carbs: 18,
+                    ingredients: [
+                        { item: "Pierś z kurczaka", amount: 150, unit: "g" },
+                        { item: "Jajka", amount: 3, unit: "szt" },
+                        { item: "Sałata rzymska", amount: 100, unit: "g" },
+                        { item: "Ogórek", amount: 1, unit: "szt" },
+                        { item: "Pomidor", amount: 1, unit: "szt" },
+                        { item: "Jogurt grecki 0%", amount: 50, unit: "g" }
+                    ],
+                    steps: [
+                        "Ugotuj jajka na twardo, pokrój w ćwiartki.",
+                        "Kurczaka usmaż, pokrój w paski.",
+                        "Sałatę poszarpij, połącz z ogórkiem i pomidorem.",
+                        "Dodaj kurczaka i jajka na wierzch.",
+                        "Polej jogurtem jako dressing, dopraw solą i pieprzem."
+                    ]
+                },
+                {
+                    id: 'd66',
+                    name: "Fit Kanapki z tuńczykiem",
+                    category: "💪 Fit",
+                    kcal: 515,
+                    protein: 49,
+                    fat: 14,
+                    carbs: 46,
+                    ingredients: [
+                        { item: "Tuńczyk w wodzie (puszka)", amount: 100, unit: "g" },
+                        { item: "Jogurt grecki 0%", amount: 40, unit: "g" },
+                        { item: "Chleb żytni razowy", amount: 2, unit: "kromki" },
+                        { item: "Jajka", amount: 2, unit: "szt" },
+                        { item: "Ogórek", amount: 0.5, unit: "szt" },
+                        { item: "Pomidor", amount: 1, unit: "szt" }
+                    ],
+                    steps: [
+                        "Tuńczyka odcedź, wymieszaj z jogurtem.",
+                        "Jajka ugotuj na twardo, pokrój w plastry.",
+                        "Chleb posmaruj pastą z tuńczyka.",
+                        "Układaj jajka, ogórka i pomidora na wierzchu.",
+                        "Dopraw solą i pieprzem."
+                    ]
+                },
+                {
+                    id: 'd67',
+                    name: "Fit Skyr bowl z odżywką i owocami",
+                    category: "💪 Fit",
+                    kcal: 553,
+                    protein: 68,
+                    fat: 4,
+                    carbs: 66,
+                    ingredients: [
+                        { item: "Jogurt Skyr naturalny", amount: 350, unit: "g" },
+                        { item: "Odżywka białkowa", amount: 30, unit: "g" },
+                        { item: "Banan", amount: 1, unit: "szt" },
+                        { item: "Borówki amerykańskie", amount: 60, unit: "g" },
+                        { item: "Płatki owsiane", amount: 20, unit: "g" }
+                    ],
+                    steps: [
+                        "Skyr wymieszaj z odżywką białkową na kremową masę.",
+                        "Pokrój banana w plastry.",
+                        "Przełóż Skyr do miski, udekoruj bananem i borówkami.",
+                        "Posyp płatkami owsianymi na wierzch."
+                    ]
+                },
+                {
+                    id: 'd68',
+                    name: "Fit Omlet z szynką i warzywami",
+                    category: "💪 Fit",
+                    kcal: 489,
+                    protein: 51,
+                    fat: 25,
+                    carbs: 15,
+                    ingredients: [
+                        { item: "Jajka", amount: 4, unit: "szt" },
+                        { item: "Szynka z indyka", amount: 100, unit: "g" },
+                        { item: "Papryka czerwona", amount: 0.5, unit: "szt" },
+                        { item: "Szpinak świeży", amount: 50, unit: "g" },
+                        { item: "Pomidor", amount: 1, unit: "szt" }
+                    ],
+                    steps: [
+                        "Roztrzep jajka z solą i pieprzem.",
+                        "Na patelni podsmaż pokrojoną paprykę i szpinak 2 min.",
+                        "Wlej jajka, rozłóż szynkę.",
+                        "Smaż na małym ogniu aż jajka się zetną.",
+                        "Złóż na pół, podawaj z pomidorem."
+                    ]
+                },
+                {
+                    id: 'd69',
+                    name: "Fit Serek wiejski z łososiem wędzonym",
+                    category: "💪 Fit",
+                    kcal: 520,
+                    protein: 51,
+                    fat: 14,
+                    carbs: 46,
+                    ingredients: [
+                        { item: "Serek wiejski", amount: 200, unit: "g" },
+                        { item: "Łosoś wędzony", amount: 80, unit: "g" },
+                        { item: "Chleb żytni razowy", amount: 2, unit: "kromki" },
+                        { item: "Ogórek", amount: 1, unit: "szt" },
+                        { item: "Koperek", amount: 5, unit: "g" }
+                    ],
+                    steps: [
+                        "Serek wiejski przełóż do miski.",
+                        "Łososia pokrój w mniejsze kawałki, dodaj do serka.",
+                        "Wymieszaj z posiekanym koperkiem.",
+                        "Smaruj na chlebie, podawaj z ogórkiem."
+                    ]
+                },
+                {
+                    id: 'd70',
+                    name: "Fit Sałatka z tuńczykiem i quinoa",
+                    category: "💪 Fit",
+                    kcal: 580,
+                    protein: 55,
+                    fat: 15,
+                    carbs: 52,
+                    ingredients: [
+                        { item: "Tuńczyk w wodzie (puszka)", amount: 150, unit: "g" },
+                        { item: "Quinoa", amount: 60, unit: "g" },
+                        { item: "Ogórek", amount: 1, unit: "szt" },
+                        { item: "Pomidorki cherry", amount: 100, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 10, unit: "g" },
+                        { item: "Sok z cytryny", amount: 10, unit: "ml" }
+                    ],
+                    steps: [
+                        "Quinoa ugotuj w osolonej wodzie 15 min, ostudź.",
+                        "Tuńczyka odcedź z wody.",
+                        "Ogórka pokrój w kostkę, pomidorki na pół.",
+                        "Wymieszaj wszystko, polej oliwą i sokiem z cytryny.",
+                        "Dopraw solą i pieprzem."
+                    ]
+                },
+                {
+                    id: 'd71',
+                    name: "Fit Wrap z indykiem i warzywami",
+                    category: "💪 Fit",
+                    kcal: 495,
+                    protein: 48,
+                    fat: 12,
+                    carbs: 42,
+                    ingredients: [
+                        { item: "Tortilla pełnoziarnista", amount: 1, unit: "szt" },
+                        { item: "Pierś z indyka", amount: 120, unit: "g" },
+                        { item: "Jogurt grecki 0%", amount: 40, unit: "g" },
+                        { item: "Sałata rzymska", amount: 50, unit: "g" },
+                        { item: "Pomidor", amount: 1, unit: "szt" },
+                        { item: "Ogórek", amount: 0.5, unit: "szt" }
+                    ],
+                    steps: [
+                        "Pierś z indyka usmaż, pokrój w paski.",
+                        "Tortillę posmaruj jogurtem.",
+                        "Rozłóż sałatę, indyka, pomidora i ogórka.",
+                        "Zwiń w wrap, opiecz na suchej patelni."
+                    ]
+                },
+                {
+                    id: 'd72',
+                    name: "Fit Jogurt grecki z orzechami i miodem",
+                    category: "💪 Fit",
+                    kcal: 520,
+                    protein: 45,
+                    fat: 22,
+                    carbs: 40,
+                    ingredients: [
+                        { item: "Jogurt grecki", amount: 300, unit: "g" },
+                        { item: "Odżywka białkowa waniliowa", amount: 20, unit: "g" },
+                        { item: "Orzechy włoskie", amount: 20, unit: "g" },
+                        { item: "Miód", amount: 15, unit: "g" },
+                        { item: "Banan", amount: 1, unit: "szt" }
+                    ],
+                    steps: [
+                        "Jogurt wymieszaj z odżywką białkową.",
+                        "Przełóż do miski.",
+                        "Na wierzch ułóż pokrojonego banana i orzechy.",
+                        "Polej miodem."
+                    ]
+                },
+                {
+                    id: 'd73',
+                    name: "Fit Kazeina z twarogiem na noc",
+                    category: "💪 Fit",
+                    kcal: 480,
+                    protein: 72,
+                    fat: 5,
+                    carbs: 35,
+                    ingredients: [
+                        { item: "Twaróg chudy", amount: 200, unit: "g" },
+                        { item: "Kazeina waniliowa", amount: 30, unit: "g" },
+                        { item: "Mleko 1.5%", amount: 100, unit: "ml" },
+                        { item: "Borówki amerykańskie", amount: 80, unit: "g" },
+                        { item: "Migdały", amount: 10, unit: "g" }
+                    ],
+                    steps: [
+                        "Twaróg rozgnieć widelcem.",
+                        "Dodaj kazeinę i mleko, wymieszaj na gładką masę.",
+                        "Przełóż do miski, dodaj borówki.",
+                        "Posyp posiekanymi migdałami.",
+                        "Idealny posiłek przed snem — kazeina uwalnia białko powoli."
+                    ]
+                },
+                {
+                    id: 'd74',
+                    name: "Fit Jajka na twardo z hummusem i warzywami",
+                    category: "💪 Fit",
+                    kcal: 530,
+                    protein: 42,
+                    fat: 28,
+                    carbs: 30,
+                    ingredients: [
+                        { item: "Jajka", amount: 4, unit: "szt" },
+                        { item: "Ciecierzyca (z puszki)", amount: 100, unit: "g" },
+                        { item: "Tahini", amount: 15, unit: "g" },
+                        { item: "Ogórek", amount: 1, unit: "szt" },
+                        { item: "Papryka czerwona", amount: 0.5, unit: "szt" },
+                        { item: "Sok z cytryny", amount: 10, unit: "ml" }
+                    ],
+                    steps: [
+                        "Jajka ugotuj na twardo (10 min).",
+                        "Ciecierzycę zblenduj z tahini i sokiem z cytryny na hummus.",
+                        "Ogórka i paprykę pokrój w paski.",
+                        "Jajka przekrój na pół.",
+                        "Podawaj jajka z hummusem i warzywami do dippowania."
+                    ]
+                },
+                {
+                    id: 'd75',
+                    name: "Fit Sałatka z krewetkami i awokado",
+                    category: "💪 Fit",
+                    kcal: 490,
+                    protein: 52,
+                    fat: 22,
+                    carbs: 18,
+                    ingredients: [
+                        { item: "Krewetki", amount: 200, unit: "g" },
+                        { item: "Awokado", amount: 0.5, unit: "szt" },
+                        { item: "Sałata rzymska", amount: 100, unit: "g" },
+                        { item: "Pomidorki cherry", amount: 80, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 5, unit: "g" },
+                        { item: "Sok z cytryny", amount: 10, unit: "ml" }
+                    ],
+                    steps: [
+                        "Krewetki podsmaż na oliwie z czosnkiem 3 min z każdej strony.",
+                        "Sałatę poszarpij, pomidorki przekrój na pół.",
+                        "Awokado pokrój w plastry.",
+                        "Ułóż sałatkę, dodaj krewetki na wierzch.",
+                        "Skrop sokiem z cytryny, dopraw solą i pieprzem."
+                    ]
+                },
+                {
+                    id: 'd76',
+                    name: "Fit Tosty z twarogiem i łososiem",
+                    category: "💪 Fit",
+                    kcal: 540,
+                    protein: 52,
+                    fat: 18,
+                    carbs: 42,
+                    ingredients: [
+                        { item: "Chleb żytni razowy", amount: 2, unit: "kromki" },
+                        { item: "Twaróg chudy", amount: 150, unit: "g" },
+                        { item: "Łosoś wędzony", amount: 60, unit: "g" },
+                        { item: "Jajka", amount: 2, unit: "szt" },
+                        { item: "Koperek", amount: 5, unit: "g" }
+                    ],
+                    steps: [
+                        "Chleb opiecz w tosterze.",
+                        "Jajka ugotuj na miękko (6 min).",
+                        "Twaróg rozgnieć, wymieszaj z koperkiem.",
+                        "Na tosty nałóż twaróg, łososia i przekrojone jajka.",
+                        "Dopraw pieprzem."
+                    ]
+                },
+                {
+                    id: 'd77',
+                    name: "Fit Koktajl kazeinowy czekoladowy",
+                    category: "💪 Fit",
+                    kcal: 450,
+                    protein: 58,
+                    fat: 8,
+                    carbs: 38,
+                    ingredients: [
+                        { item: "Kazeina czekoladowa", amount: 40, unit: "g" },
+                        { item: "Mleko 1.5%", amount: 300, unit: "ml" },
+                        { item: "Banan", amount: 1, unit: "szt" },
+                        { item: "Płatki owsiane", amount: 20, unit: "g" }
+                    ],
+                    steps: [
+                        "Wszystkie składniki wrzuć do blendera.",
+                        "Blenduj 30 sekund na gładki koktajl.",
+                        "Przelej do szklanki.",
+                        "Pij wieczorem — kazeina zapewnia powolne uwalnianie białka przez noc."
+                    ]
+                },
+                {
+                    id: 'd78',
+                    name: "Halloumi z warzywami z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 472,
+                    protein: 24,
+                    fat: 36,
+                    carbs: 15,
+                    ingredients: [
+                        { item: "Ser halloumi", amount: 100, unit: "g" },
+                        { item: "Cukinia", amount: 100, unit: "g" },
+                        { item: "Papryka czerwona", amount: 100, unit: "g" },
+                        { item: "Pomidorki cherry", amount: 80, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 10, unit: "ml" }
+                    ],
+                    steps: [
+                        "Halloumi pokrój w grube plastry.",
+                        "Warzywa pokrój na kawałki.",
+                        "Skrop wszystko oliwą, dopraw solą i pieprzem.",
+                        "Piecz w air fryerze 190°C przez 10-12 minut.",
+                        "Odwróć halloumi w połowie czasu.",
+                        "Podawaj ciepłe."
+                    ]
+                },
+                {
+                    id: 'd79',
+                    name: "Brukselka z boczkiem z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 490,
+                    protein: 20,
+                    fat: 38,
+                    carbs: 23,
+                    ingredients: [
+                        { item: "Brukselka", amount: 250, unit: "g" },
+                        { item: "Bekon", amount: 50, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 10, unit: "ml" },
+                        { item: "Parmezan tarty", amount: 15, unit: "g" }
+                    ],
+                    steps: [
+                        "Brukselkę przekrój na połówki.",
+                        "Bekon pokrój w paski.",
+                        "Wymieszaj brukselkę z oliwą, solą i pieprzem.",
+                        "Piecz w air fryerze 190°C przez 12-15 minut.",
+                        "Na ostatnie 3 minuty dodaj bekon.",
+                        "Posyp parmezanem przed podaniem."
+                    ]
+                },
+                {
+                    id: 'd80',
+                    name: "Kiełbasa z warzywami z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 587,
+                    protein: 21,
+                    fat: 39,
+                    carbs: 39,
+                    ingredients: [
+                        { item: "Kiełbasa śląska", amount: 120, unit: "g" },
+                        { item: "Papryka czerwona", amount: 100, unit: "g" },
+                        { item: "Cebula", amount: 0.5, unit: "szt" },
+                        { item: "Ziemniaki", amount: 150, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 5, unit: "ml" }
+                    ],
+                    steps: [
+                        "Kiełbasę pokrój w grube plastry.",
+                        "Ziemniaki pokrój w kostkę, paprykę i cebulę w kawałki.",
+                        "Ziemniaki skrop oliwą, piecz w air fryerze 190°C, 10 min.",
+                        "Dołóż kiełbasę, paprykę i cebulę.",
+                        "Piecz jeszcze 10 minut, mieszając w połowie.",
+                        "Dopraw solą i pieprzem."
+                    ]
+                },
+                {
+                    id: 'd81',
+                    name: "Krewetki w czosnku z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 539,
+                    protein: 55,
+                    fat: 17,
+                    carbs: 42,
+                    ingredients: [
+                        { item: "Krewetki mrożone", amount: 200, unit: "g" },
+                        { item: "Czosnek", amount: 3, unit: "ząbki" },
+                        { item: "Oliwa z oliwek", amount: 15, unit: "ml" },
+                        { item: "Chleb żytni razowy", amount: 2, unit: "kromki" },
+                        { item: "Sok z cytryny", amount: 10, unit: "ml" },
+                        { item: "Rukola", amount: 30, unit: "g" }
+                    ],
+                    steps: [
+                        "Krewetki rozmroź i osusz.",
+                        "Wymieszaj z oliwą, przeciśniętym czosnkiem i sokiem z cytryny.",
+                        "Piecz w air fryerze 200°C przez 6-8 minut.",
+                        "Chleb opiecz w air fryerze 2 minuty.",
+                        "Podawaj krewetki na rukolę z opieczonymi grzankami."
+                    ]
+                },
+                {
+                    id: 'd82',
+                    name: "Tortilla z warzywami i serem z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 561,
+                    protein: 24,
+                    fat: 20,
+                    carbs: 73,
+                    ingredients: [
+                        { item: "Tortilla pszenna", amount: 2, unit: "szt" },
+                        { item: "Ser mozzarella", amount: 50, unit: "g" },
+                        { item: "Szpinak świeży", amount: 40, unit: "g" },
+                        { item: "Pomidory", amount: 100, unit: "g" },
+                        { item: "Kukurydza", amount: 40, unit: "g" },
+                        { item: "Jogurt naturalny", amount: 30, unit: "g" }
+                    ],
+                    steps: [
+                        "Na tortillę ułóż szpinak, pokrojone pomidory, kukurydzę i mozzarellę.",
+                        "Przykryj drugą tortillą.",
+                        "Piecz w air fryerze 180°C przez 6-8 minut.",
+                        "Odwróć w połowie czasu.",
+                        "Pokrój na trójkąty i podawaj z jogurtem."
+                    ]
+                },
+                {
+                    id: 'd83',
+                    name: "Dorsz z cytryną z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 314,
+                    protein: 41,
+                    fat: 12,
+                    carbs: 13,
+                    ingredients: [
+                        { item: "Dorsz", amount: 200, unit: "g" },
+                        { item: "Brokuł świeży", amount: 150, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 10, unit: "ml" },
+                        { item: "Sok z cytryny", amount: 15, unit: "ml" },
+                        { item: "Czosnek", amount: 1, unit: "ząbki" }
+                    ],
+                    steps: [
+                        "Dorsza dopraw solą, pieprzem i sokiem z cytryny.",
+                        "Brokuł podziel na różyczki, skrop oliwą.",
+                        "Brokuł piecz w air fryerze 190°C przez 8 minut.",
+                        "Dołóż dorsza, piecz razem jeszcze 10 minut.",
+                        "Dopraw przeciśniętym czosnkiem.",
+                        "Podawaj rybę na brokułach."
+                    ]
+                },
+                {
+                    id: 'd84',
+                    name: "Tofu chrupiące z warzywami z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 422,
+                    protein: 37,
+                    fat: 24,
+                    carbs: 23,
+                    ingredients: [
+                        { item: "Tofu extra firm", amount: 200, unit: "g" },
+                        { item: "Papryka czerwona", amount: 100, unit: "g" },
+                        { item: "Cukinia", amount: 100, unit: "g" },
+                        { item: "Sos sojowy", amount: 15, unit: "ml" },
+                        { item: "Sos sweet chili", amount: 15, unit: "ml" },
+                        { item: "Oliwa z oliwek", amount: 5, unit: "ml" }
+                    ],
+                    steps: [
+                        "Tofu pokrój w kostkę, marynuj w sosie sojowym.",
+                        "Warzywa pokrój na kawałki, skrop oliwą.",
+                        "Tofu i warzywa piecz w air fryerze 200°C przez 15 minut.",
+                        "Wstrząśnij koszem co 5 minut.",
+                        "Polej sosem sweet chili przed podaniem."
+                    ]
+                },
+                {
+                    id: 'd85',
+                    name: "Pierożki z serem z air fryer",
+                    category: "🍟 Air Fryer",
+                    kcal: 690,
+                    protein: 16,
+                    fat: 30,
+                    carbs: 91,
+                    ingredients: [
+                        { item: "Pierogi ruskie", amount: 250, unit: "g" },
+                        { item: "Oliwa z oliwek", amount: 10, unit: "ml" },
+                        { item: "Śmietana 18%", amount: 40, unit: "g" },
+                        { item: "Cebula", amount: 0.25, unit: "szt" }
+                    ],
+                    steps: [
+                        "Pierogi spryskaj oliwą z obu stron.",
+                        "Ułóż w air fryerze w jednej warstwie.",
+                        "Piecz w 200°C przez 10-12 minut, odwracając w połowie.",
+                        "Cebulę podsmaż na złoty kolor.",
+                        "Podawaj pierogi ze smażoną cebulą i śmietaną."
                     ]
                 }
             ]
@@ -14269,6 +16470,8 @@
             ).join('');
 
             container.innerHTML = categoryButtons +
+                `<div class="variant-separator">💪 Trening:</div>` +
+                `<button class="btn btn-orange" onclick="fillAllWith('💪 Fit')">💪 Fit Siłownia</button>` +
                 `<div class="variant-separator">💰 Budżetowe (tanie składniki):</div>` +
                 budgetButtons +
                 `<div class="variant-separator action-separator">⚡ Akcje:</div>` +
@@ -14589,8 +16792,8 @@
             grid.innerHTML = '';
 
             // Dla nowych filtrów przeszukuj wszystkie typy posiłków
-            const specialFilters = ['all', 'favorites', 'oven', 'chicken', 'pasta', 'asian', 'mexican',
-                'eggs', 'sandwiches', 'dairy', 'pancakes', 'oatmeal', 'meat', 'pizza', 'soups', 'salads', 'fish', 'casseroles', 'shakes', 'antiaging'];
+            const specialFilters = ['all', 'favorites', 'oven', 'airfryer', 'chicken', 'pasta', 'asian', 'mexican',
+                'eggs', 'sandwiches', 'dairy', 'pancakes', 'oatmeal', 'meat', 'pizza', 'soups', 'salads', 'fish', 'casseroles', 'shakes', 'antiaging', 'fit'];
             const types = specialFilters.includes(filter) ? mealTypes : [filter];
 
             // Mapowanie filtrów na kategorie
@@ -14611,7 +16814,9 @@
                 fish: 'Ryby',
                 casseroles: 'Zapiekanki',
                 shakes: "Shake'i",
-                antiaging: 'Anti-Aging'
+                antiaging: 'Anti-Aging',
+                fit: 'Fit',
+                airfryer: 'Air Fryer'
             };
 
             // Collect filtered recipes
