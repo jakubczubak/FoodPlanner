@@ -14451,16 +14451,24 @@
         const daysShort = ['Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'Sb', 'Nd'];
 
         // Nawigacja tygodniowa - helper functions
+        // Formatuje Date na "YYYY-MM-DD" w LOKALNEJ strefie czasowej (nie UTC!)
+        function toLocalDateStr(d) {
+            const yyyy = d.getFullYear();
+            const mm = String(d.getMonth() + 1).padStart(2, '0');
+            const dd = String(d.getDate()).padStart(2, '0');
+            return `${yyyy}-${mm}-${dd}`;
+        }
+
         function getMondayKey(date) {
             const d = new Date(date);
             const jsDay = d.getDay();
             const diff = jsDay === 0 ? -6 : 1 - jsDay;
             d.setDate(d.getDate() + diff);
-            return d.toISOString().slice(0, 10);
+            return toLocalDateStr(d);
         }
 
         function getWeekDatesForKey(mondayKey) {
-            const monday = new Date(mondayKey + 'T00:00:00');
+            const monday = new Date(mondayKey + 'T12:00:00');
             return Array.from({ length: 7 }, (_, i) => {
                 const d = new Date(monday);
                 d.setDate(monday.getDate() + i);
@@ -14475,9 +14483,9 @@
         }
 
         function shiftWeek(mondayKey, offset) {
-            const d = new Date(mondayKey + 'T00:00:00');
+            const d = new Date(mondayKey + 'T12:00:00');
             d.setDate(d.getDate() + 7 * offset);
-            return d.toISOString().slice(0, 10);
+            return toLocalDateStr(d);
         }
 
         let currentWeekKey = getMondayKey(new Date());
@@ -18157,12 +18165,12 @@
 
         // FILTRY LISTY ZAKUPÓW
         let shoppingListSelection = (function() {
-            const mon = new Date(getMondayKey(new Date()) + 'T00:00:00');
+            const mon = new Date(getMondayKey(new Date()) + 'T12:00:00');
             const sun = new Date(mon);
             sun.setDate(mon.getDate() + 6);
             return {
                 startDate: getMondayKey(new Date()),
-                endDate: sun.toISOString().slice(0, 10),
+                endDate: toLocalDateStr(sun),
                 mealTypes: [...mealTypes]
             };
         })();
@@ -18261,8 +18269,8 @@
         // Pobieranie posiłków z zakresu dat (cross-week)
         function getMealsForDateRange(startDateStr, endDateStr, selectedMealTypes) {
             const results = [];
-            const start = new Date(startDateStr + 'T00:00:00');
-            const end = new Date(endDateStr + 'T00:00:00');
+            const start = new Date(startDateStr + 'T12:00:00');
+            const end = new Date(endDateStr + 'T12:00:00');
             const weekPlanCache = {};
 
             let current = new Date(start);
@@ -18357,33 +18365,33 @@
 
         function setShoppingRange(preset) {
             const thisMonday = getMondayKey(new Date());
-            const thisMondayDate = new Date(thisMonday + 'T00:00:00');
+            const thisMondayDate = new Date(thisMonday + 'T12:00:00');
             const thisSunday = new Date(thisMondayDate);
             thisSunday.setDate(thisMondayDate.getDate() + 6);
 
             const nextMonday = shiftWeek(thisMonday, 1);
-            const nextMondayDate = new Date(nextMonday + 'T00:00:00');
+            const nextMondayDate = new Date(nextMonday + 'T12:00:00');
             const nextSunday = new Date(nextMondayDate);
             nextSunday.setDate(nextMondayDate.getDate() + 6);
 
             switch (preset) {
                 case 'thisWeek':
                     shoppingListSelection.startDate = thisMonday;
-                    shoppingListSelection.endDate = thisSunday.toISOString().slice(0, 10);
+                    shoppingListSelection.endDate = toLocalDateStr(thisSunday);
                     break;
                 case 'nextWeek':
                     shoppingListSelection.startDate = nextMonday;
-                    shoppingListSelection.endDate = nextSunday.toISOString().slice(0, 10);
+                    shoppingListSelection.endDate = toLocalDateStr(nextSunday);
                     break;
                 case 'twoWeeks':
                     shoppingListSelection.startDate = thisMonday;
-                    shoppingListSelection.endDate = nextSunday.toISOString().slice(0, 10);
+                    shoppingListSelection.endDate = toLocalDateStr(nextSunday);
                     break;
                 case 'weekdays':
                     shoppingListSelection.startDate = thisMonday;
                     const friday = new Date(thisMondayDate);
                     friday.setDate(thisMondayDate.getDate() + 4);
-                    shoppingListSelection.endDate = friday.toISOString().slice(0, 10);
+                    shoppingListSelection.endDate = toLocalDateStr(friday);
                     break;
             }
 
@@ -18405,8 +18413,8 @@
         }
 
         function updateShoppingSummary() {
-            const start = new Date(shoppingListSelection.startDate + 'T00:00:00');
-            const end = new Date(shoppingListSelection.endDate + 'T00:00:00');
+            const start = new Date(shoppingListSelection.startDate + 'T12:00:00');
+            const end = new Date(shoppingListSelection.endDate + 'T12:00:00');
             const numDays = Math.round((end - start) / 86400000) + 1;
             const numMealTypes = shoppingListSelection.mealTypes.length;
             const numPersons = persons.length;
