@@ -24,9 +24,13 @@ function lastIndexInRange(str, search, start, end) {
 }
 
 // Wyekstrahuj ingredientsDatabase
+// Szukamy zamkniecia obiektu zaraz po sekcji _defaultUnits (ostatnia sekcja w ingredientsDatabase)
 const ingredientStart = jsCode.indexOf('const ingredientsDatabase = {');
-const recipesMarker = jsCode.indexOf('// BAZA PRZEPISÓW', ingredientStart);
-const ingredientEnd = lastIndexInRange(jsCode, '};', ingredientStart, recipesMarker) + 2;
+const defaultUnitsIdx = jsCode.indexOf('_defaultUnits', ingredientStart);
+let ingredientEndPos = jsCode.indexOf('}', defaultUnitsIdx); // zamkniecie obiektu _defaultUnits
+ingredientEndPos = jsCode.indexOf('}', ingredientEndPos + 1);  // zamkniecie ingredientsDatabase
+ingredientEndPos = jsCode.indexOf(';', ingredientEndPos) + 1;  // srednik
+const ingredientEnd = ingredientEndPos;
 const ingredientCode = jsCode.substring(ingredientStart, ingredientEnd);
 
 // Wyekstrahuj recipes
