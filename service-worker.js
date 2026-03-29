@@ -1,4 +1,4 @@
-const CACHE_NAME = 'planer-posilkow-v2';
+const CACHE_NAME = 'planer-posilkow-v3';
 const urlsToCache = [
   './',
   './index.html',

@@ -2682,6 +2682,88 @@
             margin-top: 8px;
         }
 
+        /* Nawigacja tygodniowa */
+        .week-navigation {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 12px 0;
+            margin-bottom: 8px;
+        }
+        .week-nav-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid #d1d5db;
+            background: white;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            color: #374151;
+        }
+        .week-nav-btn:hover {
+            background: #f3f4f6;
+            border-color: #9ca3af;
+        }
+        .week-nav-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            min-width: 140px;
+            user-select: none;
+        }
+        .week-nav-label:hover .week-dates {
+            color: #2563eb;
+        }
+        .week-dates {
+            font-weight: 600;
+            font-size: 15px;
+            color: #1f2937;
+            transition: color 0.2s;
+        }
+        .week-current-badge {
+            font-size: 11px;
+            color: #10b981;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        /* Date range picker - lista zakupów */
+        .date-range-picker {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .date-range-field {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .date-range-field label {
+            font-size: 12px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+        .date-range-field input[type="date"] {
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #1f2937;
+            background: white;
+        }
+        .date-range-field input[type="date"]:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+        }
+
         /* RESPONSYWNOŚĆ - Tablet */
         @media (max-width: 1024px) {
             .container { max-width: 100%; padding: 15px; }
@@ -3271,6 +3353,9 @@
                 <!-- Przyciski wariantów generowane dynamicznie przez renderVariantButtons() -->
                 <div id="variant-buttons" class="quick-buttons"></div>
 
+                <!-- Nawigacja tygodniowa -->
+                <div class="week-navigation" id="week-navigation"></div>
+
                 <!-- Podsumowanie osób (kompaktowe) -->
                 <div class="persons-panel" id="persons-panel"></div>
 
@@ -3384,14 +3469,8 @@
                 <!-- Panel filtrów zakupów -->
                 <div class="shopping-filters">
                     <div class="shopping-filter-section">
-                        <h4>📅 Wybierz dni:</h4>
-                        <div class="shopping-days-grid" id="shopping-days"></div>
-                        <div class="shopping-quick-btns">
-                            <button onclick="selectAllDays()">Wszystkie</button>
-                            <button onclick="selectWeekdays()">Pon-Pt</button>
-                            <button onclick="selectWeekend()">Sob-Nd</button>
-                            <button onclick="deselectAllDays()">Odznacz</button>
-                        </div>
+                        <h4>📅 Zakres dat:</h4>
+                        <div id="shopping-date-range"></div>
                     </div>
                     <div class="shopping-filter-section">
                         <h4>🍽️ Wybierz posiłki:</h4>
@@ -14371,21 +14450,47 @@
         const days = ['Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota', 'Niedziela'];
         const daysShort = ['Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'Sb', 'Nd'];
 
-        function getTodayIndex() {
-            const jsDay = new Date().getDay();
-            return jsDay === 0 ? 6 : jsDay - 1;
+        // Nawigacja tygodniowa - helper functions
+        function getMondayKey(date) {
+            const d = new Date(date);
+            const jsDay = d.getDay();
+            const diff = jsDay === 0 ? -6 : 1 - jsDay;
+            d.setDate(d.getDate() + diff);
+            return d.toISOString().slice(0, 10);
         }
 
-        function getWeekDates() {
-            const today = new Date();
-            const todayIndex = getTodayIndex();
-            const monday = new Date(today);
-            monday.setDate(today.getDate() - todayIndex);
+        function getWeekDatesForKey(mondayKey) {
+            const monday = new Date(mondayKey + 'T00:00:00');
             return Array.from({ length: 7 }, (_, i) => {
                 const d = new Date(monday);
                 d.setDate(monday.getDate() + i);
                 return d;
             });
+        }
+
+        function getWeekLabel(mondayKey) {
+            const dates = getWeekDatesForKey(mondayKey);
+            const fmt = d => `${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')}`;
+            return `${fmt(dates[0])} - ${fmt(dates[6])}`;
+        }
+
+        function shiftWeek(mondayKey, offset) {
+            const d = new Date(mondayKey + 'T00:00:00');
+            d.setDate(d.getDate() + 7 * offset);
+            return d.toISOString().slice(0, 10);
+        }
+
+        let currentWeekKey = getMondayKey(new Date());
+
+        function getTodayIndex() {
+            const jsDay = new Date().getDay();
+            const todayIdx = jsDay === 0 ? 6 : jsDay - 1;
+            if (currentWeekKey !== getMondayKey(new Date())) return -1;
+            return todayIdx;
+        }
+
+        function getWeekDates() {
+            return getWeekDatesForKey(currentWeekKey);
         }
 
         function formatDayLabel(shortName, date) {
@@ -14786,11 +14891,11 @@
         }
 
         function saveEatenMeals() {
-            safeSetItem('mealEatenStatus', JSON.stringify(eatenMeals));
+            safeSetItem('mealEaten_' + currentWeekKey, JSON.stringify(eatenMeals));
         }
 
         function loadEatenMeals() {
-            const saved = localStorage.getItem('mealEatenStatus');
+            const saved = localStorage.getItem('mealEaten_' + currentWeekKey);
             if (saved) {
                 try {
                     eatenMeals = JSON.parse(saved);
@@ -14856,17 +14961,19 @@
         }
 
         function saveMealOptimizations() {
-            safeSetItem('mealOptimizations', JSON.stringify(mealOptimizations));
+            safeSetItem('mealOpt_' + currentWeekKey, JSON.stringify(mealOptimizations));
         }
 
         function loadMealOptimizations() {
-            const saved = localStorage.getItem('mealOptimizations');
+            const saved = localStorage.getItem('mealOpt_' + currentWeekKey);
             if (saved) {
                 try {
                     mealOptimizations = JSON.parse(saved);
                 } catch(e) {
                     mealOptimizations = {};
                 }
+            } else {
+                mealOptimizations = {};
             }
         }
 
@@ -14901,7 +15008,7 @@
             if (btn) btn.classList.add('active');
             else document.querySelector(`.nav-btn[onclick*="${name}"]`).classList.add('active');
             if (name === 'shopping') {
-                renderShoppingDaysFilter();
+                renderShoppingDateRange();
                 renderShoppingList();
             }
         }
@@ -15821,6 +15928,63 @@
             return Math.round(amount * 10) / 10;
         }
 
+        // ===========================================
+        // NAWIGACJA TYGODNIOWA
+        // ===========================================
+        function renderWeekNavigation() {
+            const container = document.getElementById('week-navigation');
+            if (!container) return;
+            const isCurrentWeek = currentWeekKey === getMondayKey(new Date());
+            container.innerHTML = `
+                <button class="week-nav-btn" onclick="navigateWeek(-1)" aria-label="Poprzedni tydzień">◀</button>
+                <div class="week-nav-label" onclick="goToCurrentWeek()" title="Kliknij, aby wrócić do bieżącego tygodnia">
+                    <span class="week-dates">📅 ${getWeekLabel(currentWeekKey)}</span>
+                    ${isCurrentWeek ? '<span class="week-current-badge">bieżący tydzień</span>' : '<span class="week-current-badge" style="color:#6b7280;cursor:pointer;">↩ wróć do bieżącego</span>'}
+                </div>
+                <button class="week-nav-btn" onclick="navigateWeek(1)" aria-label="Następny tydzień">▶</button>
+            `;
+        }
+
+        function navigateWeek(offset) {
+            // Zapisz bieżący tydzień
+            savePlan();
+            saveEatenMeals();
+            saveMealOptimizations();
+
+            // Przesuń
+            currentWeekKey = shiftWeek(currentWeekKey, offset);
+
+            // Załaduj nowy tydzień
+            loadPlan();
+            loadEatenMeals();
+            loadMealOptimizations();
+
+            // Przerenderuj
+            renderWeekNavigation();
+            renderPlannerTable();
+            renderMobileDayView();
+        }
+
+        function goToCurrentWeek() {
+            const thisWeek = getMondayKey(new Date());
+            if (currentWeekKey === thisWeek) return;
+
+            // Zapisz bieżący
+            savePlan();
+            saveEatenMeals();
+            saveMealOptimizations();
+
+            currentWeekKey = thisWeek;
+
+            loadPlan();
+            loadEatenMeals();
+            loadMealOptimizations();
+
+            renderWeekNavigation();
+            renderPlannerTable();
+            renderMobileDayView();
+        }
+
         function renderPlannerTable() {
             const tbody = document.getElementById('plan-table-body');
             tbody.innerHTML = '';
@@ -16630,9 +16794,13 @@
                     persons.forEach(p => { plan[day][mt][p.id] = null; });
                 });
             });
+            eatenMeals = initEatenMeals();
+            mealOptimizations = {};
             clearCheckedItems();
             renderPlannerTable();
             savePlan();
+            saveEatenMeals();
+            saveMealOptimizations();
         }
 
         function copyPlanToAllPersons() {
@@ -17988,18 +18156,32 @@
         }
 
         // FILTRY LISTY ZAKUPÓW
-        let shoppingListSelection = {
-            days: [...days],
-            mealTypes: [...mealTypes]
-        };
+        let shoppingListSelection = (function() {
+            const mon = new Date(getMondayKey(new Date()) + 'T00:00:00');
+            const sun = new Date(mon);
+            sun.setDate(mon.getDate() + 6);
+            return {
+                startDate: getMondayKey(new Date()),
+                endDate: sun.toISOString().slice(0, 10),
+                mealTypes: [...mealTypes]
+            };
+        })();
 
         function loadShoppingSelection() {
             const saved = localStorage.getItem('shoppingListSelection');
             if (saved) {
                 try {
                     const parsed = JSON.parse(saved);
-                    shoppingListSelection.days = parsed.days || [...days];
-                    shoppingListSelection.mealTypes = parsed.mealTypes || [...mealTypes];
+                    if (parsed.startDate && parsed.endDate) {
+                        // Nowy format z zakresem dat
+                        shoppingListSelection.startDate = parsed.startDate;
+                        shoppingListSelection.endDate = parsed.endDate;
+                        shoppingListSelection.mealTypes = parsed.mealTypes || [...mealTypes];
+                    } else if (parsed.days) {
+                        // Stary format z dniami tygodnia — migruj do zakresu bieżącego tygodnia
+                        shoppingListSelection.mealTypes = parsed.mealTypes || [...mealTypes];
+                        // startDate/endDate zostają domyślne (bieżący tydzień)
+                    }
                 } catch(e) {}
             }
         }
@@ -18076,19 +18258,71 @@
             renderShoppingList();
         }
 
-        function renderShoppingDaysFilter() {
-            const container = document.getElementById('shopping-days');
+        // Pobieranie posiłków z zakresu dat (cross-week)
+        function getMealsForDateRange(startDateStr, endDateStr, selectedMealTypes) {
+            const results = [];
+            const start = new Date(startDateStr + 'T00:00:00');
+            const end = new Date(endDateStr + 'T00:00:00');
+            const weekPlanCache = {};
+
+            let current = new Date(start);
+            while (current <= end) {
+                const weekKey = getMondayKey(current);
+                const dayIdx = current.getDay() === 0 ? 6 : current.getDay() - 1;
+                const dayName = days[dayIdx];
+
+                if (!weekPlanCache[weekKey]) {
+                    weekPlanCache[weekKey] = loadPlanForWeek(weekKey);
+                }
+                const weekPlan = weekPlanCache[weekKey];
+
+                if (weekPlan && weekPlan[dayName]) {
+                    selectedMealTypes.forEach(mt => {
+                        const meal = weekPlan[dayName][mt];
+                        if (meal) {
+                            persons.forEach(p => {
+                                if (meal[p.id]) {
+                                    results.push({
+                                        weekKey, dayName, mealType: mt,
+                                        personId: p.id, recipeId: meal[p.id],
+                                        date: new Date(current)
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
+                current.setDate(current.getDate() + 1);
+            }
+            return results;
+        }
+
+        function renderShoppingDateRange() {
+            const container = document.getElementById('shopping-date-range');
             if (!container) return;
-            container.innerHTML = days.map(day => {
-                const isSelected = shoppingListSelection.days.includes(day);
-                const shortName = day.substring(0, 3);
-                return `
-                    <div class="shopping-day-checkbox ${isSelected ? 'selected' : ''}"
-                         onclick="toggleShoppingDay('${day}')">
-                        <span class="shopping-day-name">${shortName}</span>
+
+            container.innerHTML = `
+                <div class="date-range-picker">
+                    <div class="date-range-field">
+                        <label>Od:</label>
+                        <input type="date" id="shopping-start-date"
+                               value="${shoppingListSelection.startDate}"
+                               onchange="updateShoppingDateRange()">
                     </div>
-                `;
-            }).join('');
+                    <div class="date-range-field">
+                        <label>Do:</label>
+                        <input type="date" id="shopping-end-date"
+                               value="${shoppingListSelection.endDate}"
+                               onchange="updateShoppingDateRange()">
+                    </div>
+                </div>
+                <div class="shopping-quick-btns">
+                    <button onclick="setShoppingRange('thisWeek')">Ten tydzień</button>
+                    <button onclick="setShoppingRange('nextWeek')">Następny tydzień</button>
+                    <button onclick="setShoppingRange('twoWeeks')">2 tygodnie</button>
+                    <button onclick="setShoppingRange('weekdays')">Pon-Pt</button>
+                </div>
+            `;
             updateShoppingSummary();
             updateMealCheckboxes();
         }
@@ -18102,14 +18336,58 @@
             if (dinnerCb) dinnerCb.checked = shoppingListSelection.mealTypes.includes('dinner');
         }
 
-        function toggleShoppingDay(day) {
-            const idx = shoppingListSelection.days.indexOf(day);
-            if (idx > -1) {
-                shoppingListSelection.days.splice(idx, 1);
-            } else {
-                shoppingListSelection.days.push(day);
+        function updateShoppingDateRange() {
+            const startInput = document.getElementById('shopping-start-date');
+            const endInput = document.getElementById('shopping-end-date');
+            if (!startInput || !endInput) return;
+
+            shoppingListSelection.startDate = startInput.value;
+            shoppingListSelection.endDate = endInput.value;
+
+            // Walidacja: endDate >= startDate
+            if (shoppingListSelection.endDate < shoppingListSelection.startDate) {
+                shoppingListSelection.endDate = shoppingListSelection.startDate;
+                endInput.value = shoppingListSelection.endDate;
             }
-            renderShoppingDaysFilter();
+
+            updateShoppingSummary();
+            renderShoppingList();
+            saveShoppingSelection();
+        }
+
+        function setShoppingRange(preset) {
+            const thisMonday = getMondayKey(new Date());
+            const thisMondayDate = new Date(thisMonday + 'T00:00:00');
+            const thisSunday = new Date(thisMondayDate);
+            thisSunday.setDate(thisMondayDate.getDate() + 6);
+
+            const nextMonday = shiftWeek(thisMonday, 1);
+            const nextMondayDate = new Date(nextMonday + 'T00:00:00');
+            const nextSunday = new Date(nextMondayDate);
+            nextSunday.setDate(nextMondayDate.getDate() + 6);
+
+            switch (preset) {
+                case 'thisWeek':
+                    shoppingListSelection.startDate = thisMonday;
+                    shoppingListSelection.endDate = thisSunday.toISOString().slice(0, 10);
+                    break;
+                case 'nextWeek':
+                    shoppingListSelection.startDate = nextMonday;
+                    shoppingListSelection.endDate = nextSunday.toISOString().slice(0, 10);
+                    break;
+                case 'twoWeeks':
+                    shoppingListSelection.startDate = thisMonday;
+                    shoppingListSelection.endDate = nextSunday.toISOString().slice(0, 10);
+                    break;
+                case 'weekdays':
+                    shoppingListSelection.startDate = thisMonday;
+                    const friday = new Date(thisMondayDate);
+                    friday.setDate(thisMondayDate.getDate() + 4);
+                    shoppingListSelection.endDate = friday.toISOString().slice(0, 10);
+                    break;
+            }
+
+            renderShoppingDateRange();
             renderShoppingList();
             saveShoppingSelection();
         }
@@ -18126,46 +18404,22 @@
             saveShoppingSelection();
         }
 
-        function selectAllDays() {
-            shoppingListSelection.days = [...days];
-            renderShoppingDaysFilter();
-            renderShoppingList();
-            saveShoppingSelection();
-        }
-
-        function deselectAllDays() {
-            shoppingListSelection.days = [];
-            renderShoppingDaysFilter();
-            renderShoppingList();
-            saveShoppingSelection();
-        }
-
-        function selectWeekdays() {
-            shoppingListSelection.days = ['Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek'];
-            renderShoppingDaysFilter();
-            renderShoppingList();
-            saveShoppingSelection();
-        }
-
-        function selectWeekend() {
-            shoppingListSelection.days = ['Sobota', 'Niedziela'];
-            renderShoppingDaysFilter();
-            renderShoppingList();
-            saveShoppingSelection();
-        }
-
         function updateShoppingSummary() {
-            const numDays = shoppingListSelection.days.length;
+            const start = new Date(shoppingListSelection.startDate + 'T00:00:00');
+            const end = new Date(shoppingListSelection.endDate + 'T00:00:00');
+            const numDays = Math.round((end - start) / 86400000) + 1;
             const numMealTypes = shoppingListSelection.mealTypes.length;
             const numPersons = persons.length;
             const total = numDays * numMealTypes * numPersons;
 
+            const fmtDate = d => `${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')}`;
+
             const summary = document.getElementById('shopping-summary');
             if (summary) {
-                if (total === 0) {
+                if (total === 0 || numDays <= 0) {
                     summary.innerHTML = '⚠️ Nie wybrano żadnych posiłków';
                 } else {
-                    summary.innerHTML = `🛒 Wybrano: <strong>${total}</strong> posiłków (${numDays} dni × ${numMealTypes} posiłki × ${numPersons} osoby)`;
+                    summary.innerHTML = `🛒 Zakres: <strong>${fmtDate(start)} - ${fmtDate(end)}</strong> (${numDays} dni × ${numMealTypes} posiłki × ${numPersons} osoby)`;
                 }
             }
         }
@@ -18254,39 +18508,36 @@
             const list = {};
             let total = 0;
 
-            // Używamy filtrowanych dni i typów posiłków
-            shoppingListSelection.days.forEach(day => {
-                shoppingListSelection.mealTypes.forEach(mt => {
-                    const meal = plan[day]?.[mt];
-                    if (!meal) return;
-                    // Osobne receptury dla każdej osoby
-                    persons.forEach(person => {
-                        const recipeId = meal[person.id];
-                        if (recipeId) {
-                            total++;
-                            const r = recipes[mt].find(x => x.id === recipeId);
-                            if (r) {
-                                // Sprawdź czy jest optymalizacja dla tego przepisu/osoby/dnia
-                                const optKey = getOptimizationKey(day, mt, person.id, recipeId);
-                                const optimization = mealOptimizations[optKey];
-                                const ingredients = optimization ? optimization.ingredients : r.ingredients;
+            // Pobierz posiłki z zakresu dat (cross-week)
+            const meals = getMealsForDateRange(
+                shoppingListSelection.startDate,
+                shoppingListSelection.endDate,
+                shoppingListSelection.mealTypes
+            );
 
-                                ingredients.forEach(ing => {
-                                    const k = `${ing.item} (${ing.unit})`;
-                                    // Przy optymalizacji ilość jest już przeliczona (uwzględnia porcje)
-                                    const amount = optimization
-                                        ? ing.amount * shoppingListMultiplier
-                                        : ing.amount * person.portion * shoppingListMultiplier;
-                                    if (!list[k]) list[k] = { amount: 0, recipes: [] };
-                                    list[k].amount += amount;
-                                    if (!list[k].recipes.some(x => x.recipeId === r.id && x.day === day)) {
-                                        list[k].recipes.push({ mealType: mt, recipeId: r.id, recipeName: r.name, day: day });
-                                    }
-                                });
-                            }
+            meals.forEach(m => {
+                total++;
+                const r = recipes[m.mealType].find(x => x.id === m.recipeId);
+                if (r) {
+                    const person = persons.find(p => p.id === m.personId);
+                    if (!person) return;
+                    const weekOpt = loadOptimizationsForWeek(m.weekKey);
+                    const optKey = getOptimizationKey(m.dayName, m.mealType, m.personId, m.recipeId);
+                    const optimization = weekOpt[optKey];
+                    const ingredients = optimization ? optimization.ingredients : r.ingredients;
+
+                    ingredients.forEach(ing => {
+                        const k = `${ing.item} (${ing.unit})`;
+                        const amount = optimization
+                            ? ing.amount * shoppingListMultiplier
+                            : ing.amount * person.portion * shoppingListMultiplier;
+                        if (!list[k]) list[k] = { amount: 0, recipes: [] };
+                        list[k].amount += amount;
+                        if (!list[k].recipes.some(x => x.recipeId === r.id && x.day === m.dayName)) {
+                            list[k].recipes.push({ mealType: m.mealType, recipeId: r.id, recipeName: r.name, day: m.dayName });
                         }
                     });
-                });
+                }
             });
 
             Object.keys(list).forEach(k => list[k].amount = Math.ceil(list[k].amount * 10) / 10);
@@ -18456,36 +18707,37 @@
             }, 0);
         }
 
-        function copyShoppingList() {
+        // Buduje prostą listę składników (item → amount) z zakresu dat
+        function buildShoppingListFromRange() {
             const list = {};
-            shoppingListSelection.days.forEach(day => {
-                shoppingListSelection.mealTypes.forEach(mt => {
-                    const meal = plan[day][mt];
-                    // Osobne receptury dla każdej osoby
-                    persons.forEach(person => {
-                        const recipeId = meal[person.id];
-                        if (recipeId) {
-                            const r = recipes[mt].find(x => x.id === recipeId);
-                            if (r) {
-                                // Sprawdź czy jest optymalizacja dla tego przepisu/osoby/dnia
-                                const optKey = getOptimizationKey(day, mt, person.id, recipeId);
-                                const optimization = mealOptimizations[optKey];
-                                const ingredients = optimization ? optimization.ingredients : r.ingredients;
-
-                                ingredients.forEach(ing => {
-                                    const k = `${ing.item} (${ing.unit})`;
-                                    // Przy optymalizacji ilość jest już przeliczona (uwzględnia porcje)
-                                    const amount = optimization
-                                        ? ing.amount * shoppingListMultiplier
-                                        : ing.amount * person.portion * shoppingListMultiplier;
-                                    list[k] = (list[k] || 0) + amount;
-                                });
-                            }
-                        }
-                    });
+            const meals = getMealsForDateRange(
+                shoppingListSelection.startDate,
+                shoppingListSelection.endDate,
+                shoppingListSelection.mealTypes
+            );
+            meals.forEach(m => {
+                const r = recipes[m.mealType].find(x => x.id === m.recipeId);
+                if (!r) return;
+                const person = persons.find(p => p.id === m.personId);
+                if (!person) return;
+                const weekOpt = loadOptimizationsForWeek(m.weekKey);
+                const optKey = getOptimizationKey(m.dayName, m.mealType, m.personId, m.recipeId);
+                const optimization = weekOpt[optKey];
+                const ingredients = optimization ? optimization.ingredients : r.ingredients;
+                ingredients.forEach(ing => {
+                    const k = `${ing.item} (${ing.unit})`;
+                    const amount = optimization
+                        ? ing.amount * shoppingListMultiplier
+                        : ing.amount * person.portion * shoppingListMultiplier;
+                    list[k] = (list[k] || 0) + amount;
                 });
             });
             Object.keys(list).forEach(k => list[k] = Math.ceil(list[k] * 10) / 10);
+            return list;
+        }
+
+        function copyShoppingList() {
+            const list = buildShoppingListFromRange();
 
             const personsInfo = persons.map(p => `${p.name} (${p.portion}x)`).join(' + ');
             const multiplierText = shoppingListMultiplier > 1 ? ` [×${shoppingListMultiplier}]` : '';
@@ -18522,34 +18774,7 @@
 
         // Udostępnianie listy zakupów (natywne iOS/Android)
         function shareShoppingList() {
-            const list = {};
-            shoppingListSelection.days.forEach(day => {
-                shoppingListSelection.mealTypes.forEach(mt => {
-                    const meal = plan[day][mt];
-                    persons.forEach(person => {
-                        const recipeId = meal[person.id];
-                        if (recipeId) {
-                            const r = recipes[mt].find(x => x.id === recipeId);
-                            if (r) {
-                                // Sprawdź czy jest optymalizacja dla tego przepisu/osoby/dnia
-                                const optKey = getOptimizationKey(day, mt, person.id, recipeId);
-                                const optimization = mealOptimizations[optKey];
-                                const ingredients = optimization ? optimization.ingredients : r.ingredients;
-
-                                ingredients.forEach(ing => {
-                                    const k = `${ing.item} (${ing.unit})`;
-                                    // Przy optymalizacji ilość jest już przeliczona (uwzględnia porcje)
-                                    const amount = optimization
-                                        ? ing.amount * shoppingListMultiplier
-                                        : ing.amount * person.portion * shoppingListMultiplier;
-                                    list[k] = (list[k] || 0) + amount;
-                                });
-                            }
-                        }
-                    });
-                });
-            });
-            Object.keys(list).forEach(k => list[k] = Math.ceil(list[k] * 10) / 10);
+            const list = buildShoppingListFromRange();
 
             const personsInfo = persons.map(p => `${p.name} (${p.portion}x)`).join(' + ');
             const multiplierText = shoppingListMultiplier > 1 ? ` [×${shoppingListMultiplier}]` : '';
@@ -18599,7 +18824,7 @@
 
         // ZAPIS/ODCZYT
         function savePlan() {
-            safeSetItem('mealPlanV5', JSON.stringify(plan));
+            safeSetItem('mealPlan_' + currentWeekKey, JSON.stringify(plan));
         }
 
         function savePersons() {
@@ -18796,8 +19021,8 @@
                 } catch(e) {}
             }
 
-            // Sprawdź localStorage - nowy format V5
-            let saved = localStorage.getItem('mealPlanV5');
+            // Sprawdź localStorage - nowy format per-tydzień
+            const saved = localStorage.getItem('mealPlan_' + currentWeekKey);
             if (saved) {
                 try {
                     plan = JSON.parse(saved);
@@ -18805,26 +19030,62 @@
                 } catch(e) {}
             }
 
-            // Migracja z V4
-            saved = localStorage.getItem('mealPlanV4');
-            if (saved) {
-                try {
-                    const oldPlan = JSON.parse(saved);
-                    plan = migratePlan(oldPlan);
-                    savePlan();
-                    return;
-                } catch(e) {}
+            // Brak danych dla tego tygodnia - pusty plan
+            plan = initPlanStructure();
+        }
+
+        // Migracja starych danych do formatu per-tydzień
+        function migrateToWeeklyStorage() {
+            if (localStorage.getItem('weeklyMigrationDone')) return;
+
+            const thisWeek = getMondayKey(new Date());
+
+            // Migracja z V3/V4 do V5 najpierw
+            let oldPlan = localStorage.getItem('mealPlanV5');
+            if (!oldPlan) {
+                const v4 = localStorage.getItem('mealPlanV4');
+                const v3 = localStorage.getItem('mealPlanV3');
+                if (v4) {
+                    try { oldPlan = JSON.stringify(migratePlan(JSON.parse(v4))); } catch(e) {}
+                } else if (v3) {
+                    try { oldPlan = JSON.stringify(migratePlan(JSON.parse(v3))); } catch(e) {}
+                }
             }
 
-            // Migracja ze starego formatu V3
-            saved = localStorage.getItem('mealPlanV3');
-            if (saved) {
-                try {
-                    const oldPlan = JSON.parse(saved);
-                    plan = migratePlan(oldPlan);
-                    savePlan();
-                } catch(e) {}
+            if (oldPlan) {
+                localStorage.setItem('mealPlan_' + thisWeek, oldPlan);
             }
+
+            const oldEaten = localStorage.getItem('mealEatenStatus');
+            if (oldEaten) {
+                localStorage.setItem('mealEaten_' + thisWeek, oldEaten);
+            }
+
+            const oldOpt = localStorage.getItem('mealOptimizations');
+            if (oldOpt) {
+                localStorage.setItem('mealOpt_' + thisWeek, oldOpt);
+            }
+
+            localStorage.setItem('weeklyMigrationDone', 'true');
+        }
+
+        // Ładowanie planu innego tygodnia (dla listy zakupów cross-week)
+        function loadPlanForWeek(weekKey) {
+            if (weekKey === currentWeekKey) return plan;
+            const saved = localStorage.getItem('mealPlan_' + weekKey);
+            if (saved) {
+                try { return JSON.parse(saved); } catch(e) {}
+            }
+            return null;
+        }
+
+        function loadOptimizationsForWeek(weekKey) {
+            if (weekKey === currentWeekKey) return mealOptimizations;
+            const saved = localStorage.getItem('mealOpt_' + weekKey);
+            if (saved) {
+                try { return JSON.parse(saved); } catch(e) {}
+            }
+            return {};
         }
 
         function hideLoadedAlert() {
@@ -19323,13 +19584,21 @@
         // ==========================================
         function exportData() {
             const data = {};
-            const keys = ['mealPlanV5', 'mealPersons', 'mealEatenStatus', 'recipeFavorites',
-                          'mealOptimizations', 'shoppingListSelection', 'checkedShoppingItems',
-                          'manualShoppingItems', 'onboardingComplete'];
-            keys.forEach(key => {
+            // Klucze globalne
+            const globalKeys = ['mealPersons', 'recipeFavorites', 'shoppingListSelection',
+                               'checkedShoppingItems', 'manualShoppingItems', 'onboardingComplete',
+                               'weeklyMigrationDone'];
+            globalKeys.forEach(key => {
                 const val = localStorage.getItem(key);
                 if (val !== null) data[key] = val;
             });
+            // Klucze per-tydzień (mealPlan_*, mealEaten_*, mealOpt_*)
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key.startsWith('mealPlan_') || key.startsWith('mealEaten_') || key.startsWith('mealOpt_')) {
+                    data[key] = localStorage.getItem(key);
+                }
+            }
             const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -19375,6 +19644,7 @@
 
         // INIT
         loadPersons();
+        migrateToWeeklyStorage();
         loadPlan();
         loadEatenMeals();
         loadFavorites();
@@ -19387,6 +19657,7 @@
         renderPersonsPanel();
         updateTableHeaders();
         renderVariantButtons(); // Generuj przyciski wariantów dynamicznie
+        renderWeekNavigation();
         renderPlannerTable();
         renderRecipesPersonSelector();
         renderRecipes();
