@@ -617,6 +617,22 @@
             top: 0;
         }
 
+        .meal-picker-section-header {
+            padding: 8px 16px;
+            background: #eef2ff;
+            color: #3730a3;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 0.02em;
+            border-top: 1px solid #c7d2fe;
+            border-bottom: 1px solid #c7d2fe;
+        }
+        .meal-picker-section-header.origin {
+            background: #dbeafe;
+            color: #1e3a8a;
+            border-color: #93c5fd;
+        }
+
         /* Filtry kategorii w meal picker */
         .meal-picker-filters {
             display: flex;
@@ -16341,7 +16357,7 @@
                         const meal = plan[day][mt];
                         const recipeId = meal[person.id];
                         if (recipeId) {
-                            const r = recipes[mt].find(x => x.id === recipeId);
+                            const r = findRecipeById(recipeId);
                             if (r) {
                                 // Sprawdź czy jest zoptymalizowana wartość
                                 const optKey = getOptimizationKey(day, mt, person.id, recipeId);
@@ -17038,7 +17054,7 @@
                         if (recipeId) totalMeals++;
 
                         // Pobierz nazwę wybranego przepisu
-                        const selectedRecipe = recipeId ? recipes[mealType].find(r => r.id === recipeId) : null;
+                        const selectedRecipe = recipeId ? findRecipeById(recipeId) : null;
                         const displayName = selectedRecipe
                             ? (favoriteRecipes.has(recipeId) ? '❤️ ' : '') + selectedRecipe.name
                             : '-- wybierz --';
@@ -17084,7 +17100,7 @@
                         const meal = plan[day][mt];
                         const recipeId = meal[person.id];
                         if (recipeId) {
-                            const r = recipes[mt].find(x => x.id === recipeId);
+                            const r = findRecipeById(recipeId);
                             if (r) {
                                 // Sprawdź czy jest zoptymalizowana wartość
                                 const optKey = getOptimizationKey(day, mt, person.id, recipeId);
@@ -17211,7 +17227,7 @@
                     <div class="mobile-meal-card-header">${mealIcons[mt]} ${mealNames_[mt]}</div>`;
                 persons.forEach(p => {
                     const recipeId = plan[day][mt][p.id];
-                    const recipe = recipeId ? recipes[mt].find(r => r.id === recipeId) : null;
+                    const recipe = recipeId ? findRecipeById(recipeId) : null;
                     const isEaten = eatenMeals[day]?.[mt]?.[p.id] || false;
                     html += `<div class="mobile-meal-person ${isEaten ? 'eaten' : ''}">
                         <span class="person-indicator" style="background:${p.color}"></span>
@@ -17241,7 +17257,7 @@
                 persons.forEach(p => {
                     const recipeId = plan[day][mt][p.id];
                     if (recipeId) {
-                        const r = recipes[mt].find(x => x.id === recipeId);
+                        const r = findRecipeById(recipeId);
                         if (r) dayKcal += Math.round(r.kcal * p.portion);
                     }
                 });
@@ -17273,7 +17289,7 @@
 
             // Automatyczna optymalizacja przy wyborze przepisu
             if (recipeId) {
-                const recipe = recipes[mealType].find(r => r.id === recipeId);
+                const recipe = findRecipeById(recipeId);
                 const person = persons.find(p => p.id === personId);
 
                 if (recipe && person) {
@@ -17298,6 +17314,23 @@
         let mealPickerOptCache = {};
         let mealPickerActiveFilter = 'all';
         let recentRecipes = { breakfast: [], lunch: [], dinner: [] };
+
+        // Globalny lookup przepisu po ID (przepisy mogą być przypisane do dowolnego slotu).
+        function findRecipeById(recipeId) {
+            if (!recipeId) return null;
+            for (const mt of mealTypes) {
+                const r = recipes[mt].find(x => x.id === recipeId);
+                if (r) return r;
+            }
+            return null;
+        }
+        function findMealTypeByRecipeId(recipeId) {
+            if (!recipeId) return null;
+            for (const mt of mealTypes) {
+                if (recipes[mt].some(x => x.id === recipeId)) return mt;
+            }
+            return null;
+        }
 
         function loadRecentRecipes() {
             try {
@@ -17351,8 +17384,11 @@
 
         function renderMealPickerFilters(mealType) {
             const container = document.getElementById('mealPickerFilters');
-            const categories = [...new Set(recipes[mealType].map(r => r.category))].sort();
-            const hasFavorites = recipes[mealType].some(r => favoriteRecipes.has(r.id));
+            // Globalna wyszukiwarka — chipy kategorii to unia ze wszystkich typów posiłku.
+            const categorySet = new Set();
+            mealTypes.forEach(mt => recipes[mt].forEach(r => { if (r.category) categorySet.add(r.category); }));
+            const categories = [...categorySet].sort();
+            const hasFavorites = mealTypes.some(mt => recipes[mt].some(r => favoriteRecipes.has(r.id)));
 
             let html = '<button class="meal-picker-chip active" onclick="setMealPickerFilter(\'all\', this)">Wszystkie</button>';
             if (hasFavorites) {
@@ -17392,6 +17428,13 @@
             return score;
         }
 
+        // Etykiety sekcji per typ posiłku w pickerze (globalna wyszukiwarka).
+        const mealTypeSectionLabels = {
+            breakfast: '🍳 Śniadania',
+            lunch: '🍽️ Obiady',
+            dinner: '🥗 Kolacje'
+        };
+
         function renderMealPickerOptions(mealType, searchTerm) {
             const container = document.getElementById('mealPickerOptions');
             const currentValue = plan[currentMealPicker.day]?.[mealType]?.[currentMealPicker.personId];
@@ -17401,47 +17444,55 @@
             const targetMacros = calculateMealTargets(person, mealType);
             const portion = person?.portion || 1;
 
-            // Grupuj przepisy po kategorii
+            // Kolejność sekcji: typ slotu na górze, potem pozostałe.
+            const sectionOrder = [mealType, ...mealTypes.filter(mt => mt !== mealType)];
+
+            // Grupuj przepisy: grouped[sourceMealType][category] = [recipes]
             const grouped = {};
-            recipes[mealType].forEach(r => {
-                // Filtruj po kategorii / ulubionych
-                if (mealPickerActiveFilter === 'favorites' && !favoriteRecipes.has(r.id)) return;
-                if (mealPickerActiveFilter !== 'all' && mealPickerActiveFilter !== 'favorites' && r.category !== mealPickerActiveFilter) return;
+            let totalMatched = 0;
+            sectionOrder.forEach(mt => {
+                recipes[mt].forEach(r => {
+                    // Filtruj po kategorii / ulubionych
+                    if (mealPickerActiveFilter === 'favorites' && !favoriteRecipes.has(r.id)) return;
+                    if (mealPickerActiveFilter !== 'all' && mealPickerActiveFilter !== 'favorites' && r.category !== mealPickerActiveFilter) return;
 
-                // Filtruj po wyszukiwaniu
-                if (searchTerm) {
-                    const matchesName = r.name.toLowerCase().includes(searchTerm);
-                    const matchesIngredient = r.ingredients.some(ing =>
-                        ing.item.toLowerCase().includes(searchTerm)
-                    );
-                    const matchesCategory = r.category.toLowerCase().includes(searchTerm);
-                    if (!matchesName && !matchesIngredient && !matchesCategory) return;
-                }
+                    // Filtruj po wyszukiwaniu
+                    if (searchTerm) {
+                        const matchesName = r.name.toLowerCase().includes(searchTerm);
+                        const matchesIngredient = r.ingredients.some(ing =>
+                            ing.item.toLowerCase().includes(searchTerm)
+                        );
+                        const matchesCategory = r.category.toLowerCase().includes(searchTerm);
+                        if (!matchesName && !matchesIngredient && !matchesCategory) return;
+                    }
 
-                if (!grouped[r.category]) grouped[r.category] = [];
+                    if (!grouped[mt]) grouped[mt] = {};
+                    if (!grouped[mt][r.category]) grouped[mt][r.category] = [];
 
-                // Oblicz optymalizację i score dopasowania do celów makro (z cache)
-                let optimized;
-                if (mealPickerOptCache[r.id]) {
-                    optimized = mealPickerOptCache[r.id];
-                } else {
-                    optimized = optimizeIngredients(r, targetMacros, portion);
-                    mealPickerOptCache[r.id] = optimized;
-                }
-                const opt = optimized.nutrition;
+                    // Oblicz optymalizację i score dopasowania do celów makro (z cache)
+                    let optimized;
+                    if (mealPickerOptCache[r.id]) {
+                        optimized = mealPickerOptCache[r.id];
+                    } else {
+                        optimized = optimizeIngredients(r, targetMacros, portion);
+                        mealPickerOptCache[r.id] = optimized;
+                    }
+                    const opt = optimized.nutrition;
 
-                // Oblicz score z zoptymalizowanych wartości
-                let matchScore = 0;
-                if (targetMacros) {
-                    const kcalDiff = targetMacros.kcal > 0 ? Math.abs(opt.kcal - targetMacros.kcal) / targetMacros.kcal : 0;
-                    const proteinDiff = targetMacros.protein > 0 ? Math.abs(opt.protein - targetMacros.protein) / targetMacros.protein : 0;
-                    const fatDiff = targetMacros.fat > 0 ? Math.abs(opt.fat - targetMacros.fat) / targetMacros.fat : 0;
-                    const carbsDiff = targetMacros.carbs > 0 ? Math.abs(opt.carbs - targetMacros.carbs) / targetMacros.carbs : 0;
-                    const avgDiff = (kcalDiff + proteinDiff + fatDiff + carbsDiff) / 4;
-                    matchScore = Math.max(0, Math.round(100 - (avgDiff * 100)));
-                }
+                    // Oblicz score z zoptymalizowanych wartości
+                    let matchScore = 0;
+                    if (targetMacros) {
+                        const kcalDiff = targetMacros.kcal > 0 ? Math.abs(opt.kcal - targetMacros.kcal) / targetMacros.kcal : 0;
+                        const proteinDiff = targetMacros.protein > 0 ? Math.abs(opt.protein - targetMacros.protein) / targetMacros.protein : 0;
+                        const fatDiff = targetMacros.fat > 0 ? Math.abs(opt.fat - targetMacros.fat) / targetMacros.fat : 0;
+                        const carbsDiff = targetMacros.carbs > 0 ? Math.abs(opt.carbs - targetMacros.carbs) / targetMacros.carbs : 0;
+                        const avgDiff = (kcalDiff + proteinDiff + fatDiff + carbsDiff) / 4;
+                        matchScore = Math.max(0, Math.round(100 - (avgDiff * 100)));
+                    }
 
-                grouped[r.category].push({ ...r, matchScore, optimizedNutrition: opt });
+                    grouped[mt][r.category].push({ ...r, matchScore, optimizedNutrition: opt });
+                    totalMatched++;
+                });
             });
 
             // Sortuj kategorie i przepisy
@@ -17456,15 +17507,13 @@
                 return text.replace(regex, '<mark>$1</mark>');
             };
 
-            // Sekcja "Ostatnio używane" (tylko gdy brak filtra i searcha)
+            // Sekcja "Ostatnio używane" (tylko gdy brak filtra i searcha) — scoped do slotu
             if (!searchTerm && mealPickerActiveFilter === 'all') {
-                const recentIds = (recentRecipes[mealType] || []).filter(id =>
-                    recipes[mealType].some(r => r.id === id)
-                );
+                const recentIds = (recentRecipes[mealType] || []).filter(id => findRecipeById(id));
                 if (recentIds.length > 0) {
                     html += '<div class="meal-picker-category">🕐 Ostatnio używane</div>';
                     recentIds.forEach(id => {
-                        const r = recipes[mealType].find(rec => rec.id === id);
+                        const r = findRecipeById(id);
                         if (!r) return;
                         if (!mealPickerOptCache[r.id]) {
                             mealPickerOptCache[r.id] = optimizeIngredients(r, targetMacros, portion);
@@ -17499,37 +17548,44 @@
                 }
             }
 
-            Object.keys(grouped).sort().forEach(category => {
-                html += `<div class="meal-picker-category">${category}</div>`;
+            sectionOrder.forEach(mt => {
+                if (!grouped[mt]) return;
+                const sectionLabel = mealTypeSectionLabels[mt] || mt;
+                const isOriginType = mt === mealType;
+                html += `<div class="meal-picker-section-header${isOriginType ? ' origin' : ''}">${sectionLabel}</div>`;
 
-                // Sortuj wg matchScore (od najlepszego dopasowania)
-                grouped[category].sort((a, b) => b.matchScore - a.matchScore).forEach(r => {
-                    const isFav = favoriteRecipes.has(r.id);
-                    const isSelected = r.id === currentValue;
+                Object.keys(grouped[mt]).sort().forEach(category => {
+                    html += `<div class="meal-picker-category">${category}</div>`;
 
-                    // Badge ze score'em
-                    const scoreBadge = r.matchScore >= 80 ? '🎯 ' : r.matchScore >= 60 ? '✓ ' : '';
-                    const scoreClass = r.matchScore >= 80 ? 'high' : r.matchScore >= 60 ? 'medium' : 'low';
+                    // Sortuj wg matchScore (od najlepszego dopasowania)
+                    grouped[mt][category].sort((a, b) => b.matchScore - a.matchScore).forEach(r => {
+                        const isFav = favoriteRecipes.has(r.id);
+                        const isSelected = r.id === currentValue;
 
-                    // Użyj zoptymalizowanych wartości
-                    const optNutr = r.optimizedNutrition;
-                    const displayName = highlightMatch(r.name, searchTerm);
-                    html += `
-                        <div class="meal-picker-option ${isSelected ? 'selected' : ''}"
-                             onclick="selectMealOption('${r.id}')">
-                            <span class="recipe-name">${scoreBadge}${isFav ? '❤️ ' : ''}${displayName}</span>
-                            <span class="recipe-macros">
-                                <span class="match-score ${scoreClass}">${r.matchScore}%</span>
-                                <span class="macro-kcal">${optNutr.kcal}</span>
-                                <span class="macro-detail">B${optNutr.protein} T${optNutr.fat} W${optNutr.carbs}</span>
-                            </span>
-                        </div>
-                    `;
+                        // Badge ze score'em
+                        const scoreBadge = r.matchScore >= 80 ? '🎯 ' : r.matchScore >= 60 ? '✓ ' : '';
+                        const scoreClass = r.matchScore >= 80 ? 'high' : r.matchScore >= 60 ? 'medium' : 'low';
+
+                        // Użyj zoptymalizowanych wartości
+                        const optNutr = r.optimizedNutrition;
+                        const displayName = highlightMatch(r.name, searchTerm);
+                        html += `
+                            <div class="meal-picker-option ${isSelected ? 'selected' : ''}"
+                                 onclick="selectMealOption('${r.id}')">
+                                <span class="recipe-name">${scoreBadge}${isFav ? '❤️ ' : ''}${displayName}</span>
+                                <span class="recipe-macros">
+                                    <span class="match-score ${scoreClass}">${r.matchScore}%</span>
+                                    <span class="macro-kcal">${optNutr.kcal}</span>
+                                    <span class="macro-detail">B${optNutr.protein} T${optNutr.fat} W${optNutr.carbs}</span>
+                                </span>
+                            </div>
+                        `;
+                    });
                 });
             });
 
             // Empty state
-            if (Object.keys(grouped).length === 0) {
+            if (totalMatched === 0) {
                 if (searchTerm) {
                     html += `<div class="meal-picker-empty">
                         <div class="meal-picker-empty-icon">🔍</div>
@@ -17558,7 +17614,7 @@
         // Pomocnicza funkcja do pobrania nazwy przepisu po ID
         function getRecipeNameById(mealType, recipeId) {
             if (!recipeId) return null;
-            const recipe = recipes[mealType].find(r => r.id === recipeId);
+            const recipe = findRecipeById(recipeId);
             return recipe ? recipe.name : null;
         }
 
@@ -17684,7 +17740,7 @@
                     persons.forEach(p => {
                         const recipeId = plan[day][mt][p.id];
                         if (recipeId) {
-                            const recipe = recipes[mt].find(r => r.id === recipeId);
+                            const recipe = findRecipeById(recipeId);
                             const person = persons.find(pers => pers.id === p.id);
                             if (recipe && person) {
                                 const target = calculateMealTargets(person, mt);
@@ -18139,7 +18195,7 @@
         // Funkcja podglądu przepisu z planera
         function previewRecipe(mealType, recipeId, day = null) {
             if (!recipeId) return;
-            const recipe = recipes[mealType].find(r => r.id === recipeId);
+            const recipe = findRecipeById(recipeId);
             if (recipe) {
                 currentPlanDay = day; // Zapisz dzień dla optymalizacji
                 openRecipeModal(mealType, recipe);
@@ -19545,7 +19601,7 @@
 
             meals.forEach(m => {
                 total++;
-                const r = recipes[m.mealType].find(x => x.id === m.recipeId);
+                const r = findRecipeById(m.recipeId);
                 if (r) {
                     const person = persons.find(p => p.id === m.personId);
                     if (!person) return;
@@ -19744,7 +19800,7 @@
                 shoppingListSelection.mealTypes
             );
             meals.forEach(m => {
-                const r = recipes[m.mealType].find(x => x.id === m.recipeId);
+                const r = findRecipeById(m.recipeId);
                 if (!r) return;
                 const person = persons.find(p => p.id === m.personId);
                 if (!person) return;
