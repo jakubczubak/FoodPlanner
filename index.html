@@ -19297,14 +19297,8 @@
                 checkedShoppingItems.delete(item);
             }
             saveCheckedItems();
+            renderShoppingList();
             updateShoppingCounter();
-
-            // Dynamically update the collapsible section count
-            const checkedToggle = document.querySelector('.checked-items-toggle');
-            if (checkedToggle) {
-                const checkedCount = document.querySelectorAll('#shopping-list .item input[type="checkbox"]:checked').length;
-                checkedToggle.innerHTML = `✅ Kupione (${checkedCount}) <span class="toggle-arrow">▸</span>`;
-            }
         }
 
         function updateShoppingCounter() {
